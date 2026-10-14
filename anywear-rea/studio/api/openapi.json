@@ -1,0 +1,532 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "입어봄 로컬 추론 API",
+    "version": "1.0.0",
+    "description": "Windows 단계에서 구현할 서버 계약. 현재 추론 서버는 포함되지 않는다."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:7861"
+    }
+  ],
+  "paths": {
+    "/api/health": {
+      "get": {
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "서버와 모델 준비 상태",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jobs": {
+      "post": {
+        "operationId": "createJob",
+        "security": [
+          {
+            "LocalToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/JobInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "작업 접수",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "잘못된 요청",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "토큰·출처 거부",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "작업 없음·만료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "파일·픽셀 제한 초과",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "이미지 형식 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "입력 불일치",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "GPU 작업 중",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "장치·모델 미준비",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jobs/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        }
+      ],
+      "get": {
+        "operationId": "getJob",
+        "responses": {
+          "200": {
+            "description": "작업 상태",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "작업 없음·만료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "cancelJob",
+        "security": [
+          {
+            "LocalToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "취소 요청 반영 후 상태",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "토큰·출처 거부",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "작업 없음·만료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jobs/{id}/image": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        }
+      ],
+      "get": {
+        "operationId": "getResult",
+        "responses": {
+          "200": {
+            "description": "PNG 결과, Cache-Control: no-store",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "작업 없음·만료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "LocalToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Local-Token"
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/Error"
+          }
+        }
+      },
+      "Model": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "ready",
+          "reason",
+          "capability"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "fashn",
+              "turbo"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "ready": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "capability": {
+            "type": "string",
+            "enum": [
+              "snapshot",
+              "live"
+            ]
+          }
+        }
+      },
+      "Health": {
+        "type": "object",
+        "required": [
+          "status",
+          "api_version",
+          "csrf_token",
+          "runtime",
+          "models",
+          "active_job_id"
+        ],
+        "properties": {
+          "status": {
+            "const": "ok"
+          },
+          "api_version": {
+            "const": "1"
+          },
+          "csrf_token": {
+            "type": "string",
+            "minLength": 1
+          },
+          "runtime": {
+            "type": "object",
+            "required": [
+              "device",
+              "gpu_name",
+              "vram_gb"
+            ],
+            "properties": {
+              "device": {
+                "type": "string",
+                "enum": [
+                  "cuda",
+                  "mps",
+                  "cpu",
+                  "none"
+                ]
+              },
+              "gpu_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "vram_gb": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              }
+            }
+          },
+          "models": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Model"
+            },
+            "minItems": 1
+          },
+          "active_job_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "Job": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "stage",
+          "elapsed_ms",
+          "inference_ms",
+          "result_url",
+          "error"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "loading",
+              "running",
+              "cancelling",
+              "cancelled",
+              "succeeded",
+              "failed"
+            ]
+          },
+          "stage": {
+            "type": "string"
+          },
+          "elapsed_ms": {
+            "type": "number",
+            "minimum": 0
+          },
+          "inference_ms": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "result_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^/api/jobs/[A-Za-z0-9_-]+/image$"
+          },
+          "error": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Error"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "JobInput": {
+        "type": "object",
+        "required": [
+          "engine",
+          "person"
+        ],
+        "properties": {
+          "engine": {
+            "type": "string",
+            "enum": [
+              "fashn",
+              "turbo"
+            ]
+          },
+          "person": {
+            "type": "string",
+            "format": "binary"
+          },
+          "garment": {
+            "type": "string",
+            "format": "binary"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "tops",
+              "bottoms",
+              "one-pieces"
+            ],
+            "default": "tops"
+          },
+          "garment_photo_type": {
+            "type": "string",
+            "enum": [
+              "flat-lay",
+              "model"
+            ],
+            "default": "flat-lay"
+          },
+          "prompt": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4294967295,
+            "default": 42
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "strength": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    }
+  }
+}
