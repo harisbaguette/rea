@@ -21,12 +21,12 @@ test("운임 결과·가격 그래프·날짜·안내 접근성", async ({ page 
   };
   await scan();
   for (const opener of [
-    '.card-photo-button[data-detail^="ICN-KIX"]',
+    '.destination-name[data-detail^="ICN-KIX"]',
     "#custom-open",
     "#help-open",
   ]) {
     await page.locator(opener).click();
-    if (opener.startsWith(".card"))
+    if (opener.startsWith(".destination"))
       await expect(page.locator("#price-history")).toContainText("회 관측");
     await scan();
     await page.keyboard.press("Escape");

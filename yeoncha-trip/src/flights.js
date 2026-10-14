@@ -58,7 +58,7 @@ export function bookUrl(flight, partner = flight.partner) {
 }
 export function filterFlights(
   flights,
-  { budget = 0, region = "all", sort = "price", dealsOnly = false } = {},
+  { budget = 0, region = "all", sort = "price", dealsOnly = false, alternatives = {} } = {},
 ) {
   return flights
     .filter(
@@ -90,7 +90,7 @@ export function filterFlights(
       sort === "discount"
         ? (b.discount ?? -999) - (a.discount ?? -999) || a.price - b.price
         : sort === "longest"
-          ? b.nights - a.nights || a.price - b.price
+          ? Math.max(b.nights, ...(alternatives[b.code] || []).filter(f => !budget || f.price <= budget).map(f => f.nights)) - Math.max(a.nights, ...(alternatives[a.code] || []).filter(f => !budget || f.price <= budget).map(f => f.nights)) || a.price - b.price
           : a.price - b.price,
     );
 }

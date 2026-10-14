@@ -3,6 +3,8 @@ import {
   daysBetween,
   requiredLeave,
   todayInSeoul,
+  findWindows,
+  rangeDays,
 } from "../src/calendar.js";
 
 export class FlightError extends Error {
@@ -184,6 +186,7 @@ export function normalizeFlight(item, stats = {}, metadata = {}, query) {
     observedAt,
     bestSeason: item.is_best_season === true,
     beach: beachCodes.has(item.arr),
+    scheduleVerified: false,
   };
 }
 
@@ -192,9 +195,35 @@ export function createFlightService({
   now = () => Date.now(),
   timeoutMs = 12000,
   cacheTtl = 120000,
+  requestSpacingMs = 500,
 } = {}) {
   const cache = new Map(),
     pending = new Map();
+  let activeRequests = 0;
+  let nextRequestAt = 0, cooldownUntil = 0;
+  const requestQueue = [];
+  async function limited(loader) {
+    if (activeRequests >= 2) {
+      if (requestQueue.length >= 24)
+        throw new FlightError(503, "SEARCH_BUSY", "조회가 몰렸어요. 잠시 후 다시 시도해 주세요.", 10);
+      await new Promise(resolve => requestQueue.push(resolve));
+    } else activeRequests++;
+    try {
+      if (now() < cooldownUntil)
+        throw new FlightError(429,"UPSTREAM_LIMIT","조회가 잠시 몰렸어요. 잠시 후 다시 시도해 주세요.",Math.ceil((cooldownUntil-now())/1000));
+      const waitMs = Math.max(0,nextRequestAt-now());
+      nextRequestAt = Math.max(now(),nextRequestAt) + requestSpacingMs;
+      if (waitMs) await new Promise(resolve=>setTimeout(resolve,waitMs));
+      if (now() < cooldownUntil)
+        throw new FlightError(429,"UPSTREAM_LIMIT","조회가 잠시 몰렸어요. 잠시 후 다시 시도해 주세요.",Math.ceil((cooldownUntil-now())/1000));
+      return await loader();
+    }
+    finally {
+      const next = requestQueue.shift();
+      if (next) next();
+      else activeRequests--;
+    }
+  }
   async function cached(key, ttl, loader) {
     const old = cache.get(key),
       current = now();
@@ -223,6 +252,9 @@ export function createFlightService({
     return promise;
   }
   async function upstream(path, body) {
+    return limited(() => readUpstream(path, body));
+  }
+  async function readUpstream(path, body) {
     let response;
     try {
       response = await fetcher(`${API}${path}`, {
@@ -249,13 +281,16 @@ export function createFlightService({
         "운임 조회가 지연되고 있어요. 잠시 후 다시 조회해 주세요.",
       );
     }
-    if (response.status === 429)
+    if (response.status === 429) {
+      const retryAfter = Math.max(1,Math.min(120,Number(response.headers.get("retry-after")) || 60));
+      cooldownUntil = now()+retryAfter*1000;
       throw new FlightError(
         429,
         "UPSTREAM_LIMIT",
         "조회가 잠시 몰렸어요. 1분 후 다시 시도해 주세요.",
-        60,
+        retryAfter,
       );
+    }
     if (!response.ok)
       throw new FlightError(
         502,
@@ -435,6 +470,62 @@ export function createFlightService({
       };
     });
   }
+  async function explore(input) {
+    const base = await search(input);
+    const maxNights = daysBetween(base.query.start, base.query.lastReturn) - 1;
+    let longer = null, longStayError = null;
+    if (!base.query.empty && !base.query.exact && maxNights > base.query.minNights) {
+      try {
+        longer = await search({...input, minNights:maxNights, exact:true});
+      } catch (error) {
+        longStayError = {
+          code:error instanceof FlightError ? error.code : "UPSTREAM_UNAVAILABLE",
+          message:error instanceof FlightError ? error.message : "긴 여행 일정은 다시 조회해 주세요.",
+        };
+      }
+    }
+    const alternatives = {}, cheapest = new Map();
+    for (const flight of [...base.flights, ...(longer?.flights || [])]) {
+      const values = alternatives[flight.code] ||= [];
+      const previous = values.findIndex(value => value.id === flight.id);
+      if (previous < 0) values.push(flight);
+      else if (values[previous].price > flight.price) values[previous] = flight;
+      if (!cheapest.has(flight.code) || cheapest.get(flight.code).price > flight.price)
+        cheapest.set(flight.code, flight);
+    }
+    for (const values of Object.values(alternatives)) values.sort((a,b)=>a.price-b.price || b.nights-a.nights);
+    const stale = base.stale || Boolean(longer?.stale);
+    return {
+      ...base,
+      flights:[...cheapest.values()].sort((a,b)=>a.price-b.price),
+      alternatives,
+      alternativesStatus:longStayError ? "partial" : "ready",
+      ...(longStayError ? {longStayError} : {}),
+      longStayFlights:longer?.flights || (base.query.exact || maxNights <= base.query.minNights ? base.flights : []),
+      stale,
+      ...(stale ? {warning:base.warning || longer?.warning} : {}),
+    };
+  }
+  async function overview(input = {}) {
+    const origin = input.origin || "ICN";
+    const year = Number(input.year ?? 2027), maxLeave = Number(input.maxLeave ?? 2);
+    const minNights = Number(input.minNights ?? 2), page = Number(input.page ?? 1), month = Number(input.month ?? 0);
+    if (!ORIGINS.has(origin)) throw new FlightError(400,"INVALID_ORIGIN","지원하는 출발 공항을 선택해 주세요.");
+    if (![2026,2027].includes(year) || !Number.isInteger(maxLeave) || maxLeave < 0 || maxLeave > 5 || !Number.isInteger(page) || page < 1 || page > 30 || !Number.isInteger(month) || month < 0 || month > 12 || !Number.isInteger(minNights) || minNights < 1 || minNights > 15 || ![undefined,"0","1",0,1].includes(input.buffer))
+      throw new FlightError(400,"INVALID_OVERVIEW","연휴 비교 조건이 올바르지 않아요.");
+    const buffer = input.buffer === "0" || input.buffer === 0 ? 0 : 1;
+    const windows = findWindows({year,maxLeave,today:todayInSeoul(new Date(now()))}).filter(w=>!month || rangeDays(w.start,w.end).some(d=>Number(d.date.slice(0,4))===year && Number(d.date.slice(5,7))===month));
+    const pageSize = 4, offset=(page-1)*pageSize;
+    const summaries = await Promise.all(windows.slice(offset,offset+pageSize).map(async window=>{
+      try {
+        const result = await explore({origin,start:window.start,end:window.end,minNights,buffer});
+        return {...window,status:result.flights.length ? "ready" : "empty",cheapest:result.flights[0] || null,longStay:result.longStayFlights[0] || null,destinationsCount:result.flights.length,updatedAt:result.updatedAt,stale:result.stale,complete:result.complete,alternativesStatus:result.alternativesStatus,...(result.longStayError ? {error:result.longStayError} : {}),...(result.warning ? {warning:result.warning} : {})};
+      } catch (error) {
+        return {...window,status:"error",cheapest:null,longStay:null,destinationsCount:0,updatedAt:null,stale:false,complete:false,error:{code:error instanceof FlightError ? error.code : "UPSTREAM_UNAVAILABLE",message:error instanceof FlightError ? error.message : "이 연휴는 다시 조회해 주세요."}};
+      }
+    }));
+    return {origin,year,maxLeave,minNights,buffer,page,pageSize,totalWindows:windows.length,hasNext:offset+pageSize<windows.length,windows:summaries};
+  }
   function validateRoute(input) {
     if (
       !ORIGINS.has(input.origin) ||
@@ -555,5 +646,5 @@ export function createFlightService({
       );
     return result;
   }
-  return { search, routes, history, booking };
+  return { search, explore, overview, routes, history, booking };
 }

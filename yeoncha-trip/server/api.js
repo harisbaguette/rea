@@ -43,6 +43,7 @@ export function createApi({
         ![
           "/api/health",
           "/api/routes",
+          "/api/overview",
           "/api/flights",
           "/api/history",
           "/api/book",
@@ -52,9 +53,10 @@ export function createApi({
       if (url.search.length > 600)
         throw new FlightError(400, "INVALID_QUERY", "조회 조건이 너무 깁니다.");
       if (url.pathname === "/api/health")
-        return json({ status: "ok", service: "tteum-flights", version: 2 });
+        return json({ status: "ok", service: "tteum-flights", version: 3 });
       const allowed = {
         "/api/routes": ["origin"],
+        "/api/overview": ["origin", "year", "maxLeave", "minNights", "buffer", "page", "month"],
         "/api/flights": [
           "origin",
           "start",
@@ -62,6 +64,7 @@ export function createApi({
           "minNights",
           "buffer",
           "exact",
+          "alternatives",
         ],
         "/api/history": ["origin", "code", "start", "end", "partner"],
         "/api/book": ["origin", "code", "start", "end", "partner"],
@@ -96,8 +99,13 @@ export function createApi({
       const input = Object.fromEntries(url.searchParams);
       if (url.pathname === "/api/routes")
         return json({ routes: await service.routes(input.origin) });
-      if (url.pathname === "/api/flights")
-        return json(await service.search(input));
+      if (url.pathname === "/api/overview")
+        return json(await service.overview(input));
+      if (url.pathname === "/api/flights") {
+        if (![undefined,"0","1"].includes(input.alternatives))
+          throw new FlightError(400,"INVALID_OPTIONS","일정 비교 조건이 올바르지 않아요.");
+        return json(await (input.alternatives === "1" ? service.explore(input) : service.search(input)));
+      }
       if (url.pathname === "/api/history")
         return json(await service.history(input));
       if (url.pathname === "/api/book") {

@@ -40,7 +40,7 @@ export function rangeDays(start, end) {
 export const requiredLeave = (start, end) => rangeDays(start, end).filter((day) => !day.off).map((day) => day.date);
 export const shortDate = (date) => `${Number(date.slice(5, 7))}.${Number(date.slice(8))}`;
 export function periodLabel(start, end) {
-  return `${shortDate(start)} (${dayInfo(start).weekday}) — ${shortDate(end)} (${dayInfo(end).weekday})`;
+  return `${shortDate(start)} (${dayInfo(start).weekday}) — ${start.slice(0,4)!==end.slice(0,4)?`${end.slice(0,4)}.`:''}${shortDate(end)} (${dayInfo(end).weekday})`;
 }
 export function makeWindow(start, end) {
   const days = rangeDays(start, end);
@@ -57,9 +57,10 @@ export function makeWindow(start, end) {
 export function findWindows({ year, maxLeave = 2, today = todayInSeoul(), minDays = 3 }) {
   if (!HOLIDAYS[year]) return [];
   const first = `${year}-01-01` > today ? `${year}-01-01` : today;
-  const last = `${year}-12-31`;
+  const lastStart = `${year}-12-31`;
+  const last = HOLIDAYS[year+1] ? `${year+1}-01-15` : lastStart;
   const candidates = [];
-  for (let start = first; start <= last; start = addDays(start, 1)) {
+  for (let start = first; start <= lastStart; start = addDays(start, 1)) {
     let leave = 0;
     for (let end = start, length = 1; end <= last && length <= 16; end = addDays(end, 1), length++) {
       if (!dayInfo(end).off) leave++;

@@ -21,7 +21,7 @@ test("연휴 안의 실제 응답 요금·판매처 비교·가격 그래프", a
     page.locator("#detail-dialog .seller-row").first(),
   ).toHaveAttribute(
     "href",
-    /origin=ICN.*code=KIX.*start=2027-09-11.*end=2027-09-18/,
+    /origin=ICN.*code=KIX.*start=2027-09-13.*end=2027-09-15/,
   );
   await expect(page.locator("#detail-dialog")).toContainText("한국 도착일");
 });
@@ -34,7 +34,9 @@ test("공항·연차·월 변경이 실제 조회 조건과 결과에 반영", a
   await expect(page.locator("#selected-window")).toContainText(
     "연차 0일로, 최대 4일",
   );
+  await page.locator(".preference-disclosure > summary").click();
   await page.getByLabel("최소 숙박일").selectOption("1");
+  await page.locator(".month-picker > summary").click();
   await page
     .getByRole("button", { name: "12월, 최대 3일 여행", exact: true })
     .click();
@@ -186,6 +188,7 @@ test("휴가 마지막 날과 귀국편 마감일을 구분하고 날짜 고정�
   await page.getByLabel("휴가 시작일", { exact: true }).fill("2027-05-01");
   await page.getByLabel("휴가 마지막 날", { exact: true }).fill("2027-05-05");
   await page.getByRole("button", { name: "이 일정으로 여행지 보기" }).click();
+  await page.locator(".preference-disclosure > summary").click();
   await page.getByLabel("출발·귀국편 날짜 고정").check();
   await expect(page.locator("#return-cutoff")).toHaveText(
     "5.1 출발 · 5.4 귀국편",

@@ -22,18 +22,26 @@ test('연차 없이 떠날 수 있는 3일 이상 연휴 10개를 찾는다', ()
   assert.ok(windows.every((window) => window.leave.length === 0));
   assert.equal(windows[0].days, 4);
 });
-test('모든 추천은 연차 한도와 현재 날짜, 해당 연도를 지킨다', () => {
+test('모든 추천은 연차 한도와 현재 날짜, 시작 연도를 지킨다', () => {
   for (const year of [2026, 2027]) for (const maxLeave of [0, 1, 2, 3, 4, 5]) {
     const windows = findWindows({ year, maxLeave, today: '2026-10-14' });
     for (const window of windows) {
       assert.ok(window.start >= '2026-10-14');
-      assert.equal(Number(window.end.slice(0, 4)), year);
+      assert.equal(Number(window.start.slice(0, 4)), year);
+      assert.ok(Number(window.end.slice(0, 4)) <= year + 1);
       assert.ok(window.leave.length <= maxLeave);
       assert.ok(window.days >= 3 && window.days <= 16);
       assert.deepEqual(window.leave, requiredLeave(window.start, window.end));
     }
   }
   assert.deepEqual(findWindows({ year: 2026, maxLeave: 2, today: '2027-01-01' }), []);
+});
+test('연말연시 연휴는 해가 바뀌어도 주말·신정을 연결한다', () => {
+  const windows=findWindows({year:2026,maxLeave:1,today:'2026-10-14'});
+  const newYear=windows.find(w=>w.start==='2026-12-31'&&w.end==='2027-01-03');
+  assert.ok(newYear,'연차1일로4일쉬는연말연시기간이추천되어야한다');
+  assert.deepEqual(newYear.leave,['2026-12-31']);
+  assert.equal(newYear.days,4);
 });
 test('시간대 경계에서도 한국 날짜로 과거 일정을 판단한다', () => {
   assert.equal(todayInSeoul(new Date('2026-10-13T15:01:00Z')), '2026-10-14');
