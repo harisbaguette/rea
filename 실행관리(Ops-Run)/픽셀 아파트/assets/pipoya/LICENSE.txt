@@ -1,0 +1,23 @@
+Pipoya / ぴぽや
+PIPOYA FREE RPG Character Sprites 32x32
+https://pipoya.itch.io/pipoya-free-rpg-character-sprites-32x32
+https://pipoya.net/sozai/terms-of-use/
+
+Original asset-pack license (verbatim):
+- For commercial or personal use.
+- Use and edit freely.
+- Not redistribute or resell this assets.
+- It can be used for game development and other productions.
+
+Author clarification on the official pack page (reply to Silee Goose Productions):
+You can sell games that use these assets.
+There is no problem with your use.
+It prohibits the resale of assets only.
+
+한국어 이용 안내:
+이 프로젝트에 포함된 PNG는 Pipoya의 원본 소재다.
+개인·상업 작품과 수정은 허용된다. 소재 자체의 재배포·재판매는 금지된다.
+소재를 사용한 작품의 배포·판매는 작가가 허용했다.
+크레딧은 의무가 아니지만, 표기한다면 “ぴぽや https://pipoya.net/”를 쓴다.
+이 PNG를 별도 에셋 팩·템플릿용 소재 묶음으로 재배포하지 않는다.
+AI 모델 학습 허락은 이 라이선스에서 확인되지 않았다.

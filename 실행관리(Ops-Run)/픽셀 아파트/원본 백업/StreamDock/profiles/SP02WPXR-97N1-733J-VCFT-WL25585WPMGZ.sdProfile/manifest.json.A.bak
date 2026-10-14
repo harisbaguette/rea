@@ -1,0 +1,569 @@
+{
+    "Actions": {
+        "0,0": {
+            "ActionID": "p5419dna-eq0o-8753-4i1w-zb8e17p44f40",
+            "Controller": "",
+            "Name": "change page",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": ""
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.page.change"
+        },
+        "0,1": {
+            "ActionID": "262jxe82-1q26-wt51-s396-gn92mcq39499",
+            "Controller": "",
+            "Name": "Record to-do",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "10",
+                    "Image": "static/img/todo",
+                    "TitleAlignment": "middle"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.memo.action2"
+        },
+        "0,2": {
+            "ActionID": "w9t689o7-838u-vhia-4b9v-qa2cpm30bwla",
+            "Controller": "",
+            "Name": "Remember things",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "10",
+                    "Image": "static/img/memo",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.memo.action1"
+        },
+        "1,0": {
+            "ActionID": "jau72m8c-ozr7-9fby-wro8-us19415blveg",
+            "Actions": [
+            ],
+            "Controller": "",
+            "Name": "KnobOperatingGroup",
+            "Settings": {
+                "Index": -1
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "Images/btn_KnobOperatingGroup.gif"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.KnobOperatingGroup"
+        },
+        "1,1": {
+            "ActionID": "yz94sam1-2c2f-pwwl-i1sj-2usf58195i9n",
+            "Controller": "",
+            "Name": "Weather query",
+            "Settings": {
+                "Localization": {
+                    "100": "맑음",
+                    "101": "구름 조금",
+                    "102": "구름 조금",
+                    "103": "구름 조금",
+                    "104": "흐림",
+                    "150": "밤에 맑음",
+                    "151": "밤에 구름 조금",
+                    "152": "밤에 구름 조금",
+                    "153": "밤에 구름 조금",
+                    "300": "소나기",
+                    "301": "소나기",
+                    "302": "천둥번개",
+                    "303": "천둥번개",
+                    "304": "천둥번개와 우박",
+                    "305": "약한 비",
+                    "306": "중간 비",
+                    "307": "폭우",
+                    "308": "폭우",
+                    "309": "약한 비",
+                    "310": "극심한 폭우",
+                    "311": "대형 폭우",
+                    "312": "초대형 폭우",
+                    "313": "진눈깨비",
+                    "314": "중간 비",
+                    "315": "폭우",
+                    "316": "극심한 폭우",
+                    "317": "대형 폭우",
+                    "318": "초대형 폭우",
+                    "350": "밤에 소나기",
+                    "351": "밤에 소나기",
+                    "399": "약한 비",
+                    "400": "약한 눈",
+                    "401": "중간 눈",
+                    "402": "폭설",
+                    "403": "맹렬한 눈보라",
+                    "404": "진눈깨비",
+                    "405": "진눈깨비",
+                    "406": "진눈깨비",
+                    "407": "소낙눈",
+                    "408": "중간 눈",
+                    "409": "폭설",
+                    "410": "맹렬한 눈보라",
+                    "456": "진눈깨비",
+                    "457": "밤에 소낙눈",
+                    "499": "약한 눈",
+                    "500": "안개",
+                    "501": "안개",
+                    "502": "안개와 스모그",
+                    "503": "황사",
+                    "504": "황사",
+                    "507": "황사",
+                    "508": "강한 황사",
+                    "509": "안개",
+                    "510": "안개",
+                    "511": "안개와 스모그",
+                    "512": "안개와 스모그",
+                    "513": "안개와 스모그",
+                    "514": "안개",
+                    "515": "안개와 스모그",
+                    "900": "맑음",
+                    "901": "중간 눈",
+                    "999": "구름 조금",
+                    "weatherapi": "weatherapi",
+                    "主题切换": "테마 전환",
+                    "华氏度": "화씨",
+                    "和风天气": "HeFeng 날씨",
+                    "城市名称": "도시 이름",
+                    "天气名称": "날씨 이름",
+                    "天气提供商": "날씨 제공자",
+                    "天气查询": "날씨 쿼리",
+                    "搜索列表": "검색 목록",
+                    "摄氏度": "섭씨 온도",
+                    "显示": "표시",
+                    "显示选项": "옵션 표시",
+                    "更新": "고쳐 쓰다",
+                    "温度单位": "온도 단위",
+                    "简约摩登": "심플하고 모던한",
+                    "自定义标题": "맞춤 제목",
+                    "自定名称": "맞춤 이름",
+                    "请输入城市": "도시를 입력하세요",
+                    "请输入标题": "제목을 입력하세요",
+                    "豪华绚丽": "고급스럽고 화려해요",
+                    "输入城市": "도시를 입력하세요",
+                    "隐藏": "숨기기"
+                },
+                "city": "Seoul",
+                "cityId": "485B3",
+                "count": 0,
+                "fxLink": "https://www.qweather.com/en/weather/seoul-485B3.html",
+                "inputCity": "서울",
+                "radio": "1",
+                "radio2": "0",
+                "radioUseApi": "qweather",
+                "searchList": [
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/seoul-485B3.html",
+                        "id": "485B3",
+                        "isDst": "0",
+                        "lat": "37.58333",
+                        "lon": "127.00000",
+                        "name": "Seoul",
+                        "rank": "10",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gangnam-gu-E4C08.html",
+                        "id": "E4C08",
+                        "isDst": "0",
+                        "lat": "37.51770",
+                        "lon": "127.04730",
+                        "name": "Gangnam-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gwanak-gu-9A271.html",
+                        "id": "9A271",
+                        "isDst": "0",
+                        "lat": "37.47843",
+                        "lon": "126.95160",
+                        "name": "Gwanak-gu",
+                        "rank": "55",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/yongsan-gu-B31BD.html",
+                        "id": "B31BD",
+                        "isDst": "0",
+                        "lat": "37.53230",
+                        "lon": "126.99000",
+                        "name": "Yongsan-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/jongno-gu-6B200.html",
+                        "id": "6B200",
+                        "isDst": "0",
+                        "lat": "37.57291",
+                        "lon": "126.97938",
+                        "name": "Jongno-gu",
+                        "rank": "75",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/jung-gu-CE7E8.html",
+                        "id": "CE7E8",
+                        "isDst": "0",
+                        "lat": "37.56366",
+                        "lon": "126.99751",
+                        "name": "Jung-gu",
+                        "rank": "75",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gangdong-gu-55AE7.html",
+                        "id": "55AE7",
+                        "isDst": "0",
+                        "lat": "37.53013",
+                        "lon": "127.12375",
+                        "name": "Gangdong-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gwangjin-gu-239B4.html",
+                        "id": "239B4",
+                        "isDst": "0",
+                        "lat": "37.53791",
+                        "lon": "127.08209",
+                        "name": "Gwangjin-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/mapo-gu-48A9D.html",
+                        "id": "48A9D",
+                        "isDst": "0",
+                        "lat": "37.56381",
+                        "lon": "126.90841",
+                        "name": "Mapo-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/seocho-gu-53E44.html",
+                        "id": "53E44",
+                        "isDst": "0",
+                        "lat": "37.48373",
+                        "lon": "127.03244",
+                        "name": "Seocho-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    }
+                ],
+                "tempList": "0",
+                "theme": "Modern",
+                "timer": 3,
+                "title": "서울",
+                "titleParameters": {
+                    "fontFamily": "HarmonyOS Sans",
+                    "fontSize": 17,
+                    "fontStyle": "Regular",
+                    "fontUnderline": false,
+                    "showTitle": true,
+                    "titleAlignment": "bottom",
+                    "titleColor": "#ffffff"
+                },
+                "wdata": {
+                    "code": 102,
+                    "tmp": 32
+                }
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": 17,
+                    "Image": "static/img/default.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.weather.action1"
+        },
+        "1,2": {
+            "ActionID": "ygeh9oph-d16v-p0jy-4kid-2c7o7cx900x5",
+            "Controller": "",
+            "Name": "Open",
+            "Settings": {
+                "path": "/System/Applications/Messages.app"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontFamily": "HarmonyOS Sans",
+                    "FontSize": 13,
+                    "FontStyle": "Regular",
+                    "FontUnderline": false,
+                    "Image": "3Q706XJ5016TJW5OHS8Y7NT4G1A.png",
+                    "MultiActionImage": "",
+                    "Name": "",
+                    "ShowTitle": true,
+                    "Title": "",
+                    "TitleAlignment": "bottom",
+                    "TitleColor": "#ffffff"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.open"
+        },
+        "2,0": {
+            "ActionID": "5gp574kv-kygi-8m95-2y79-9vf2a599033m",
+            "Controller": "",
+            "Name": "Hotkey",
+            "Settings": {
+                "Coalesce": true,
+                "Hotkeys": [
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": true,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 49
+                    },
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": true,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 49
+                    },
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": -1
+                    }
+                ],
+                "hotkeyRadioButtonIndex": -1
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "0933TQF104522CTTNF9KV6449IR.mbg"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.hotkey"
+        },
+        "2,1": {
+            "ActionID": "d5p28dq5-0d9u-53al-s0f8-p86744x1i9it",
+            "Controller": "",
+            "Name": "World Time",
+            "Settings": {
+                "amplify": true,
+                "isBackgroundHidden": false,
+                "select": "1",
+                "theme": "theme1",
+                "title": "SYS",
+                "zone": "system"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "11",
+                    "FontStyle": "Bold",
+                    "Image": "images/index.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.mirabox.streamdock.time.action1"
+        },
+        "2,2": {
+            "ActionID": "1l92z41o-e40v-hs44-fd46-436y1ufgj3s3",
+            "Controller": "Keypad",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.naver.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "2X61GVBF99IM33279HO24M0TI16.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "3,0": {
+            "ActionID": "00s546yp-20fy-97w6-vpfg-2uq4r4hlf02h",
+            "Controller": "",
+            "Name": "Volume",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "VMU2YR06272D8PP2AID422TY9D0.mbg"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.touchbar.volume"
+        },
+        "3,1": {
+            "ActionID": "e1s92263-15o5-2oq7-pp0r-et4bg9effj16",
+            "Controller": "",
+            "Name": "Timer",
+            "Settings": {
+                "deep": 0,
+                "select": "1",
+                "start": 1755327290336
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "16",
+                    "Image": "images/T1.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.mirabox.streamdock.time.action2"
+        },
+        "3,2": {
+            "ActionID": "835366vm-6102-1r1a-9w7d-4xh4q2i78q92",
+            "Controller": "Keypad",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.google.com"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "06U1EB2570I362TY74D06CLVG18.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "4,1": {
+            "ActionID": "3149wotu-pg0d-9g14-0t15-x7648t00nugs",
+            "Controller": "",
+            "Name": "Countdown",
+            "Settings": {
+                "color": "rgb(0,255,0)",
+                "inputTime": "0",
+                "musicUrl": "./assets/kn.mp3",
+                "select": "1",
+                "surplus": 60000,
+                "timing": "60000"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "16",
+                    "Image": "images/C1.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.mirabox.streamdock.time.action3"
+        },
+        "4,2": {
+            "ActionID": "10v12014-p4g7-m313-35we-7u828dr291c8",
+            "Controller": "Keypad",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.monstargear.co.kr/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "S0ZHS88K4Z4JE1Q0G21RG0F1943.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        }
+    },
+    "AppIdentifier": "",
+    "DeviceModel": "20GBA9901",
+    "DeviceSerialNumber": "0300D0782810",
+    "DeviceUUID": "TS10N4V25",
+    "Name": "기본 장면",
+    "Pages": {
+        "Current": "SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile",
+        "Pages": [
+            "SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile"
+        ]
+    },
+    "Version": "1.0"
+}

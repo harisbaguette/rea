@@ -1,0 +1,832 @@
+
+libSDLibrary.arm64.dylib:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+00000000000371e8 <SDDevice::sendGetHardwareFirmwareVersion()>:
+   371e8: d10183ff     	sub	sp, sp, #0x60
+   371ec: a9044ff4     	stp	x20, x19, [sp, #0x40]
+   371f0: a9057bfd     	stp	x29, x30, [sp, #0x50]
+   371f4: 910143fd     	add	x29, sp, #0x50
+   371f8: f9406c08     	ldr	x8, [x0, #0xd8]
+   371fc: b40011c8     	cbz	x8, 0x37434 <SDDevice::sendGetHardwareFirmwareVersion()+0x24c>
+   37200: aa0003f3     	mov	x19, x0
+   37204: 39438408     	ldrb	w8, [x0, #0xe1]
+   37208: 34001168     	cbz	w8, 0x37434 <SDDevice::sendGetHardwareFirmwareVersion()+0x24c>
+   3720c: b9404a68     	ldr	w8, [x19, #0x48]
+   37210: 7101011f     	cmp	w8, #0x40
+   37214: 5400110b     	b.lt	0x37434 <SDDevice::sendGetHardwareFirmwareVersion()+0x24c>
+   37218: f9402268     	ldr	x8, [x19, #0x40]
+   3721c: b40010c8     	cbz	x8, 0x37434 <SDDevice::sendGetHardwareFirmwareVersion()+0x24c>
+   37220: b00011e1     	adrp	x1, 0x274000 <dyld_stub_binder+0x274000>
+   37224: 91268821     	add	x1, x1, #0x9a2
+   37228: 910083e8     	add	x8, sp, #0x20
+   3722c: 52800420     	mov	w0, #0x21               ; =33
+   37230: 940899fb     	bl	__ZN7QString8fromUtf8E14QByteArrayView
+   37234: 3dc00be0     	ldr	q0, [sp, #0x20]
+   37238: 3d8003e0     	str	q0, [sp]
+   3723c: f9401be8     	ldr	x8, [sp, #0x30]
+   37240: f9000be8     	str	x8, [sp, #0x10]
+   37244: 39488a68     	ldrb	w8, [x19, #0x222]
+   37248: 340000e8     	cbz	w8, 0x37264 <SDDevice::sendGetHardwareFirmwareVersion()+0x7c>
+   3724c: 910003e1     	mov	x1, sp
+   37250: aa1303e0     	mov	x0, x19
+   37254: 9407b042     	bl	0x22335c <SDDevice::sigPrintLog(QString const&)>
+   37258: f94003e8     	ldr	x8, [sp]
+   3725c: b5000088     	cbnz	x8, 0x3726c <SDDevice::sendGetHardwareFirmwareVersion()+0x84>
+   37260: 1400000b     	b	0x3728c <SDDevice::sendGetHardwareFirmwareVersion()+0xa4>
+   37264: 9e660008     	fmov	x8, d0
+   37268: b4000128     	cbz	x8, 0x3728c <SDDevice::sendGetHardwareFirmwareVersion()+0xa4>
+   3726c: 12800009     	mov	w9, #-0x1               ; =-1
+   37270: b8e90108     	ldaddal	w9, w8, [x8]
+   37274: 7100051f     	cmp	w8, #0x1
+   37278: 540000a1     	b.ne	0x3728c <SDDevice::sendGetHardwareFirmwareVersion()+0xa4>
+   3727c: f94003e0     	ldr	x0, [sp]
+   37280: 52800041     	mov	w1, #0x2                ; =2
+   37284: 52800102     	mov	w2, #0x8                ; =8
+   37288: 9408967c     	bl	__ZN10QArrayData10deallocateEPS_xx
+   3728c: b9804a68     	ldrsw	x8, [x19, #0x48]
+   37290: 91000501     	add	x1, x8, #0x1
+   37294: 910083e0     	add	x0, sp, #0x20
+   37298: 52800002     	mov	w2, #0x0                ; =0
+   3729c: 940896b3     	bl	__ZN10QByteArrayC1Exc
+   372a0: 39438274     	ldrb	w20, [x19, #0xe0]
+   372a4: f94013e8     	ldr	x8, [sp, #0x20]
+   372a8: b4000088     	cbz	x8, 0x372b8 <SDDevice::sendGetHardwareFirmwareVersion()+0xd0>
+   372ac: b9400108     	ldr	w8, [x8]
+   372b0: 7100091f     	cmp	w8, #0x2
+   372b4: 540000ab     	b.lt	0x372c8 <SDDevice::sendGetHardwareFirmwareVersion()+0xe0>
+   372b8: f9401be1     	ldr	x1, [sp, #0x30]
+   372bc: 910083e0     	add	x0, sp, #0x20
+   372c0: 52800022     	mov	w2, #0x1                ; =1
+   372c4: 9408967f     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   372c8: f94017e8     	ldr	x8, [sp, #0x28]
+   372cc: 39000114     	strb	w20, [x8]
+   372d0: f94013e8     	ldr	x8, [sp, #0x20]
+   372d4: b4000088     	cbz	x8, 0x372e4 <SDDevice::sendGetHardwareFirmwareVersion()+0xfc>
+   372d8: b9400108     	ldr	w8, [x8]
+   372dc: 7100091f     	cmp	w8, #0x2
+   372e0: 540000ab     	b.lt	0x372f4 <SDDevice::sendGetHardwareFirmwareVersion()+0x10c>
+   372e4: f9401be1     	ldr	x1, [sp, #0x30]
+   372e8: 910083e0     	add	x0, sp, #0x20
+   372ec: 52800022     	mov	w2, #0x1                ; =1
+   372f0: 94089674     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   372f4: f94017e8     	ldr	x8, [sp, #0x28]
+   372f8: 52800869     	mov	w9, #0x43               ; =67
+   372fc: 39000509     	strb	w9, [x8, #0x1]
+   37300: f94013e8     	ldr	x8, [sp, #0x20]
+   37304: b4000088     	cbz	x8, 0x37314 <SDDevice::sendGetHardwareFirmwareVersion()+0x12c>
+   37308: b9400108     	ldr	w8, [x8]
+   3730c: 7100091f     	cmp	w8, #0x2
+   37310: 540000ab     	b.lt	0x37324 <SDDevice::sendGetHardwareFirmwareVersion()+0x13c>
+   37314: f9401be1     	ldr	x1, [sp, #0x30]
+   37318: 910083e0     	add	x0, sp, #0x20
+   3731c: 52800022     	mov	w2, #0x1                ; =1
+   37320: 94089668     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   37324: f94017e8     	ldr	x8, [sp, #0x28]
+   37328: 52800a49     	mov	w9, #0x52               ; =82
+   3732c: 39000909     	strb	w9, [x8, #0x2]
+   37330: f94013e8     	ldr	x8, [sp, #0x20]
+   37334: b4000088     	cbz	x8, 0x37344 <SDDevice::sendGetHardwareFirmwareVersion()+0x15c>
+   37338: b9400108     	ldr	w8, [x8]
+   3733c: 7100091f     	cmp	w8, #0x2
+   37340: 540000ab     	b.lt	0x37354 <SDDevice::sendGetHardwareFirmwareVersion()+0x16c>
+   37344: f9401be1     	ldr	x1, [sp, #0x30]
+   37348: 910083e0     	add	x0, sp, #0x20
+   3734c: 52800022     	mov	w2, #0x1                ; =1
+   37350: 9408965c     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   37354: f94017e8     	ldr	x8, [sp, #0x28]
+   37358: 52800a89     	mov	w9, #0x54               ; =84
+   3735c: 39000d09     	strb	w9, [x8, #0x3]
+   37360: f94013e8     	ldr	x8, [sp, #0x20]
+   37364: b4000088     	cbz	x8, 0x37374 <SDDevice::sendGetHardwareFirmwareVersion()+0x18c>
+   37368: b9400108     	ldr	w8, [x8]
+   3736c: 7100091f     	cmp	w8, #0x2
+   37370: 540000ab     	b.lt	0x37384 <SDDevice::sendGetHardwareFirmwareVersion()+0x19c>
+   37374: f9401be1     	ldr	x1, [sp, #0x30]
+   37378: 910083e0     	add	x0, sp, #0x20
+   3737c: 52800022     	mov	w2, #0x1                ; =1
+   37380: 94089650     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   37384: f94017e8     	ldr	x8, [sp, #0x28]
+   37388: 52800ac9     	mov	w9, #0x56               ; =86
+   3738c: 39001909     	strb	w9, [x8, #0x6]
+   37390: f94013e8     	ldr	x8, [sp, #0x20]
+   37394: b4000088     	cbz	x8, 0x373a4 <SDDevice::sendGetHardwareFirmwareVersion()+0x1bc>
+   37398: b9400108     	ldr	w8, [x8]
+   3739c: 7100091f     	cmp	w8, #0x2
+   373a0: 540000ab     	b.lt	0x373b4 <SDDevice::sendGetHardwareFirmwareVersion()+0x1cc>
+   373a4: f9401be1     	ldr	x1, [sp, #0x30]
+   373a8: 910083e0     	add	x0, sp, #0x20
+   373ac: 52800022     	mov	w2, #0x1                ; =1
+   373b0: 94089644     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   373b4: f94017e8     	ldr	x8, [sp, #0x28]
+   373b8: 528008a9     	mov	w9, #0x45               ; =69
+   373bc: 39001d09     	strb	w9, [x8, #0x7]
+   373c0: f94013e8     	ldr	x8, [sp, #0x20]
+   373c4: b4000088     	cbz	x8, 0x373d4 <SDDevice::sendGetHardwareFirmwareVersion()+0x1ec>
+   373c8: b9400108     	ldr	w8, [x8]
+   373cc: 7100091f     	cmp	w8, #0x2
+   373d0: 540000ab     	b.lt	0x373e4 <SDDevice::sendGetHardwareFirmwareVersion()+0x1fc>
+   373d4: f9401be1     	ldr	x1, [sp, #0x30]
+   373d8: 910083e0     	add	x0, sp, #0x20
+   373dc: 52800022     	mov	w2, #0x1                ; =1
+   373e0: 94089638     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   373e4: f94017e8     	ldr	x8, [sp, #0x28]
+   373e8: 52800a49     	mov	w9, #0x52               ; =82
+   373ec: 39002109     	strb	w9, [x8, #0x8]
+   373f0: f94017e8     	ldr	x8, [sp, #0x28]
+   373f4: b0005629     	adrp	x9, __DefaultRuneLocale
+   373f8: f9401d29     	ldr	x9, [x9, #0x38]
+   373fc: f100011f     	cmp	x8, #0x0
+   37400: 9a880121     	csel	x1, x9, x8, eq
+   37404: aa1303e0     	mov	x0, x19
+   37408: 97fff1c2     	bl	0x33b10 <SDDevice::writeData(unsigned char const*)>
+   3740c: f94013e8     	ldr	x8, [sp, #0x20]
+   37410: b4000128     	cbz	x8, 0x37434 <SDDevice::sendGetHardwareFirmwareVersion()+0x24c>
+   37414: 12800009     	mov	w9, #-0x1               ; =-1
+   37418: b8e90108     	ldaddal	w9, w8, [x8]
+   3741c: 7100051f     	cmp	w8, #0x1
+   37420: 540000a1     	b.ne	0x37434 <SDDevice::sendGetHardwareFirmwareVersion()+0x24c>
+   37424: f94013e0     	ldr	x0, [sp, #0x20]
+   37428: 52800021     	mov	w1, #0x1                ; =1
+   3742c: 52800102     	mov	w2, #0x8                ; =8
+   37430: 94089612     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37434: a9457bfd     	ldp	x29, x30, [sp, #0x50]
+   37438: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+   3743c: 910183ff     	add	sp, sp, #0x60
+   37440: d65f03c0     	ret
+   37444: aa0003f3     	mov	x19, x0
+   37448: f94003e0     	ldr	x0, [sp]
+   3744c: b4000220     	cbz	x0, 0x37490 <SDDevice::sendGetHardwareFirmwareVersion()+0x2a8>
+   37450: 910003e1     	mov	x1, sp
+   37454: 94087e67     	bl	0x256df0 <SDDevice::sendGetHardwareFirmwareVersion() (.cold.1)>
+   37458: aa1303e0     	mov	x0, x19
+   3745c: 940895f5     	bl	__Unwind_Resume
+   37460: 14000001     	b	0x37464 <SDDevice::sendGetHardwareFirmwareVersion()+0x27c>
+   37464: aa0003f3     	mov	x19, x0
+   37468: f94013e8     	ldr	x8, [sp, #0x20]
+   3746c: b4000128     	cbz	x8, 0x37490 <SDDevice::sendGetHardwareFirmwareVersion()+0x2a8>
+   37470: 12800009     	mov	w9, #-0x1               ; =-1
+   37474: b8e90108     	ldaddal	w9, w8, [x8]
+   37478: 7100051f     	cmp	w8, #0x1
+   3747c: 540000a1     	b.ne	0x37490 <SDDevice::sendGetHardwareFirmwareVersion()+0x2a8>
+   37480: f94013e0     	ldr	x0, [sp, #0x20]
+   37484: 52800021     	mov	w1, #0x1                ; =1
+   37488: 52800102     	mov	w2, #0x8                ; =8
+   3748c: 940895fb     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37490: aa1303e0     	mov	x0, x19
+   37494: 940895e7     	bl	__Unwind_Resume
+
+0000000000037498 <SDDevice::isOld293Version()>:
+   37498: d10283ff     	sub	sp, sp, #0xa0
+   3749c: a90757f6     	stp	x22, x21, [sp, #0x70]
+   374a0: a9084ff4     	stp	x20, x19, [sp, #0x80]
+   374a4: a9097bfd     	stp	x29, x30, [sp, #0x90]
+   374a8: 910243fd     	add	x29, sp, #0x90
+   374ac: aa0003f4     	mov	x20, x0
+   374b0: f9406c00     	ldr	x0, [x0, #0xd8]
+   374b4: b40000a0     	cbz	x0, 0x374c8 <SDDevice::isOld293Version()+0x30>
+   374b8: 39438688     	ldrb	w8, [x20, #0xe1]
+   374bc: 34000068     	cbz	w8, 0x374c8 <SDDevice::isOld293Version()+0x30>
+   374c0: 3940a288     	ldrb	w8, [x20, #0x28]
+   374c4: 34000108     	cbz	w8, 0x374e4 <SDDevice::isOld293Version()+0x4c>
+   374c8: 52800034     	mov	w20, #0x1               ; =1
+   374cc: aa1403e0     	mov	x0, x20
+   374d0: a9497bfd     	ldp	x29, x30, [sp, #0x90]
+   374d4: a9484ff4     	ldp	x20, x19, [sp, #0x80]
+   374d8: a94757f6     	ldp	x22, x21, [sp, #0x70]
+   374dc: 910283ff     	add	sp, sp, #0xa0
+   374e0: d65f03c0     	ret
+   374e4: f9402288     	ldr	x8, [x20, #0x40]
+   374e8: b4ffff08     	cbz	x8, 0x374c8 <SDDevice::isOld293Version()+0x30>
+   374ec: 94079a67     	bl	0x21de88 <_hid_get_input_report_lenght>
+   374f0: 7100041f     	cmp	w0, #0x1
+   374f4: 52800828     	mov	w8, #0x41               ; =65
+   374f8: 1a80b508     	csinc	w8, w8, w0, lt
+   374fc: 93407d15     	sxtw	x21, w8
+   37500: aa1503e0     	mov	x0, x21
+   37504: 94089dfc     	bl	__Znam
+   37508: aa0003f3     	mov	x19, x0
+   3750c: aa1503e1     	mov	x1, x21
+   37510: 94089e47     	bl	_bzero
+   37514: 39438288     	ldrb	w8, [x20, #0xe0]
+   37518: 39000268     	strb	w8, [x19]
+   3751c: f9406e80     	ldr	x0, [x20, #0xd8]
+   37520: b4000540     	cbz	x0, 0x375c8 <SDDevice::isOld293Version()+0x130>
+   37524: aa1303e1     	mov	x1, x19
+   37528: aa1503e2     	mov	x2, x21
+   3752c: 94079c4c     	bl	0x21e65c <_hid_get_input_report>
+   37530: 3100041f     	cmn	w0, #0x1
+   37534: 540004a0     	b.eq	0x375c8 <SDDevice::isOld293Version()+0x130>
+   37538: a9037fff     	stp	xzr, xzr, [sp, #0x30]
+   3753c: 91000674     	add	x20, x19, #0x1
+   37540: f90023ff     	str	xzr, [sp, #0x40]
+   37544: aa1403e0     	mov	x0, x20
+   37548: 94089f74     	bl	_strlen
+   3754c: aa0003e2     	mov	x2, x0
+   37550: 9100c3e0     	add	x0, sp, #0x30
+   37554: d2800001     	mov	x1, #0x0                ; =0
+   37558: aa1403e3     	mov	x3, x20
+   3755c: 940895ee     	bl	__ZN10QByteArray6insertEx14QByteArrayView
+   37560: a94383e1     	ldp	x1, x0, [sp, #0x38]
+   37564: 910123e8     	add	x8, sp, #0x48
+   37568: 9408992d     	bl	__ZN7QString8fromUtf8E14QByteArrayView
+   3756c: f94027e0     	ldr	x0, [sp, #0x48]
+   37570: f9402fe8     	ldr	x8, [sp, #0x58]
+   37574: f100011f     	cmp	x8, #0x0
+   37578: 1a9f17f4     	cset	w20, eq
+   3757c: b4000100     	cbz	x0, 0x3759c <SDDevice::isOld293Version()+0x104>
+   37580: 12800008     	mov	w8, #-0x1               ; =-1
+   37584: b8e80008     	ldaddal	w8, w8, [x0]
+   37588: 7100051f     	cmp	w8, #0x1
+   3758c: 54000081     	b.ne	0x3759c <SDDevice::isOld293Version()+0x104>
+   37590: 52800041     	mov	w1, #0x2                ; =2
+   37594: 52800102     	mov	w2, #0x8                ; =8
+   37598: 940895b8     	bl	__ZN10QArrayData10deallocateEPS_xx
+   3759c: f9401be8     	ldr	x8, [sp, #0x30]
+   375a0: b4000988     	cbz	x8, 0x376d0 <SDDevice::isOld293Version()+0x238>
+   375a4: 12800009     	mov	w9, #-0x1               ; =-1
+   375a8: b8e90108     	ldaddal	w9, w8, [x8]
+   375ac: 7100051f     	cmp	w8, #0x1
+   375b0: 54000901     	b.ne	0x376d0 <SDDevice::isOld293Version()+0x238>
+   375b4: f9401be0     	ldr	x0, [sp, #0x30]
+   375b8: 52800021     	mov	w1, #0x1                ; =1
+   375bc: 52800102     	mov	w2, #0x8                ; =8
+   375c0: 940895ae     	bl	__ZN10QArrayData10deallocateEPS_xx
+   375c4: 14000043     	b	0x376d0 <SDDevice::isOld293Version()+0x238>
+   375c8: 90001268     	adrp	x8, 0x283000 <typeinfo name for QtFlowLayout+0x280>
+   375cc: fd404500     	ldr	d0, [x8, #0x88]
+   375d0: b00011e8     	adrp	x8, 0x274000 <dyld_stub_binder+0x274000>
+   375d4: 91011508     	add	x8, x8, #0x45
+   375d8: b00011e9     	adrp	x9, 0x274000 <dyld_stub_binder+0x274000>
+   375dc: 91271129     	add	x9, x9, #0x9c4
+   375e0: fd0027e0     	str	d0, [sp, #0x48]
+   375e4: a90527e8     	stp	x8, x9, [sp, #0x50]
+   375e8: 900011e8     	adrp	x8, 0x273000 <GCC_except_table47+0x3c>
+   375ec: 911fed08     	add	x8, x8, #0x7fb
+   375f0: f90033e8     	str	x8, [sp, #0x60]
+   375f4: d100a3a8     	sub	x8, x29, #0x28
+   375f8: 910123e0     	add	x0, sp, #0x48
+   375fc: 94089b0c     	bl	__ZNK14QMessageLogger8criticalEv
+   37600: b00055e8     	adrp	x8, 0xaf4000 <typeinfo name for std::__1::shared_ptr<ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl>::__shared_ptr_default_delete<ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl, ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl>>
+   37604: 911f7908     	add	x8, x8, #0x7de
+   37608: a901a3ff     	stp	xzr, x8, [sp, #0x18]
+   3760c: 528001c8     	mov	w8, #0xe                ; =14
+   37610: f90017e8     	str	x8, [sp, #0x28]
+   37614: f9406e80     	ldr	x0, [x20, #0xd8]
+   37618: 94079e04     	bl	0x21ee28 <_hid_error>
+   3761c: 910003e8     	mov	x8, sp
+   37620: 92800001     	mov	x1, #-0x1               ; =-1
+   37624: 940898fb     	bl	__ZN7QString8fromUcs4EPKDix
+   37628: 9100c3e8     	add	x8, sp, #0x30
+   3762c: 910063e0     	add	x0, sp, #0x18
+   37630: 910003e1     	mov	x1, sp
+   37634: 52800002     	mov	w2, #0x0                ; =0
+   37638: 52800403     	mov	w3, #0x20               ; =32
+   3763c: 94089bef     	bl	__ZNK7QString3argERKS_i5QChar
+   37640: d100a3a0     	sub	x0, x29, #0x28
+   37644: 9100c3e1     	add	x1, sp, #0x30
+   37648: 97ffdf0e     	bl	0x2f280 <QDebug::operator<<(QString const&)>
+   3764c: f9401be8     	ldr	x8, [sp, #0x30]
+   37650: b4000128     	cbz	x8, 0x37674 <SDDevice::isOld293Version()+0x1dc>
+   37654: 12800009     	mov	w9, #-0x1               ; =-1
+   37658: b8e90108     	ldaddal	w9, w8, [x8]
+   3765c: 7100051f     	cmp	w8, #0x1
+   37660: 540000a1     	b.ne	0x37674 <SDDevice::isOld293Version()+0x1dc>
+   37664: f9401be0     	ldr	x0, [sp, #0x30]
+   37668: 52800041     	mov	w1, #0x2                ; =2
+   3766c: 52800102     	mov	w2, #0x8                ; =8
+   37670: 94089582     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37674: f94003e8     	ldr	x8, [sp]
+   37678: b4000128     	cbz	x8, 0x3769c <SDDevice::isOld293Version()+0x204>
+   3767c: 12800009     	mov	w9, #-0x1               ; =-1
+   37680: b8e90108     	ldaddal	w9, w8, [x8]
+   37684: 7100051f     	cmp	w8, #0x1
+   37688: 540000a1     	b.ne	0x3769c <SDDevice::isOld293Version()+0x204>
+   3768c: f94003e0     	ldr	x0, [sp]
+   37690: 52800041     	mov	w1, #0x2                ; =2
+   37694: 52800102     	mov	w2, #0x8                ; =8
+   37698: 94089578     	bl	__ZN10QArrayData10deallocateEPS_xx
+   3769c: f9400fe8     	ldr	x8, [sp, #0x18]
+   376a0: b4000128     	cbz	x8, 0x376c4 <SDDevice::isOld293Version()+0x22c>
+   376a4: 12800009     	mov	w9, #-0x1               ; =-1
+   376a8: b8e90108     	ldaddal	w9, w8, [x8]
+   376ac: 7100051f     	cmp	w8, #0x1
+   376b0: 540000a1     	b.ne	0x376c4 <SDDevice::isOld293Version()+0x22c>
+   376b4: f9400fe0     	ldr	x0, [sp, #0x18]
+   376b8: 52800041     	mov	w1, #0x2                ; =2
+   376bc: 52800102     	mov	w2, #0x8                ; =8
+   376c0: 9408956e     	bl	__ZN10QArrayData10deallocateEPS_xx
+   376c4: d100a3a0     	sub	x0, x29, #0x28
+   376c8: 940897bb     	bl	__ZN6QDebugD1Ev
+   376cc: 52800034     	mov	w20, #0x1               ; =1
+   376d0: aa1303e0     	mov	x0, x19
+   376d4: 94089d70     	bl	__ZdaPv
+   376d8: 17ffff7d     	b	0x374cc <SDDevice::isOld293Version()+0x34>
+   376dc: aa0003f3     	mov	x19, x0
+   376e0: f9401be8     	ldr	x8, [sp, #0x30]
+   376e4: b4000168     	cbz	x8, 0x37710 <SDDevice::isOld293Version()+0x278>
+   376e8: 12800009     	mov	w9, #-0x1               ; =-1
+   376ec: b8e90108     	ldaddal	w9, w8, [x8]
+   376f0: 7100051f     	cmp	w8, #0x1
+   376f4: 540000e1     	b.ne	0x37710 <SDDevice::isOld293Version()+0x278>
+   376f8: f9401be0     	ldr	x0, [sp, #0x30]
+   376fc: 52800041     	mov	w1, #0x2                ; =2
+   37700: 52800102     	mov	w2, #0x8                ; =8
+   37704: 9408955d     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37708: 14000002     	b	0x37710 <SDDevice::isOld293Version()+0x278>
+   3770c: aa0003f3     	mov	x19, x0
+   37710: f94003e8     	ldr	x8, [sp]
+   37714: b4000168     	cbz	x8, 0x37740 <SDDevice::isOld293Version()+0x2a8>
+   37718: 12800009     	mov	w9, #-0x1               ; =-1
+   3771c: b8e90108     	ldaddal	w9, w8, [x8]
+   37720: 7100051f     	cmp	w8, #0x1
+   37724: 540000e1     	b.ne	0x37740 <SDDevice::isOld293Version()+0x2a8>
+   37728: f94003e0     	ldr	x0, [sp]
+   3772c: 52800041     	mov	w1, #0x2                ; =2
+   37730: 52800102     	mov	w2, #0x8                ; =8
+   37734: 94089551     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37738: 14000002     	b	0x37740 <SDDevice::isOld293Version()+0x2a8>
+   3773c: aa0003f3     	mov	x19, x0
+   37740: f9400fe8     	ldr	x8, [sp, #0x18]
+   37744: b4000128     	cbz	x8, 0x37768 <SDDevice::isOld293Version()+0x2d0>
+   37748: 12800009     	mov	w9, #-0x1               ; =-1
+   3774c: b8e90108     	ldaddal	w9, w8, [x8]
+   37750: 7100051f     	cmp	w8, #0x1
+   37754: 540000a1     	b.ne	0x37768 <SDDevice::isOld293Version()+0x2d0>
+   37758: f9400fe0     	ldr	x0, [sp, #0x18]
+   3775c: 52800041     	mov	w1, #0x2                ; =2
+   37760: 52800102     	mov	w2, #0x8                ; =8
+   37764: 94089545     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37768: d100a3a0     	sub	x0, x29, #0x28
+   3776c: 94089792     	bl	__ZN6QDebugD1Ev
+   37770: aa1303e0     	mov	x0, x19
+   37774: 9408952f     	bl	__Unwind_Resume
+   37778: 14000001     	b	0x3777c <SDDevice::isOld293Version()+0x2e4>
+   3777c: aa0003f3     	mov	x19, x0
+   37780: f9401be8     	ldr	x8, [sp, #0x30]
+   37784: b4000128     	cbz	x8, 0x377a8 <SDDevice::isOld293Version()+0x310>
+   37788: 12800009     	mov	w9, #-0x1               ; =-1
+   3778c: b8e90108     	ldaddal	w9, w8, [x8]
+   37790: 7100051f     	cmp	w8, #0x1
+   37794: 540000a1     	b.ne	0x377a8 <SDDevice::isOld293Version()+0x310>
+   37798: f9401be0     	ldr	x0, [sp, #0x30]
+   3779c: 52800021     	mov	w1, #0x1                ; =1
+   377a0: 52800102     	mov	w2, #0x8                ; =8
+   377a4: 94089535     	bl	__ZN10QArrayData10deallocateEPS_xx
+   377a8: aa1303e0     	mov	x0, x19
+   377ac: 94089521     	bl	__Unwind_Resume
+
+00000000000377b0 <SDDevice::getHardwareFirmwareVersion()>:
+   377b0: d10303ff     	sub	sp, sp, #0xc0
+   377b4: a9085ff8     	stp	x24, x23, [sp, #0x80]
+   377b8: a90957f6     	stp	x22, x21, [sp, #0x90]
+   377bc: a90a4ff4     	stp	x20, x19, [sp, #0xa0]
+   377c0: a90b7bfd     	stp	x29, x30, [sp, #0xb0]
+   377c4: 9102c3fd     	add	x29, sp, #0xb0
+   377c8: aa0003f4     	mov	x20, x0
+   377cc: aa0803f3     	mov	x19, x8
+   377d0: 9101e016     	add	x22, x0, #0x78
+   377d4: f9404417     	ldr	x23, [x0, #0x88]
+   377d8: b4000197     	cbz	x23, 0x37808 <SDDevice::getHardwareFirmwareVersion()+0x58>
+   377dc: f10006ff     	cmp	x23, #0x1
+   377e0: 54000ae1     	b.ne	0x3793c <SDDevice::getHardwareFirmwareVersion()+0x18c>
+   377e4: f9404295     	ldr	x21, [x20, #0x80]
+   377e8: b00055e3     	adrp	x3, 0xaf4000 <typeinfo name for std::__1::shared_ptr<ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl>::__shared_ptr_default_delete<ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl, ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl>>
+   377ec: 911f6863     	add	x3, x3, #0x7da
+   377f0: 52800020     	mov	w0, #0x1                ; =1
+   377f4: aa1503e1     	mov	x1, x21
+   377f8: 52800022     	mov	w2, #0x1                ; =1
+   377fc: 52800024     	mov	w4, #0x1                ; =1
+   37800: 940899ec     	bl	__ZN9QtPrivate14compareStringsE11QStringViewS0_N2Qt15CaseSensitivityE
+   37804: 350009e0     	cbnz	w0, 0x37940 <SDDevice::getHardwareFirmwareVersion()+0x190>
+   37808: f9403e80     	ldr	x0, [x20, #0x78]
+   3780c: a9007edf     	stp	xzr, xzr, [x22]
+   37810: f9000adf     	str	xzr, [x22, #0x10]
+   37814: b4000100     	cbz	x0, 0x37834 <SDDevice::getHardwareFirmwareVersion()+0x84>
+   37818: 12800008     	mov	w8, #-0x1               ; =-1
+   3781c: b8e80008     	ldaddal	w8, w8, [x0]
+   37820: 7100051f     	cmp	w8, #0x1
+   37824: 54000081     	b.ne	0x37834 <SDDevice::getHardwareFirmwareVersion()+0x84>
+   37828: 52800041     	mov	w1, #0x2                ; =2
+   3782c: 52800102     	mov	w2, #0x8                ; =8
+   37830: 94089512     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37834: f9406e80     	ldr	x0, [x20, #0xd8]
+   37838: b4001400     	cbz	x0, 0x37ab8 <SDDevice::getHardwareFirmwareVersion()+0x308>
+   3783c: 39438688     	ldrb	w8, [x20, #0xe1]
+   37840: 340013c8     	cbz	w8, 0x37ab8 <SDDevice::getHardwareFirmwareVersion()+0x308>
+   37844: 3940a288     	ldrb	w8, [x20, #0x28]
+   37848: 35001388     	cbnz	w8, 0x37ab8 <SDDevice::getHardwareFirmwareVersion()+0x308>
+   3784c: f9402288     	ldr	x8, [x20, #0x40]
+   37850: b4001348     	cbz	x8, 0x37ab8 <SDDevice::getHardwareFirmwareVersion()+0x308>
+   37854: 9407998d     	bl	0x21de88 <_hid_get_input_report_lenght>
+   37858: 7100041f     	cmp	w0, #0x1
+   3785c: 52800828     	mov	w8, #0x41               ; =65
+   37860: 1a80b508     	csinc	w8, w8, w0, lt
+   37864: 93407d16     	sxtw	x22, w8
+   37868: aa1603e0     	mov	x0, x22
+   3786c: 94089d22     	bl	__Znam
+   37870: aa0003f5     	mov	x21, x0
+   37874: aa1603e1     	mov	x1, x22
+   37878: 94089d6d     	bl	_bzero
+   3787c: 39438288     	ldrb	w8, [x20, #0xe0]
+   37880: 390002a8     	strb	w8, [x21]
+   37884: f9406e80     	ldr	x0, [x20, #0xd8]
+   37888: b4000920     	cbz	x0, 0x379ac <SDDevice::getHardwareFirmwareVersion()+0x1fc>
+   3788c: aa1503e1     	mov	x1, x21
+   37890: aa1603e2     	mov	x2, x22
+   37894: 94079b72     	bl	0x21e65c <_hid_get_input_report>
+   37898: 3100041f     	cmn	w0, #0x1
+   3789c: 54000880     	b.eq	0x379ac <SDDevice::getHardwareFirmwareVersion()+0x1fc>
+   378a0: a903ffff     	stp	xzr, xzr, [sp, #0x38]
+   378a4: 910006b6     	add	x22, x21, #0x1
+   378a8: f90027ff     	str	xzr, [sp, #0x48]
+   378ac: aa1603e0     	mov	x0, x22
+   378b0: 94089e9a     	bl	_strlen
+   378b4: aa0003e2     	mov	x2, x0
+   378b8: 9100e3e0     	add	x0, sp, #0x38
+   378bc: d2800001     	mov	x1, #0x0                ; =0
+   378c0: aa1603e3     	mov	x3, x22
+   378c4: 94089514     	bl	__ZN10QByteArray6insertEx14QByteArrayView
+   378c8: a94403e1     	ldp	x1, x0, [sp, #0x40]
+   378cc: 910143e8     	add	x8, sp, #0x50
+   378d0: 94089853     	bl	__ZN7QString8fromUtf8E14QByteArrayView
+   378d4: f94033e8     	ldr	x8, [sp, #0x60]
+   378d8: 3dc017e0     	ldr	q0, [sp, #0x50]
+   378dc: f9403e80     	ldr	x0, [x20, #0x78]
+   378e0: 3c878280     	stur	q0, [x20, #0x78]
+   378e4: f9004688     	str	x8, [x20, #0x88]
+   378e8: b4000120     	cbz	x0, 0x3790c <SDDevice::getHardwareFirmwareVersion()+0x15c>
+   378ec: 12800008     	mov	w8, #-0x1               ; =-1
+   378f0: b8e80008     	ldaddal	w8, w8, [x0]
+   378f4: 7100051f     	cmp	w8, #0x1
+   378f8: 54000081     	b.ne	0x37908 <SDDevice::getHardwareFirmwareVersion()+0x158>
+   378fc: 52800041     	mov	w1, #0x2                ; =2
+   37900: 52800102     	mov	w2, #0x8                ; =8
+   37904: 940894dd     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37908: f9404688     	ldr	x8, [x20, #0x88]
+   3790c: b4000328     	cbz	x8, 0x37970 <SDDevice::getHardwareFirmwareVersion()+0x1c0>
+   37910: f9401fe8     	ldr	x8, [sp, #0x38]
+   37914: b4000ce8     	cbz	x8, 0x37ab0 <SDDevice::getHardwareFirmwareVersion()+0x300>
+   37918: 12800009     	mov	w9, #-0x1               ; =-1
+   3791c: b8e90108     	ldaddal	w9, w8, [x8]
+   37920: 7100051f     	cmp	w8, #0x1
+   37924: 54000c61     	b.ne	0x37ab0 <SDDevice::getHardwareFirmwareVersion()+0x300>
+   37928: f9401fe0     	ldr	x0, [sp, #0x38]
+   3792c: 52800021     	mov	w1, #0x1                ; =1
+   37930: 52800102     	mov	w2, #0x8                ; =8
+   37934: 940894d1     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37938: 1400005e     	b	0x37ab0 <SDDevice::getHardwareFirmwareVersion()+0x300>
+   3793c: f9404295     	ldr	x21, [x20, #0x80]
+   37940: f94002c8     	ldr	x8, [x22]
+   37944: a9005668     	stp	x8, x21, [x19]
+   37948: f9000a77     	str	x23, [x19, #0x10]
+   3794c: b4000068     	cbz	x8, 0x37958 <SDDevice::getHardwareFirmwareVersion()+0x1a8>
+   37950: 52800029     	mov	w9, #0x1                ; =1
+   37954: b8e90108     	ldaddal	w9, w8, [x8]
+   37958: a94b7bfd     	ldp	x29, x30, [sp, #0xb0]
+   3795c: a94a4ff4     	ldp	x20, x19, [sp, #0xa0]
+   37960: a94957f6     	ldp	x22, x21, [sp, #0x90]
+   37964: a9485ff8     	ldp	x24, x23, [sp, #0x80]
+   37968: 910303ff     	add	sp, sp, #0xc0
+   3796c: d65f03c0     	ret
+   37970: f9403e80     	ldr	x0, [x20, #0x78]
+   37974: b00055e8     	adrp	x8, 0xaf4000 <typeinfo name for std::__1::shared_ptr<ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl>::__shared_ptr_default_delete<ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl, ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl>>
+   37978: 911f6908     	add	x8, x8, #0x7da
+   3797c: a907a29f     	stp	xzr, x8, [x20, #0x78]
+   37980: 52800028     	mov	w8, #0x1                ; =1
+   37984: f9004688     	str	x8, [x20, #0x88]
+   37988: b4fffc40     	cbz	x0, 0x37910 <SDDevice::getHardwareFirmwareVersion()+0x160>
+   3798c: 12800008     	mov	w8, #-0x1               ; =-1
+   37990: b8e80008     	ldaddal	w8, w8, [x0]
+   37994: 7100051f     	cmp	w8, #0x1
+   37998: 54fffbc1     	b.ne	0x37910 <SDDevice::getHardwareFirmwareVersion()+0x160>
+   3799c: 52800041     	mov	w1, #0x2                ; =2
+   379a0: 52800102     	mov	w2, #0x8                ; =8
+   379a4: 940894b5     	bl	__ZN10QArrayData10deallocateEPS_xx
+   379a8: 17ffffda     	b	0x37910 <SDDevice::getHardwareFirmwareVersion()+0x160>
+   379ac: 90001268     	adrp	x8, 0x283000 <typeinfo name for QtFlowLayout+0x280>
+   379b0: fd404900     	ldr	d0, [x8, #0x90]
+   379b4: b00011e8     	adrp	x8, 0x274000 <dyld_stub_binder+0x274000>
+   379b8: 91011508     	add	x8, x8, #0x45
+   379bc: b00011e9     	adrp	x9, 0x274000 <dyld_stub_binder+0x274000>
+   379c0: 91279529     	add	x9, x9, #0x9e5
+   379c4: fd002be0     	str	d0, [sp, #0x50]
+   379c8: a905a7e8     	stp	x8, x9, [sp, #0x58]
+   379cc: 900011e8     	adrp	x8, 0x273000 <GCC_except_table47+0x3c>
+   379d0: 911fed08     	add	x8, x8, #0x7fb
+   379d4: f90037e8     	str	x8, [sp, #0x68]
+   379d8: d100e3a8     	sub	x8, x29, #0x38
+   379dc: 910143e0     	add	x0, sp, #0x50
+   379e0: 94089a13     	bl	__ZNK14QMessageLogger8criticalEv
+   379e4: b00055e8     	adrp	x8, 0xaf4000 <typeinfo name for std::__1::shared_ptr<ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl>::__shared_ptr_default_delete<ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl, ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl>>
+   379e8: 911f7908     	add	x8, x8, #0x7de
+   379ec: a90223ff     	stp	xzr, x8, [sp, #0x20]
+   379f0: 528001c8     	mov	w8, #0xe                ; =14
+   379f4: f9001be8     	str	x8, [sp, #0x30]
+   379f8: f9406e80     	ldr	x0, [x20, #0xd8]
+   379fc: 94079d0b     	bl	0x21ee28 <_hid_error>
+   37a00: 910023e8     	add	x8, sp, #0x8
+   37a04: 92800001     	mov	x1, #-0x1               ; =-1
+   37a08: 94089802     	bl	__ZN7QString8fromUcs4EPKDix
+   37a0c: 9100e3e8     	add	x8, sp, #0x38
+   37a10: 910083e0     	add	x0, sp, #0x20
+   37a14: 910023e1     	add	x1, sp, #0x8
+   37a18: 52800002     	mov	w2, #0x0                ; =0
+   37a1c: 52800403     	mov	w3, #0x20               ; =32
+   37a20: 94089af6     	bl	__ZNK7QString3argERKS_i5QChar
+   37a24: d100e3a0     	sub	x0, x29, #0x38
+   37a28: 9100e3e1     	add	x1, sp, #0x38
+   37a2c: 97ffde15     	bl	0x2f280 <QDebug::operator<<(QString const&)>
+   37a30: f9401fe8     	ldr	x8, [sp, #0x38]
+   37a34: b4000128     	cbz	x8, 0x37a58 <SDDevice::getHardwareFirmwareVersion()+0x2a8>
+   37a38: 12800009     	mov	w9, #-0x1               ; =-1
+   37a3c: b8e90108     	ldaddal	w9, w8, [x8]
+   37a40: 7100051f     	cmp	w8, #0x1
+   37a44: 540000a1     	b.ne	0x37a58 <SDDevice::getHardwareFirmwareVersion()+0x2a8>
+   37a48: f9401fe0     	ldr	x0, [sp, #0x38]
+   37a4c: 52800041     	mov	w1, #0x2                ; =2
+   37a50: 52800102     	mov	w2, #0x8                ; =8
+   37a54: 94089489     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37a58: f94007e8     	ldr	x8, [sp, #0x8]
+   37a5c: b4000128     	cbz	x8, 0x37a80 <SDDevice::getHardwareFirmwareVersion()+0x2d0>
+   37a60: 12800009     	mov	w9, #-0x1               ; =-1
+   37a64: b8e90108     	ldaddal	w9, w8, [x8]
+   37a68: 7100051f     	cmp	w8, #0x1
+   37a6c: 540000a1     	b.ne	0x37a80 <SDDevice::getHardwareFirmwareVersion()+0x2d0>
+   37a70: f94007e0     	ldr	x0, [sp, #0x8]
+   37a74: 52800041     	mov	w1, #0x2                ; =2
+   37a78: 52800102     	mov	w2, #0x8                ; =8
+   37a7c: 9408947f     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37a80: f94013e8     	ldr	x8, [sp, #0x20]
+   37a84: b4000128     	cbz	x8, 0x37aa8 <SDDevice::getHardwareFirmwareVersion()+0x2f8>
+   37a88: 12800009     	mov	w9, #-0x1               ; =-1
+   37a8c: b8e90108     	ldaddal	w9, w8, [x8]
+   37a90: 7100051f     	cmp	w8, #0x1
+   37a94: 540000a1     	b.ne	0x37aa8 <SDDevice::getHardwareFirmwareVersion()+0x2f8>
+   37a98: f94013e0     	ldr	x0, [sp, #0x20]
+   37a9c: 52800041     	mov	w1, #0x2                ; =2
+   37aa0: 52800102     	mov	w2, #0x8                ; =8
+   37aa4: 94089475     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37aa8: d100e3a0     	sub	x0, x29, #0x38
+   37aac: 940896c2     	bl	__ZN6QDebugD1Ev
+   37ab0: aa1503e0     	mov	x0, x21
+   37ab4: 94089c78     	bl	__ZdaPv
+   37ab8: 3cc78280     	ldur	q0, [x20, #0x78]
+   37abc: 3d800260     	str	q0, [x19]
+   37ac0: f9404688     	ldr	x8, [x20, #0x88]
+   37ac4: f9000a68     	str	x8, [x19, #0x10]
+   37ac8: 9e660008     	fmov	x8, d0
+   37acc: b5fff428     	cbnz	x8, 0x37950 <SDDevice::getHardwareFirmwareVersion()+0x1a0>
+   37ad0: 17ffffa2     	b	0x37958 <SDDevice::getHardwareFirmwareVersion()+0x1a8>
+   37ad4: aa0003f3     	mov	x19, x0
+   37ad8: f9401fe8     	ldr	x8, [sp, #0x38]
+   37adc: b4000168     	cbz	x8, 0x37b08 <SDDevice::getHardwareFirmwareVersion()+0x358>
+   37ae0: 12800009     	mov	w9, #-0x1               ; =-1
+   37ae4: b8e90108     	ldaddal	w9, w8, [x8]
+   37ae8: 7100051f     	cmp	w8, #0x1
+   37aec: 540000e1     	b.ne	0x37b08 <SDDevice::getHardwareFirmwareVersion()+0x358>
+   37af0: f9401fe0     	ldr	x0, [sp, #0x38]
+   37af4: 52800041     	mov	w1, #0x2                ; =2
+   37af8: 52800102     	mov	w2, #0x8                ; =8
+   37afc: 9408945f     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37b00: 14000002     	b	0x37b08 <SDDevice::getHardwareFirmwareVersion()+0x358>
+   37b04: aa0003f3     	mov	x19, x0
+   37b08: f94007e8     	ldr	x8, [sp, #0x8]
+   37b0c: b4000168     	cbz	x8, 0x37b38 <SDDevice::getHardwareFirmwareVersion()+0x388>
+   37b10: 12800009     	mov	w9, #-0x1               ; =-1
+   37b14: b8e90108     	ldaddal	w9, w8, [x8]
+   37b18: 7100051f     	cmp	w8, #0x1
+   37b1c: 540000e1     	b.ne	0x37b38 <SDDevice::getHardwareFirmwareVersion()+0x388>
+   37b20: f94007e0     	ldr	x0, [sp, #0x8]
+   37b24: 52800041     	mov	w1, #0x2                ; =2
+   37b28: 52800102     	mov	w2, #0x8                ; =8
+   37b2c: 94089453     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37b30: 14000002     	b	0x37b38 <SDDevice::getHardwareFirmwareVersion()+0x388>
+   37b34: aa0003f3     	mov	x19, x0
+   37b38: f94013e8     	ldr	x8, [sp, #0x20]
+   37b3c: b4000128     	cbz	x8, 0x37b60 <SDDevice::getHardwareFirmwareVersion()+0x3b0>
+   37b40: 12800009     	mov	w9, #-0x1               ; =-1
+   37b44: b8e90108     	ldaddal	w9, w8, [x8]
+   37b48: 7100051f     	cmp	w8, #0x1
+   37b4c: 540000a1     	b.ne	0x37b60 <SDDevice::getHardwareFirmwareVersion()+0x3b0>
+   37b50: f94013e0     	ldr	x0, [sp, #0x20]
+   37b54: 52800041     	mov	w1, #0x2                ; =2
+   37b58: 52800102     	mov	w2, #0x8                ; =8
+   37b5c: 94089447     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37b60: d100e3a0     	sub	x0, x29, #0x38
+   37b64: 94089694     	bl	__ZN6QDebugD1Ev
+   37b68: aa1303e0     	mov	x0, x19
+   37b6c: 94089431     	bl	__Unwind_Resume
+   37b70: 14000001     	b	0x37b74 <SDDevice::getHardwareFirmwareVersion()+0x3c4>
+   37b74: aa0003f3     	mov	x19, x0
+   37b78: f9401fe8     	ldr	x8, [sp, #0x38]
+   37b7c: b4000128     	cbz	x8, 0x37ba0 <SDDevice::getHardwareFirmwareVersion()+0x3f0>
+   37b80: 12800009     	mov	w9, #-0x1               ; =-1
+   37b84: b8e90108     	ldaddal	w9, w8, [x8]
+   37b88: 7100051f     	cmp	w8, #0x1
+   37b8c: 540000a1     	b.ne	0x37ba0 <SDDevice::getHardwareFirmwareVersion()+0x3f0>
+   37b90: f9401fe0     	ldr	x0, [sp, #0x38]
+   37b94: 52800021     	mov	w1, #0x1                ; =1
+   37b98: 52800102     	mov	w2, #0x8                ; =8
+   37b9c: 94089437     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37ba0: aa1303e0     	mov	x0, x19
+   37ba4: 94089423     	bl	__Unwind_Resume
+
+0000000000037ba8 <SDDevice::getFirmwareVersion()>:
+   37ba8: a9be4ff4     	stp	x20, x19, [sp, #-0x20]!
+   37bac: a9017bfd     	stp	x29, x30, [sp, #0x10]
+   37bb0: 910043fd     	add	x29, sp, #0x10
+   37bb4: aa0003f4     	mov	x20, x0
+   37bb8: aa0803f3     	mov	x19, x8
+   37bbc: b0005628     	adrp	x8, __DefaultRuneLocale
+   37bc0: f9407908     	ldr	x8, [x8, #0xf0]
+   37bc4: a9460409     	ldp	x9, x1, [x0, #0x60]
+   37bc8: f100013f     	cmp	x9, #0x0
+   37bcc: 9a890100     	csel	x0, x8, x9, eq
+   37bd0: b00011e2     	adrp	x2, 0x274000 <dyld_stub_binder+0x274000>
+   37bd4: 91285042     	add	x2, x2, #0xa14
+   37bd8: 92800003     	mov	x3, #-0x1               ; =-1
+   37bdc: 52800024     	mov	w4, #0x1                ; =1
+   37be0: 94089756     	bl	__ZN7QString14compare_helperEPK5QCharxPKcxN2Qt15CaseSensitivityE
+   37be4: 34000140     	cbz	w0, 0x37c0c <SDDevice::getFirmwareVersion()+0x64>
+   37be8: 3cc78280     	ldur	q0, [x20, #0x78]
+   37bec: 3d800260     	str	q0, [x19]
+   37bf0: f9404688     	ldr	x8, [x20, #0x88]
+   37bf4: f9000a68     	str	x8, [x19, #0x10]
+   37bf8: 9e660008     	fmov	x8, d0
+   37bfc: b40001a8     	cbz	x8, 0x37c30 <SDDevice::getFirmwareVersion()+0x88>
+   37c00: 52800029     	mov	w9, #0x1                ; =1
+   37c04: b8e90108     	ldaddal	w9, w8, [x8]
+   37c08: 1400000a     	b	0x37c30 <SDDevice::getFirmwareVersion()+0x88>
+   37c0c: 91016294     	add	x20, x20, #0x58
+   37c10: b00011e1     	adrp	x1, 0x274000 <dyld_stub_binder+0x274000>
+   37c14: 91288421     	add	x1, x1, #0xa21
+   37c18: aa1303e8     	mov	x8, x19
+   37c1c: 528000e0     	mov	w0, #0x7                ; =7
+   37c20: 9408977f     	bl	__ZN7QString8fromUtf8E14QByteArrayView
+   37c24: aa1303e0     	mov	x0, x19
+   37c28: aa1403e1     	mov	x1, x20
+   37c2c: 94089764     	bl	__ZN7QString6appendERKS_
+   37c30: a9417bfd     	ldp	x29, x30, [sp, #0x10]
+   37c34: a8c24ff4     	ldp	x20, x19, [sp], #0x20
+   37c38: d65f03c0     	ret
+   37c3c: aa0003f4     	mov	x20, x0
+   37c40: f9400260     	ldr	x0, [x19]
+   37c44: b4000060     	cbz	x0, 0x37c50 <SDDevice::getFirmwareVersion()+0xa8>
+   37c48: aa1303e1     	mov	x1, x19
+   37c4c: 94087c70     	bl	0x256e0c <SDDevice::getFirmwareVersion() (.cold.1)>
+   37c50: aa1403e0     	mov	x0, x20
+   37c54: 940893f7     	bl	__Unwind_Resume
+
+0000000000037c58 <SDDevice::addHandshakePack()>:
+   37c58: d10343ff     	sub	sp, sp, #0xd0
+   37c5c: a90b4ff4     	stp	x20, x19, [sp, #0xb0]
+   37c60: a90c7bfd     	stp	x29, x30, [sp, #0xc0]
+   37c64: 910303fd     	add	x29, sp, #0xc0
+   37c68: 39438408     	ldrb	w8, [x0, #0xe1]
+   37c6c: 34000f88     	cbz	w8, 0x37e5c <SDDevice::addHandshakePack()+0x204>
+   37c70: aa0003f3     	mov	x19, x0
+   37c74: b9404808     	ldr	w8, [x0, #0x48]
+   37c78: 7101011f     	cmp	w8, #0x40
+   37c7c: 54000f0b     	b.lt	0x37e5c <SDDevice::addHandshakePack()+0x204>
+   37c80: f9402261     	ldr	x1, [x19, #0x40]
+   37c84: b4000ec1     	cbz	x1, 0x37e5c <SDDevice::addHandshakePack()+0x204>
+   37c88: f9401e68     	ldr	x8, [x19, #0x38]
+   37c8c: b0005629     	adrp	x9, __DefaultRuneLocale
+   37c90: f9407929     	ldr	x9, [x9, #0xf0]
+   37c94: f100011f     	cmp	x8, #0x0
+   37c98: 9a880120     	csel	x0, x9, x8, eq
+   37c9c: b00011e2     	adrp	x2, 0x274000 <dyld_stub_binder+0x274000>
+   37ca0: 91263842     	add	x2, x2, #0x98e
+   37ca4: 92800003     	mov	x3, #-0x1               ; =-1
+   37ca8: 52800024     	mov	w4, #0x1                ; =1
+   37cac: 94089723     	bl	__ZN7QString14compare_helperEPK5QCharxPKcxN2Qt15CaseSensitivityE
+   37cb0: 34000d60     	cbz	w0, 0x37e5c <SDDevice::addHandshakePack()+0x204>
+   37cb4: b9804a61     	ldrsw	x1, [x19, #0x48]
+   37cb8: d100a3a0     	sub	x0, x29, #0x28
+   37cbc: 52800002     	mov	w2, #0x0                ; =0
+   37cc0: 9408942a     	bl	__ZN10QByteArrayC1Exc
+   37cc4: f85d83a8     	ldur	x8, [x29, #-0x28]
+   37cc8: b4000088     	cbz	x8, 0x37cd8 <SDDevice::addHandshakePack()+0x80>
+   37ccc: b9400108     	ldr	w8, [x8]
+   37cd0: 7100091f     	cmp	w8, #0x2
+   37cd4: 5400008b     	b.lt	0x37ce4 <SDDevice::addHandshakePack()+0x8c>
+   37cd8: f85e83a1     	ldur	x1, [x29, #-0x18]
+   37cdc: 52800022     	mov	w2, #0x1                ; =1
+   37ce0: 940893f8     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   37ce4: f85e03a8     	ldur	x8, [x29, #-0x20]
+   37ce8: 52800909     	mov	w9, #0x48               ; =72
+   37cec: 39000109     	strb	w9, [x8]
+   37cf0: f85d83a8     	ldur	x8, [x29, #-0x28]
+   37cf4: b4000088     	cbz	x8, 0x37d04 <SDDevice::addHandshakePack()+0xac>
+   37cf8: b9400108     	ldr	w8, [x8]
+   37cfc: 7100091f     	cmp	w8, #0x2
+   37d00: 540000ab     	b.lt	0x37d14 <SDDevice::addHandshakePack()+0xbc>
+   37d04: f85e83a1     	ldur	x1, [x29, #-0x18]
+   37d08: d100a3a0     	sub	x0, x29, #0x28
+   37d0c: 52800022     	mov	w2, #0x1                ; =1
+   37d10: 940893ec     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   37d14: f85e03a8     	ldur	x8, [x29, #-0x20]
+   37d18: 52800829     	mov	w9, #0x41               ; =65
+   37d1c: 39000509     	strb	w9, [x8, #0x1]
+   37d20: f85d83a8     	ldur	x8, [x29, #-0x28]
+   37d24: b4000088     	cbz	x8, 0x37d34 <SDDevice::addHandshakePack()+0xdc>
+   37d28: b9400108     	ldr	w8, [x8]
+   37d2c: 7100091f     	cmp	w8, #0x2
+   37d30: 540000ab     	b.lt	0x37d44 <SDDevice::addHandshakePack()+0xec>
+   37d34: f85e83a1     	ldur	x1, [x29, #-0x18]
+   37d38: d100a3a0     	sub	x0, x29, #0x28
+   37d3c: 52800022     	mov	w2, #0x1                ; =1
+   37d40: 940893e0     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   37d44: f85e03a8     	ldur	x8, [x29, #-0x20]
+   37d48: 528009c9     	mov	w9, #0x4e               ; =78
+   37d4c: 39000909     	strb	w9, [x8, #0x2]
+   37d50: 390033ff     	strb	wzr, [sp, #0xc]
+   37d54: f0001248     	adrp	x8, 0x282000 <_getSafetyLevel.zText+0x56af>
+   37d58: 3dc39501     	ldr	q1, [x8, #0xe50]
+   37d5c: f0001248     	adrp	x8, 0x282000 <_getSafetyLevel.zText+0x56af>
+   37d60: 3dc39900     	ldr	q0, [x8, #0xe60]
+   37d64: ad0083e1     	stp	q1, q0, [sp, #0x10]
+   37d68: 910023e8     	add	x8, sp, #0x8
+   37d6c: 9100c100     	add	x0, x8, #0x30
+   37d70: 6f00e400     	movi.2d	v0, #0000000000000000
+   37d74: 3c8383e0     	stur	q0, [sp, #0x38]
+   37d78: 3c8483e0     	stur	q0, [sp, #0x48]
+   37d7c: 6f07e7e1     	movi.2d	v1, #0xffffffffffffffff
+   37d80: fd002fe1     	str	d1, [sp, #0x58]
+   37d84: 3c8683e0     	stur	q0, [sp, #0x68]
+   37d88: 3c8783e0     	stur	q0, [sp, #0x78]
+   37d8c: 3c8883e0     	stur	q0, [sp, #0x88]
+   37d90: 528001e8     	mov	w8, #0xf                ; =15
+   37d94: b9000be8     	str	w8, [sp, #0x8]
+   37d98: 90001268     	adrp	x8, 0x283000 <typeinfo name for QtFlowLayout+0x280>
+   37d9c: fd404100     	ldr	d0, [x8, #0x80]
+   37da0: fd001be0     	str	d0, [sp, #0x30]
+   37da4: d100a3a1     	sub	x1, x29, #0x28
+   37da8: 940893f3     	bl	__ZN10QByteArrayaSERKS_
+   37dac: 910023e1     	add	x1, sp, #0x8
+   37db0: aa1303e0     	mov	x0, x19
+   37db4: 52800002     	mov	w2, #0x0                ; =0
+   37db8: 97ffed68     	bl	0x33358 <SDDevice::appendSendData(ImageStruct const&, bool)>
+   37dbc: f94043e8     	ldr	x8, [sp, #0x80]
+   37dc0: b4000128     	cbz	x8, 0x37de4 <SDDevice::addHandshakePack()+0x18c>
+   37dc4: 12800009     	mov	w9, #-0x1               ; =-1
+   37dc8: b8e90108     	ldaddal	w9, w8, [x8]
+   37dcc: 7100051f     	cmp	w8, #0x1
+   37dd0: 540000a1     	b.ne	0x37de4 <SDDevice::addHandshakePack()+0x18c>
+   37dd4: f94043e0     	ldr	x0, [sp, #0x80]
+   37dd8: 52800021     	mov	w1, #0x1                ; =1
+   37ddc: 52800102     	mov	w2, #0x8                ; =8
+   37de0: 940893a6     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37de4: f94037e8     	ldr	x8, [sp, #0x68]
+   37de8: b4000128     	cbz	x8, 0x37e0c <SDDevice::addHandshakePack()+0x1b4>
+   37dec: 12800009     	mov	w9, #-0x1               ; =-1
+   37df0: b8e90108     	ldaddal	w9, w8, [x8]
+   37df4: 7100051f     	cmp	w8, #0x1
+   37df8: 540000a1     	b.ne	0x37e0c <SDDevice::addHandshakePack()+0x1b4>
+   37dfc: f94037e0     	ldr	x0, [sp, #0x68]
+   37e00: 52800021     	mov	w1, #0x1                ; =1
+   37e04: 52800102     	mov	w2, #0x8                ; =8
+   37e08: 9408939c     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37e0c: f9401fe8     	ldr	x8, [sp, #0x38]
+   37e10: b4000128     	cbz	x8, 0x37e34 <SDDevice::addHandshakePack()+0x1dc>
+   37e14: 12800009     	mov	w9, #-0x1               ; =-1
+   37e18: b8e90108     	ldaddal	w9, w8, [x8]
+   37e1c: 7100051f     	cmp	w8, #0x1
+   37e20: 540000a1     	b.ne	0x37e34 <SDDevice::addHandshakePack()+0x1dc>
+   37e24: f9401fe0     	ldr	x0, [sp, #0x38]
+   37e28: 52800021     	mov	w1, #0x1                ; =1
+   37e2c: 52800102     	mov	w2, #0x8                ; =8
+   37e30: 94089392     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37e34: f85d83a8     	ldur	x8, [x29, #-0x28]
+   37e38: b4000128     	cbz	x8, 0x37e5c <SDDevice::addHandshakePack()+0x204>
+   37e3c: 12800009     	mov	w9, #-0x1               ; =-1
+   37e40: b8e90108     	ldaddal	w9, w8, [x8]
+   37e44: 7100051f     	cmp	w8, #0x1
+   37e48: 540000a1     	b.ne	0x37e5c <SDDevice::addHandshakePack()+0x204>
+   37e4c: f85d83a0     	ldur	x0, [x29, #-0x28]
+   37e50: 52800021     	mov	w1, #0x1                ; =1
+   37e54: 52800102     	mov	w2, #0x8                ; =8
+   37e58: 94089388     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37e5c: a94c7bfd     	ldp	x29, x30, [sp, #0xc0]
+   37e60: a94b4ff4     	ldp	x20, x19, [sp, #0xb0]
+   37e64: 910343ff     	add	sp, sp, #0xd0
+   37e68: d65f03c0     	ret
+   37e6c: aa0003f3     	mov	x19, x0
+   37e70: 910023e0     	add	x0, sp, #0x8
+   37e74: 97ffcf82     	bl	0x2bc7c <ImageStruct::~ImageStruct()>
+   37e78: 14000002     	b	0x37e80 <SDDevice::addHandshakePack()+0x228>
+   37e7c: aa0003f3     	mov	x19, x0
+   37e80: f85d83a8     	ldur	x8, [x29, #-0x28]
+   37e84: b4000128     	cbz	x8, 0x37ea8 <SDDevice::addHandshakePack()+0x250>
+   37e88: 12800009     	mov	w9, #-0x1               ; =-1
+   37e8c: b8e90108     	ldaddal	w9, w8, [x8]
+   37e90: 7100051f     	cmp	w8, #0x1
+   37e94: 540000a1     	b.ne	0x37ea8 <SDDevice::addHandshakePack()+0x250>
+   37e98: f85d83a0     	ldur	x0, [x29, #-0x28]
+   37e9c: 52800021     	mov	w1, #0x1                ; =1
+   37ea0: 52800102     	mov	w2, #0x8                ; =8
+   37ea4: 94089375     	bl	__ZN10QArrayData10deallocateEPS_xx
+   37ea8: aa1303e0     	mov	x0, x19
+   37eac: 94089361     	bl	__Unwind_Resume

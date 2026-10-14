@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>便签待办</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-width: 400px;
+            background-color: #cddff0;
+        }
+
+        .logo {
+            width: 100%;
+            display: flex;
+            margin-top: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            width: 66px;
+            height: 66px;
+            border-radius: 6px;
+        }
+
+        .logo div {
+            font-size: 26px;
+            font-weight: 700;
+            color: #242424;
+            padding-left: 14px;
+        }
+
+        .timeout {
+            width: 100%;
+            height: 90px;
+            color: #fff;
+            display: flex;
+            font-size: 36px;
+            user-select: none;
+            margin: 30px auto;
+            border-radius: 4px;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(30, 30, 30);
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 30px;
+        }
+
+        .label {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        .content {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="../static/img/todo.png" alt="logo">
+        <div class="logoTitle"></div>
+    </div>
+    <div style="width: 90%;margin: auto">
+        <div class="timeout"></div>
+        <div class="title"></div>
+        <div class="label"></div>
+        <div class="content"></div>
+    </div>
+    <script>
+        /* 国际化 */
+        let $local = {
+            zh_CN: {
+                "欢迎使用便签待办": "欢迎使用记录待办",
+                "标题: ": "标题: ",
+                "待办事项: ": "待办事项: ",
+                "请先设置一个待办哦": "请先设置一个待办哦",
+                "暂无内容": "暂无内容"
+            },
+            en: {
+                "欢迎使用便签待办": "Welcome Record to-do",
+                "标题: ": "Title: ",
+                "待办事项: ": "To-do list: ",
+                "请先设置一个待办哦": "Please set to-do list first",
+                "暂无内容": "Nothing"
+            },
+            ja: {
+                "欢迎使用便签待办": "メモを使ってお待ちください",
+                "标题: ": "タイトル: ",
+                "待办事项: ": "未処理事項：",
+                "请先设置一个待办哦": "設定してくださいね",
+                "暂无内容": "しばらく内容がない"
+            },
+            it: {
+                "欢迎使用便签待办": "Benvenuti alla nota da fare",
+                "标题: ": "titolo: ",
+                "待办事项: ": "Elenco delle cose da fare: ",
+                "请先设置一个待办哦": "Imposta prima una lista delle cose da fare",
+                "暂无内容": "Attualmente non disponibile"
+            },
+            pt: {
+                "欢迎使用便签待办": "Bem-vindo à nota a fazer",
+                "标题: ": "título: ",
+                "待办事项: ": "Lista de Por- Fazer: ",
+                "请先设置一个待办哦": "Indique por favor uma lista de itens por fazer primeiro",
+                "暂无内容": "Actualmente indisponível"
+            },
+            es: {
+                "欢迎使用便签待办": "Bienvenido a usar la nota por hacer",
+                "标题: ": "Título: ",
+                "待办事项: ": "Asuntos pendientes: ",
+                "请先设置一个待办哦": "Por favor, establezca uno por hacer primero.",
+                "暂无内容": "Aún no"
+            },
+            de: {
+                "欢迎使用便签待办": "Willkommen zur Note to do",
+                "标题: ": "Titel: ",
+                "待办事项: ": "Aufgabenliste: ",
+                "请先设置一个待办哦": "Bitte legen Sie zuerst eine To-Do-Liste fest",
+                "暂无内容": "Derzeit nicht verfügbar"
+            },
+            fr: {
+                "欢迎使用便签待办": "Bienvenue sur la note à faire",
+                "标题: ": "Titre: ",
+                "待办事项: ": "À faire: ",
+                "请先设置一个待办哦": "S'il vous plaît configurer un to - do en premier oh",
+                "暂无内容": "Pas encore"
+            },
+            ko: {
+                "欢迎使用便签待办": "포스트잇 시작",
+                "标题: ": "제목: ",
+                "待办事项: ": "할 일: ",
+                "请先设置一个待办哦": "우선 할 일을 하나 설정하세요.",
+                "暂无内容": "컨텐트 없음"
+            },
+            ru: {
+                "欢迎使用便签待办": "Добро пожаловать на подписание.",
+                "标题: ": "Заголовок: ",
+                "待办事项: ": "Задачи: ",
+                "请先设置一个待办哦": "Пожалуйста, сначала установите работу.",
+                "暂无内容": "Нет содержимого"
+            }
+        };
+
+        let params = window.location.search.substring(1);
+        let decode = JSON.parse(decodeURI(params.split('=')[1])); // 解码
+        let { language, title, content, time } = decode;
+
+        /* 获取HTML */
+        function $(selector) {
+            return document.querySelector(selector);
+        }
+
+        /* 补零函数 */
+        function getZ(num) {
+            return num < 10 ? '0' + num : num;
+        }
+
+        /* 国际化 */
+        function i18n(str) {
+            const localString = $local[language] || $local['en'];
+            return localString[str];
+        }
+
+        $('.logoTitle').innerHTML = i18n("欢迎使用便签待办");
+        if (title && time) {
+            $('.title').innerHTML = i18n("标题: ") + title;
+            $('.label').innerHTML = i18n("待办事项: ");
+            $('.content').innerHTML = content;
+            let timer = setInterval(() => {
+                let DValue = new Date(time).getTime() - new Date().getTime();
+                if (DValue < 0) {
+                    clearInterval(timer);
+                    $('.timeout').innerHTML = 'Time out';
+                    return;
+                }
+                let s = parseInt(DValue / 1000);
+                let m = parseInt(s / 60);
+                let h = parseInt(m / 60);
+                $('.timeout').innerHTML = `${getZ(h)} : ${getZ(m % 60)} : ${getZ(s % 60)}`;
+            }, 0);
+        } else {
+            $('.timeout').innerHTML = i18n("请先设置一个待办哦");
+            $('.content').innerHTML = i18n("暂无内容");
+        }
+    </script>
+</body>
+
+</html>

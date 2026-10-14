@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>实用便签 - 属性检查器</title>
+    <link rel="stylesheet" href="../static/css/sdpi.css">
+    <script src="../static/action.js"></script>
+    <style>
+        select {
+            color: rgb(180, 180, 180);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sdpi-wrapper" style="display: none">
+        <div class="sdpi-heading" id="text1">按下按键可查看历史便签</div>
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">快速查阅</div>
+            <select class="sdpi-item-value" id="myselect"></select>
+        </div>
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">便签标题</div>
+            <input class="sdpi-item-value" id="title" placeholder="请输入标题" oninput="saveData()">
+        </div>
+        <div type="textarea" class="sdpi-item" style="align-items: flex-start">
+            <div class="sdpi-item-label" style="padding-top: 4px">便签内容</div>
+            <span class="sdpi-item-value textarea">
+                <textarea type="textarea" id="content" placeholder="请输入便签的内容" oninput="saveData()"></textarea>
+            </span>
+        </div>
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">提交便签</div>
+            <button class="sdpi-item-value" onclick="submit()">点击提交</button>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>

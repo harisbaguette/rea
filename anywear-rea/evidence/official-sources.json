@@ -1,0 +1,68 @@
+[
+  {
+    "url": "https://docs.platform.decart.ai/getting-started/pricing.md",
+    "path": "evidence/official/getting-started--pricing.md",
+    "sha256": "c61e6c367b19aab53c4126643bb0970c4db9e1dc77e036794d8b0575c0976789",
+    "bytes": 3938
+  },
+  {
+    "url": "https://docs.platform.decart.ai/getting-started/client-tokens.md",
+    "path": "evidence/official/getting-started--client-tokens.md",
+    "sha256": "f32490909a80bb376eda670a1bffa335f91e3e80355d7add6dc07621549880b7",
+    "bytes": 12566
+  },
+  {
+    "url": "https://docs.platform.decart.ai/models/realtime/virtual-try-on.md",
+    "path": "evidence/official/models--realtime--virtual-try-on.md",
+    "sha256": "b33e22f6b957b83dacda9d4ed209903d5cad0afe059a2bafab6a8f51b9cc228d",
+    "bytes": 15636
+  },
+  {
+    "url": "https://docs.platform.decart.ai/models/realtime/lucy-2.5.md",
+    "path": "evidence/official/models--realtime--lucy-2.5.md",
+    "sha256": "e79e8e1d5b185020f9cb8a2fbf17f98fbdcad8ca139597c23574327337543bf4",
+    "bytes": 33924
+  },
+  {
+    "url": "https://docs.platform.decart.ai/models/realtime/lucy-2.5-prompting.md",
+    "path": "evidence/official/models--realtime--lucy-2.5-prompting.md",
+    "sha256": "10b0a02d99e0100253c9dfebef974e24decef04357660a0745bdb348d7fd55d3",
+    "bytes": 33693
+  },
+  {
+    "url": "https://docs.platform.decart.ai/models/realtime/streaming-best-practices.md",
+    "path": "evidence/official/models--realtime--streaming-best-practices.md",
+    "sha256": "d977fb633b059046569ddfcff9c3969fbaff2613117fe3cb97a90204c4da1867",
+    "bytes": 16823
+  },
+  {
+    "url": "https://docs.platform.decart.ai/resources/privacy-policy.md",
+    "path": "evidence/official/resources--privacy-policy.md",
+    "sha256": "4f4008f74973071e3941a047a472ccaf03740ac9d83a117fe6b387a025ffc4fd",
+    "bytes": 24829
+  },
+  {
+    "url": "https://docs.platform.decart.ai/resources/aup.md",
+    "path": "evidence/official/resources--aup.md",
+    "sha256": "118363f5de54b3469e5f77c1e8b6e7e436aad1200965ad756996af83a343d781",
+    "bytes": 16231
+  },
+  {
+    "url": "https://docs.platform.decart.ai/resources/api-terms.md",
+    "path": "evidence/official/resources--api-terms.md",
+    "sha256": "34d11e71db4f035289ff2649ee8af2ecf9b37f895286ce9ae6418228c6ee06cd",
+    "bytes": 36292
+  },
+  {
+    "url": "https://docs.platform.decart.ai/resources/terms-of-service.md",
+    "path": "evidence/official/resources--terms-of-service.md",
+    "sha256": "b87f4fecd85100f0d9a42ab258723efbae2f7db282beb306d0cd34c5ce49531c",
+    "bytes": 41461
+  },
+  {
+    "url": "https://docs.platform.decart.ai/getting-started/models.md",
+    "path": "evidence/official/getting-started--models.md",
+    "sha256": "03223270e53709313cc727c5b584c50b703a8e900bb63ee06fef7daee44c3e47",
+    "bytes": 7790
+  }
+]

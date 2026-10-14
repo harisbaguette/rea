@@ -1,0 +1,19 @@
+{
+  "sample_name": "shipping-demo",
+  "sample_origin": "체험을 위해 자체 제작한 무해한 배송비 계산기",
+  "sample_format": "Mach-O",
+  "sample_architecture": "arm64",
+  "sample_sha256": "e2c5c115949cbdf200e837cbcfedb4ce88fac60c25faacae58a4b42500ce59c5",
+  "source_sha256": "eaea4329b167b1f115391c1ccdffec2220754e3c02ce88dbd34c8e11fade7e44",
+  "source_supplied_to_rea": false,
+  "rea_version": "6.4.0",
+  "rea_commit": "ded199abcde611a0ba4739ecb536e0ede0075670",
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "first_evidence_id": "ev_6c27f9e094c503276775f96b49c3a051baeb33d819822cc68f2b5a6f2a9c3adb",
+  "analysis_scope": "_shipping_fee 함수의 배송비 조건",
+  "build_command": "/usr/bin/clang -std=c11 -O0 -fno-inline -Wall -Wextra -Werror '실행관리(Ops-Run)/정답 소스/shipping_demo.c' -o '실행관리(Ops-Run)/분석 대상/shipping-demo'"
+}

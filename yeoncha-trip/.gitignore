@@ -1,0 +1,12 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+.openai/local/
+.DS_Store
+research/*
+!research/rea-summary.json
+artifacts/
+*.tar.gz
+*.log
+/.project-map/

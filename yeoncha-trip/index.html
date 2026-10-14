@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#087f6a" />
+    <title>틈 — 연차로 떠나는 여행</title>
+    <meta name="description" content="연차는 짧게, 여행은 길게. 2026·2027 공휴일과 주말에 연차를 붙여 나만의 연휴를 찾고, 그 날짜에 떠날 여행지와 항공권을 비교하세요." />
+    <meta property="og:title" content="틈 — 연차로 떠나는 여행" />
+    <meta property="og:description" content="어디로 갈지보다, 언제 떠날 수 있는지부터. 내 연차로 만드는 가장 긴 여행." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:image" content="https://tteum-leave-trip.aigoldgoose.chatgpt.site/assets/og.png" />
+    <meta property="og:url" content="https://tteum-leave-trip.aigoldgoose.chatgpt.site" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/assets/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#planner">연휴 찾기로 바로 가기</a>
+    <header class="header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="틈 홈"><span class="brand-mark" aria-hidden="true">틈</span><span class="brand-note">연차로 떠나는 여행</span></a>
+        <nav aria-label="주 메뉴">
+          <button class="nav-link active" id="nav-plan" aria-current="page">연휴 찾기</button>
+          <button class="nav-link" id="nav-saved"><span class="icon" data-icon="bookmark"></span>저장한 여행 <span id="saved-count" class="count">0</span></button>
+        </nav>
+        <button class="help-button" id="help-open" aria-label="이용 안내"><span class="icon" data-icon="circle-help"></span></button>
+      </div>
+    </header>
+    <main id="main-content">
+      <section class="hero wrap" aria-labelledby="hero-heading">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="small-spark" aria-hidden="true">✳</span> 연차는 짧게, 여행은 길게</div>
+          <h1 id="hero-heading">일상의 틈을,<br /><span>여행으로 채우다.</span></h1>
+          <p>어디로 갈지보다 <strong>언제 떠날 수 있는지</strong>부터.<br />내 연차에 딱 맞는 연휴와 항공권을 찾아보세요.</p>
+        </div>
+        <div class="hero-visual">
+          <img class="hero-photo" src="/assets/okinawa.webp" width="600" height="340" alt="오키나와의 투명한 바다와 하얀 모래 해변" fetchpriority="high" />
+          <span class="photo-label"><span class="icon" data-icon="map-pin"></span>일상에서 조금 멀리, 오키나와</span>
+          <div class="hero-ticket"><span class="ticket-icon"><span class="icon" data-icon="plane"></span></span><div><span class="ticket-caption">올해의 작은 탈출 계획</span><strong id="hero-stat">연차 2일 <span>→</span> 여행 9일</strong></div><span class="ticket-stamp">LET’S<br />GO!</span></div>
+        </div>
+      </section>
+
+      <section class="search-bar wrap" aria-label="여행 조건">
+        <label class="search-field origin-field"><span><span class="icon" data-icon="plane-takeoff"></span>출발 공항</span><select id="origin" aria-label="출발 공항"><option value="ICN">인천 ICN</option><option value="PUS">부산·김해 PUS</option><option value="GMP">김포 GMP</option><option value="CJU">제주 CJU</option><option value="TAE">대구 TAE</option><option value="CJJ">청주 CJJ</option></select></label>
+        <label class="search-field year-field"><span><span class="icon" data-icon="calendar"></span>여행할 해</span><select id="year" aria-label="여행할 해"><option value="2027">2027년</option><option value="2026">2026년</option></select></label>
+        <fieldset class="leave-field"><legend>한 번에 쓸 수 있는 연차 <span>최대</span></legend><div id="leave-buttons" class="segmented" aria-label="최대 연차 일수"></div></fieldset>
+        <a class="button primary find-button" href="#planner">내 연휴 찾기<span class="icon" data-icon="arrow-right"></span></a>
+      </section>
+
+      <section class="planner wrap" id="planner" aria-labelledby="planner-heading">
+        <div class="planner-top"><div><span class="section-caption" id="year-caption">나의 2027 여행 캘린더</span><h2 id="planner-heading">언제, 얼마나 떠날까요?</h2></div><span class="week-note"><span class="icon" data-icon="briefcase-business"></span>대한민국 · 주 5일 근무 기준</span></div>
+        <div class="planner-layout">
+          <aside class="schedule-panel" aria-label="연휴 선택">
+            <div class="month-heading"><strong>떠나고 싶은 달</strong><button class="text-button" id="month-all">전체 보기</button></div>
+            <div id="month-grid" class="month-grid" aria-label="월별 연휴"></div>
+            <div class="schedule-list-head"><strong id="window-count">추천 연휴</strong><label class="sr-only" for="window-sort">연휴 정렬</label><select id="window-sort"><option value="longest">길게 쉬는 순</option><option value="earliest">가까운 날짜순</option><option value="leave">연차 적은 순</option></select></div>
+            <div id="window-list" class="window-list"></div>
+            <button class="custom-button" id="custom-open"><span class="icon" data-icon="calendar-plus"></span>내가 직접 날짜 고르기<span class="icon" data-icon="chevron-right"></span></button>
+          </aside>
+          <div class="trip-content">
+            <section id="selected-window" class="selected-window" aria-label="선택한 여행 일정"></section>
+            <section class="destinations" aria-labelledby="destinations-heading">
+              <div class="results-heading"><div><span class="section-caption" id="selected-period">선택한 연휴에 떠나는</span><h2 id="destinations-heading">이때, 여긴 어때요?</h2></div><label class="budget-control"><span class="icon" data-icon="wallet"></span><select id="budget" aria-label="1인 왕복 예산"><option value="0">왕복 예산 전체</option><option value="200000">20만 원 이하</option><option value="300000">30만 원 이하</option><option value="400000">40만 원 이하</option><option value="600000">60만 원 이하</option></select></label></div>
+              <div class="flight-preferences"><label>최소 숙박 <select id="min-nights" aria-label="최소 숙박일"><option value="1">1박 이상</option><option value="2" selected>2박 이상</option><option value="3">3박 이상</option><option value="4">4박 이상</option><option value="5">5박 이상</option><option value="7">7박 이상</option></select></label><label><input id="return-buffer" type="checkbox" checked />복귀 여유 하루</label><label><input id="exact-dates" type="checkbox" />출발·귀국편 날짜 고정</label><span id="return-cutoff"></span></div>
+              <div class="result-toolbar"><div class="region-tabs" id="region-tabs" aria-label="여행지 분류"><button data-region="all" aria-pressed="true">전체</button><button data-region="japan" aria-pressed="false">일본</button><button data-region="asia" aria-pressed="false">아시아</button><button data-region="europe" aria-pressed="false">유럽</button><button data-region="beach" aria-pressed="false">바다</button></div><label class="sr-only" for="flight-sort">항공권 정렬</label><select id="flight-sort"><option value="price">가격 낮은 순</option><option value="discount">노선 평균 대비 저렴한 순</option><option value="longest">여행 기간 긴 순</option></select></div>
+              <div class="fare-status-row"><span id="fare-status" role="status" aria-live="polite"></span><label><input id="deals-only" type="checkbox" />노선 평균보다 저렴한 항공권만</label><button id="refresh-flights" class="text-button">다시 조회</button></div>
+              <p id="fare-notice" class="fare-notice"><span class="icon" data-icon="info"></span>최근 수집된 성인 1인 일반석 왕복 요금입니다. 최종 운임과 한국 도착일은 판매처에서 확인해 주세요.</p>
+              <div id="flight-grid" class="flight-grid"></div>
+            </section>
+          </div>
+        </div>
+      </section>
+      <section class="saved-view wrap" id="saved-view" hidden aria-labelledby="saved-heading"><div class="saved-heading"><div><span class="section-caption">다음 여행을 위한 작은 메모</span><h1 id="saved-heading">저장한 여행</h1></div><button class="button secondary" id="back-to-planner">연휴 더 찾아보기<span class="icon" data-icon="arrow-right"></span></button></div><p class="saved-note">이 브라우저에 저장됩니다. 예약이나 가격 알림 신청은 아닙니다.</p><div id="saved-list"></div></section>
+    </main>
+    <footer class="footer wrap"><div><a class="footer-brand" href="/">틈<span>일상과 여행 사이</span></a><p>운임 데이터: Catchfrog 공개 조회. 예약과 결제는 선택한 판매처에서 진행합니다. 수집 요금과 최종 결제 금액은 달라질 수 있어요.</p></div><button class="text-button" id="footer-help">이용 안내 · 데이터 안내<span class="icon" data-icon="arrow-up-right"></span></button></footer>
+    <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="detail-title"></dialog>
+    <dialog id="custom-dialog" class="custom-dialog" aria-labelledby="custom-title"><form id="custom-form"><div class="dialog-title"><h2 id="custom-title">내 일정으로 떠나기</h2><button type="button" class="icon-button dialog-close" aria-label="닫기"><span class="icon" data-icon="x"></span></button></div><p class="dialog-description">떠날 수 있는 휴가 기간을 골라 주세요. 복귀 여유 하루를 켜면 휴가 마지막 날 하루 전까지의 귀국편을 찾습니다.</p><div class="date-inputs"><label>휴가 시작일<input id="custom-start" type="date" required /></label><label>휴가 마지막 날<input id="custom-end" type="date" required /></label></div><p id="custom-error" class="form-error" role="alert"></p><div id="custom-preview" class="custom-preview"></div><button type="submit" class="button primary full">이 일정으로 여행지 보기<span class="icon" data-icon="arrow-right"></span></button></form></dialog>
+    <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title"><div class="dialog-title"><h2 id="help-title">틈, 이렇게 이용하세요</h2><button class="icon-button dialog-close" aria-label="닫기"><span class="icon" data-icon="x"></span></button></div><ol class="help-steps"><li><span class="icon" data-icon="calendar"></span><div><strong>먼저, 쉴 수 있는 날 찾기</strong><p>사용할 연차와 여행할 해를 고르면 주말·공휴일을 연결해 긴 연휴를 찾아 드려요.</p></div></li><li><span class="icon" data-icon="plane"></span><div><strong>그때 갈 수 있는 여행지 비교</strong><p>선택한 연휴 안에 다녀오는 수집 항공권의 실제 요금과 판매처별 가격을 비교하세요. 날짜 고정과 최소 숙박일도 선택할 수 있어요.</p></div></li><li><span class="icon" data-icon="bookmark"></span><div><strong>좋은 일정은 저장해 두기</strong><p>여행지와 일정을 이 브라우저에 저장하거나 캘린더 파일로 내려받을 수 있어요.</p></div></li></ol><div class="data-info"><strong>공휴일과 항공권 안내</strong><p>2026·2027년 대한민국 공휴일, 대체공휴일을 반영합니다. 임시공휴일과 회사별 휴무는 달라질 수 있어요. 오늘 이전의 일정은 추천에서 제외합니다.</p><p>요금은 Catchfrog 공개 조회에서 받은 성인 1명·일반석·왕복 수집 운임입니다. 노선 수집 평균과의 차이는 표시 요금으로 계산합니다. 과거의 정상 판매가나 같은 일정의 평균을 뜻하지 않습니다. 최종 운임·좌석·수하물은 판매처에서 확인하세요.</p><a href="https://www.kasa.go.kr/prog/plcyBrf/brief/kor/sub01_01_04/view.do?plcyBrfNo=431" target="_blank" rel="noopener noreferrer">공휴일 자료: 우주항공청 2027년 월력요항 ↗</a><p>귀국일은 귀국편 출발일입니다. 한국 도착일을 보장하지 않으므로 ‘복귀 여유 하루’를 기본으로 적용합니다. 도착 시각과 추가 휴가 필요 여부는 판매처에서 확인하세요.</p><p>판매처 연결에는 해당 제공자의 제휴 링크가 포함될 수 있습니다. 이 사이트는 포인트나 리워드를 지급하지 않습니다.</p><p>사진: PAKUTASO · 서체: Pretendard · 아이콘: Lucide</p></div></dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,245 @@
+{
+    "Actions": {
+        "0,0": {
+            "ActionID": "55dv6dlh-vw2l-44w5-9wc1-sam6d183rr51",
+            "Controller": "",
+            "Name": "Scene Shift",
+            "Settings": {
+                "DeviceUUID": "",
+                "ProfileUUID": ""
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "Images/btn_switchProfile"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.profile.rotate"
+        },
+        "0,1": {
+            "ActionID": "2c703960-pg0m-b14x-41m7-n0me1sn6y5lz",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://watcha.com"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "JIISES4FSX23B2P3Z385L23ZHZ8.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "0,2": {
+            "ActionID": "389woqst-i1a6-19r5-a06p-y09rke36c260",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.coupang.com"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "4H1WH6481CI5HCM60TG7R63DE71.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "0,3": {
+            "ActionID": "ios906k4-u032-24cm-438a-b7f99s3n274n",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://x.com/?lang=ko"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "1BP559RODK19YUY84X8F2MS065W.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "0,4": {
+            "ActionID": "7ab205vk-c0hg-m740-23s0-wxtj662j172j",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.naver.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "44B22U8E9CGHQ80W42MUF94Z398.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "1,1": {
+            "ActionID": "7b31i161-17eg-abyj-ev0q-s98r50ma9yp6",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.disneyplus.com"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "O312352C9FM6N2I2OT3QL85U8V5.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "1,2": {
+            "ActionID": "llu3148b-bo2x-ovjv-zig4-01y13g3414nz",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.afreecatv.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "CYACZJ12SF446M10H9635MUDHA2.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "1,3": {
+            "ActionID": "38n14v5s-4689-a3ke-2nh7-939l9yt22rs6",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.facebook.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "3CI3FMJQCX28466AY7J513852L9.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "1,4": {
+            "ActionID": "th0z061h-wv2r-3cqh-2vx6-0j013ea58803",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.google.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "91HP2XDU6TH15117W0X50T34X2A.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "2,0": {
+            "ActionID": "wcv1821o-sdv3-028x-od1j-z4eg5oac25f4",
+            "Controller": "Keypad",
+            "Name": "Scene Shift",
+            "Settings": {
+                "DeviceUUID": "",
+                "ProfileUUID": "PreviousScene"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "Images/btn_switchProfile"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.profile.rotate"
+        },
+        "2,1": {
+            "ActionID": "4w92tva6-2541-febp-7j1n-20v7328uj1xj",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.netflix.com"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "X24TS023DEE3W724S04211LXLY7.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "2,2": {
+            "ActionID": "33w88kw2-b1th-l7v1-n0i6-pvr811s00525",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://chzzk.naver.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "F1H4435JH4E6I08PN0Y5823347M.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "2,3": {
+            "ActionID": "82i07qjg-5z0i-3a73-901q-os8w0b7tn580",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.instagram.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "VNZZL113Z2L1X4O91R1NXZY03H1.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "2,4": {
+            "ActionID": "002e37b0-7ilp-zy14-5ua3-2d9qnm81vecf",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.youtube.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "4X0R113H1IGD659E50042I18Z7S.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        }
+    },
+    "AppIdentifier": "",
+    "DeviceModel": "20GBA9901",
+    "DeviceSerialNumber": "",
+    "DeviceUUID": "TS183",
+    "Name": "웹페이지 바로가기",
+    "Pages": {
+        "Current": "Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile",
+        "Pages": [
+            "Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile",
+            "4S00E191-35CZ-62O8-DHRB-SI1D7BIOBAQE.sdProfile",
+            "LFK7SUUE-U6F0-0E1U-711F-72B7MS7PXQYD.sdProfile",
+            "3JKDW3JJ-TWGZ-CGGX-GM7Y-010588FL965C.sdProfile",
+            "5JQB1LM1-XM36-4YOI-880V-G2WM91KD28J6.sdProfile",
+            "8NB7DZFL-61D4-0A5R-U58N-WE5BRCO8T1E8.sdProfile"
+        ]
+    },
+    "Version": "1.0"
+}

@@ -1,0 +1,214 @@
+
+libSDLibrary.arm64.dylib:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+00000000000384e0 <SDDevice::sendHeartbeatPack()>:
+   384e0: d10103ff     	sub	sp, sp, #0x40
+   384e4: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   384e8: a9037bfd     	stp	x29, x30, [sp, #0x30]
+   384ec: 9100c3fd     	add	x29, sp, #0x30
+   384f0: 39438408     	ldrb	w8, [x0, #0xe1]
+   384f4: 34001728     	cbz	w8, 0x387d8 <SDDevice::sendHeartbeatPack()+0x2f8>
+   384f8: aa0003f3     	mov	x19, x0
+   384fc: b9404808     	ldr	w8, [x0, #0x48]
+   38500: 7101011f     	cmp	w8, #0x40
+   38504: 540016ab     	b.lt	0x387d8 <SDDevice::sendHeartbeatPack()+0x2f8>
+   38508: f9402261     	ldr	x1, [x19, #0x40]
+   3850c: b4001661     	cbz	x1, 0x387d8 <SDDevice::sendHeartbeatPack()+0x2f8>
+   38510: 39488268     	ldrb	w8, [x19, #0x220]
+   38514: 34001628     	cbz	w8, 0x387d8 <SDDevice::sendHeartbeatPack()+0x2f8>
+   38518: f9401e68     	ldr	x8, [x19, #0x38]
+   3851c: 90005629     	adrp	x9, 0xafc000 <dyld_stub_binder+0xafc000>
+   38520: f9407929     	ldr	x9, [x9, #0xf0]
+   38524: f100011f     	cmp	x8, #0x0
+   38528: 9a880120     	csel	x0, x9, x8, eq
+   3852c: 900011e2     	adrp	x2, 0x274000 <dyld_stub_binder+0x274000>
+   38530: 91263842     	add	x2, x2, #0x98e
+   38534: 92800003     	mov	x3, #-0x1               ; =-1
+   38538: 52800024     	mov	w4, #0x1                ; =1
+   3853c: 940894ff     	bl	0x25d938 <dyld_stub_binder+0x25d938>
+   38540: 340014c0     	cbz	w0, 0x387d8 <SDDevice::sendHeartbeatPack()+0x2f8>
+   38544: b9804a68     	ldrsw	x8, [x19, #0x48]
+   38548: 91000501     	add	x1, x8, #0x1
+   3854c: 910023e0     	add	x0, sp, #0x8
+   38550: 52800002     	mov	w2, #0x0                ; =0
+   38554: 94089205     	bl	0x25cd68 <dyld_stub_binder+0x25cd68>
+   38558: 39438274     	ldrb	w20, [x19, #0xe0]
+   3855c: f94007e8     	ldr	x8, [sp, #0x8]
+   38560: b4000088     	cbz	x8, 0x38570 <SDDevice::sendHeartbeatPack()+0x90>
+   38564: b9400108     	ldr	w8, [x8]
+   38568: 7100091f     	cmp	w8, #0x2
+   3856c: 540000ab     	b.lt	0x38580 <SDDevice::sendHeartbeatPack()+0xa0>
+   38570: f9400fe1     	ldr	x1, [sp, #0x18]
+   38574: 910023e0     	add	x0, sp, #0x8
+   38578: 52800022     	mov	w2, #0x1                ; =1
+   3857c: 940891d1     	bl	0x25ccc0 <dyld_stub_binder+0x25ccc0>
+   38580: f9400be8     	ldr	x8, [sp, #0x10]
+   38584: 39000114     	strb	w20, [x8]
+   38588: f94007e8     	ldr	x8, [sp, #0x8]
+   3858c: b4000088     	cbz	x8, 0x3859c <SDDevice::sendHeartbeatPack()+0xbc>
+   38590: b9400108     	ldr	w8, [x8]
+   38594: 7100091f     	cmp	w8, #0x2
+   38598: 540000ab     	b.lt	0x385ac <SDDevice::sendHeartbeatPack()+0xcc>
+   3859c: f9400fe1     	ldr	x1, [sp, #0x18]
+   385a0: 910023e0     	add	x0, sp, #0x8
+   385a4: 52800022     	mov	w2, #0x1                ; =1
+   385a8: 940891c6     	bl	0x25ccc0 <dyld_stub_binder+0x25ccc0>
+   385ac: f9400be8     	ldr	x8, [sp, #0x10]
+   385b0: 52800869     	mov	w9, #0x43               ; =67
+   385b4: 39000509     	strb	w9, [x8, #0x1]
+   385b8: f94007e8     	ldr	x8, [sp, #0x8]
+   385bc: b4000088     	cbz	x8, 0x385cc <SDDevice::sendHeartbeatPack()+0xec>
+   385c0: b9400108     	ldr	w8, [x8]
+   385c4: 7100091f     	cmp	w8, #0x2
+   385c8: 540000ab     	b.lt	0x385dc <SDDevice::sendHeartbeatPack()+0xfc>
+   385cc: f9400fe1     	ldr	x1, [sp, #0x18]
+   385d0: 910023e0     	add	x0, sp, #0x8
+   385d4: 52800022     	mov	w2, #0x1                ; =1
+   385d8: 940891ba     	bl	0x25ccc0 <dyld_stub_binder+0x25ccc0>
+   385dc: f9400be8     	ldr	x8, [sp, #0x10]
+   385e0: 52800a49     	mov	w9, #0x52               ; =82
+   385e4: 39000909     	strb	w9, [x8, #0x2]
+   385e8: f94007e8     	ldr	x8, [sp, #0x8]
+   385ec: b4000088     	cbz	x8, 0x385fc <SDDevice::sendHeartbeatPack()+0x11c>
+   385f0: b9400108     	ldr	w8, [x8]
+   385f4: 7100091f     	cmp	w8, #0x2
+   385f8: 540000ab     	b.lt	0x3860c <SDDevice::sendHeartbeatPack()+0x12c>
+   385fc: f9400fe1     	ldr	x1, [sp, #0x18]
+   38600: 910023e0     	add	x0, sp, #0x8
+   38604: 52800022     	mov	w2, #0x1                ; =1
+   38608: 940891ae     	bl	0x25ccc0 <dyld_stub_binder+0x25ccc0>
+   3860c: f9400be8     	ldr	x8, [sp, #0x10]
+   38610: 52800a89     	mov	w9, #0x54               ; =84
+   38614: 39000d09     	strb	w9, [x8, #0x3]
+   38618: f94007e8     	ldr	x8, [sp, #0x8]
+   3861c: b4000088     	cbz	x8, 0x3862c <SDDevice::sendHeartbeatPack()+0x14c>
+   38620: b9400108     	ldr	w8, [x8]
+   38624: 7100091f     	cmp	w8, #0x2
+   38628: 540000ab     	b.lt	0x3863c <SDDevice::sendHeartbeatPack()+0x15c>
+   3862c: f9400fe1     	ldr	x1, [sp, #0x18]
+   38630: 910023e0     	add	x0, sp, #0x8
+   38634: 52800022     	mov	w2, #0x1                ; =1
+   38638: 940891a2     	bl	0x25ccc0 <dyld_stub_binder+0x25ccc0>
+   3863c: f9400be8     	ldr	x8, [sp, #0x10]
+   38640: 52800869     	mov	w9, #0x43               ; =67
+   38644: 39001909     	strb	w9, [x8, #0x6]
+   38648: f94007e8     	ldr	x8, [sp, #0x8]
+   3864c: b4000088     	cbz	x8, 0x3865c <SDDevice::sendHeartbeatPack()+0x17c>
+   38650: b9400108     	ldr	w8, [x8]
+   38654: 7100091f     	cmp	w8, #0x2
+   38658: 540000ab     	b.lt	0x3866c <SDDevice::sendHeartbeatPack()+0x18c>
+   3865c: f9400fe1     	ldr	x1, [sp, #0x18]
+   38660: 910023e0     	add	x0, sp, #0x8
+   38664: 52800022     	mov	w2, #0x1                ; =1
+   38668: 94089196     	bl	0x25ccc0 <dyld_stub_binder+0x25ccc0>
+   3866c: f9400be8     	ldr	x8, [sp, #0x10]
+   38670: 528009e9     	mov	w9, #0x4f               ; =79
+   38674: 39001d09     	strb	w9, [x8, #0x7]
+   38678: f94007e8     	ldr	x8, [sp, #0x8]
+   3867c: b4000088     	cbz	x8, 0x3868c <SDDevice::sendHeartbeatPack()+0x1ac>
+   38680: b9400109     	ldr	w9, [x8]
+   38684: 7100053f     	cmp	w9, #0x1
+   38688: 5400014d     	b.le	0x386b0 <SDDevice::sendHeartbeatPack()+0x1d0>
+   3868c: f9400fe1     	ldr	x1, [sp, #0x18]
+   38690: 910023e0     	add	x0, sp, #0x8
+   38694: 52800022     	mov	w2, #0x1                ; =1
+   38698: 9408918a     	bl	0x25ccc0 <dyld_stub_binder+0x25ccc0>
+   3869c: a940a7e8     	ldp	x8, x9, [sp, #0x8]
+   386a0: 528009ca     	mov	w10, #0x4e              ; =78
+   386a4: 3900212a     	strb	w10, [x9, #0x8]
+   386a8: b50000a8     	cbnz	x8, 0x386bc <SDDevice::sendHeartbeatPack()+0x1dc>
+   386ac: 14000007     	b	0x386c8 <SDDevice::sendHeartbeatPack()+0x1e8>
+   386b0: f9400be9     	ldr	x9, [sp, #0x10]
+   386b4: 528009ca     	mov	w10, #0x4e              ; =78
+   386b8: 3900212a     	strb	w10, [x9, #0x8]
+   386bc: b9400109     	ldr	w9, [x8]
+   386c0: 7100053f     	cmp	w9, #0x1
+   386c4: 5400014d     	b.le	0x386ec <SDDevice::sendHeartbeatPack()+0x20c>
+   386c8: f9400fe1     	ldr	x1, [sp, #0x18]
+   386cc: 910023e0     	add	x0, sp, #0x8
+   386d0: 52800022     	mov	w2, #0x1                ; =1
+   386d4: 9408917b     	bl	0x25ccc0 <dyld_stub_binder+0x25ccc0>
+   386d8: a940a7e8     	ldp	x8, x9, [sp, #0x8]
+   386dc: 528009ca     	mov	w10, #0x4e              ; =78
+   386e0: 3900252a     	strb	w10, [x9, #0x9]
+   386e4: b5000088     	cbnz	x8, 0x386f4 <SDDevice::sendHeartbeatPack()+0x214>
+   386e8: 14000006     	b	0x38700 <SDDevice::sendHeartbeatPack()+0x220>
+   386ec: f9400be9     	ldr	x9, [sp, #0x10]
+   386f0: 3900252a     	strb	w10, [x9, #0x9]
+   386f4: b9400109     	ldr	w9, [x8]
+   386f8: 7100053f     	cmp	w9, #0x1
+   386fc: 5400014d     	b.le	0x38724 <SDDevice::sendHeartbeatPack()+0x244>
+   38700: f9400fe1     	ldr	x1, [sp, #0x18]
+   38704: 910023e0     	add	x0, sp, #0x8
+   38708: 52800022     	mov	w2, #0x1                ; =1
+   3870c: 9408916d     	bl	0x25ccc0 <dyld_stub_binder+0x25ccc0>
+   38710: a940a7e8     	ldp	x8, x9, [sp, #0x8]
+   38714: 528008aa     	mov	w10, #0x45              ; =69
+   38718: 3900292a     	strb	w10, [x9, #0xa]
+   3871c: b50000a8     	cbnz	x8, 0x38730 <SDDevice::sendHeartbeatPack()+0x250>
+   38720: 14000007     	b	0x3873c <SDDevice::sendHeartbeatPack()+0x25c>
+   38724: f9400be9     	ldr	x9, [sp, #0x10]
+   38728: 528008aa     	mov	w10, #0x45              ; =69
+   3872c: 3900292a     	strb	w10, [x9, #0xa]
+   38730: b9400109     	ldr	w9, [x8]
+   38734: 7100053f     	cmp	w9, #0x1
+   38738: 5400014d     	b.le	0x38760 <SDDevice::sendHeartbeatPack()+0x280>
+   3873c: f9400fe1     	ldr	x1, [sp, #0x18]
+   38740: 910023e0     	add	x0, sp, #0x8
+   38744: 52800022     	mov	w2, #0x1                ; =1
+   38748: 9408915e     	bl	0x25ccc0 <dyld_stub_binder+0x25ccc0>
+   3874c: a940a7e8     	ldp	x8, x9, [sp, #0x8]
+   38750: 5280086a     	mov	w10, #0x43              ; =67
+   38754: 39002d2a     	strb	w10, [x9, #0xb]
+   38758: b50000a8     	cbnz	x8, 0x3876c <SDDevice::sendHeartbeatPack()+0x28c>
+   3875c: 14000007     	b	0x38778 <SDDevice::sendHeartbeatPack()+0x298>
+   38760: f9400be9     	ldr	x9, [sp, #0x10]
+   38764: 5280086a     	mov	w10, #0x43              ; =67
+   38768: 39002d2a     	strb	w10, [x9, #0xb]
+   3876c: b9400108     	ldr	w8, [x8]
+   38770: 7100091f     	cmp	w8, #0x2
+   38774: 540000ab     	b.lt	0x38788 <SDDevice::sendHeartbeatPack()+0x2a8>
+   38778: f9400fe1     	ldr	x1, [sp, #0x18]
+   3877c: 910023e0     	add	x0, sp, #0x8
+   38780: 52800022     	mov	w2, #0x1                ; =1
+   38784: 9408914f     	bl	0x25ccc0 <dyld_stub_binder+0x25ccc0>
+   38788: f9400be8     	ldr	x8, [sp, #0x10]
+   3878c: 52800a89     	mov	w9, #0x54               ; =84
+   38790: 39003109     	strb	w9, [x8, #0xc]
+   38794: f9400be8     	ldr	x8, [sp, #0x10]
+   38798: 90005629     	adrp	x9, 0xafc000 <dyld_stub_binder+0xafc000>
+   3879c: f9401d29     	ldr	x9, [x9, #0x38]
+   387a0: f100011f     	cmp	x8, #0x0
+   387a4: 9a880121     	csel	x1, x9, x8, eq
+   387a8: aa1303e0     	mov	x0, x19
+   387ac: 97ffecd9     	bl	0x33b10 <SDDevice::writeData(unsigned char const*)>
+   387b0: f94007e8     	ldr	x8, [sp, #0x8]
+   387b4: b4000128     	cbz	x8, 0x387d8 <SDDevice::sendHeartbeatPack()+0x2f8>
+   387b8: 12800009     	mov	w9, #-0x1               ; =-1
+   387bc: b8e90108     	ldaddal	w9, w8, [x8]
+   387c0: 7100051f     	cmp	w8, #0x1
+   387c4: 540000a1     	b.ne	0x387d8 <SDDevice::sendHeartbeatPack()+0x2f8>
+   387c8: f94007e0     	ldr	x0, [sp, #0x8]
+   387cc: 52800021     	mov	w1, #0x1                ; =1
+   387d0: 52800102     	mov	w2, #0x8                ; =8
+   387d4: 94089129     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   387d8: a9437bfd     	ldp	x29, x30, [sp, #0x30]
+   387dc: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   387e0: 910103ff     	add	sp, sp, #0x40
+   387e4: d65f03c0     	ret
+   387e8: 14000001     	b	0x387ec <SDDevice::sendHeartbeatPack()+0x30c>
+   387ec: aa0003f3     	mov	x19, x0
+   387f0: f94007e8     	ldr	x8, [sp, #0x8]
+   387f4: b4000128     	cbz	x8, 0x38818 <SDDevice::sendHeartbeatPack()+0x338>
+   387f8: 12800009     	mov	w9, #-0x1               ; =-1
+   387fc: b8e90108     	ldaddal	w9, w8, [x8]
+   38800: 7100051f     	cmp	w8, #0x1
+   38804: 540000a1     	b.ne	0x38818 <SDDevice::sendHeartbeatPack()+0x338>
+   38808: f94007e0     	ldr	x0, [sp, #0x8]
+   3880c: 52800021     	mov	w1, #0x1                ; =1
+   38810: 52800102     	mov	w2, #0x8                ; =8
+   38814: 94089119     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   38818: aa1303e0     	mov	x0, x19
+   3881c: 94089105     	bl	0x25cc30 <dyld_stub_binder+0x25cc30>

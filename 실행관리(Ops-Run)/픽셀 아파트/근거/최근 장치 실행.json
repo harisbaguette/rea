@@ -1,0 +1,15 @@
+{
+  "transport": "TS115 HID 0400:1000",
+  "seconds": 156.343,
+  "frames_sent": 869,
+  "tiles_sent": 2619,
+  "reports_sent": 19355,
+  "input_reports": 1,
+  "physical_key_presses": [
+    0
+  ],
+  "last_send_ms": 67.12,
+  "average_send_fps": 5.56,
+  "error": "HID 송신 실패: IOHIDDeviceSetReport failed: (0xE00002D8) (iokit/common) not ready",
+  "display_observation": "HID 송신 성공만으로 LCD 표시 성공을 단정하지 않음"
+}

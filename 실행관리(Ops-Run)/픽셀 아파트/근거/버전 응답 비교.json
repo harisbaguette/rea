@@ -1,0 +1,26 @@
+[
+  {
+    "phase": "shared=True initial",
+    "reports": []
+  },
+  {
+    "phase": "shared=True after image",
+    "reports": []
+  },
+  {
+    "phase": "shared=True after animation",
+    "reports": []
+  },
+  {
+    "phase": "shared=False initial",
+    "reports": []
+  },
+  {
+    "phase": "shared=False after image",
+    "reports": []
+  },
+  {
+    "phase": "shared=False after animation",
+    "reports": []
+  }
+]

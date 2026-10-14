@@ -1,0 +1,2071 @@
+
+libSDLibrary.arm64.dylib:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000000042424 <SDDevice::readDataFromHidDevice()>:
+   42424: 6db923e9     	stp	d9, d8, [sp, #-0x70]!
+   42428: a9016ffc     	stp	x28, x27, [sp, #0x10]
+   4242c: a90267fa     	stp	x26, x25, [sp, #0x20]
+   42430: a9035ff8     	stp	x24, x23, [sp, #0x30]
+   42434: a90457f6     	stp	x22, x21, [sp, #0x40]
+   42438: a9054ff4     	stp	x20, x19, [sp, #0x50]
+   4243c: a9067bfd     	stp	x29, x30, [sp, #0x60]
+   42440: 910183fd     	add	x29, sp, #0x60
+   42444: d10803ff     	sub	sp, sp, #0x200
+   42448: aa0003f4     	mov	x20, x0
+   4244c: b0001208     	adrp	x8, 0x283000 <typeinfo name for QtFlowLayout+0x280>
+   42450: fd407900     	ldr	d0, [x8, #0xf0]
+   42454: d0001196     	adrp	x22, 0x274000 <dyld_stub_binder+0x274000>
+   42458: 910116d6     	add	x22, x22, #0x45
+   4245c: f0001198     	adrp	x24, 0x275000 <dyld_stub_binder+0x275000>
+   42460: 911ecb18     	add	x24, x24, #0x7b2
+   42464: fc1503a0     	stur	d0, [x29, #-0xb0]
+   42468: a935e3b6     	stp	x22, x24, [x29, #-0xa8]
+   4246c: b0001199     	adrp	x25, 0x273000 <GCC_except_table47+0x3c>
+   42470: 911fef39     	add	x25, x25, #0x7fb
+   42474: f81683b9     	stur	x25, [x29, #-0x98]
+   42478: d10323a8     	sub	x8, x29, #0xc8
+   4247c: d102c3a0     	sub	x0, x29, #0xb0
+   42480: 94086f5f     	bl	0x25e1fc <dyld_stub_binder+0x25e1fc>
+   42484: f85383b3     	ldur	x19, [x29, #-0xc8]
+   42488: f0001181     	adrp	x1, 0x275000 <dyld_stub_binder+0x275000>
+   4248c: 911f6421     	add	x1, x1, #0x7d9
+   42490: d10243a8     	sub	x8, x29, #0x90
+   42494: 52800340     	mov	w0, #0x1a               ; =26
+   42498: 94086d61     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   4249c: d10243a1     	sub	x1, x29, #0x90
+   424a0: aa1303e0     	mov	x0, x19
+   424a4: 94086b0c     	bl	0x25d0d4 <dyld_stub_binder+0x25d0d4>
+   424a8: f85703a8     	ldur	x8, [x29, #-0x90]
+   424ac: b4000128     	cbz	x8, 0x424d0 <SDDevice::readDataFromHidDevice()+0xac>
+   424b0: 12800009     	mov	w9, #-0x1               ; =-1
+   424b4: b8e90108     	ldaddal	w9, w8, [x8]
+   424b8: 7100051f     	cmp	w8, #0x1
+   424bc: 540000a1     	b.ne	0x424d0 <SDDevice::readDataFromHidDevice()+0xac>
+   424c0: f85703a0     	ldur	x0, [x29, #-0x90]
+   424c4: 52800041     	mov	w1, #0x2                ; =2
+   424c8: 52800102     	mov	w2, #0x8                ; =8
+   424cc: 940869eb     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   424d0: f85383a0     	ldur	x0, [x29, #-0xc8]
+   424d4: 3940c008     	ldrb	w8, [x0, #0x30]
+   424d8: 34000068     	cbz	w8, 0x424e4 <SDDevice::readDataFromHidDevice()+0xc0>
+   424dc: 52800401     	mov	w1, #0x20               ; =32
+   424e0: 94086b00     	bl	0x25d0e0 <dyld_stub_binder+0x25d0e0>
+   424e4: d10323a0     	sub	x0, x29, #0xc8
+   424e8: 94086c33     	bl	0x25d5b4 <dyld_stub_binder+0x25d5b4>
+   424ec: 39438688     	ldrb	w8, [x20, #0xe1]
+   424f0: 34008dc8     	cbz	w8, 0x436a8 <SDDevice::readDataFromHidDevice()+0x1284>
+   424f4: 52800028     	mov	w8, #0x1                ; =1
+   424f8: 3903ca88     	strb	w8, [x20, #0xf2]
+   424fc: a933ffbf     	stp	xzr, xzr, [x29, #-0xc8]
+   42500: f81483bf     	stur	xzr, [x29, #-0xb8]
+   42504: a9327fbf     	stp	xzr, xzr, [x29, #-0xe0]
+   42508: f81303bf     	stur	xzr, [x29, #-0xd0]
+   4250c: a9307fbf     	stp	xzr, xzr, [x29, #-0x100]
+   42510: f81103bf     	stur	xzr, [x29, #-0xf0]
+   42514: a914ffff     	stp	xzr, xzr, [sp, #0x148]
+   42518: f900afff     	str	xzr, [sp, #0x158]
+   4251c: f9406280     	ldr	x0, [x20, #0xc0]
+   42520: d2800001     	mov	x1, #0x0                ; =0
+   42524: 940060c4     	bl	0x5a834 <TimerTool::setCurrentTime(unsigned long long)>
+   42528: d2800008     	mov	x8, #0x0                ; =0
+   4252c: 91034293     	add	x19, x20, #0xd0
+   42530: 52800029     	mov	w9, #0x1                ; =1
+   42534: c8e87e69     	casa	x8, x9, [x19]
+   42538: f100011f     	cmp	x8, #0x0
+   4253c: 54000060     	b.eq	0x42548 <SDDevice::readDataFromHidDevice()+0x124>
+   42540: aa1303e0     	mov	x0, x19
+   42544: 94086a60     	bl	0x25cec4 <dyld_stub_binder+0x25cec4>
+   42548: f9406e80     	ldr	x0, [x20, #0xd8]
+   4254c: b4000080     	cbz	x0, 0x4255c <SDDevice::readDataFromHidDevice()+0x138>
+   42550: 94076e4e     	bl	0x21de88 <_hid_get_input_report_lenght>
+   42554: aa0003f5     	mov	x21, x0
+   42558: 14000002     	b	0x42560 <SDDevice::readDataFromHidDevice()+0x13c>
+   4255c: 52800015     	mov	w21, #0x0               ; =0
+   42560: 52800028     	mov	w8, #0x1                ; =1
+   42564: c8a8fe7f     	casl	x8, xzr, [x19]
+   42568: f100051f     	cmp	x8, #0x1
+   4256c: 54000060     	b.eq	0x42578 <SDDevice::readDataFromHidDevice()+0x154>
+   42570: aa1303e0     	mov	x0, x19
+   42574: 94086a57     	bl	0x25ced0 <dyld_stub_binder+0x25ced0>
+   42578: 710006bf     	cmp	w21, #0x1
+   4257c: 52800828     	mov	w8, #0x41               ; =65
+   42580: 1a95b508     	csinc	w8, w8, w21, lt
+   42584: 93407d15     	sxtw	x21, w8
+   42588: aa1503e0     	mov	x0, x21
+   4258c: 940871da     	bl	0x25ecf4 <dyld_stub_binder+0x25ecf4>
+   42590: aa0003f7     	mov	x23, x0
+   42594: b0001208     	adrp	x8, 0x283000 <typeinfo name for QtFlowLayout+0x280>
+   42598: fd407d00     	ldr	d0, [x8, #0xf8]
+   4259c: fc1503a0     	stur	d0, [x29, #-0xb0]
+   425a0: a935e3b6     	stp	x22, x24, [x29, #-0xa8]
+   425a4: f81683b9     	stur	x25, [x29, #-0x98]
+   425a8: 9104c3e8     	add	x8, sp, #0x130
+   425ac: d102c3a0     	sub	x0, x29, #0xb0
+   425b0: 94086f13     	bl	0x25e1fc <dyld_stub_binder+0x25e1fc>
+   425b4: f9409bf3     	ldr	x19, [sp, #0x130]
+   425b8: f0001181     	adrp	x1, 0x275000 <dyld_stub_binder+0x275000>
+   425bc: 911fd021     	add	x1, x1, #0x7f4
+   425c0: d10243a8     	sub	x8, x29, #0x90
+   425c4: 52800360     	mov	w0, #0x1b               ; =27
+   425c8: 94086d15     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   425cc: d10243a1     	sub	x1, x29, #0x90
+   425d0: aa1303e0     	mov	x0, x19
+   425d4: 94086ac0     	bl	0x25d0d4 <dyld_stub_binder+0x25d0d4>
+   425d8: f85703a8     	ldur	x8, [x29, #-0x90]
+   425dc: b4000128     	cbz	x8, 0x42600 <SDDevice::readDataFromHidDevice()+0x1dc>
+   425e0: 12800009     	mov	w9, #-0x1               ; =-1
+   425e4: b8e90108     	ldaddal	w9, w8, [x8]
+   425e8: 7100051f     	cmp	w8, #0x1
+   425ec: 540000a1     	b.ne	0x42600 <SDDevice::readDataFromHidDevice()+0x1dc>
+   425f0: f85703a0     	ldur	x0, [x29, #-0x90]
+   425f4: 52800041     	mov	w1, #0x2                ; =2
+   425f8: 52800102     	mov	w2, #0x8                ; =8
+   425fc: 9408699f     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42600: f9409be0     	ldr	x0, [sp, #0x130]
+   42604: 3940c008     	ldrb	w8, [x0, #0x30]
+   42608: 34000068     	cbz	w8, 0x42614 <SDDevice::readDataFromHidDevice()+0x1f0>
+   4260c: 52800401     	mov	w1, #0x20               ; =32
+   42610: 94086ab4     	bl	0x25d0e0 <dyld_stub_binder+0x25d0e0>
+   42614: 9104c3e0     	add	x0, sp, #0x130
+   42618: 94086be7     	bl	0x25d5b4 <dyld_stub_binder+0x25d5b4>
+   4261c: 39438688     	ldrb	w8, [x20, #0xe1]
+   42620: 34007ce8     	cbz	w8, 0x435bc <SDDevice::readDataFromHidDevice()+0x1198>
+   42624: a909ffff     	stp	xzr, xzr, [sp, #0x98]
+   42628: d10403b8     	sub	x24, x29, #0x100
+   4262c: 9101e288     	add	x8, x20, #0x78
+   42630: f90063e8     	str	x8, [sp, #0xc0]
+   42634: 91044288     	add	x8, x20, #0x110
+   42638: a90aa3ff     	stp	xzr, x8, [sp, #0xa8]
+   4263c: b0001208     	adrp	x8, 0x283000 <typeinfo name for QtFlowLayout+0x280>
+   42640: fd408108     	ldr	d8, [x8, #0x100]
+   42644: 12800016     	mov	w22, #-0x1              ; =-1
+   42648: b000119c     	adrp	x28, 0x273000 <GCC_except_table47+0x3c>
+   4264c: 9122c39c     	add	x28, x28, #0x8b0
+   42650: b0001199     	adrp	x25, 0x273000 <GCC_except_table47+0x3c>
+   42654: 9122d339     	add	x25, x25, #0x8b4
+   42658: f9005ff5     	str	x21, [sp, #0xb8]
+   4265c: 14000005     	b	0x42670 <SDDevice::readDataFromHidDevice()+0x24c>
+   42660: f9405be0     	ldr	x0, [sp, #0xb0]
+   42664: 94086ae4     	bl	0x25d1f4 <dyld_stub_binder+0x25d1f4>
+   42668: 39438688     	ldrb	w8, [x20, #0xe1]
+   4266c: 34007aa8     	cbz	w8, 0x435c0 <SDDevice::readDataFromHidDevice()+0x119c>
+   42670: 3943c288     	ldrb	w8, [x20, #0xf0]
+   42674: 35007a68     	cbnz	w8, 0x435c0 <SDDevice::readDataFromHidDevice()+0x119c>
+   42678: 3940a288     	ldrb	w8, [x20, #0x28]
+   4267c: 35000088     	cbnz	w8, 0x4268c <SDDevice::readDataFromHidDevice()+0x268>
+   42680: b9402e88     	ldr	w8, [x20, #0x2c]
+   42684: 7100051f     	cmp	w8, #0x1
+   42688: 540079cc     	b.gt	0x435c0 <SDDevice::readDataFromHidDevice()+0x119c>
+   4268c: aa1703e0     	mov	x0, x23
+   42690: aa1503e1     	mov	x1, x21
+   42694: 940871e6     	bl	0x25ee2c <dyld_stub_binder+0x25ee2c>
+   42698: 39438288     	ldrb	w8, [x20, #0xe0]
+   4269c: 390002e8     	strb	w8, [x23]
+   426a0: f9406e80     	ldr	x0, [x20, #0xd8]
+   426a4: b40078e0     	cbz	x0, 0x435c0 <SDDevice::readDataFromHidDevice()+0x119c>
+   426a8: aa1703e1     	mov	x1, x23
+   426ac: aa1503e2     	mov	x2, x21
+   426b0: 52817703     	mov	w3, #0xbb8              ; =3000
+   426b4: 94076e97     	bl	0x21e110 <_hid_read_timeout>
+   426b8: aa0003fa     	mov	x26, x0
+   426bc: 340045e0     	cbz	w0, 0x42f78 <SDDevice::readDataFromHidDevice()+0xb54>
+   426c0: 3100075f     	cmn	w26, #0x1
+   426c4: 54003780     	b.eq	0x42db4 <SDDevice::readDataFromHidDevice()+0x990>
+   426c8: b9002e9f     	str	wzr, [x20, #0x2c]
+   426cc: f85403a8     	ldur	x8, [x29, #-0xc0]
+   426d0: b4000168     	cbz	x8, 0x426fc <SDDevice::readDataFromHidDevice()+0x2d8>
+   426d4: f85383a0     	ldur	x0, [x29, #-0xc8]
+   426d8: a9347fbf     	stp	xzr, xzr, [x29, #-0xc0]
+   426dc: f81383bf     	stur	xzr, [x29, #-0xc8]
+   426e0: b40000e0     	cbz	x0, 0x426fc <SDDevice::readDataFromHidDevice()+0x2d8>
+   426e4: b8f60008     	ldaddal	w22, w8, [x0]
+   426e8: 7100051f     	cmp	w8, #0x1
+   426ec: 54000081     	b.ne	0x426fc <SDDevice::readDataFromHidDevice()+0x2d8>
+   426f0: 52800041     	mov	w1, #0x2                ; =2
+   426f4: 52800102     	mov	w2, #0x8                ; =8
+   426f8: 94086960     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   426fc: 71000758     	subs	w24, w26, #0x1
+   42700: 5400068b     	b.lt	0x427d0 <SDDevice::readDataFromHidDevice()+0x3ac>
+   42704: 2a1a03fb     	mov	w27, w26
+   42708: aa1703f5     	mov	x21, x23
+   4270c: aa1803f3     	mov	x19, x24
+   42710: 14000005     	b	0x42724 <SDDevice::readDataFromHidDevice()+0x300>
+   42714: d1000673     	sub	x19, x19, #0x1
+   42718: 910006b5     	add	x21, x21, #0x1
+   4271c: f100077b     	subs	x27, x27, #0x1
+   42720: 54000580     	b.eq	0x427d0 <SDDevice::readDataFromHidDevice()+0x3ac>
+   42724: b40001b3     	cbz	x19, 0x42758 <SDDevice::readDataFromHidDevice()+0x334>
+   42728: 394002a0     	ldrb	w0, [x21]
+   4272c: d10243a8     	sub	x8, x29, #0x90
+   42730: 52800201     	mov	w1, #0x10               ; =16
+   42734: 94086ca8     	bl	0x25d9d4 <dyld_stub_binder+0x25d9d4>
+   42738: d102c3a8     	sub	x8, x29, #0xb0
+   4273c: d10243a0     	sub	x0, x29, #0x90
+   42740: aa1903e1     	mov	x1, x25
+   42744: 97ff2e3c     	bl	0xe034 <operator+(QString const&, char const*)>
+   42748: d10323a0     	sub	x0, x29, #0xc8
+   4274c: d102c3a1     	sub	x1, x29, #0xb0
+   42750: 94086c9b     	bl	0x25d9bc <dyld_stub_binder+0x25d9bc>
+   42754: 1400000c     	b	0x42784 <SDDevice::readDataFromHidDevice()+0x360>
+   42758: 38786ae0     	ldrb	w0, [x23, x24]
+   4275c: d10243a8     	sub	x8, x29, #0x90
+   42760: 52800201     	mov	w1, #0x10               ; =16
+   42764: 94086c9c     	bl	0x25d9d4 <dyld_stub_binder+0x25d9d4>
+   42768: d102c3a8     	sub	x8, x29, #0xb0
+   4276c: d10243a0     	sub	x0, x29, #0x90
+   42770: aa1c03e1     	mov	x1, x28
+   42774: 97ff2e30     	bl	0xe034 <operator+(QString const&, char const*)>
+   42778: d10323a0     	sub	x0, x29, #0xc8
+   4277c: d102c3a1     	sub	x1, x29, #0xb0
+   42780: 94086c8f     	bl	0x25d9bc <dyld_stub_binder+0x25d9bc>
+   42784: f85503a8     	ldur	x8, [x29, #-0xb0]
+   42788: b4000108     	cbz	x8, 0x427a8 <SDDevice::readDataFromHidDevice()+0x384>
+   4278c: b8f60108     	ldaddal	w22, w8, [x8]
+   42790: 7100051f     	cmp	w8, #0x1
+   42794: 540000a1     	b.ne	0x427a8 <SDDevice::readDataFromHidDevice()+0x384>
+   42798: f85503a0     	ldur	x0, [x29, #-0xb0]
+   4279c: 52800041     	mov	w1, #0x2                ; =2
+   427a0: 52800102     	mov	w2, #0x8                ; =8
+   427a4: 94086935     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   427a8: f85703a8     	ldur	x8, [x29, #-0x90]
+   427ac: b4fffb48     	cbz	x8, 0x42714 <SDDevice::readDataFromHidDevice()+0x2f0>
+   427b0: b8f60108     	ldaddal	w22, w8, [x8]
+   427b4: 7100051f     	cmp	w8, #0x1
+   427b8: 54fffae1     	b.ne	0x42714 <SDDevice::readDataFromHidDevice()+0x2f0>
+   427bc: f85703a0     	ldur	x0, [x29, #-0x90]
+   427c0: 52800041     	mov	w1, #0x2                ; =2
+   427c4: 52800102     	mov	w2, #0x8                ; =8
+   427c8: 9408692c     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   427cc: 17ffffd2     	b	0x42714 <SDDevice::readDataFromHidDevice()+0x2f0>
+   427d0: d102c3a8     	sub	x8, x29, #0xb0
+   427d4: 52800220     	mov	w0, #0x11               ; =17
+   427d8: f0001181     	adrp	x1, 0x275000 <dyld_stub_binder+0x275000>
+   427dc: 91204021     	add	x1, x1, #0x810
+   427e0: 94086c8f     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   427e4: d10403b8     	sub	x24, x29, #0x100
+   427e8: 3dc01700     	ldr	q0, [x24, #0x50]
+   427ec: 3d804fe0     	str	q0, [sp, #0x130]
+   427f0: f85603a8     	ldur	x8, [x29, #-0xa0]
+   427f4: f900a3e8     	str	x8, [sp, #0x140]
+   427f8: d10243a8     	sub	x8, x29, #0x90
+   427fc: 9104c3e0     	add	x0, sp, #0x130
+   42800: d10323a1     	sub	x1, x29, #0xc8
+   42804: 52800002     	mov	w2, #0x0                ; =0
+   42808: 52800403     	mov	w3, #0x20               ; =32
+   4280c: 94086f7b     	bl	0x25e5f8 <dyld_stub_binder+0x25e5f8>
+   42810: 39488a88     	ldrb	w8, [x20, #0x222]
+   42814: f9405ff5     	ldr	x21, [sp, #0xb8]
+   42818: 34000088     	cbz	w8, 0x42828 <SDDevice::readDataFromHidDevice()+0x404>
+   4281c: d10243a1     	sub	x1, x29, #0x90
+   42820: aa1403e0     	mov	x0, x20
+   42824: 940782ce     	bl	0x22335c <SDDevice::sigPrintLog(QString const&)>
+   42828: f85703a8     	ldur	x8, [x29, #-0x90]
+   4282c: b4000108     	cbz	x8, 0x4284c <SDDevice::readDataFromHidDevice()+0x428>
+   42830: b8f60108     	ldaddal	w22, w8, [x8]
+   42834: 7100051f     	cmp	w8, #0x1
+   42838: 540000a1     	b.ne	0x4284c <SDDevice::readDataFromHidDevice()+0x428>
+   4283c: f85703a0     	ldur	x0, [x29, #-0x90]
+   42840: 52800041     	mov	w1, #0x2                ; =2
+   42844: 52800102     	mov	w2, #0x8                ; =8
+   42848: 9408690c     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   4284c: f9409be8     	ldr	x8, [sp, #0x130]
+   42850: b4000108     	cbz	x8, 0x42870 <SDDevice::readDataFromHidDevice()+0x44c>
+   42854: b8f60108     	ldaddal	w22, w8, [x8]
+   42858: 7100051f     	cmp	w8, #0x1
+   4285c: 540000a1     	b.ne	0x42870 <SDDevice::readDataFromHidDevice()+0x44c>
+   42860: f9409be0     	ldr	x0, [sp, #0x130]
+   42864: 52800041     	mov	w1, #0x2                ; =2
+   42868: 52800102     	mov	w2, #0x8                ; =8
+   4286c: 94086903     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42870: 3943ce88     	ldrb	w8, [x20, #0xf3]
+   42874: 34000228     	cbz	w8, 0x428b8 <SDDevice::readDataFromHidDevice()+0x494>
+   42878: 93407f42     	sxtw	x2, w26
+   4287c: 910323e0     	add	x0, sp, #0xc8
+   42880: aa1703e1     	mov	x1, x23
+   42884: 94086936     	bl	0x25cd5c <dyld_stub_binder+0x25cd5c>
+   42888: 910323e1     	add	x1, sp, #0xc8
+   4288c: aa1403e0     	mov	x0, x20
+   42890: 940782ed     	bl	0x223444 <SDDevice::sigReadData(QByteArray)>
+   42894: f94067e8     	ldr	x8, [sp, #0xc8]
+   42898: b4000108     	cbz	x8, 0x428b8 <SDDevice::readDataFromHidDevice()+0x494>
+   4289c: b8f60108     	ldaddal	w22, w8, [x8]
+   428a0: 7100051f     	cmp	w8, #0x1
+   428a4: 540000a1     	b.ne	0x428b8 <SDDevice::readDataFromHidDevice()+0x494>
+   428a8: f94067e0     	ldr	x0, [sp, #0xc8]
+   428ac: 52800021     	mov	w1, #0x1                ; =1
+   428b0: 52800102     	mov	w2, #0x8                ; =8
+   428b4: 940868f1     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   428b8: 394002e8     	ldrb	w8, [x23]
+   428bc: 51010508     	sub	w8, w8, #0x41
+   428c0: 7100911f     	cmp	w8, #0x24
+   428c4: 54000c88     	b.hi	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   428c8: b000120b     	adrp	x11, 0x283000 <typeinfo name for QtFlowLayout+0x280>
+   428cc: 9104d96b     	add	x11, x11, #0x136
+   428d0: 10000089     	adr	x9, 0x428e0 <SDDevice::readDataFromHidDevice()+0x4bc>
+   428d4: 3868696a     	ldrb	w10, [x11, x8]
+   428d8: 8b0a0929     	add	x9, x9, x10, lsl #2
+   428dc: d61f0120     	br	x9
+   428e0: 394006e8     	ldrb	w8, [x23, #0x1]
+   428e4: 71010d1f     	cmp	w8, #0x43
+   428e8: 54000b61     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   428ec: 39400ae8     	ldrb	w8, [x23, #0x2]
+   428f0: 71012d1f     	cmp	w8, #0x4b
+   428f4: 54000b01     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   428f8: 394016e8     	ldrb	w8, [x23, #0x5]
+   428fc: 71010d1f     	cmp	w8, #0x43
+   42900: 54000100     	b.eq	0x42920 <SDDevice::readDataFromHidDevice()+0x4fc>
+   42904: 7101511f     	cmp	w8, #0x54
+   42908: 54000a61     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   4290c: 39401ae9     	ldrb	w9, [x23, #0x6]
+   42910: 7101193f     	cmp	w9, #0x46
+   42914: 54005a60     	b.eq	0x43460 <SDDevice::readDataFromHidDevice()+0x103c>
+   42918: 71010d1f     	cmp	w8, #0x43
+   4291c: 540009c1     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   42920: 39401ae8     	ldrb	w8, [x23, #0x6]
+   42924: 7101091f     	cmp	w8, #0x42
+   42928: 54000961     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   4292c: 394026e8     	ldrb	w8, [x23, #0x9]
+   42930: 71013d1f     	cmp	w8, #0x4f
+   42934: 54000901     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   42938: 39402ae8     	ldrb	w8, [x23, #0xa]
+   4293c: 71012d1f     	cmp	w8, #0x4b
+   42940: 540008a1     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   42944: 39440e88     	ldrb	w8, [x20, #0x103]
+   42948: 35006168     	cbnz	w8, 0x43574 <SDDevice::readDataFromHidDevice()+0x1150>
+   4294c: d102c3a0     	sub	x0, x29, #0xb0
+   42950: f0001181     	adrp	x1, 0x275000 <dyld_stub_binder+0x275000>
+   42954: 9121ac21     	add	x1, x1, #0x86b
+   42958: 97ffa382     	bl	0x2b760 <QString::QString(char const*)>
+   4295c: 39488a88     	ldrb	w8, [x20, #0x222]
+   42960: 34005528     	cbz	w8, 0x43404 <SDDevice::readDataFromHidDevice()+0xfe0>
+   42964: d102c3a1     	sub	x1, x29, #0xb0
+   42968: aa1403e0     	mov	x0, x20
+   4296c: 9407827c     	bl	0x22335c <SDDevice::sigPrintLog(QString const&)>
+   42970: 140002a5     	b	0x43404 <SDDevice::readDataFromHidDevice()+0xfe0>
+   42974: 394006e8     	ldrb	w8, [x23, #0x1]
+   42978: 7101051f     	cmp	w8, #0x41
+   4297c: 540006c1     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   42980: 39400ae8     	ldrb	w8, [x23, #0x2]
+   42984: 7101391f     	cmp	w8, #0x4e
+   42988: 54000661     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   4298c: 39400ee8     	ldrb	w8, [x23, #0x3]
+   42990: 7101311f     	cmp	w8, #0x4c
+   42994: 54000601     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   42998: 394012e8     	ldrb	w8, [x23, #0x4]
+   4299c: 7101111f     	cmp	w8, #0x44
+   429a0: 540005a1     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   429a4: 394016e8     	ldrb	w8, [x23, #0x5]
+   429a8: 7101151f     	cmp	w8, #0x45
+   429ac: 54000541     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   429b0: 39401ae8     	ldrb	w8, [x23, #0x6]
+   429b4: 7101491f     	cmp	w8, #0x52
+   429b8: 540004e1     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   429bc: 39440e88     	ldrb	w8, [x20, #0x103]
+   429c0: 34005da8     	cbz	w8, 0x43574 <SDDevice::readDataFromHidDevice()+0x1150>
+   429c4: aa1403e0     	mov	x0, x20
+   429c8: 97ffd53a     	bl	0x37eb0 <SDDevice::sendHandshakePack()>
+   429cc: a94a4ffb     	ldp	x27, x19, [sp, #0xa0]
+   429d0: 140002ea     	b	0x43578 <SDDevice::readDataFromHidDevice()+0x1154>
+   429d4: 394006e8     	ldrb	w8, [x23, #0x1]
+   429d8: 7101491f     	cmp	w8, #0x52
+   429dc: 540003c1     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   429e0: 39400ae8     	ldrb	w8, [x23, #0x2]
+   429e4: 7101511f     	cmp	w8, #0x54
+   429e8: 54000361     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   429ec: 394016e8     	ldrb	w8, [x23, #0x5]
+   429f0: 7101351f     	cmp	w8, #0x4d
+   429f4: 54000301     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   429f8: 39401ae8     	ldrb	w8, [x23, #0x6]
+   429fc: 71013d1f     	cmp	w8, #0x4f
+   42a00: 540002a1     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   42a04: 39401ee8     	ldrb	w8, [x23, #0x7]
+   42a08: 7101111f     	cmp	w8, #0x44
+   42a0c: 54000241     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   42a10: 39c02ae1     	ldrsb	w1, [x23, #0xa]
+   42a14: aa1403e0     	mov	x0, x20
+   42a18: 940783cb     	bl	0x223944 <SDDevice::sigGetModeCmd(char)>
+   42a1c: a94a4ffb     	ldp	x27, x19, [sp, #0xa0]
+   42a20: 140002d6     	b	0x43578 <SDDevice::readDataFromHidDevice()+0x1154>
+   42a24: 394006e8     	ldrb	w8, [x23, #0x1]
+   42a28: 7101c91f     	cmp	w8, #0x72
+   42a2c: 54000141     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   42a30: 39400ae8     	ldrb	w8, [x23, #0x2]
+   42a34: 7101c91f     	cmp	w8, #0x72
+   42a38: 540000e1     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   42a3c: 39400ee8     	ldrb	w8, [x23, #0x3]
+   42a40: 7101bd1f     	cmp	w8, #0x6f
+   42a44: 54000081     	b.ne	0x42a54 <SDDevice::readDataFromHidDevice()+0x630>
+   42a48: 394012e8     	ldrb	w8, [x23, #0x4]
+   42a4c: 7101c91f     	cmp	w8, #0x72
+   42a50: 54004e80     	b.eq	0x43420 <SDDevice::readDataFromHidDevice()+0xffc>
+   42a54: a9432293     	ldp	x19, x8, [x20, #0x30]
+   42a58: f9402281     	ldr	x1, [x20, #0x40]
+   42a5c: b4000073     	cbz	x19, 0x42a68 <SDDevice::readDataFromHidDevice()+0x644>
+   42a60: 52800029     	mov	w9, #0x1                ; =1
+   42a64: b8e90269     	ldaddal	w9, w9, [x19]
+   42a68: f100011f     	cmp	x8, #0x0
+   42a6c: d00055c9     	adrp	x9, 0xafc000 <dyld_stub_binder+0xafc000>
+   42a70: f9407929     	ldr	x9, [x9, #0xf0]
+   42a74: 9a880120     	csel	x0, x9, x8, eq
+   42a78: d0001182     	adrp	x2, 0x274000 <dyld_stub_binder+0x274000>
+   42a7c: 9124fc42     	add	x2, x2, #0x93f
+   42a80: 92800003     	mov	x3, #-0x1               ; =-1
+   42a84: 52800024     	mov	w4, #0x1                ; =1
+   42a88: 94086bac     	bl	0x25d938 <dyld_stub_binder+0x25d938>
+   42a8c: aa0003fa     	mov	x26, x0
+   42a90: b4000113     	cbz	x19, 0x42ab0 <SDDevice::readDataFromHidDevice()+0x68c>
+   42a94: b8f60268     	ldaddal	w22, w8, [x19]
+   42a98: 7100051f     	cmp	w8, #0x1
+   42a9c: 540000a1     	b.ne	0x42ab0 <SDDevice::readDataFromHidDevice()+0x68c>
+   42aa0: aa1303e0     	mov	x0, x19
+   42aa4: 52800041     	mov	w1, #0x2                ; =2
+   42aa8: 52800102     	mov	w2, #0x8                ; =8
+   42aac: 94086873     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42ab0: 3400273a     	cbz	w26, 0x42f94 <SDDevice::readDataFromHidDevice()+0xb70>
+   42ab4: a943229a     	ldp	x26, x8, [x20, #0x30]
+   42ab8: f9402281     	ldr	x1, [x20, #0x40]
+   42abc: b400007a     	cbz	x26, 0x42ac8 <SDDevice::readDataFromHidDevice()+0x6a4>
+   42ac0: 52800029     	mov	w9, #0x1                ; =1
+   42ac4: b8e90349     	ldaddal	w9, w9, [x26]
+   42ac8: f100011f     	cmp	x8, #0x0
+   42acc: d00055d3     	adrp	x19, 0xafc000 <dyld_stub_binder+0xafc000>
+   42ad0: f9407a73     	ldr	x19, [x19, #0xf0]
+   42ad4: 9a880260     	csel	x0, x19, x8, eq
+   42ad8: d0001182     	adrp	x2, 0x274000 <dyld_stub_binder+0x274000>
+   42adc: 913a7442     	add	x2, x2, #0xe9d
+   42ae0: 92800003     	mov	x3, #-0x1               ; =-1
+   42ae4: 52800024     	mov	w4, #0x1                ; =1
+   42ae8: 94086b94     	bl	0x25d938 <dyld_stub_binder+0x25d938>
+   42aec: 350026a0     	cbnz	w0, 0x42fc0 <SDDevice::readDataFromHidDevice()+0xb9c>
+   42af0: a9460688     	ldp	x8, x1, [x20, #0x60]
+   42af4: f100011f     	cmp	x8, #0x0
+   42af8: 9a880260     	csel	x0, x19, x8, eq
+   42afc: d0001182     	adrp	x2, 0x274000 <dyld_stub_binder+0x274000>
+   42b00: 91285042     	add	x2, x2, #0xa14
+   42b04: 92800003     	mov	x3, #-0x1               ; =-1
+   42b08: 52800024     	mov	w4, #0x1                ; =1
+   42b0c: 94086b8b     	bl	0x25d938 <dyld_stub_binder+0x25d938>
+   42b10: aa0003f3     	mov	x19, x0
+   42b14: b400011a     	cbz	x26, 0x42b34 <SDDevice::readDataFromHidDevice()+0x710>
+   42b18: b8f60348     	ldaddal	w22, w8, [x26]
+   42b1c: 7100051f     	cmp	w8, #0x1
+   42b20: 540000a1     	b.ne	0x42b34 <SDDevice::readDataFromHidDevice()+0x710>
+   42b24: aa1a03e0     	mov	x0, x26
+   42b28: 52800041     	mov	w1, #0x2                ; =2
+   42b2c: 52800102     	mov	w2, #0x8                ; =8
+   42b30: 94086852     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42b34: 34002573     	cbz	w19, 0x42fe0 <SDDevice::readDataFromHidDevice()+0xbbc>
+   42b38: d10383a0     	sub	x0, x29, #0xe0
+   42b3c: 9408686d     	bl	0x25ccf0 <dyld_stub_binder+0x25ccf0>
+   42b40: aa1703e0     	mov	x0, x23
+   42b44: 940871f5     	bl	0x25f318 <dyld_stub_binder+0x25f318>
+   42b48: aa0003e2     	mov	x2, x0
+   42b4c: f85303a1     	ldur	x1, [x29, #-0xd0]
+   42b50: d10383a0     	sub	x0, x29, #0xe0
+   42b54: aa1703e3     	mov	x3, x23
+   42b58: 9408686f     	bl	0x25cd14 <dyld_stub_binder+0x25cd14>
+   42b5c: a97283a1     	ldp	x1, x0, [x29, #-0xd8]
+   42b60: d102c3a8     	sub	x8, x29, #0xb0
+   42b64: 94086bae     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   42b68: f85603a8     	ldur	x8, [x29, #-0xa0]
+   42b6c: 3dc01700     	ldr	q0, [x24, #0x50]
+   42b70: f85003a0     	ldur	x0, [x29, #-0x100]
+   42b74: 3d800300     	str	q0, [x24]
+   42b78: f81103a8     	stur	x8, [x29, #-0xf0]
+   42b7c: b40000e0     	cbz	x0, 0x42b98 <SDDevice::readDataFromHidDevice()+0x774>
+   42b80: b8f60008     	ldaddal	w22, w8, [x0]
+   42b84: 7100051f     	cmp	w8, #0x1
+   42b88: 54000081     	b.ne	0x42b98 <SDDevice::readDataFromHidDevice()+0x774>
+   42b8c: 52800041     	mov	w1, #0x2                ; =2
+   42b90: 52800102     	mov	w2, #0x8                ; =8
+   42b94: 94086839     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42b98: d102c3a8     	sub	x8, x29, #0xb0
+   42b9c: 52800060     	mov	w0, #0x3                ; =3
+   42ba0: d0001181     	adrp	x1, 0x274000 <dyld_stub_binder+0x274000>
+   42ba4: 910c2821     	add	x1, x1, #0x30a
+   42ba8: 94086b9d     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   42bac: 3dc01700     	ldr	q0, [x24, #0x50]
+   42bb0: 3d801f00     	str	q0, [x24, #0x70]
+   42bb4: f85603a8     	ldur	x8, [x29, #-0xa0]
+   42bb8: f81803a8     	stur	x8, [x29, #-0x80]
+   42bbc: d10403a0     	sub	x0, x29, #0x100
+   42bc0: d10243a1     	sub	x1, x29, #0x90
+   42bc4: 52800022     	mov	w2, #0x1                ; =1
+   42bc8: 94086e77     	bl	0x25e5a4 <dyld_stub_binder+0x25e5a4>
+   42bcc: 36000060     	tbz	w0, #0x0, 0x42bd8 <SDDevice::readDataFromHidDevice()+0x7b4>
+   42bd0: 5280003a     	mov	w26, #0x1               ; =1
+   42bd4: 14000031     	b	0x42c98 <SDDevice::readDataFromHidDevice()+0x874>
+   42bd8: d102c3a8     	sub	x8, x29, #0xb0
+   42bdc: 52800060     	mov	w0, #0x3                ; =3
+   42be0: d0001181     	adrp	x1, 0x274000 <dyld_stub_binder+0x274000>
+   42be4: 910c3821     	add	x1, x1, #0x30e
+   42be8: 94086b8d     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   42bec: 3dc01700     	ldr	q0, [x24, #0x50]
+   42bf0: 3d804fe0     	str	q0, [sp, #0x130]
+   42bf4: f85603a8     	ldur	x8, [x29, #-0xa0]
+   42bf8: f900a3e8     	str	x8, [sp, #0x140]
+   42bfc: d10403a0     	sub	x0, x29, #0x100
+   42c00: 9104c3e1     	add	x1, sp, #0x130
+   42c04: 52800022     	mov	w2, #0x1                ; =1
+   42c08: 94086e67     	bl	0x25e5a4 <dyld_stub_binder+0x25e5a4>
+   42c0c: 36000060     	tbz	w0, #0x0, 0x42c18 <SDDevice::readDataFromHidDevice()+0x7f4>
+   42c10: 5280003a     	mov	w26, #0x1               ; =1
+   42c14: 14000018     	b	0x42c74 <SDDevice::readDataFromHidDevice()+0x850>
+   42c18: d102c3a8     	sub	x8, x29, #0xb0
+   42c1c: 52800060     	mov	w0, #0x3                ; =3
+   42c20: f0001181     	adrp	x1, 0x275000 <dyld_stub_binder+0x275000>
+   42c24: 91228821     	add	x1, x1, #0x8a2
+   42c28: 94086b7d     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   42c2c: 3dc01700     	ldr	q0, [x24, #0x50]
+   42c30: 3d803be0     	str	q0, [sp, #0xe0]
+   42c34: f85603a8     	ldur	x8, [x29, #-0xa0]
+   42c38: f9007be8     	str	x8, [sp, #0xf0]
+   42c3c: d10403a0     	sub	x0, x29, #0x100
+   42c40: 910383e1     	add	x1, sp, #0xe0
+   42c44: 52800022     	mov	w2, #0x1                ; =1
+   42c48: 94086e57     	bl	0x25e5a4 <dyld_stub_binder+0x25e5a4>
+   42c4c: aa0003fa     	mov	x26, x0
+   42c50: f94073e8     	ldr	x8, [sp, #0xe0]
+   42c54: b4000108     	cbz	x8, 0x42c74 <SDDevice::readDataFromHidDevice()+0x850>
+   42c58: b8f60108     	ldaddal	w22, w8, [x8]
+   42c5c: 7100051f     	cmp	w8, #0x1
+   42c60: 540000a1     	b.ne	0x42c74 <SDDevice::readDataFromHidDevice()+0x850>
+   42c64: f94073e0     	ldr	x0, [sp, #0xe0]
+   42c68: 52800041     	mov	w1, #0x2                ; =2
+   42c6c: 52800102     	mov	w2, #0x8                ; =8
+   42c70: 94086802     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42c74: f9409be8     	ldr	x8, [sp, #0x130]
+   42c78: b4000108     	cbz	x8, 0x42c98 <SDDevice::readDataFromHidDevice()+0x874>
+   42c7c: b8f60108     	ldaddal	w22, w8, [x8]
+   42c80: 7100051f     	cmp	w8, #0x1
+   42c84: 540000a1     	b.ne	0x42c98 <SDDevice::readDataFromHidDevice()+0x874>
+   42c88: f9409be0     	ldr	x0, [sp, #0x130]
+   42c8c: 52800041     	mov	w1, #0x2                ; =2
+   42c90: 52800102     	mov	w2, #0x8                ; =8
+   42c94: 940867f9     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42c98: f85703a8     	ldur	x8, [x29, #-0x90]
+   42c9c: b4000108     	cbz	x8, 0x42cbc <SDDevice::readDataFromHidDevice()+0x898>
+   42ca0: b8f60108     	ldaddal	w22, w8, [x8]
+   42ca4: 7100051f     	cmp	w8, #0x1
+   42ca8: 540000a1     	b.ne	0x42cbc <SDDevice::readDataFromHidDevice()+0x898>
+   42cac: f85703a0     	ldur	x0, [x29, #-0x90]
+   42cb0: 52800041     	mov	w1, #0x2                ; =2
+   42cb4: 52800102     	mov	w2, #0x8                ; =8
+   42cb8: 940867f0     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42cbc: 3400193a     	cbz	w26, 0x42fe0 <SDDevice::readDataFromHidDevice()+0xbbc>
+   42cc0: d10403a1     	sub	x1, x29, #0x100
+   42cc4: f94063f3     	ldr	x19, [sp, #0xc0]
+   42cc8: aa1303e0     	mov	x0, x19
+   42ccc: 94086b5d     	bl	0x25da40 <dyld_stub_binder+0x25da40>
+   42cd0: d102c3a8     	sub	x8, x29, #0xb0
+   42cd4: 528001e0     	mov	w0, #0xf                ; =15
+   42cd8: f0001181     	adrp	x1, 0x275000 <dyld_stub_binder+0x275000>
+   42cdc: 91229821     	add	x1, x1, #0x8a6
+   42ce0: 94086b4f     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   42ce4: d102c3a0     	sub	x0, x29, #0xb0
+   42ce8: aa1303e1     	mov	x1, x19
+   42cec: 94086b34     	bl	0x25d9bc <dyld_stub_binder+0x25d9bc>
+   42cf0: 910523e0     	add	x0, sp, #0x148
+   42cf4: d102c3a1     	sub	x1, x29, #0xb0
+   42cf8: 94086b52     	bl	0x25da40 <dyld_stub_binder+0x25da40>
+   42cfc: f85503a8     	ldur	x8, [x29, #-0xb0]
+   42d00: b4000108     	cbz	x8, 0x42d20 <SDDevice::readDataFromHidDevice()+0x8fc>
+   42d04: b8f60108     	ldaddal	w22, w8, [x8]
+   42d08: 7100051f     	cmp	w8, #0x1
+   42d0c: 540000a1     	b.ne	0x42d20 <SDDevice::readDataFromHidDevice()+0x8fc>
+   42d10: f85503a0     	ldur	x0, [x29, #-0xb0]
+   42d14: 52800041     	mov	w1, #0x2                ; =2
+   42d18: 52800102     	mov	w2, #0x8                ; =8
+   42d1c: 940867d7     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42d20: aa1403e0     	mov	x0, x20
+   42d24: f94063e1     	ldr	x1, [sp, #0xc0]
+   42d28: 940782d2     	bl	0x223870 <SDDevice::sigUpdateFirmwareVersionDisplay(QString const&)>
+   42d2c: 39488a88     	ldrb	w8, [x20, #0x222]
+   42d30: 34000088     	cbz	w8, 0x42d40 <SDDevice::readDataFromHidDevice()+0x91c>
+   42d34: 910523e1     	add	x1, sp, #0x148
+   42d38: aa1403e0     	mov	x0, x20
+   42d3c: 94078188     	bl	0x22335c <SDDevice::sigPrintLog(QString const&)>
+   42d40: 39440e88     	ldrb	w8, [x20, #0x103]
+   42d44: 34ffc928     	cbz	w8, 0x42668 <SDDevice::readDataFromHidDevice()+0x244>
+   42d48: d102c3a8     	sub	x8, x29, #0xb0
+   42d4c: 52800300     	mov	w0, #0x18               ; =24
+   42d50: f0001181     	adrp	x1, 0x275000 <dyld_stub_binder+0x275000>
+   42d54: 9122d821     	add	x1, x1, #0x8b6
+   42d58: 94086b31     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   42d5c: 3dc01700     	ldr	q0, [x24, #0x50]
+   42d60: 3d801f00     	str	q0, [x24, #0x70]
+   42d64: f85603a8     	ldur	x8, [x29, #-0xa0]
+   42d68: f81803a8     	stur	x8, [x29, #-0x80]
+   42d6c: 39488a88     	ldrb	w8, [x20, #0x222]
+   42d70: 340000e8     	cbz	w8, 0x42d8c <SDDevice::readDataFromHidDevice()+0x968>
+   42d74: d10243a1     	sub	x1, x29, #0x90
+   42d78: aa1403e0     	mov	x0, x20
+   42d7c: 94078178     	bl	0x22335c <SDDevice::sigPrintLog(QString const&)>
+   42d80: f85703a8     	ldur	x8, [x29, #-0x90]
+   42d84: b5000088     	cbnz	x8, 0x42d94 <SDDevice::readDataFromHidDevice()+0x970>
+   42d88: 17fffe36     	b	0x42660 <SDDevice::readDataFromHidDevice()+0x23c>
+   42d8c: 9e660008     	fmov	x8, d0
+   42d90: b4ffc688     	cbz	x8, 0x42660 <SDDevice::readDataFromHidDevice()+0x23c>
+   42d94: b8f60108     	ldaddal	w22, w8, [x8]
+   42d98: 7100051f     	cmp	w8, #0x1
+   42d9c: 54ffc621     	b.ne	0x42660 <SDDevice::readDataFromHidDevice()+0x23c>
+   42da0: f85703a0     	ldur	x0, [x29, #-0x90]
+   42da4: 52800041     	mov	w1, #0x2                ; =2
+   42da8: 52800102     	mov	w2, #0x8                ; =8
+   42dac: 940867b3     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42db0: 17fffe2c     	b	0x42660 <SDDevice::readDataFromHidDevice()+0x23c>
+   42db4: d0005588     	adrp	x8, 0xaf4000 <typeinfo name for std::__1::shared_ptr<ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl>::__shared_ptr_default_delete<ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl, ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl>>
+   42db8: 9120b908     	add	x8, x8, #0x82e
+   42dbc: a93723bf     	stp	xzr, x8, [x29, #-0x90]
+   42dc0: 52800128     	mov	w8, #0x9                ; =9
+   42dc4: f81803a8     	stur	x8, [x29, #-0x80]
+   42dc8: f9406e80     	ldr	x0, [x20, #0xd8]
+   42dcc: 94077017     	bl	0x21ee28 <_hid_error>
+   42dd0: 9104c3e8     	add	x8, sp, #0x130
+   42dd4: 92800001     	mov	x1, #-0x1               ; =-1
+   42dd8: 94086b0e     	bl	0x25da10 <dyld_stub_binder+0x25da10>
+   42ddc: d102c3a8     	sub	x8, x29, #0xb0
+   42de0: d10243a0     	sub	x0, x29, #0x90
+   42de4: 9104c3e1     	add	x1, sp, #0x130
+   42de8: 52800002     	mov	w2, #0x0                ; =0
+   42dec: 52800403     	mov	w3, #0x20               ; =32
+   42df0: 94086e02     	bl	0x25e5f8 <dyld_stub_binder+0x25e5f8>
+   42df4: a9754fb5     	ldp	x21, x19, [x29, #-0xb0]
+   42df8: f9404fe8     	ldr	x8, [sp, #0x98]
+   42dfc: f94057e9     	ldr	x9, [sp, #0xa8]
+   42e00: a93527a8     	stp	x8, x9, [x29, #-0xb0]
+   42e04: f85603bb     	ldur	x27, [x29, #-0xa0]
+   42e08: f94053e9     	ldr	x9, [sp, #0xa0]
+   42e0c: f81603a9     	stur	x9, [x29, #-0xa0]
+   42e10: b4000108     	cbz	x8, 0x42e30 <SDDevice::readDataFromHidDevice()+0xa0c>
+   42e14: b8f60108     	ldaddal	w22, w8, [x8]
+   42e18: 7100051f     	cmp	w8, #0x1
+   42e1c: 540000a1     	b.ne	0x42e30 <SDDevice::readDataFromHidDevice()+0xa0c>
+   42e20: f85503a0     	ldur	x0, [x29, #-0xb0]
+   42e24: 52800041     	mov	w1, #0x2                ; =2
+   42e28: 52800102     	mov	w2, #0x8                ; =8
+   42e2c: 94086793     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42e30: f9409be8     	ldr	x8, [sp, #0x130]
+   42e34: b4000108     	cbz	x8, 0x42e54 <SDDevice::readDataFromHidDevice()+0xa30>
+   42e38: b8f60108     	ldaddal	w22, w8, [x8]
+   42e3c: 7100051f     	cmp	w8, #0x1
+   42e40: 540000a1     	b.ne	0x42e54 <SDDevice::readDataFromHidDevice()+0xa30>
+   42e44: f9409be0     	ldr	x0, [sp, #0x130]
+   42e48: 52800041     	mov	w1, #0x2                ; =2
+   42e4c: 52800102     	mov	w2, #0x8                ; =8
+   42e50: 9408678a     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42e54: f85703a8     	ldur	x8, [x29, #-0x90]
+   42e58: b4000108     	cbz	x8, 0x42e78 <SDDevice::readDataFromHidDevice()+0xa54>
+   42e5c: b8f60108     	ldaddal	w22, w8, [x8]
+   42e60: 7100051f     	cmp	w8, #0x1
+   42e64: 540000a1     	b.ne	0x42e78 <SDDevice::readDataFromHidDevice()+0xa54>
+   42e68: f85703a0     	ldur	x0, [x29, #-0x90]
+   42e6c: 52800041     	mov	w1, #0x2                ; =2
+   42e70: 52800102     	mov	w2, #0x8                ; =8
+   42e74: 94086781     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42e78: f9004ff5     	str	x21, [sp, #0x98]
+   42e7c: f9406e80     	ldr	x0, [x20, #0xd8]
+   42e80: 94076fea     	bl	0x21ee28 <_hid_error>
+   42e84: d10243a8     	sub	x8, x29, #0x90
+   42e88: 92800001     	mov	x1, #-0x1               ; =-1
+   42e8c: 94086ae1     	bl	0x25da10 <dyld_stub_binder+0x25da10>
+   42e90: d102c3a8     	sub	x8, x29, #0xb0
+   42e94: 52800140     	mov	w0, #0xa                ; =10
+   42e98: d0001181     	adrp	x1, 0x274000 <dyld_stub_binder+0x274000>
+   42e9c: 91379c21     	add	x1, x1, #0xde7
+   42ea0: 94086adf     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   42ea4: f9405ff5     	ldr	x21, [sp, #0xb8]
+   42ea8: 3dc01700     	ldr	q0, [x24, #0x50]
+   42eac: 3d804fe0     	str	q0, [sp, #0x130]
+   42eb0: f85603a8     	ldur	x8, [x29, #-0xa0]
+   42eb4: f900a3e8     	str	x8, [sp, #0x140]
+   42eb8: d10243a0     	sub	x0, x29, #0x90
+   42ebc: 9104c3e1     	add	x1, sp, #0x130
+   42ec0: d2800002     	mov	x2, #0x0                ; =0
+   42ec4: 52800023     	mov	w3, #0x1                ; =1
+   42ec8: 94086de7     	bl	0x25e664 <dyld_stub_binder+0x25e664>
+   42ecc: aa0003fa     	mov	x26, x0
+   42ed0: f9409be8     	ldr	x8, [sp, #0x130]
+   42ed4: b4000108     	cbz	x8, 0x42ef4 <SDDevice::readDataFromHidDevice()+0xad0>
+   42ed8: b8f60108     	ldaddal	w22, w8, [x8]
+   42edc: 7100051f     	cmp	w8, #0x1
+   42ee0: 540000a1     	b.ne	0x42ef4 <SDDevice::readDataFromHidDevice()+0xad0>
+   42ee4: f9409be0     	ldr	x0, [sp, #0x130]
+   42ee8: 52800041     	mov	w1, #0x2                ; =2
+   42eec: 52800102     	mov	w2, #0x8                ; =8
+   42ef0: 94086762     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42ef4: f85703a8     	ldur	x8, [x29, #-0x90]
+   42ef8: b4000108     	cbz	x8, 0x42f18 <SDDevice::readDataFromHidDevice()+0xaf4>
+   42efc: b8f60108     	ldaddal	w22, w8, [x8]
+   42f00: 7100051f     	cmp	w8, #0x1
+   42f04: 540000a1     	b.ne	0x42f18 <SDDevice::readDataFromHidDevice()+0xaf4>
+   42f08: f85703a0     	ldur	x0, [x29, #-0x90]
+   42f0c: 52800041     	mov	w1, #0x2                ; =2
+   42f10: 52800102     	mov	w2, #0x8                ; =8
+   42f14: 94086759     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42f18: b100075f     	cmn	x26, #0x1
+   42f1c: 54001600     	b.eq	0x431dc <SDDevice::readDataFromHidDevice()+0xdb8>
+   42f20: b9002e9f     	str	wzr, [x20, #0x2c]
+   42f24: f9404fe8     	ldr	x8, [sp, #0x98]
+   42f28: a911cfe8     	stp	x8, x19, [sp, #0x118]
+   42f2c: f90097fb     	str	x27, [sp, #0x128]
+   42f30: b4000068     	cbz	x8, 0x42f3c <SDDevice::readDataFromHidDevice()+0xb18>
+   42f34: 52800029     	mov	w9, #0x1                ; =1
+   42f38: b8e90108     	ldaddal	w9, w8, [x8]
+   42f3c: 910463e1     	add	x1, sp, #0x118
+   42f40: aa1403e0     	mov	x0, x20
+   42f44: 9407829e     	bl	0x2239bc <SDDevice::sigErrorIOPending(QString)>
+   42f48: f9408fe8     	ldr	x8, [sp, #0x118]
+   42f4c: b4000108     	cbz	x8, 0x42f6c <SDDevice::readDataFromHidDevice()+0xb48>
+   42f50: b8f60108     	ldaddal	w22, w8, [x8]
+   42f54: 7100051f     	cmp	w8, #0x1
+   42f58: 540000a1     	b.ne	0x42f6c <SDDevice::readDataFromHidDevice()+0xb48>
+   42f5c: f9408fe0     	ldr	x0, [sp, #0x118]
+   42f60: 52800041     	mov	w1, #0x2                ; =2
+   42f64: 52800102     	mov	w2, #0x8                ; =8
+   42f68: 94086744     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42f6c: 52800640     	mov	w0, #0x32               ; =50
+   42f70: 94086acc     	bl	0x25daa0 <dyld_stub_binder+0x25daa0>
+   42f74: 14000181     	b	0x43578 <SDDevice::readDataFromHidDevice()+0x1154>
+   42f78: b9002e9f     	str	wzr, [x20, #0x2c]
+   42f7c: f9406280     	ldr	x0, [x20, #0xc0]
+   42f80: 94005e2f     	bl	0x5a83c <TimerTool::getCurrentTime()>
+   42f84: f103201f     	cmp	x0, #0xc8
+   42f88: 54002f69     	b.ls	0x43574 <SDDevice::readDataFromHidDevice()+0x1150>
+   42f8c: 52801901     	mov	w1, #0xc8               ; =200
+   42f90: 14000083     	b	0x4319c <SDDevice::readDataFromHidDevice()+0xd78>
+   42f94: 39400ae1     	ldrb	w1, [x23, #0x2]
+   42f98: 34001121     	cbz	w1, 0x431bc <SDDevice::readDataFromHidDevice()+0xd98>
+   42f9c: 394002e8     	ldrb	w8, [x23]
+   42fa0: 340000c8     	cbz	w8, 0x42fb8 <SDDevice::readDataFromHidDevice()+0xb94>
+   42fa4: aa1403e0     	mov	x0, x20
+   42fa8: aa0803e1     	mov	x1, x8
+   42fac: 52800022     	mov	w2, #0x1                ; =1
+   42fb0: 9407813c     	bl	0x2234a0 <SDDevice::sigHandleKeyEvents(int, int)>
+   42fb4: 39400ae1     	ldrb	w1, [x23, #0x2]
+   42fb8: 52800022     	mov	w2, #0x1                ; =1
+   42fbc: 14000081     	b	0x431c0 <SDDevice::readDataFromHidDevice()+0xd9c>
+   42fc0: b400011a     	cbz	x26, 0x42fe0 <SDDevice::readDataFromHidDevice()+0xbbc>
+   42fc4: b8f60348     	ldaddal	w22, w8, [x26]
+   42fc8: 7100051f     	cmp	w8, #0x1
+   42fcc: 540000a1     	b.ne	0x42fe0 <SDDevice::readDataFromHidDevice()+0xbbc>
+   42fd0: aa1a03e0     	mov	x0, x26
+   42fd4: 52800041     	mov	w1, #0x2                ; =2
+   42fd8: 52800102     	mov	w2, #0x8                ; =8
+   42fdc: 94086727     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   42fe0: 394002e8     	ldrb	w8, [x23]
+   42fe4: 7101051f     	cmp	w8, #0x41
+   42fe8: 540001e1     	b.ne	0x43024 <SDDevice::readDataFromHidDevice()+0xc00>
+   42fec: 394006e8     	ldrb	w8, [x23, #0x1]
+   42ff0: 71010d1f     	cmp	w8, #0x43
+   42ff4: 54000181     	b.ne	0x43024 <SDDevice::readDataFromHidDevice()+0xc00>
+   42ff8: 39400ae8     	ldrb	w8, [x23, #0x2]
+   42ffc: 71012d1f     	cmp	w8, #0x4b
+   43000: 54000121     	b.ne	0x43024 <SDDevice::readDataFromHidDevice()+0xc00>
+   43004: 394016e8     	ldrb	w8, [x23, #0x5]
+   43008: 71013d1f     	cmp	w8, #0x4f
+   4300c: 540000c1     	b.ne	0x43024 <SDDevice::readDataFromHidDevice()+0xc00>
+   43010: 39401ae8     	ldrb	w8, [x23, #0x6]
+   43014: 71012d1f     	cmp	w8, #0x4b
+   43018: 54000061     	b.ne	0x43024 <SDDevice::readDataFromHidDevice()+0xc00>
+   4301c: 394026e8     	ldrb	w8, [x23, #0x9]
+   43020: 34001dc8     	cbz	w8, 0x433d8 <SDDevice::readDataFromHidDevice()+0xfb4>
+   43024: 3947d288     	ldrb	w8, [x20, #0x1f4]
+   43028: 34000128     	cbz	w8, 0x4304c <SDDevice::readDataFromHidDevice()+0xc28>
+   4302c: 39428688     	ldrb	w8, [x20, #0xa1]
+   43030: 340000a8     	cbz	w8, 0x43044 <SDDevice::readDataFromHidDevice()+0xc20>
+   43034: aa1403e0     	mov	x0, x20
+   43038: 940780fe     	bl	0x223430 <SDDevice::sigOnDeviceWakeUp()>
+   4303c: a94a4ffb     	ldp	x27, x19, [sp, #0xa0]
+   43040: 1400014e     	b	0x43578 <SDDevice::readDataFromHidDevice()+0x1154>
+   43044: aa1403e0     	mov	x0, x20
+   43048: 940780fa     	bl	0x223430 <SDDevice::sigOnDeviceWakeUp()>
+   4304c: a943229a     	ldp	x26, x8, [x20, #0x30]
+   43050: f9402281     	ldr	x1, [x20, #0x40]
+   43054: b400007a     	cbz	x26, 0x43060 <SDDevice::readDataFromHidDevice()+0xc3c>
+   43058: 52800029     	mov	w9, #0x1                ; =1
+   4305c: b8e90349     	ldaddal	w9, w9, [x26]
+   43060: f100011f     	cmp	x8, #0x0
+   43064: b00055c9     	adrp	x9, 0xafc000 <dyld_stub_binder+0xafc000>
+   43068: f9407929     	ldr	x9, [x9, #0xf0]
+   4306c: 9a880120     	csel	x0, x9, x8, eq
+   43070: 52800035     	mov	w21, #0x1               ; =1
+   43074: b0001182     	adrp	x2, 0x274000 <dyld_stub_binder+0x274000>
+   43078: 913a7442     	add	x2, x2, #0xe9d
+   4307c: 92800003     	mov	x3, #-0x1               ; =-1
+   43080: 52800024     	mov	w4, #0x1                ; =1
+   43084: 94086a2d     	bl	0x25d938 <dyld_stub_binder+0x25d938>
+   43088: 34000600     	cbz	w0, 0x43148 <SDDevice::readDataFromHidDevice()+0xd24>
+   4308c: a943229b     	ldp	x27, x8, [x20, #0x30]
+   43090: f9402281     	ldr	x1, [x20, #0x40]
+   43094: b400007b     	cbz	x27, 0x430a0 <SDDevice::readDataFromHidDevice()+0xc7c>
+   43098: 52800029     	mov	w9, #0x1                ; =1
+   4309c: b8e90369     	ldaddal	w9, w9, [x27]
+   430a0: f100011f     	cmp	x8, #0x0
+   430a4: b00055c9     	adrp	x9, 0xafc000 <dyld_stub_binder+0xafc000>
+   430a8: f9407929     	ldr	x9, [x9, #0xf0]
+   430ac: 9a880120     	csel	x0, x9, x8, eq
+   430b0: b0001182     	adrp	x2, 0x274000 <dyld_stub_binder+0x274000>
+   430b4: 913ab442     	add	x2, x2, #0xead
+   430b8: 92800003     	mov	x3, #-0x1               ; =-1
+   430bc: 52800024     	mov	w4, #0x1                ; =1
+   430c0: 94086a1e     	bl	0x25d938 <dyld_stub_binder+0x25d938>
+   430c4: 34000320     	cbz	w0, 0x43128 <SDDevice::readDataFromHidDevice()+0xd04>
+   430c8: a9432293     	ldp	x19, x8, [x20, #0x30]
+   430cc: f9402281     	ldr	x1, [x20, #0x40]
+   430d0: b4000073     	cbz	x19, 0x430dc <SDDevice::readDataFromHidDevice()+0xcb8>
+   430d4: 52800029     	mov	w9, #0x1                ; =1
+   430d8: b8e90269     	ldaddal	w9, w9, [x19]
+   430dc: f100011f     	cmp	x8, #0x0
+   430e0: b00055c9     	adrp	x9, 0xafc000 <dyld_stub_binder+0xafc000>
+   430e4: f9407929     	ldr	x9, [x9, #0xf0]
+   430e8: 9a880120     	csel	x0, x9, x8, eq
+   430ec: b0001182     	adrp	x2, 0x274000 <dyld_stub_binder+0x274000>
+   430f0: 913ad842     	add	x2, x2, #0xeb6
+   430f4: 92800003     	mov	x3, #-0x1               ; =-1
+   430f8: 52800024     	mov	w4, #0x1                ; =1
+   430fc: 94086a0f     	bl	0x25d938 <dyld_stub_binder+0x25d938>
+   43100: 7100001f     	cmp	w0, #0x0
+   43104: 1a9f17f5     	cset	w21, eq
+   43108: b4000113     	cbz	x19, 0x43128 <SDDevice::readDataFromHidDevice()+0xd04>
+   4310c: b8f60268     	ldaddal	w22, w8, [x19]
+   43110: 7100051f     	cmp	w8, #0x1
+   43114: 540000a1     	b.ne	0x43128 <SDDevice::readDataFromHidDevice()+0xd04>
+   43118: aa1303e0     	mov	x0, x19
+   4311c: 52800041     	mov	w1, #0x2                ; =2
+   43120: 52800102     	mov	w2, #0x8                ; =8
+   43124: 940866d5     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43128: b400011b     	cbz	x27, 0x43148 <SDDevice::readDataFromHidDevice()+0xd24>
+   4312c: b8f60368     	ldaddal	w22, w8, [x27]
+   43130: 7100051f     	cmp	w8, #0x1
+   43134: 540000a1     	b.ne	0x43148 <SDDevice::readDataFromHidDevice()+0xd24>
+   43138: aa1b03e0     	mov	x0, x27
+   4313c: 52800041     	mov	w1, #0x2                ; =2
+   43140: 52800102     	mov	w2, #0x8                ; =8
+   43144: 940866cd     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43148: b400011a     	cbz	x26, 0x43168 <SDDevice::readDataFromHidDevice()+0xd44>
+   4314c: b8f60348     	ldaddal	w22, w8, [x26]
+   43150: 7100051f     	cmp	w8, #0x1
+   43154: 540000a1     	b.ne	0x43168 <SDDevice::readDataFromHidDevice()+0xd44>
+   43158: aa1a03e0     	mov	x0, x26
+   4315c: 52800041     	mov	w1, #0x2                ; =2
+   43160: 52800102     	mov	w2, #0x8                ; =8
+   43164: 940866c5     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43168: 34000235     	cbz	w21, 0x431ac <SDDevice::readDataFromHidDevice()+0xd88>
+   4316c: 39440e88     	ldrb	w8, [x20, #0x103]
+   43170: 34000308     	cbz	w8, 0x431d0 <SDDevice::readDataFromHidDevice()+0xdac>
+   43174: f9406280     	ldr	x0, [x20, #0xc0]
+   43178: 94005db1     	bl	0x5a83c <TimerTool::getCurrentTime()>
+   4317c: f9405ff5     	ldr	x21, [sp, #0xb8]
+   43180: f103201f     	cmp	x0, #0xc8
+   43184: 54001f83     	b.lo	0x43574 <SDDevice::readDataFromHidDevice()+0x1150>
+   43188: 394026e1     	ldrb	w1, [x23, #0x9]
+   4318c: 39402ae2     	ldrb	w2, [x23, #0xa]
+   43190: aa1403e0     	mov	x0, x20
+   43194: 940780c3     	bl	0x2234a0 <SDDevice::sigHandleKeyEvents(int, int)>
+   43198: d2800001     	mov	x1, #0x0                ; =0
+   4319c: f9406280     	ldr	x0, [x20, #0xc0]
+   431a0: 94005da5     	bl	0x5a834 <TimerTool::setCurrentTime(unsigned long long)>
+   431a4: a94a4ffb     	ldp	x27, x19, [sp, #0xa0]
+   431a8: 140000f4     	b	0x43578 <SDDevice::readDataFromHidDevice()+0x1154>
+   431ac: 394026e1     	ldrb	w1, [x23, #0x9]
+   431b0: 39402ae2     	ldrb	w2, [x23, #0xa]
+   431b4: f9405ff5     	ldr	x21, [sp, #0xb8]
+   431b8: 14000002     	b	0x431c0 <SDDevice::readDataFromHidDevice()+0xd9c>
+   431bc: 52800002     	mov	w2, #0x0                ; =0
+   431c0: aa1403e0     	mov	x0, x20
+   431c4: 940780b7     	bl	0x2234a0 <SDDevice::sigHandleKeyEvents(int, int)>
+   431c8: a94a4ffb     	ldp	x27, x19, [sp, #0xa0]
+   431cc: 140000eb     	b	0x43578 <SDDevice::readDataFromHidDevice()+0x1154>
+   431d0: a94a4ffb     	ldp	x27, x19, [sp, #0xa0]
+   431d4: f9405ff5     	ldr	x21, [sp, #0xb8]
+   431d8: 140000e8     	b	0x43578 <SDDevice::readDataFromHidDevice()+0x1154>
+   431dc: b9402e88     	ldr	w8, [x20, #0x2c]
+   431e0: 11000508     	add	w8, w8, #0x1
+   431e4: b9002e88     	str	w8, [x20, #0x2c]
+   431e8: b0005588     	adrp	x8, 0xaf4000 <typeinfo name for std::__1::shared_ptr<ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl>::__shared_ptr_default_delete<ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl, ghc::filesystem::recursive_directory_iterator::recursive_directory_iterator_impl>>
+   431ec: 911ff108     	add	x8, x8, #0x7fc
+   431f0: a93523bf     	stp	xzr, x8, [x29, #-0xb0]
+   431f4: 52800128     	mov	w8, #0x9                ; =9
+   431f8: f81603a8     	stur	x8, [x29, #-0xa0]
+   431fc: f9406e80     	ldr	x0, [x20, #0xd8]
+   43200: 94076f0a     	bl	0x21ee28 <_hid_error>
+   43204: 910403e8     	add	x8, sp, #0x100
+   43208: 92800001     	mov	x1, #-0x1               ; =-1
+   4320c: 94086a01     	bl	0x25da10 <dyld_stub_binder+0x25da10>
+   43210: d10243a8     	sub	x8, x29, #0x90
+   43214: d102c3a0     	sub	x0, x29, #0xb0
+   43218: 910403e1     	add	x1, sp, #0x100
+   4321c: 52800002     	mov	w2, #0x0                ; =0
+   43220: 52800403     	mov	w3, #0x20               ; =32
+   43224: 94086cf5     	bl	0x25e5f8 <dyld_stub_binder+0x25e5f8>
+   43228: 910403e0     	add	x0, sp, #0x100
+   4322c: d102c3a1     	sub	x1, x29, #0xb0
+   43230: 94084f5b     	bl	0x256f9c <SDDevice::readDataFromHidDevice() (.cold.2)>
+   43234: fc1503a8     	stur	d8, [x29, #-0xb0]
+   43238: b0001188     	adrp	x8, 0x274000 <dyld_stub_binder+0x274000>
+   4323c: 91011509     	add	x9, x8, #0x45
+   43240: d0001188     	adrp	x8, 0x275000 <dyld_stub_binder+0x275000>
+   43244: 911ec908     	add	x8, x8, #0x7b2
+   43248: a935a3a9     	stp	x9, x8, [x29, #-0xa8]
+   4324c: 90001188     	adrp	x8, 0x273000 <GCC_except_table47+0x3c>
+   43250: 911fed08     	add	x8, x8, #0x7fb
+   43254: f81683a8     	stur	x8, [x29, #-0x98]
+   43258: 9104c3e8     	add	x8, sp, #0x130
+   4325c: d102c3a0     	sub	x0, x29, #0xb0
+   43260: 94086bf3     	bl	0x25e22c <dyld_stub_binder+0x25e22c>
+   43264: a9778ba8     	ldp	x8, x2, [x29, #-0x88]
+   43268: f100011f     	cmp	x8, #0x0
+   4326c: b00055c9     	adrp	x9, 0xafc000 <dyld_stub_binder+0xafc000>
+   43270: f9407929     	ldr	x9, [x9, #0xf0]
+   43274: 9a880121     	csel	x1, x9, x8, eq
+   43278: 9104c3e0     	add	x0, sp, #0x130
+   4327c: 940868cb     	bl	0x25d5a8 <dyld_stub_binder+0x25d5a8>
+   43280: f9409be0     	ldr	x0, [sp, #0x130]
+   43284: 3940c008     	ldrb	w8, [x0, #0x30]
+   43288: 34000068     	cbz	w8, 0x43294 <SDDevice::readDataFromHidDevice()+0xe70>
+   4328c: 52800401     	mov	w1, #0x20               ; =32
+   43290: 94086794     	bl	0x25d0e0 <dyld_stub_binder+0x25d0e0>
+   43294: 9104c3e0     	add	x0, sp, #0x130
+   43298: 940868c7     	bl	0x25d5b4 <dyld_stub_binder+0x25d5b4>
+   4329c: 39488a88     	ldrb	w8, [x20, #0x222]
+   432a0: 34000088     	cbz	w8, 0x432b0 <SDDevice::readDataFromHidDevice()+0xe8c>
+   432a4: d10243a1     	sub	x1, x29, #0x90
+   432a8: aa1403e0     	mov	x0, x20
+   432ac: 9407802c     	bl	0x22335c <SDDevice::sigPrintLog(QString const&)>
+   432b0: b9402e88     	ldr	w8, [x20, #0x2c]
+   432b4: 7100051f     	cmp	w8, #0x1
+   432b8: 5400082b     	b.lt	0x433bc <SDDevice::readDataFromHidDevice()+0xf98>
+   432bc: 52800028     	mov	w8, #0x1                ; =1
+   432c0: 3903ffe8     	strb	w8, [sp, #0xff]
+   432c4: f9406e80     	ldr	x0, [x20, #0xd8]
+   432c8: 94076ed8     	bl	0x21ee28 <_hid_error>
+   432cc: 9104c3e8     	add	x8, sp, #0x130
+   432d0: 92800001     	mov	x1, #-0x1               ; =-1
+   432d4: 940869cf     	bl	0x25da10 <dyld_stub_binder+0x25da10>
+   432d8: d102c3a8     	sub	x8, x29, #0xb0
+   432dc: 52800140     	mov	w0, #0xa                ; =10
+   432e0: b0001181     	adrp	x1, 0x274000 <dyld_stub_binder+0x274000>
+   432e4: 91388821     	add	x1, x1, #0xe22
+   432e8: 940869cd     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   432ec: 3dc01700     	ldr	q0, [x24, #0x50]
+   432f0: 3d803be0     	str	q0, [sp, #0xe0]
+   432f4: f85603a8     	ldur	x8, [x29, #-0xa0]
+   432f8: f9007be8     	str	x8, [sp, #0xf0]
+   432fc: 9104c3e0     	add	x0, sp, #0x130
+   43300: 910383e1     	add	x1, sp, #0xe0
+   43304: d2800002     	mov	x2, #0x0                ; =0
+   43308: 52800023     	mov	w3, #0x1                ; =1
+   4330c: 94086cd6     	bl	0x25e664 <dyld_stub_binder+0x25e664>
+   43310: aa0003fa     	mov	x26, x0
+   43314: f94073e8     	ldr	x8, [sp, #0xe0]
+   43318: b4000108     	cbz	x8, 0x43338 <SDDevice::readDataFromHidDevice()+0xf14>
+   4331c: b8f60108     	ldaddal	w22, w8, [x8]
+   43320: 7100051f     	cmp	w8, #0x1
+   43324: 540000a1     	b.ne	0x43338 <SDDevice::readDataFromHidDevice()+0xf14>
+   43328: f94073e0     	ldr	x0, [sp, #0xe0]
+   4332c: 52800041     	mov	w1, #0x2                ; =2
+   43330: 52800102     	mov	w2, #0x8                ; =8
+   43334: 94086651     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43338: b100075f     	cmn	x26, #0x1
+   4333c: 54000da0     	b.eq	0x434f0 <SDDevice::readDataFromHidDevice()+0x10cc>
+   43340: 3903ffff     	strb	wzr, [sp, #0xff]
+   43344: 39438a88     	ldrb	w8, [x20, #0xe2]
+   43348: 35000288     	cbnz	w8, 0x43398 <SDDevice::readDataFromHidDevice()+0xf74>
+   4334c: 6f00e400     	movi.2d	v0, #0000000000000000
+   43350: ad0383e0     	stp	q0, q0, [sp, #0x70]
+   43354: ad0283e0     	stp	q0, q0, [sp, #0x50]
+   43358: ad0183e0     	stp	q0, q0, [sp, #0x30]
+   4335c: 9103ffe5     	add	x5, sp, #0xff
+   43360: ad0083e0     	stp	q0, q0, [sp, #0x10]
+   43364: b0001188     	adrp	x8, 0x274000 <dyld_stub_binder+0x274000>
+   43368: 91394d09     	add	x9, x8, #0xe53
+   4336c: 9104c3e8     	add	x8, sp, #0x130
+   43370: a90027e8     	stp	x8, x9, [sp]
+   43374: aa1403e0     	mov	x0, x20
+   43378: b0001181     	adrp	x1, 0x274000 <dyld_stub_binder+0x274000>
+   4337c: 9138e021     	add	x1, x1, #0xe38
+   43380: 52800042     	mov	w2, #0x2                ; =2
+   43384: d2800003     	mov	x3, #0x0                ; =0
+   43388: d2800004     	mov	x4, #0x0                ; =0
+   4338c: b0001186     	adrp	x6, 0x274000 <dyld_stub_binder+0x274000>
+   43390: 913938c6     	add	x6, x6, #0xe4e
+   43394: 94086732     	bl	0x25d05c <dyld_stub_binder+0x25d05c>
+   43398: f9409be8     	ldr	x8, [sp, #0x130]
+   4339c: b4000108     	cbz	x8, 0x433bc <SDDevice::readDataFromHidDevice()+0xf98>
+   433a0: b8f60108     	ldaddal	w22, w8, [x8]
+   433a4: 7100051f     	cmp	w8, #0x1
+   433a8: 540000a1     	b.ne	0x433bc <SDDevice::readDataFromHidDevice()+0xf98>
+   433ac: f9409be0     	ldr	x0, [sp, #0x130]
+   433b0: 52800041     	mov	w1, #0x2                ; =2
+   433b4: 52800102     	mov	w2, #0x8                ; =8
+   433b8: 94086630     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   433bc: f85703a8     	ldur	x8, [x29, #-0x90]
+   433c0: b4ffdd68     	cbz	x8, 0x42f6c <SDDevice::readDataFromHidDevice()+0xb48>
+   433c4: b8f60108     	ldaddal	w22, w8, [x8]
+   433c8: 7100051f     	cmp	w8, #0x1
+   433cc: 54ffdd01     	b.ne	0x42f6c <SDDevice::readDataFromHidDevice()+0xb48>
+   433d0: f85703a0     	ldur	x0, [x29, #-0x90]
+   433d4: 17fffee3     	b	0x42f60 <SDDevice::readDataFromHidDevice()+0xb3c>
+   433d8: 39440e88     	ldrb	w8, [x20, #0x103]
+   433dc: 35000cc8     	cbnz	w8, 0x43574 <SDDevice::readDataFromHidDevice()+0x1150>
+   433e0: d102c3a0     	sub	x0, x29, #0xb0
+   433e4: d0001181     	adrp	x1, 0x275000 <dyld_stub_binder+0x275000>
+   433e8: 91233c21     	add	x1, x1, #0x8cf
+   433ec: 97ffa0dd     	bl	0x2b760 <QString::QString(char const*)>
+   433f0: 39488a88     	ldrb	w8, [x20, #0x222]
+   433f4: 34000088     	cbz	w8, 0x43404 <SDDevice::readDataFromHidDevice()+0xfe0>
+   433f8: d102c3a1     	sub	x1, x29, #0xb0
+   433fc: aa1403e0     	mov	x0, x20
+   43400: 94077fd7     	bl	0x22335c <SDDevice::sigPrintLog(QString const&)>
+   43404: f85503a8     	ldur	x8, [x29, #-0xb0]
+   43408: b4000d28     	cbz	x8, 0x435ac <SDDevice::readDataFromHidDevice()+0x1188>
+   4340c: b8f60108     	ldaddal	w22, w8, [x8]
+   43410: 7100051f     	cmp	w8, #0x1
+   43414: 54000cc1     	b.ne	0x435ac <SDDevice::readDataFromHidDevice()+0x1188>
+   43418: f85503a0     	ldur	x0, [x29, #-0xb0]
+   4341c: 14000061     	b	0x435a0 <SDDevice::readDataFromHidDevice()+0x117c>
+   43420: d102c3a8     	sub	x8, x29, #0xb0
+   43424: 528002a0     	mov	w0, #0x15               ; =21
+   43428: d0001181     	adrp	x1, 0x275000 <dyld_stub_binder+0x275000>
+   4342c: 91208821     	add	x1, x1, #0x822
+   43430: 9408697b     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   43434: 3dc01700     	ldr	q0, [x24, #0x50]
+   43438: 3d801f00     	str	q0, [x24, #0x70]
+   4343c: f85603a8     	ldur	x8, [x29, #-0xa0]
+   43440: f81803a8     	stur	x8, [x29, #-0x80]
+   43444: 39488a88     	ldrb	w8, [x20, #0x222]
+   43448: 34000848     	cbz	w8, 0x43550 <SDDevice::readDataFromHidDevice()+0x112c>
+   4344c: d10243a1     	sub	x1, x29, #0x90
+   43450: aa1403e0     	mov	x0, x20
+   43454: 94077fc2     	bl	0x22335c <SDDevice::sigPrintLog(QString const&)>
+   43458: f85703a8     	ldur	x8, [x29, #-0x90]
+   4345c: 1400003e     	b	0x43554 <SDDevice::readDataFromHidDevice()+0x1130>
+   43460: 394026e8     	ldrb	w8, [x23, #0x9]
+   43464: 529c2009     	mov	w9, #0xe100             ; =57600
+   43468: 72a0bea9     	movk	w9, #0x5f5, lsl #16
+   4346c: 1b097d08     	mul	w8, w8, w9
+   43470: 39402ae9     	ldrb	w9, [x23, #0xa]
+   43474: 5288480a     	mov	w10, #0x4240            ; =16960
+   43478: 72a001ea     	movk	w10, #0xf, lsl #16
+   4347c: 1b0a2128     	madd	w8, w9, w10, w8
+   43480: 39402ee9     	ldrb	w9, [x23, #0xb]
+   43484: 5284e20a     	mov	w10, #0x2710            ; =10000
+   43488: 1b0a2128     	madd	w8, w9, w10, w8
+   4348c: 394032e9     	ldrb	w9, [x23, #0xc]
+   43490: 52800c8a     	mov	w10, #0x64              ; =100
+   43494: 1b0a2128     	madd	w8, w9, w10, w8
+   43498: 394036e9     	ldrb	w9, [x23, #0xd]
+   4349c: 0b090108     	add	w8, w8, w9
+   434a0: d36c7d08     	ubfiz	x8, x8, #20, #32
+   434a4: f9010e88     	str	x8, [x20, #0x218]
+   434a8: 39440e88     	ldrb	w8, [x20, #0x103]
+   434ac: 35000648     	cbnz	w8, 0x43574 <SDDevice::readDataFromHidDevice()+0x1150>
+   434b0: d102c3a8     	sub	x8, x29, #0xb0
+   434b4: 52800640     	mov	w0, #0x32               ; =50
+   434b8: d0001181     	adrp	x1, 0x275000 <dyld_stub_binder+0x275000>
+   434bc: 9120e021     	add	x1, x1, #0x838
+   434c0: 94086957     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   434c4: 3dc01700     	ldr	q0, [x24, #0x50]
+   434c8: 3d801f00     	str	q0, [x24, #0x70]
+   434cc: f85603a8     	ldur	x8, [x29, #-0xa0]
+   434d0: f81803a8     	stur	x8, [x29, #-0x80]
+   434d4: 39488a88     	ldrb	w8, [x20, #0x222]
+   434d8: 34000588     	cbz	w8, 0x43588 <SDDevice::readDataFromHidDevice()+0x1164>
+   434dc: d10243a1     	sub	x1, x29, #0x90
+   434e0: aa1403e0     	mov	x0, x20
+   434e4: 94077f9e     	bl	0x22335c <SDDevice::sigPrintLog(QString const&)>
+   434e8: f85703a8     	ldur	x8, [x29, #-0x90]
+   434ec: 14000028     	b	0x4358c <SDDevice::readDataFromHidDevice()+0x1168>
+   434f0: d102c3a8     	sub	x8, x29, #0xb0
+   434f4: 52800140     	mov	w0, #0xa                ; =10
+   434f8: b0001181     	adrp	x1, 0x274000 <dyld_stub_binder+0x274000>
+   434fc: 91169421     	add	x1, x1, #0x5a5
+   43500: 94086947     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   43504: 3dc01700     	ldr	q0, [x24, #0x50]
+   43508: 3d803be0     	str	q0, [sp, #0xe0]
+   4350c: f85603a8     	ldur	x8, [x29, #-0xa0]
+   43510: f9007be8     	str	x8, [sp, #0xf0]
+   43514: 9104c3e0     	add	x0, sp, #0x130
+   43518: 910383e1     	add	x1, sp, #0xe0
+   4351c: d2800002     	mov	x2, #0x0                ; =0
+   43520: 52800023     	mov	w3, #0x1                ; =1
+   43524: 94086c50     	bl	0x25e664 <dyld_stub_binder+0x25e664>
+   43528: f94073e8     	ldr	x8, [sp, #0xe0]
+   4352c: b4fff0c8     	cbz	x8, 0x43344 <SDDevice::readDataFromHidDevice()+0xf20>
+   43530: b8f60108     	ldaddal	w22, w8, [x8]
+   43534: 7100051f     	cmp	w8, #0x1
+   43538: 54fff061     	b.ne	0x43344 <SDDevice::readDataFromHidDevice()+0xf20>
+   4353c: f94073e0     	ldr	x0, [sp, #0xe0]
+   43540: 52800041     	mov	w1, #0x2                ; =2
+   43544: 52800102     	mov	w2, #0x8                ; =8
+   43548: 940865cc     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   4354c: 17ffff7e     	b	0x43344 <SDDevice::readDataFromHidDevice()+0xf20>
+   43550: 9e660008     	fmov	x8, d0
+   43554: b4000108     	cbz	x8, 0x43574 <SDDevice::readDataFromHidDevice()+0x1150>
+   43558: b8f60108     	ldaddal	w22, w8, [x8]
+   4355c: 7100051f     	cmp	w8, #0x1
+   43560: 540000a1     	b.ne	0x43574 <SDDevice::readDataFromHidDevice()+0x1150>
+   43564: f85703a0     	ldur	x0, [x29, #-0x90]
+   43568: 52800041     	mov	w1, #0x2                ; =2
+   4356c: 52800102     	mov	w2, #0x8                ; =8
+   43570: 940865c2     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43574: a94a4ffb     	ldp	x27, x19, [sp, #0xa0]
+   43578: 39438688     	ldrb	w8, [x20, #0xe1]
+   4357c: a90a4ffb     	stp	x27, x19, [sp, #0xa0]
+   43580: 35ff8788     	cbnz	w8, 0x42670 <SDDevice::readDataFromHidDevice()+0x24c>
+   43584: 1400000f     	b	0x435c0 <SDDevice::readDataFromHidDevice()+0x119c>
+   43588: 9e660008     	fmov	x8, d0
+   4358c: b4000108     	cbz	x8, 0x435ac <SDDevice::readDataFromHidDevice()+0x1188>
+   43590: b8f60108     	ldaddal	w22, w8, [x8]
+   43594: 7100051f     	cmp	w8, #0x1
+   43598: 540000a1     	b.ne	0x435ac <SDDevice::readDataFromHidDevice()+0x1188>
+   4359c: f85703a0     	ldur	x0, [x29, #-0x90]
+   435a0: 52800041     	mov	w1, #0x2                ; =2
+   435a4: 52800102     	mov	w2, #0x8                ; =8
+   435a8: 940865b4     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   435ac: f9405be0     	ldr	x0, [sp, #0xb0]
+   435b0: 94086711     	bl	0x25d1f4 <dyld_stub_binder+0x25d1f4>
+   435b4: a94a4ffb     	ldp	x27, x19, [sp, #0xa0]
+   435b8: 17fffff0     	b	0x43578 <SDDevice::readDataFromHidDevice()+0x1154>
+   435bc: f9004fff     	str	xzr, [sp, #0x98]
+   435c0: aa1703e0     	mov	x0, x23
+   435c4: 94086db4     	bl	0x25ec94 <dyld_stub_binder+0x25ec94>
+   435c8: f940a7e8     	ldr	x8, [sp, #0x148]
+   435cc: b4000128     	cbz	x8, 0x435f0 <SDDevice::readDataFromHidDevice()+0x11cc>
+   435d0: 12800009     	mov	w9, #-0x1               ; =-1
+   435d4: b8e90108     	ldaddal	w9, w8, [x8]
+   435d8: 7100051f     	cmp	w8, #0x1
+   435dc: 540000a1     	b.ne	0x435f0 <SDDevice::readDataFromHidDevice()+0x11cc>
+   435e0: f940a7e0     	ldr	x0, [sp, #0x148]
+   435e4: 52800041     	mov	w1, #0x2                ; =2
+   435e8: 52800102     	mov	w2, #0x8                ; =8
+   435ec: 940865a3     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   435f0: f85003a8     	ldur	x8, [x29, #-0x100]
+   435f4: f9404ff3     	ldr	x19, [sp, #0x98]
+   435f8: b0001196     	adrp	x22, 0x274000 <dyld_stub_binder+0x274000>
+   435fc: 910116d6     	add	x22, x22, #0x45
+   43600: d0001198     	adrp	x24, 0x275000 <dyld_stub_binder+0x275000>
+   43604: 911ecb18     	add	x24, x24, #0x7b2
+   43608: 90001199     	adrp	x25, 0x273000 <GCC_except_table47+0x3c>
+   4360c: 911fef39     	add	x25, x25, #0x7fb
+   43610: b4000128     	cbz	x8, 0x43634 <SDDevice::readDataFromHidDevice()+0x1210>
+   43614: 12800009     	mov	w9, #-0x1               ; =-1
+   43618: b8e90108     	ldaddal	w9, w8, [x8]
+   4361c: 7100051f     	cmp	w8, #0x1
+   43620: 540000a1     	b.ne	0x43634 <SDDevice::readDataFromHidDevice()+0x1210>
+   43624: f85003a0     	ldur	x0, [x29, #-0x100]
+   43628: 52800041     	mov	w1, #0x2                ; =2
+   4362c: 52800102     	mov	w2, #0x8                ; =8
+   43630: 94086592     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43634: f85203a8     	ldur	x8, [x29, #-0xe0]
+   43638: b4000128     	cbz	x8, 0x4365c <SDDevice::readDataFromHidDevice()+0x1238>
+   4363c: 12800009     	mov	w9, #-0x1               ; =-1
+   43640: b8e90108     	ldaddal	w9, w8, [x8]
+   43644: 7100051f     	cmp	w8, #0x1
+   43648: 540000a1     	b.ne	0x4365c <SDDevice::readDataFromHidDevice()+0x1238>
+   4364c: f85203a0     	ldur	x0, [x29, #-0xe0]
+   43650: 52800021     	mov	w1, #0x1                ; =1
+   43654: 52800102     	mov	w2, #0x8                ; =8
+   43658: 94086588     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   4365c: f85383a8     	ldur	x8, [x29, #-0xc8]
+   43660: b4000128     	cbz	x8, 0x43684 <SDDevice::readDataFromHidDevice()+0x1260>
+   43664: 12800009     	mov	w9, #-0x1               ; =-1
+   43668: b8e90108     	ldaddal	w9, w8, [x8]
+   4366c: 7100051f     	cmp	w8, #0x1
+   43670: 540000a1     	b.ne	0x43684 <SDDevice::readDataFromHidDevice()+0x1260>
+   43674: f85383a0     	ldur	x0, [x29, #-0xc8]
+   43678: 52800041     	mov	w1, #0x2                ; =2
+   4367c: 52800102     	mov	w2, #0x8                ; =8
+   43680: 9408657e     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43684: b4000133     	cbz	x19, 0x436a8 <SDDevice::readDataFromHidDevice()+0x1284>
+   43688: 12800008     	mov	w8, #-0x1               ; =-1
+   4368c: b8e80268     	ldaddal	w8, w8, [x19]
+   43690: 7100051f     	cmp	w8, #0x1
+   43694: 540000a1     	b.ne	0x436a8 <SDDevice::readDataFromHidDevice()+0x1284>
+   43698: aa1303e0     	mov	x0, x19
+   4369c: 52800041     	mov	w1, #0x2                ; =2
+   436a0: 52800102     	mov	w2, #0x8                ; =8
+   436a4: 94086575     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   436a8: 90001208     	adrp	x8, 0x283000 <typeinfo name for QtFlowLayout+0x280>
+   436ac: fd408500     	ldr	d0, [x8, #0x108]
+   436b0: fc1503a0     	stur	d0, [x29, #-0xb0]
+   436b4: a935e3b6     	stp	x22, x24, [x29, #-0xa8]
+   436b8: f81683b9     	stur	x25, [x29, #-0x98]
+   436bc: d10323a8     	sub	x8, x29, #0xc8
+   436c0: d102c3a0     	sub	x0, x29, #0xb0
+   436c4: 94086ace     	bl	0x25e1fc <dyld_stub_binder+0x25e1fc>
+   436c8: f85383b3     	ldur	x19, [x29, #-0xc8]
+   436cc: d0001181     	adrp	x1, 0x275000 <dyld_stub_binder+0x275000>
+   436d0: 9123d021     	add	x1, x1, #0x8f4
+   436d4: d10243a8     	sub	x8, x29, #0x90
+   436d8: 52800300     	mov	w0, #0x18               ; =24
+   436dc: 940868d0     	bl	0x25da1c <dyld_stub_binder+0x25da1c>
+   436e0: d10243a1     	sub	x1, x29, #0x90
+   436e4: aa1303e0     	mov	x0, x19
+   436e8: 9408667b     	bl	0x25d0d4 <dyld_stub_binder+0x25d0d4>
+   436ec: f85703a8     	ldur	x8, [x29, #-0x90]
+   436f0: b4000128     	cbz	x8, 0x43714 <SDDevice::readDataFromHidDevice()+0x12f0>
+   436f4: 12800009     	mov	w9, #-0x1               ; =-1
+   436f8: b8e90108     	ldaddal	w9, w8, [x8]
+   436fc: 7100051f     	cmp	w8, #0x1
+   43700: 540000a1     	b.ne	0x43714 <SDDevice::readDataFromHidDevice()+0x12f0>
+   43704: f85703a0     	ldur	x0, [x29, #-0x90]
+   43708: 52800041     	mov	w1, #0x2                ; =2
+   4370c: 52800102     	mov	w2, #0x8                ; =8
+   43710: 9408655a     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43714: f85383a0     	ldur	x0, [x29, #-0xc8]
+   43718: 3940c008     	ldrb	w8, [x0, #0x30]
+   4371c: 34000068     	cbz	w8, 0x43728 <SDDevice::readDataFromHidDevice()+0x1304>
+   43720: 52800401     	mov	w1, #0x20               ; =32
+   43724: 9408666f     	bl	0x25d0e0 <dyld_stub_binder+0x25d0e0>
+   43728: d10323a0     	sub	x0, x29, #0xc8
+   4372c: 940867a2     	bl	0x25d5b4 <dyld_stub_binder+0x25d5b4>
+   43730: 910803ff     	add	sp, sp, #0x200
+   43734: a9467bfd     	ldp	x29, x30, [sp, #0x60]
+   43738: a9454ff4     	ldp	x20, x19, [sp, #0x50]
+   4373c: a94457f6     	ldp	x22, x21, [sp, #0x40]
+   43740: a9435ff8     	ldp	x24, x23, [sp, #0x30]
+   43744: a94267fa     	ldp	x26, x25, [sp, #0x20]
+   43748: a9416ffc     	ldp	x28, x27, [sp, #0x10]
+   4374c: 6cc723e9     	ldp	d9, d8, [sp], #0x70
+   43750: d65f03c0     	ret
+   43754: 1400008f     	b	0x43990 <SDDevice::readDataFromHidDevice()+0x156c>
+   43758: 140000ac     	b	0x43a08 <SDDevice::readDataFromHidDevice()+0x15e4>
+   4375c: 14000062     	b	0x438e4 <SDDevice::readDataFromHidDevice()+0x14c0>
+   43760: 1400008c     	b	0x43990 <SDDevice::readDataFromHidDevice()+0x156c>
+   43764: 140000a9     	b	0x43a08 <SDDevice::readDataFromHidDevice()+0x15e4>
+   43768: 14000040     	b	0x43868 <SDDevice::readDataFromHidDevice()+0x1444>
+   4376c: 14000062     	b	0x438f4 <SDDevice::readDataFromHidDevice()+0x14d0>
+   43770: 140000a6     	b	0x43a08 <SDDevice::readDataFromHidDevice()+0x15e4>
+   43774: 14000060     	b	0x438f4 <SDDevice::readDataFromHidDevice()+0x14d0>
+   43778: 1400005b     	b	0x438e4 <SDDevice::readDataFromHidDevice()+0x14c0>
+   4377c: 140000a3     	b	0x43a08 <SDDevice::readDataFromHidDevice()+0x15e4>
+   43780: 1400003a     	b	0x43868 <SDDevice::readDataFromHidDevice()+0x1444>
+   43784: 1400005c     	b	0x438f4 <SDDevice::readDataFromHidDevice()+0x14d0>
+   43788: 1400008d     	b	0x439bc <SDDevice::readDataFromHidDevice()+0x1598>
+   4378c: 1400008c     	b	0x439bc <SDDevice::readDataFromHidDevice()+0x1598>
+   43790: 1400008b     	b	0x439bc <SDDevice::readDataFromHidDevice()+0x1598>
+   43794: aa0003f3     	mov	x19, x0
+   43798: 9104c3e0     	add	x0, sp, #0x130
+   4379c: 94086786     	bl	0x25d5b4 <dyld_stub_binder+0x25d5b4>
+   437a0: 140000a9     	b	0x43a44 <SDDevice::readDataFromHidDevice()+0x1620>
+   437a4: aa0003f3     	mov	x19, x0
+   437a8: f94083e8     	ldr	x8, [sp, #0x100]
+   437ac: b4000368     	cbz	x8, 0x43818 <SDDevice::readDataFromHidDevice()+0x13f4>
+   437b0: 12800009     	mov	w9, #-0x1               ; =-1
+   437b4: b8e90108     	ldaddal	w9, w8, [x8]
+   437b8: 7100051f     	cmp	w8, #0x1
+   437bc: 540002e1     	b.ne	0x43818 <SDDevice::readDataFromHidDevice()+0x13f4>
+   437c0: f94083e0     	ldr	x0, [sp, #0x100]
+   437c4: 52800041     	mov	w1, #0x2                ; =2
+   437c8: 52800102     	mov	w2, #0x8                ; =8
+   437cc: 9408652b     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   437d0: 14000012     	b	0x43818 <SDDevice::readDataFromHidDevice()+0x13f4>
+   437d4: aa0003f3     	mov	x19, x0
+   437d8: f9408fe8     	ldr	x8, [sp, #0x118]
+   437dc: b4001488     	cbz	x8, 0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   437e0: 12800009     	mov	w9, #-0x1               ; =-1
+   437e4: b8e90108     	ldaddal	w9, w8, [x8]
+   437e8: 7100051f     	cmp	w8, #0x1
+   437ec: 54001401     	b.ne	0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   437f0: f9408fe0     	ldr	x0, [sp, #0x118]
+   437f4: 1400009b     	b	0x43a60 <SDDevice::readDataFromHidDevice()+0x163c>
+   437f8: 14000003     	b	0x43804 <SDDevice::readDataFromHidDevice()+0x13e0>
+   437fc: aa0003f3     	mov	x19, x0
+   43800: 14000091     	b	0x43a44 <SDDevice::readDataFromHidDevice()+0x1620>
+   43804: aa0003f3     	mov	x19, x0
+   43808: f9409be8     	ldr	x8, [sp, #0x130]
+   4380c: b50007a8     	cbnz	x8, 0x43900 <SDDevice::readDataFromHidDevice()+0x14dc>
+   43810: 1400008d     	b	0x43a44 <SDDevice::readDataFromHidDevice()+0x1620>
+   43814: aa0003f3     	mov	x19, x0
+   43818: f85503a8     	ldur	x8, [x29, #-0xb0]
+   4381c: b5000c08     	cbnz	x8, 0x4399c <SDDevice::readDataFromHidDevice()+0x1578>
+   43820: 14000093     	b	0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   43824: 14000079     	b	0x43a08 <SDDevice::readDataFromHidDevice()+0x15e4>
+   43828: aa0003f3     	mov	x19, x0
+   4382c: 14000086     	b	0x43a44 <SDDevice::readDataFromHidDevice()+0x1620>
+   43830: aa0003f3     	mov	x19, x0
+   43834: f85703a0     	ldur	x0, [x29, #-0x90]
+   43838: b40004e0     	cbz	x0, 0x438d4 <SDDevice::readDataFromHidDevice()+0x14b0>
+   4383c: d10243a1     	sub	x1, x29, #0x90
+   43840: 94084dee     	bl	0x256ff8 <SDDevice::readDataFromHidDevice() (.cold.3)>
+   43844: 14000024     	b	0x438d4 <SDDevice::readDataFromHidDevice()+0x14b0>
+   43848: aa0003f3     	mov	x19, x0
+   4384c: 14000024     	b	0x438dc <SDDevice::readDataFromHidDevice()+0x14b8>
+   43850: aa0003f3     	mov	x19, x0
+   43854: 14000022     	b	0x438dc <SDDevice::readDataFromHidDevice()+0x14b8>
+   43858: aa0003f3     	mov	x19, x0
+   4385c: 14000020     	b	0x438dc <SDDevice::readDataFromHidDevice()+0x14b8>
+   43860: aa0003f3     	mov	x19, x0
+   43864: 1400001e     	b	0x438dc <SDDevice::readDataFromHidDevice()+0x14b8>
+   43868: aa0003f3     	mov	x19, x0
+   4386c: f94073e8     	ldr	x8, [sp, #0xe0]
+   43870: b4000448     	cbz	x8, 0x438f8 <SDDevice::readDataFromHidDevice()+0x14d4>
+   43874: 12800009     	mov	w9, #-0x1               ; =-1
+   43878: b8e90108     	ldaddal	w9, w8, [x8]
+   4387c: 7100051f     	cmp	w8, #0x1
+   43880: 540003c1     	b.ne	0x438f8 <SDDevice::readDataFromHidDevice()+0x14d4>
+   43884: f94073e0     	ldr	x0, [sp, #0xe0]
+   43888: 52800041     	mov	w1, #0x2                ; =2
+   4388c: 52800102     	mov	w2, #0x8                ; =8
+   43890: 940864fa     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43894: 14000019     	b	0x438f8 <SDDevice::readDataFromHidDevice()+0x14d4>
+   43898: 14000017     	b	0x438f4 <SDDevice::readDataFromHidDevice()+0x14d0>
+   4389c: 1400005b     	b	0x43a08 <SDDevice::readDataFromHidDevice()+0x15e4>
+   438a0: aa0003f3     	mov	x19, x0
+   438a4: f85703a0     	ldur	x0, [x29, #-0x90]
+   438a8: b40003e0     	cbz	x0, 0x43924 <SDDevice::readDataFromHidDevice()+0x1500>
+   438ac: d10243a1     	sub	x1, x29, #0x90
+   438b0: 94084db4     	bl	0x256f80 <SDDevice::readDataFromHidDevice() (.cold.1)>
+   438b4: 1400001c     	b	0x43924 <SDDevice::readDataFromHidDevice()+0x1500>
+   438b8: aa0003f3     	mov	x19, x0
+   438bc: f85703a0     	ldur	x0, [x29, #-0x90]
+   438c0: b4000320     	cbz	x0, 0x43924 <SDDevice::readDataFromHidDevice()+0x1500>
+   438c4: d10243a1     	sub	x1, x29, #0x90
+   438c8: 94084dd3     	bl	0x257014 <SDDevice::readDataFromHidDevice() (.cold.4)>
+   438cc: 14000016     	b	0x43924 <SDDevice::readDataFromHidDevice()+0x1500>
+   438d0: aa0003f3     	mov	x19, x0
+   438d4: 9104c3e0     	add	x0, sp, #0x130
+   438d8: 94086737     	bl	0x25d5b4 <dyld_stub_binder+0x25d5b4>
+   438dc: d2800014     	mov	x20, #0x0               ; =0
+   438e0: 14000064     	b	0x43a70 <SDDevice::readDataFromHidDevice()+0x164c>
+   438e4: aa0003f3     	mov	x19, x0
+   438e8: f85703a8     	ldur	x8, [x29, #-0x90]
+   438ec: b5000b08     	cbnz	x8, 0x43a4c <SDDevice::readDataFromHidDevice()+0x1628>
+   438f0: 1400005f     	b	0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   438f4: aa0003f3     	mov	x19, x0
+   438f8: f9409be8     	ldr	x8, [sp, #0x130]
+   438fc: b4000a48     	cbz	x8, 0x43a44 <SDDevice::readDataFromHidDevice()+0x1620>
+   43900: 12800009     	mov	w9, #-0x1               ; =-1
+   43904: b8e90108     	ldaddal	w9, w8, [x8]
+   43908: 7100051f     	cmp	w8, #0x1
+   4390c: 540009c1     	b.ne	0x43a44 <SDDevice::readDataFromHidDevice()+0x1620>
+   43910: f9409be0     	ldr	x0, [sp, #0x130]
+   43914: 14000049     	b	0x43a38 <SDDevice::readDataFromHidDevice()+0x1614>
+   43918: 14000029     	b	0x439bc <SDDevice::readDataFromHidDevice()+0x1598>
+   4391c: 14000001     	b	0x43920 <SDDevice::readDataFromHidDevice()+0x14fc>
+   43920: aa0003f3     	mov	x19, x0
+   43924: d10323a0     	sub	x0, x29, #0xc8
+   43928: 94086723     	bl	0x25d5b4 <dyld_stub_binder+0x25d5b4>
+   4392c: aa1303e0     	mov	x0, x19
+   43930: 940864c0     	bl	0x25cc30 <dyld_stub_binder+0x25cc30>
+   43934: 14000035     	b	0x43a08 <SDDevice::readDataFromHidDevice()+0x15e4>
+   43938: aa0003f3     	mov	x19, x0
+   4393c: f94067e8     	ldr	x8, [sp, #0xc8]
+   43940: b4000968     	cbz	x8, 0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   43944: 12800009     	mov	w9, #-0x1               ; =-1
+   43948: b8e90108     	ldaddal	w9, w8, [x8]
+   4394c: 7100051f     	cmp	w8, #0x1
+   43950: 540008e1     	b.ne	0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   43954: f94067e0     	ldr	x0, [sp, #0xc8]
+   43958: 52800021     	mov	w1, #0x1                ; =1
+   4395c: 14000042     	b	0x43a64 <SDDevice::readDataFromHidDevice()+0x1640>
+   43960: aa0003f3     	mov	x19, x0
+   43964: f85703a8     	ldur	x8, [x29, #-0x90]
+   43968: b4000348     	cbz	x8, 0x439d0 <SDDevice::readDataFromHidDevice()+0x15ac>
+   4396c: 12800009     	mov	w9, #-0x1               ; =-1
+   43970: b8e90108     	ldaddal	w9, w8, [x8]
+   43974: 7100051f     	cmp	w8, #0x1
+   43978: 540002c1     	b.ne	0x439d0 <SDDevice::readDataFromHidDevice()+0x15ac>
+   4397c: f85703a0     	ldur	x0, [x29, #-0x90]
+   43980: 52800041     	mov	w1, #0x2                ; =2
+   43984: 52800102     	mov	w2, #0x8                ; =8
+   43988: 940864bc     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   4398c: 14000011     	b	0x439d0 <SDDevice::readDataFromHidDevice()+0x15ac>
+   43990: aa0003f3     	mov	x19, x0
+   43994: f85503a8     	ldur	x8, [x29, #-0xb0]
+   43998: b40006a8     	cbz	x8, 0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   4399c: 12800009     	mov	w9, #-0x1               ; =-1
+   439a0: b8e90108     	ldaddal	w9, w8, [x8]
+   439a4: 7100051f     	cmp	w8, #0x1
+   439a8: 54000621     	b.ne	0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   439ac: f85503a0     	ldur	x0, [x29, #-0xb0]
+   439b0: 1400002c     	b	0x43a60 <SDDevice::readDataFromHidDevice()+0x163c>
+   439b4: aa0003f3     	mov	x19, x0
+   439b8: 1400002d     	b	0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   439bc: aa0003f3     	mov	x19, x0
+   439c0: 14000021     	b	0x43a44 <SDDevice::readDataFromHidDevice()+0x1620>
+   439c4: 14000011     	b	0x43a08 <SDDevice::readDataFromHidDevice()+0x15e4>
+   439c8: 14000010     	b	0x43a08 <SDDevice::readDataFromHidDevice()+0x15e4>
+   439cc: aa0003f3     	mov	x19, x0
+   439d0: f9409be8     	ldr	x8, [sp, #0x130]
+   439d4: b40004c8     	cbz	x8, 0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   439d8: 12800009     	mov	w9, #-0x1               ; =-1
+   439dc: b8e90108     	ldaddal	w9, w8, [x8]
+   439e0: 7100051f     	cmp	w8, #0x1
+   439e4: 54000441     	b.ne	0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   439e8: f9409be0     	ldr	x0, [sp, #0x130]
+   439ec: 1400001d     	b	0x43a60 <SDDevice::readDataFromHidDevice()+0x163c>
+   439f0: 14000006     	b	0x43a08 <SDDevice::readDataFromHidDevice()+0x15e4>
+   439f4: 14000005     	b	0x43a08 <SDDevice::readDataFromHidDevice()+0x15e4>
+   439f8: 14000004     	b	0x43a08 <SDDevice::readDataFromHidDevice()+0x15e4>
+   439fc: 14000007     	b	0x43a18 <SDDevice::readDataFromHidDevice()+0x15f4>
+   43a00: aa0003f3     	mov	x19, x0
+   43a04: 14000010     	b	0x43a44 <SDDevice::readDataFromHidDevice()+0x1620>
+   43a08: aa0003f3     	mov	x19, x0
+   43a0c: 14000018     	b	0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   43a10: aa0003f3     	mov	x19, x0
+   43a14: 1400000c     	b	0x43a44 <SDDevice::readDataFromHidDevice()+0x1620>
+   43a18: aa0003f3     	mov	x19, x0
+   43a1c: f85503a8     	ldur	x8, [x29, #-0xb0]
+   43a20: b4000128     	cbz	x8, 0x43a44 <SDDevice::readDataFromHidDevice()+0x1620>
+   43a24: 12800009     	mov	w9, #-0x1               ; =-1
+   43a28: b8e90108     	ldaddal	w9, w8, [x8]
+   43a2c: 7100051f     	cmp	w8, #0x1
+   43a30: 540000a1     	b.ne	0x43a44 <SDDevice::readDataFromHidDevice()+0x1620>
+   43a34: f85503a0     	ldur	x0, [x29, #-0xb0]
+   43a38: 52800041     	mov	w1, #0x2                ; =2
+   43a3c: 52800102     	mov	w2, #0x8                ; =8
+   43a40: 9408648e     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43a44: f85703a8     	ldur	x8, [x29, #-0x90]
+   43a48: b4000128     	cbz	x8, 0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   43a4c: 12800009     	mov	w9, #-0x1               ; =-1
+   43a50: b8e90108     	ldaddal	w9, w8, [x8]
+   43a54: 7100051f     	cmp	w8, #0x1
+   43a58: 540000a1     	b.ne	0x43a6c <SDDevice::readDataFromHidDevice()+0x1648>
+   43a5c: f85703a0     	ldur	x0, [x29, #-0x90]
+   43a60: 52800041     	mov	w1, #0x2                ; =2
+   43a64: 52800102     	mov	w2, #0x8                ; =8
+   43a68: 94086484     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43a6c: f9404ff4     	ldr	x20, [sp, #0x98]
+   43a70: f940a7e8     	ldr	x8, [sp, #0x148]
+   43a74: b4000128     	cbz	x8, 0x43a98 <SDDevice::readDataFromHidDevice()+0x1674>
+   43a78: 12800009     	mov	w9, #-0x1               ; =-1
+   43a7c: b8e90108     	ldaddal	w9, w8, [x8]
+   43a80: 7100051f     	cmp	w8, #0x1
+   43a84: 540000a1     	b.ne	0x43a98 <SDDevice::readDataFromHidDevice()+0x1674>
+   43a88: f940a7e0     	ldr	x0, [sp, #0x148]
+   43a8c: 52800041     	mov	w1, #0x2                ; =2
+   43a90: 52800102     	mov	w2, #0x8                ; =8
+   43a94: 94086479     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43a98: f85003a8     	ldur	x8, [x29, #-0x100]
+   43a9c: b4000128     	cbz	x8, 0x43ac0 <SDDevice::readDataFromHidDevice()+0x169c>
+   43aa0: 12800009     	mov	w9, #-0x1               ; =-1
+   43aa4: b8e90108     	ldaddal	w9, w8, [x8]
+   43aa8: 7100051f     	cmp	w8, #0x1
+   43aac: 540000a1     	b.ne	0x43ac0 <SDDevice::readDataFromHidDevice()+0x169c>
+   43ab0: f85003a0     	ldur	x0, [x29, #-0x100]
+   43ab4: 52800041     	mov	w1, #0x2                ; =2
+   43ab8: 52800102     	mov	w2, #0x8                ; =8
+   43abc: 9408646f     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43ac0: f85203a8     	ldur	x8, [x29, #-0xe0]
+   43ac4: b4000128     	cbz	x8, 0x43ae8 <SDDevice::readDataFromHidDevice()+0x16c4>
+   43ac8: 12800009     	mov	w9, #-0x1               ; =-1
+   43acc: b8e90108     	ldaddal	w9, w8, [x8]
+   43ad0: 7100051f     	cmp	w8, #0x1
+   43ad4: 540000a1     	b.ne	0x43ae8 <SDDevice::readDataFromHidDevice()+0x16c4>
+   43ad8: f85203a0     	ldur	x0, [x29, #-0xe0]
+   43adc: 52800021     	mov	w1, #0x1                ; =1
+   43ae0: 52800102     	mov	w2, #0x8                ; =8
+   43ae4: 94086465     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43ae8: f85383a8     	ldur	x8, [x29, #-0xc8]
+   43aec: b4000128     	cbz	x8, 0x43b10 <SDDevice::readDataFromHidDevice()+0x16ec>
+   43af0: 12800009     	mov	w9, #-0x1               ; =-1
+   43af4: b8e90108     	ldaddal	w9, w8, [x8]
+   43af8: 7100051f     	cmp	w8, #0x1
+   43afc: 540000a1     	b.ne	0x43b10 <SDDevice::readDataFromHidDevice()+0x16ec>
+   43b00: f85383a0     	ldur	x0, [x29, #-0xc8]
+   43b04: 52800041     	mov	w1, #0x2                ; =2
+   43b08: 52800102     	mov	w2, #0x8                ; =8
+   43b0c: 9408645b     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43b10: b4000134     	cbz	x20, 0x43b34 <SDDevice::readDataFromHidDevice()+0x1710>
+   43b14: 12800008     	mov	w8, #-0x1               ; =-1
+   43b18: b8e80288     	ldaddal	w8, w8, [x20]
+   43b1c: 7100051f     	cmp	w8, #0x1
+   43b20: 540000a1     	b.ne	0x43b34 <SDDevice::readDataFromHidDevice()+0x1710>
+   43b24: aa1403e0     	mov	x0, x20
+   43b28: 52800041     	mov	w1, #0x2                ; =2
+   43b2c: 52800102     	mov	w2, #0x8                ; =8
+   43b30: 94086452     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43b34: aa1303e0     	mov	x0, x19
+   43b38: 9408643e     	bl	0x25cc30 <dyld_stub_binder+0x25cc30>
+
+0000000000043b3c <SDDevice::timerEvent(QTimerEvent*)>:
+   43b3c: b9401028     	ldr	w8, [x1, #0x10]
+   43b40: b9401409     	ldr	w9, [x0, #0x14]
+   43b44: 6b09011f     	cmp	w8, w9
+   43b48: 54000041     	b.ne	0x43b50 <SDDevice::timerEvent(QTimerEvent*)+0x14>
+   43b4c: 17ffd14c     	b	0x3807c <SDDevice::addHeartbeatPack()>
+   43b50: b9401009     	ldr	w9, [x0, #0x10]
+   43b54: 6b09011f     	cmp	w8, w9
+   43b58: 540000e1     	b.ne	0x43b74 <SDDevice::timerEvent(QTimerEvent*)+0x38>
+   43b5c: b941f808     	ldr	w8, [x0, #0x1f8]
+   43b60: 7100091f     	cmp	w8, #0x2
+   43b64: 540000a0     	b.eq	0x43b78 <SDDevice::timerEvent(QTimerEvent*)+0x3c>
+   43b68: 7100051f     	cmp	w8, #0x1
+   43b6c: 54000081     	b.ne	0x43b7c <SDDevice::timerEvent(QTimerEvent*)+0x40>
+   43b70: 17ffd32c     	b	0x38820 <SDDevice::addScreenOffPack()>
+   43b74: d65f03c0     	ret
+   43b78: 17ffa34e     	b	0x2c8b0 <SDDevice::sendDisconnectCommand()>
+   43b7c: 14077e28     	b	0x22341c <SDDevice::sigTurnOffTheScreen()>
+
+0000000000043b80 <QArrayDataPointer<QJsonObject>::~QArrayDataPointer()>:
+   43b80: a9be4ff4     	stp	x20, x19, [sp, #-0x20]!
+   43b84: a9017bfd     	stp	x29, x30, [sp, #0x10]
+   43b88: 910043fd     	add	x29, sp, #0x10
+   43b8c: aa0003f3     	mov	x19, x0
+   43b90: f9400008     	ldr	x8, [x0]
+   43b94: b4000228     	cbz	x8, 0x43bd8 <QArrayDataPointer<QJsonObject>::~QArrayDataPointer()+0x58>
+   43b98: 12800009     	mov	w9, #-0x1               ; =-1
+   43b9c: b8e90108     	ldaddal	w9, w8, [x8]
+   43ba0: 7100051f     	cmp	w8, #0x1
+   43ba4: 540001a1     	b.ne	0x43bd8 <QArrayDataPointer<QJsonObject>::~QArrayDataPointer()+0x58>
+   43ba8: f9400a68     	ldr	x8, [x19, #0x10]
+   43bac: b40000e8     	cbz	x8, 0x43bc8 <QArrayDataPointer<QJsonObject>::~QArrayDataPointer()+0x48>
+   43bb0: f9400660     	ldr	x0, [x19, #0x8]
+   43bb4: d37df114     	lsl	x20, x8, #3
+   43bb8: 94086520     	bl	0x25d038 <dyld_stub_binder+0x25d038>
+   43bbc: 91002000     	add	x0, x0, #0x8
+   43bc0: f1002294     	subs	x20, x20, #0x8
+   43bc4: 54ffffa1     	b.ne	0x43bb8 <QArrayDataPointer<QJsonObject>::~QArrayDataPointer()+0x38>
+   43bc8: f9400260     	ldr	x0, [x19]
+   43bcc: 52800101     	mov	w1, #0x8                ; =8
+   43bd0: 52800102     	mov	w2, #0x8                ; =8
+   43bd4: 94086429     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43bd8: aa1303e0     	mov	x0, x19
+   43bdc: a9417bfd     	ldp	x29, x30, [sp, #0x10]
+   43be0: a8c24ff4     	ldp	x20, x19, [sp], #0x20
+   43be4: d65f03c0     	ret
+
+0000000000043be8 <QArrayDataPointer<ImageStruct>::~QArrayDataPointer()>:
+   43be8: a9be4ff4     	stp	x20, x19, [sp, #-0x20]!
+   43bec: a9017bfd     	stp	x29, x30, [sp, #0x10]
+   43bf0: 910043fd     	add	x29, sp, #0x10
+   43bf4: aa0003f3     	mov	x19, x0
+   43bf8: f9400008     	ldr	x8, [x0]
+   43bfc: b4000168     	cbz	x8, 0x43c28 <QArrayDataPointer<ImageStruct>::~QArrayDataPointer()+0x40>
+   43c00: 12800009     	mov	w9, #-0x1               ; =-1
+   43c04: b8e90108     	ldaddal	w9, w8, [x8]
+   43c08: 7100051f     	cmp	w8, #0x1
+   43c0c: 540000e1     	b.ne	0x43c28 <QArrayDataPointer<ImageStruct>::~QArrayDataPointer()+0x40>
+   43c10: aa1303e0     	mov	x0, x19
+   43c14: 9400000a     	bl	0x43c3c <QtPrivate::QGenericArrayOps<ImageStruct>::destroyAll()>
+   43c18: f9400260     	ldr	x0, [x19]
+   43c1c: 52801201     	mov	w1, #0x90               ; =144
+   43c20: 52800102     	mov	w2, #0x8                ; =8
+   43c24: 94086415     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43c28: aa1303e0     	mov	x0, x19
+   43c2c: a9417bfd     	ldp	x29, x30, [sp, #0x10]
+   43c30: a8c24ff4     	ldp	x20, x19, [sp], #0x20
+   43c34: d65f03c0     	ret
+   43c38: 97ff2b7c     	bl	0xea28 <___clang_call_terminate>
+
+0000000000043c3c <QtPrivate::QGenericArrayOps<ImageStruct>::destroyAll()>:
+   43c3c: a9bd57f6     	stp	x22, x21, [sp, #-0x30]!
+   43c40: a9014ff4     	stp	x20, x19, [sp, #0x10]
+   43c44: a9027bfd     	stp	x29, x30, [sp, #0x20]
+   43c48: 910083fd     	add	x29, sp, #0x20
+   43c4c: f9400808     	ldr	x8, [x0, #0x10]
+   43c50: b40004c8     	cbz	x8, 0x43ce8 <QtPrivate::QGenericArrayOps<ImageStruct>::destroyAll()+0xac>
+   43c54: f9400409     	ldr	x9, [x0, #0x8]
+   43c58: 8b080d08     	add	x8, x8, x8, lsl #3
+   43c5c: d37ced13     	lsl	x19, x8, #4
+   43c60: 91018134     	add	x20, x9, #0x60
+   43c64: 12800015     	mov	w21, #-0x1              ; =-1
+   43c68: 14000004     	b	0x43c78 <QtPrivate::QGenericArrayOps<ImageStruct>::destroyAll()+0x3c>
+   43c6c: 91024294     	add	x20, x20, #0x90
+   43c70: f1024273     	subs	x19, x19, #0x90
+   43c74: 540003a0     	b.eq	0x43ce8 <QtPrivate::QGenericArrayOps<ImageStruct>::destroyAll()+0xac>
+   43c78: f9400e88     	ldr	x8, [x20, #0x18]
+   43c7c: b4000108     	cbz	x8, 0x43c9c <QtPrivate::QGenericArrayOps<ImageStruct>::destroyAll()+0x60>
+   43c80: b8f50108     	ldaddal	w21, w8, [x8]
+   43c84: 7100051f     	cmp	w8, #0x1
+   43c88: 540000a1     	b.ne	0x43c9c <QtPrivate::QGenericArrayOps<ImageStruct>::destroyAll()+0x60>
+   43c8c: f9400e80     	ldr	x0, [x20, #0x18]
+   43c90: 52800021     	mov	w1, #0x1                ; =1
+   43c94: 52800102     	mov	w2, #0x8                ; =8
+   43c98: 940863f8     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43c9c: f9400288     	ldr	x8, [x20]
+   43ca0: b4000108     	cbz	x8, 0x43cc0 <QtPrivate::QGenericArrayOps<ImageStruct>::destroyAll()+0x84>
+   43ca4: b8f50108     	ldaddal	w21, w8, [x8]
+   43ca8: 7100051f     	cmp	w8, #0x1
+   43cac: 540000a1     	b.ne	0x43cc0 <QtPrivate::QGenericArrayOps<ImageStruct>::destroyAll()+0x84>
+   43cb0: f9400280     	ldr	x0, [x20]
+   43cb4: 52800021     	mov	w1, #0x1                ; =1
+   43cb8: 52800102     	mov	w2, #0x8                ; =8
+   43cbc: 940863ef     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43cc0: f85d0288     	ldur	x8, [x20, #-0x30]
+   43cc4: b4fffd48     	cbz	x8, 0x43c6c <QtPrivate::QGenericArrayOps<ImageStruct>::destroyAll()+0x30>
+   43cc8: b8f50108     	ldaddal	w21, w8, [x8]
+   43ccc: 7100051f     	cmp	w8, #0x1
+   43cd0: 54fffce1     	b.ne	0x43c6c <QtPrivate::QGenericArrayOps<ImageStruct>::destroyAll()+0x30>
+   43cd4: f85d0280     	ldur	x0, [x20, #-0x30]
+   43cd8: 52800021     	mov	w1, #0x1                ; =1
+   43cdc: 52800102     	mov	w2, #0x8                ; =8
+   43ce0: 940863e6     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   43ce4: 17ffffe2     	b	0x43c6c <QtPrivate::QGenericArrayOps<ImageStruct>::destroyAll()+0x30>
+   43ce8: a9427bfd     	ldp	x29, x30, [sp, #0x20]
+   43cec: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+   43cf0: a8c357f6     	ldp	x22, x21, [sp], #0x30
+   43cf4: d65f03c0     	ret
+
+0000000000043cf8 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)>:
+   43cf8: d10143ff     	sub	sp, sp, #0x50
+   43cfc: a9015ff8     	stp	x24, x23, [sp, #0x10]
+   43d00: a90257f6     	stp	x22, x21, [sp, #0x20]
+   43d04: a9034ff4     	stp	x20, x19, [sp, #0x30]
+   43d08: a9047bfd     	stp	x29, x30, [sp, #0x40]
+   43d0c: 910103fd     	add	x29, sp, #0x40
+   43d10: aa0103f4     	mov	x20, x1
+   43d14: aa0003f3     	mov	x19, x0
+   43d18: f9400008     	ldr	x8, [x0]
+   43d1c: b40002a8     	cbz	x8, 0x43d70 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x78>
+   43d20: b9400109     	ldr	w9, [x8]
+   43d24: 7100053f     	cmp	w9, #0x1
+   43d28: 5400024c     	b.gt	0x43d70 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x78>
+   43d2c: f9400a69     	ldr	x9, [x19, #0x10]
+   43d30: eb14013f     	cmp	x9, x20
+   43d34: 54000121     	b.ne	0x43d58 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x60>
+   43d38: f940050a     	ldr	x10, [x8, #0x8]
+   43d3c: f9400669     	ldr	x9, [x19, #0x8]
+   43d40: 91005d0b     	add	x11, x8, #0x17
+   43d44: 927df16b     	and	x11, x11, #0xfffffffffffffff8
+   43d48: cb0b012b     	sub	x11, x9, x11
+   43d4c: 8b8b0e8b     	add	x11, x20, x11, asr #3
+   43d50: eb0b015f     	cmp	x10, x11
+   43d54: 54000ce1     	b.ne	0x43ef0 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x1f8>
+   43d58: b50000d4     	cbnz	x20, 0x43d70 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x78>
+   43d5c: f9400669     	ldr	x9, [x19, #0x8]
+   43d60: 91005d08     	add	x8, x8, #0x17
+   43d64: 927df108     	and	x8, x8, #0xfffffffffffffff8
+   43d68: eb09011f     	cmp	x8, x9
+   43d6c: 54000d01     	b.ne	0x43f0c <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x214>
+   43d70: 910023e0     	add	x0, sp, #0x8
+   43d74: aa0203e1     	mov	x1, x2
+   43d78: 940864aa     	bl	0x25d020 <dyld_stub_binder+0x25d020>
+   43d7c: f9400a68     	ldr	x8, [x19, #0x10]
+   43d80: f100029f     	cmp	x20, #0x0
+   43d84: fa400904     	ccmp	x8, #0x0, #0x4, eq
+   43d88: 1a9f07f5     	cset	w21, ne
+   43d8c: f9400269     	ldr	x9, [x19]
+   43d90: b4000089     	cbz	x9, 0x43da0 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0xa8>
+   43d94: b940012a     	ldr	w10, [x9]
+   43d98: 7100055f     	cmp	w10, #0x1
+   43d9c: 540001ed     	b.le	0x43dd8 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0xe0>
+   43da0: aa1303e0     	mov	x0, x19
+   43da4: aa1503e1     	mov	x1, x21
+   43da8: 52800022     	mov	w2, #0x1                ; =1
+   43dac: d2800003     	mov	x3, #0x0                ; =0
+   43db0: 9400006d     	bl	0x43f64 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)>
+   43db4: 34000755     	cbz	w21, 0x43e9c <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x1a4>
+   43db8: f9400668     	ldr	x8, [x19, #0x8]
+   43dbc: d1002100     	sub	x0, x8, #0x8
+   43dc0: 910023e1     	add	x1, sp, #0x8
+   43dc4: 94086494     	bl	0x25d014 <dyld_stub_binder+0x25d014>
+   43dc8: f9400668     	ldr	x8, [x19, #0x8]
+   43dcc: d1002108     	sub	x8, x8, #0x8
+   43dd0: f9000668     	str	x8, [x19, #0x8]
+   43dd4: 1400003c     	b	0x43ec4 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x1cc>
+   43dd8: 34000175     	cbz	w21, 0x43e04 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x10c>
+   43ddc: aa1303f7     	mov	x23, x19
+   43de0: f8408ee1     	ldr	x1, [x23, #0x8]!
+   43de4: 91005d2a     	add	x10, x9, #0x17
+   43de8: 927df14a     	and	x10, x10, #0xfffffffffffffff8
+   43dec: cb0a002b     	sub	x11, x1, x10
+   43df0: f1001d7f     	cmp	x11, #0x7
+   43df4: 54fffe2c     	b.gt	0x43db8 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0xc0>
+   43df8: f940052a     	ldr	x10, [x9, #0x8]
+   43dfc: 9343fd69     	asr	x9, x11, #3
+   43e00: 1400000e     	b	0x43e38 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x140>
+   43e04: f940052a     	ldr	x10, [x9, #0x8]
+   43e08: aa1303f7     	mov	x23, x19
+   43e0c: f8408ee1     	ldr	x1, [x23, #0x8]!
+   43e10: 91005d29     	add	x9, x9, #0x17
+   43e14: 927df129     	and	x9, x9, #0xfffffffffffffff8
+   43e18: cb09002b     	sub	x11, x1, x9
+   43e1c: 9343fd69     	asr	x9, x11, #3
+   43e20: 8b09010c     	add	x12, x8, x9
+   43e24: cb0c014c     	sub	x12, x10, x12
+   43e28: f100019f     	cmp	x12, #0x0
+   43e2c: 5400038c     	b.gt	0x43e9c <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x1a4>
+   43e30: f100217f     	cmp	x11, #0x8
+   43e34: 540007ca     	b.ge	0x43f2c <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x234>
+   43e38: 34fffb55     	cbz	w21, 0x43da0 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0xa8>
+   43e3c: cb08014b     	sub	x11, x10, x8
+   43e40: cb09016b     	sub	x11, x11, x9
+   43e44: 8b08050c     	add	x12, x8, x8, lsl #1
+   43e48: f100057f     	cmp	x11, #0x1
+   43e4c: fa4aa180     	ccmp	x12, x10, #0x0, ge
+   43e50: 54fffa8a     	b.ge	0x43da0 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0xa8>
+   43e54: aa2803eb     	mvn	x11, x8
+   43e58: 8b0b014b     	add	x11, x10, x11
+   43e5c: cb08014a     	sub	x10, x10, x8
+   43e60: f100017f     	cmp	x11, #0x0
+   43e64: 9a8bb14a     	csel	x10, x10, x11, lt
+   43e68: 9341fd4b     	asr	x11, x10, #1
+   43e6c: 8aaafd6a     	bic	x10, x11, x10, asr #63
+   43e70: 9100054a     	add	x10, x10, #0x1
+   43e74: cb09014b     	sub	x11, x10, x9
+   43e78: 8b0b0c36     	add	x22, x1, x11, lsl #3
+   43e7c: eb09015f     	cmp	x10, x9
+   43e80: 540000a0     	b.eq	0x43e94 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x19c>
+   43e84: b4000081     	cbz	x1, 0x43e94 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x19c>
+   43e88: d37df102     	lsl	x2, x8, #3
+   43e8c: aa1603e0     	mov	x0, x22
+   43e90: 94086c83     	bl	0x25f09c <dyld_stub_binder+0x25f09c>
+   43e94: f90002f6     	str	x22, [x23]
+   43e98: 35fff915     	cbnz	w21, 0x43db8 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0xc0>
+   43e9c: a940a668     	ldp	x8, x9, [x19, #0x8]
+   43ea0: 8b140d15     	add	x21, x8, x20, lsl #3
+   43ea4: 910022a0     	add	x0, x21, #0x8
+   43ea8: cb140128     	sub	x8, x9, x20
+   43eac: d37df102     	lsl	x2, x8, #3
+   43eb0: aa1503e1     	mov	x1, x21
+   43eb4: 94086c7a     	bl	0x25f09c <dyld_stub_binder+0x25f09c>
+   43eb8: 910023e1     	add	x1, sp, #0x8
+   43ebc: aa1503e0     	mov	x0, x21
+   43ec0: 94086455     	bl	0x25d014 <dyld_stub_binder+0x25d014>
+   43ec4: f9400a68     	ldr	x8, [x19, #0x10]
+   43ec8: 91000508     	add	x8, x8, #0x1
+   43ecc: f9000a68     	str	x8, [x19, #0x10]
+   43ed0: 910023e0     	add	x0, sp, #0x8
+   43ed4: 94086459     	bl	0x25d038 <dyld_stub_binder+0x25d038>
+   43ed8: a9447bfd     	ldp	x29, x30, [sp, #0x40]
+   43edc: a9434ff4     	ldp	x20, x19, [sp, #0x30]
+   43ee0: a94257f6     	ldp	x22, x21, [sp, #0x20]
+   43ee4: a9415ff8     	ldp	x24, x23, [sp, #0x10]
+   43ee8: 910143ff     	add	sp, sp, #0x50
+   43eec: d65f03c0     	ret
+   43ef0: 8b140d20     	add	x0, x9, x20, lsl #3
+   43ef4: aa0203e1     	mov	x1, x2
+   43ef8: 9408644a     	bl	0x25d020 <dyld_stub_binder+0x25d020>
+   43efc: f9400a68     	ldr	x8, [x19, #0x10]
+   43f00: 91000508     	add	x8, x8, #0x1
+   43f04: f9000a68     	str	x8, [x19, #0x10]
+   43f08: 17fffff4     	b	0x43ed8 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x1e0>
+   43f0c: d1002120     	sub	x0, x9, #0x8
+   43f10: aa0203e1     	mov	x1, x2
+   43f14: 94086443     	bl	0x25d020 <dyld_stub_binder+0x25d020>
+   43f18: a940a668     	ldp	x8, x9, [x19, #0x8]
+   43f1c: d1002108     	sub	x8, x8, #0x8
+   43f20: 91000529     	add	x9, x9, #0x1
+   43f24: a900a668     	stp	x8, x9, [x19, #0x8]
+   43f28: 17ffffec     	b	0x43ed8 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x1e0>
+   43f2c: 8b08050b     	add	x11, x8, x8, lsl #1
+   43f30: eb0a057f     	cmp	x11, x10, lsl #1
+   43f34: 54fff36a     	b.ge	0x43da0 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0xa8>
+   43f38: cb090c36     	sub	x22, x1, x9, lsl #3
+   43f3c: b4fffac8     	cbz	x8, 0x43e94 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x19c>
+   43f40: d280000a     	mov	x10, #0x0               ; =0
+   43f44: eb09015f     	cmp	x10, x9
+   43f48: 54fff9e1     	b.ne	0x43e84 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x18c>
+   43f4c: 17ffffd2     	b	0x43e94 <void QtPrivate::QMovableArrayOps<QJsonObject>::emplace<QJsonObject const&>(long long, QJsonObject const&)+0x19c>
+   43f50: aa0003f3     	mov	x19, x0
+   43f54: 910023e0     	add	x0, sp, #0x8
+   43f58: 94086438     	bl	0x25d038 <dyld_stub_binder+0x25d038>
+   43f5c: aa1303e0     	mov	x0, x19
+   43f60: 94086334     	bl	0x25cc30 <dyld_stub_binder+0x25cc30>
+
+0000000000043f64 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)>:
+   43f64: d10183ff     	sub	sp, sp, #0x60
+   43f68: a9025ff8     	stp	x24, x23, [sp, #0x20]
+   43f6c: a90357f6     	stp	x22, x21, [sp, #0x30]
+   43f70: a9044ff4     	stp	x20, x19, [sp, #0x40]
+   43f74: a9057bfd     	stp	x29, x30, [sp, #0x50]
+   43f78: 910143fd     	add	x29, sp, #0x50
+   43f7c: aa0303f4     	mov	x20, x3
+   43f80: aa0203f5     	mov	x21, x2
+   43f84: aa0103e2     	mov	x2, x1
+   43f88: aa0003f3     	mov	x19, x0
+   43f8c: 350002a1     	cbnz	w1, 0x43fe0 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x7c>
+   43f90: b5000294     	cbnz	x20, 0x43fe0 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x7c>
+   43f94: f9400260     	ldr	x0, [x19]
+   43f98: b4000240     	cbz	x0, 0x43fe0 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x7c>
+   43f9c: b9400008     	ldr	w8, [x0]
+   43fa0: f10006bf     	cmp	x21, #0x1
+   43fa4: 540001eb     	b.lt	0x43fe0 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x7c>
+   43fa8: 7100051f     	cmp	w8, #0x1
+   43fac: 540001ac     	b.gt	0x43fe0 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x7c>
+   43fb0: 91005c08     	add	x8, x0, #0x17
+   43fb4: 927df108     	and	x8, x8, #0xfffffffffffffff8
+   43fb8: a940a661     	ldp	x1, x9, [x19, #0x8]
+   43fbc: cb080028     	sub	x8, x1, x8
+   43fc0: 8b150129     	add	x9, x9, x21
+   43fc4: 8b880d23     	add	x3, x9, x8, asr #3
+   43fc8: 52800102     	mov	w2, #0x8                ; =8
+   43fcc: 52800004     	mov	w4, #0x0                ; =0
+   43fd0: 9408632d     	bl	0x25cc84 <dyld_stub_binder+0x25cc84>
+   43fd4: b4000b61     	cbz	x1, 0x44140 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x1dc>
+   43fd8: a9000660     	stp	x0, x1, [x19]
+   43fdc: 14000051     	b	0x44120 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x1bc>
+   43fe0: 910003e8     	mov	x8, sp
+   43fe4: aa1303e0     	mov	x0, x19
+   43fe8: aa1503e1     	mov	x1, x21
+   43fec: 9400005c     	bl	0x4415c <QArrayDataPointer<QJsonObject>::allocateGrow(QArrayDataPointer<QJsonObject> const&, long long, QArrayData::GrowthPosition)>
+   43ff0: f94007f6     	ldr	x22, [sp, #0x8]
+   43ff4: f10006bf     	cmp	x21, #0x1
+   43ff8: 5400004b     	b.lt	0x44000 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x9c>
+   43ffc: b40009f6     	cbz	x22, 0x44138 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x1d4>
+   44000: f9400a68     	ldr	x8, [x19, #0x10]
+   44004: b40004c8     	cbz	x8, 0x4409c <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x138>
+   44008: 8a95fea9     	and	x9, x21, x21, asr #63
+   4400c: 8b090108     	add	x8, x8, x9
+   44010: f9400269     	ldr	x9, [x19]
+   44014: b4000289     	cbz	x9, 0x44064 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x100>
+   44018: b9400129     	ldr	w9, [x9]
+   4401c: b5000254     	cbnz	x20, 0x44064 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x100>
+   44020: 7100093f     	cmp	w9, #0x2
+   44024: 5400020a     	b.ge	0x44064 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x100>
+   44028: f100051f     	cmp	x8, #0x1
+   4402c: 5400038b     	b.lt	0x4409c <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x138>
+   44030: f9400675     	ldr	x21, [x19, #0x8]
+   44034: 8b080eb7     	add	x23, x21, x8, lsl #3
+   44038: f9400be8     	ldr	x8, [sp, #0x10]
+   4403c: 8b080ec0     	add	x0, x22, x8, lsl #3
+   44040: aa1503e1     	mov	x1, x21
+   44044: 940863f4     	bl	0x25d014 <dyld_stub_binder+0x25d014>
+   44048: 910022b5     	add	x21, x21, #0x8
+   4404c: f9400be8     	ldr	x8, [sp, #0x10]
+   44050: 91000508     	add	x8, x8, #0x1
+   44054: f9000be8     	str	x8, [sp, #0x10]
+   44058: eb1702bf     	cmp	x21, x23
+   4405c: 54ffff03     	b.lo	0x4403c <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0xd8>
+   44060: 1400000f     	b	0x4409c <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x138>
+   44064: f100051f     	cmp	x8, #0x1
+   44068: 540001ab     	b.lt	0x4409c <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x138>
+   4406c: f9400675     	ldr	x21, [x19, #0x8]
+   44070: 8b080eb7     	add	x23, x21, x8, lsl #3
+   44074: f9400be8     	ldr	x8, [sp, #0x10]
+   44078: 8b080ec0     	add	x0, x22, x8, lsl #3
+   4407c: aa1503e1     	mov	x1, x21
+   44080: 940863e8     	bl	0x25d020 <dyld_stub_binder+0x25d020>
+   44084: 910022b5     	add	x21, x21, #0x8
+   44088: f9400be8     	ldr	x8, [sp, #0x10]
+   4408c: 91000508     	add	x8, x8, #0x1
+   44090: f9000be8     	str	x8, [sp, #0x10]
+   44094: eb1702bf     	cmp	x21, x23
+   44098: 54ffff03     	b.lo	0x44078 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x114>
+   4409c: a9402668     	ldp	x8, x9, [x19]
+   440a0: 3dc003e0     	ldr	q0, [sp]
+   440a4: 3d800260     	str	q0, [x19]
+   440a8: a90027e8     	stp	x8, x9, [sp]
+   440ac: f9400a6a     	ldr	x10, [x19, #0x10]
+   440b0: f9400beb     	ldr	x11, [sp, #0x10]
+   440b4: f9000a6b     	str	x11, [x19, #0x10]
+   440b8: f9000bea     	str	x10, [sp, #0x10]
+   440bc: b4000114     	cbz	x20, 0x440dc <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x178>
+   440c0: 3dc00280     	ldr	q0, [x20]
+   440c4: a9002688     	stp	x8, x9, [x20]
+   440c8: 3d8003e0     	str	q0, [sp]
+   440cc: f9400a88     	ldr	x8, [x20, #0x10]
+   440d0: f9000a8a     	str	x10, [x20, #0x10]
+   440d4: f9000be8     	str	x8, [sp, #0x10]
+   440d8: 9e660008     	fmov	x8, d0
+   440dc: b4000228     	cbz	x8, 0x44120 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x1bc>
+   440e0: 12800009     	mov	w9, #-0x1               ; =-1
+   440e4: b8e90108     	ldaddal	w9, w8, [x8]
+   440e8: 7100051f     	cmp	w8, #0x1
+   440ec: 540001a1     	b.ne	0x44120 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x1bc>
+   440f0: f9400be8     	ldr	x8, [sp, #0x10]
+   440f4: b40000e8     	cbz	x8, 0x44110 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x1ac>
+   440f8: f94007e0     	ldr	x0, [sp, #0x8]
+   440fc: d37df113     	lsl	x19, x8, #3
+   44100: 940863ce     	bl	0x25d038 <dyld_stub_binder+0x25d038>
+   44104: 91002000     	add	x0, x0, #0x8
+   44108: f1002273     	subs	x19, x19, #0x8
+   4410c: 54ffffa1     	b.ne	0x44100 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x19c>
+   44110: f94003e0     	ldr	x0, [sp]
+   44114: 52800101     	mov	w1, #0x8                ; =8
+   44118: 52800102     	mov	w2, #0x8                ; =8
+   4411c: 940862d7     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   44120: a9457bfd     	ldp	x29, x30, [sp, #0x50]
+   44124: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+   44128: a94357f6     	ldp	x22, x21, [sp, #0x30]
+   4412c: a9425ff8     	ldp	x24, x23, [sp, #0x20]
+   44130: 910183ff     	add	sp, sp, #0x60
+   44134: d65f03c0     	ret
+   44138: 940862cd     	bl	0x25cc6c <dyld_stub_binder+0x25cc6c>
+   4413c: d4200020     	brk	#0x1
+   44140: 940862cb     	bl	0x25cc6c <dyld_stub_binder+0x25cc6c>
+   44144: 14000001     	b	0x44148 <QArrayDataPointer<QJsonObject>::reallocateAndGrow(QArrayData::GrowthPosition, long long, QArrayDataPointer<QJsonObject>*)+0x1e4>
+   44148: aa0003f3     	mov	x19, x0
+   4414c: 910003e0     	mov	x0, sp
+   44150: 97fffe8c     	bl	0x43b80 <QArrayDataPointer<QJsonObject>::~QArrayDataPointer()>
+   44154: aa1303e0     	mov	x0, x19
+   44158: 940862b6     	bl	0x25cc30 <dyld_stub_binder+0x25cc30>
+
+000000000004415c <QArrayDataPointer<QJsonObject>::allocateGrow(QArrayDataPointer<QJsonObject> const&, long long, QArrayData::GrowthPosition)>:
+   4415c: d10103ff     	sub	sp, sp, #0x40
+   44160: a90157f6     	stp	x22, x21, [sp, #0x10]
+   44164: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   44168: a9037bfd     	stp	x29, x30, [sp, #0x30]
+   4416c: 9100c3fd     	add	x29, sp, #0x30
+   44170: aa0203f6     	mov	x22, x2
+   44174: aa0103f5     	mov	x21, x1
+   44178: aa0003f4     	mov	x20, x0
+   4417c: aa0803f3     	mov	x19, x8
+   44180: f9400009     	ldr	x9, [x0]
+   44184: b40002a9     	cbz	x9, 0x441d8 <QArrayDataPointer<QJsonObject>::allocateGrow(QArrayDataPointer<QJsonObject> const&, long long, QArrayData::GrowthPosition)+0x7c>
+   44188: f9400528     	ldr	x8, [x9, #0x8]
+   4418c: a940aa8b     	ldp	x11, x10, [x20, #0x8]
+   44190: eb08015f     	cmp	x10, x8
+   44194: 9a88c14c     	csel	x12, x10, x8, gt
+   44198: 91005d2d     	add	x13, x9, #0x17
+   4419c: 927df1ad     	and	x13, x13, #0xfffffffffffffff8
+   441a0: cb0d016b     	sub	x11, x11, x13
+   441a4: 9343fd6b     	asr	x11, x11, #3
+   441a8: 8b0b014a     	add	x10, x10, x11
+   441ac: cb0a010a     	sub	x10, x8, x10
+   441b0: 710002df     	cmp	w22, #0x0
+   441b4: 9a8b014a     	csel	x10, x10, x11, eq
+   441b8: 8b15018b     	add	x11, x12, x21
+   441bc: cb0a016a     	sub	x10, x11, x10
+   441c0: eb0a011f     	cmp	x8, x10
+   441c4: 9a8ac10b     	csel	x11, x8, x10, gt
+   441c8: 39401129     	ldrb	w9, [x9, #0x4]
+   441cc: 7200013f     	tst	w9, #0x1
+   441d0: 9a8b0143     	csel	x3, x10, x11, eq
+   441d4: 14000005     	b	0x441e8 <QArrayDataPointer<QJsonObject>::allocateGrow(QArrayDataPointer<QJsonObject> const&, long long, QArrayData::GrowthPosition)+0x8c>
+   441d8: d2800008     	mov	x8, #0x0                ; =0
+   441dc: f9400a89     	ldr	x9, [x20, #0x10]
+   441e0: 8aa9fd29     	bic	x9, x9, x9, asr #63
+   441e4: 8b150123     	add	x3, x9, x21
+   441e8: eb08007f     	cmp	x3, x8
+   441ec: 1a9fc7e4     	cset	w4, le
+   441f0: 910023e0     	add	x0, sp, #0x8
+   441f4: 52800101     	mov	w1, #0x8                ; =8
+   441f8: 52800102     	mov	w2, #0x8                ; =8
+   441fc: 940862a5     	bl	0x25cc90 <dyld_stub_binder+0x25cc90>
+   44200: f94007e8     	ldr	x8, [sp, #0x8]
+   44204: b4000348     	cbz	x8, 0x4426c <QArrayDataPointer<QJsonObject>::allocateGrow(QArrayDataPointer<QJsonObject> const&, long long, QArrayData::GrowthPosition)+0x110>
+   44208: b4000320     	cbz	x0, 0x4426c <QArrayDataPointer<QJsonObject>::allocateGrow(QArrayDataPointer<QJsonObject> const&, long long, QArrayData::GrowthPosition)+0x110>
+   4420c: 710006df     	cmp	w22, #0x1
+   44210: 540001c1     	b.ne	0x44248 <QArrayDataPointer<QJsonObject>::allocateGrow(QArrayDataPointer<QJsonObject> const&, long long, QArrayData::GrowthPosition)+0xec>
+   44214: f9400509     	ldr	x9, [x8, #0x8]
+   44218: f9400a8a     	ldr	x10, [x20, #0x10]
+   4421c: 8b15014a     	add	x10, x10, x21
+   44220: cb0a0129     	sub	x9, x9, x10
+   44224: f100013f     	cmp	x9, #0x0
+   44228: 9a89a529     	cinc	x9, x9, lt
+   4422c: d341fd2a     	lsr	x10, x9, #1
+   44230: 8aa9fd49     	bic	x9, x10, x9, asr #63
+   44234: 8b15012a     	add	x10, x9, x21
+   44238: f9400289     	ldr	x9, [x20]
+   4423c: 8b0a0c00     	add	x0, x0, x10, lsl #3
+   44240: b5000129     	cbnz	x9, 0x44264 <QArrayDataPointer<QJsonObject>::allocateGrow(QArrayDataPointer<QJsonObject> const&, long long, QArrayData::GrowthPosition)+0x108>
+   44244: 14000009     	b	0x44268 <QArrayDataPointer<QJsonObject>::allocateGrow(QArrayDataPointer<QJsonObject> const&, long long, QArrayData::GrowthPosition)+0x10c>
+   44248: f9400289     	ldr	x9, [x20]
+   4424c: b40000e9     	cbz	x9, 0x44268 <QArrayDataPointer<QJsonObject>::allocateGrow(QArrayDataPointer<QJsonObject> const&, long long, QArrayData::GrowthPosition)+0x10c>
+   44250: f940068a     	ldr	x10, [x20, #0x8]
+   44254: 91005d2b     	add	x11, x9, #0x17
+   44258: 927df16b     	and	x11, x11, #0xfffffffffffffff8
+   4425c: cb0b014a     	sub	x10, x10, x11
+   44260: 8b0a0000     	add	x0, x0, x10
+   44264: b9400529     	ldr	w9, [x9, #0x4]
+   44268: b9000509     	str	w9, [x8, #0x4]
+   4426c: a9000268     	stp	x8, x0, [x19]
+   44270: f9000a7f     	str	xzr, [x19, #0x10]
+   44274: a9437bfd     	ldp	x29, x30, [sp, #0x30]
+   44278: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   4427c: a94157f6     	ldp	x22, x21, [sp, #0x10]
+   44280: 910103ff     	add	sp, sp, #0x40
+   44284: d65f03c0     	ret
+
+0000000000044288 <QtPrivate::QGenericArrayOps<ImageStruct>::truncate(unsigned long)>:
+   44288: a9bc5ff8     	stp	x24, x23, [sp, #-0x40]!
+   4428c: a90157f6     	stp	x22, x21, [sp, #0x10]
+   44290: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   44294: a9037bfd     	stp	x29, x30, [sp, #0x30]
+   44298: 9100c3fd     	add	x29, sp, #0x30
+   4429c: aa0103f3     	mov	x19, x1
+   442a0: aa0003f4     	mov	x20, x0
+   442a4: f9400808     	ldr	x8, [x0, #0x10]
+   442a8: eb01011f     	cmp	x8, x1
+   442ac: 540000e1     	b.ne	0x442c8 <QtPrivate::QGenericArrayOps<ImageStruct>::truncate(unsigned long)+0x40>
+   442b0: f9000a93     	str	x19, [x20, #0x10]
+   442b4: a9437bfd     	ldp	x29, x30, [sp, #0x30]
+   442b8: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   442bc: a94157f6     	ldp	x22, x21, [sp, #0x10]
+   442c0: a8c45ff8     	ldp	x24, x23, [sp], #0x40
+   442c4: d65f03c0     	ret
+   442c8: f9400689     	ldr	x9, [x20, #0x8]
+   442cc: 5280120a     	mov	w10, #0x90              ; =144
+   442d0: 8b130e6b     	add	x11, x19, x19, lsl #3
+   442d4: d37ced6b     	lsl	x11, x11, #4
+   442d8: cb0b03ec     	neg	x12, x11
+   442dc: 9b0a3115     	madd	x21, x8, x10, x12
+   442e0: 8b090168     	add	x8, x11, x9
+   442e4: 91018116     	add	x22, x8, #0x60
+   442e8: 12800017     	mov	w23, #-0x1              ; =-1
+   442ec: 14000004     	b	0x442fc <QtPrivate::QGenericArrayOps<ImageStruct>::truncate(unsigned long)+0x74>
+   442f0: 910242d6     	add	x22, x22, #0x90
+   442f4: f10242b5     	subs	x21, x21, #0x90
+   442f8: 54fffdc0     	b.eq	0x442b0 <QtPrivate::QGenericArrayOps<ImageStruct>::truncate(unsigned long)+0x28>
+   442fc: f9400ec8     	ldr	x8, [x22, #0x18]
+   44300: b4000108     	cbz	x8, 0x44320 <QtPrivate::QGenericArrayOps<ImageStruct>::truncate(unsigned long)+0x98>
+   44304: b8f70108     	ldaddal	w23, w8, [x8]
+   44308: 7100051f     	cmp	w8, #0x1
+   4430c: 540000a1     	b.ne	0x44320 <QtPrivate::QGenericArrayOps<ImageStruct>::truncate(unsigned long)+0x98>
+   44310: f9400ec0     	ldr	x0, [x22, #0x18]
+   44314: 52800021     	mov	w1, #0x1                ; =1
+   44318: 52800102     	mov	w2, #0x8                ; =8
+   4431c: 94086257     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   44320: f94002c8     	ldr	x8, [x22]
+   44324: b4000108     	cbz	x8, 0x44344 <QtPrivate::QGenericArrayOps<ImageStruct>::truncate(unsigned long)+0xbc>
+   44328: b8f70108     	ldaddal	w23, w8, [x8]
+   4432c: 7100051f     	cmp	w8, #0x1
+   44330: 540000a1     	b.ne	0x44344 <QtPrivate::QGenericArrayOps<ImageStruct>::truncate(unsigned long)+0xbc>
+   44334: f94002c0     	ldr	x0, [x22]
+   44338: 52800021     	mov	w1, #0x1                ; =1
+   4433c: 52800102     	mov	w2, #0x8                ; =8
+   44340: 9408624e     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   44344: f85d02c8     	ldur	x8, [x22, #-0x30]
+   44348: b4fffd48     	cbz	x8, 0x442f0 <QtPrivate::QGenericArrayOps<ImageStruct>::truncate(unsigned long)+0x68>
+   4434c: b8f70108     	ldaddal	w23, w8, [x8]
+   44350: 7100051f     	cmp	w8, #0x1
+   44354: 54fffce1     	b.ne	0x442f0 <QtPrivate::QGenericArrayOps<ImageStruct>::truncate(unsigned long)+0x68>
+   44358: f85d02c0     	ldur	x0, [x22, #-0x30]
+   4435c: 52800021     	mov	w1, #0x1                ; =1
+   44360: 52800102     	mov	w2, #0x8                ; =8
+   44364: 94086245     	bl	0x25cc78 <dyld_stub_binder+0x25cc78>
+   44368: 17ffffe2     	b	0x442f0 <QtPrivate::QGenericArrayOps<ImageStruct>::truncate(unsigned long)+0x68>
+
+000000000004436c <QtPrivate::QFunctorSlotObject<SDDevice::SDDevice(LanguageUtilities*, QObject*)::$_0, 0, QtPrivate::List<>, void>::impl(int, QtPrivate::QSlotObjectBase*, QObject*, void**, bool*)>:
+   4436c: 7100041f     	cmp	w0, #0x1
+   44370: 540000c0     	b.eq	0x44388 <QtPrivate::QFunctorSlotObject<SDDevice::SDDevice(LanguageUtilities*, QObject*)::$_0, 0, QtPrivate::List<>, void>::impl(int, QtPrivate::QSlotObjectBase*, QObject*, void**, bool*)+0x1c>
+   44374: 35000080     	cbnz	w0, 0x44384 <QtPrivate::QFunctorSlotObject<SDDevice::SDDevice(LanguageUtilities*, QObject*)::$_0, 0, QtPrivate::List<>, void>::impl(int, QtPrivate::QSlotObjectBase*, QObject*, void**, bool*)+0x18>
+   44378: b4000061     	cbz	x1, 0x44384 <QtPrivate::QFunctorSlotObject<SDDevice::SDDevice(LanguageUtilities*, QObject*)::$_0, 0, QtPrivate::List<>, void>::impl(int, QtPrivate::QSlotObjectBase*, QObject*, void**, bool*)+0x18>
+   4437c: aa0103e0     	mov	x0, x1
+   44380: 14086a48     	b	0x25eca0 <dyld_stub_binder+0x25eca0>
+   44384: d65f03c0     	ret
+   44388: a9be4ff4     	stp	x20, x19, [sp, #-0x20]!
+   4438c: a9017bfd     	stp	x29, x30, [sp, #0x10]
+   44390: 910043fd     	add	x29, sp, #0x10
+   44394: f9400833     	ldr	x19, [x1, #0x10]
+   44398: b9401261     	ldr	w1, [x19, #0x10]
+   4439c: 7100043f     	cmp	w1, #0x1
+   443a0: 540000ab     	b.lt	0x443b4 <QtPrivate::QFunctorSlotObject<SDDevice::SDDevice(LanguageUtilities*, QObject*)::$_0, 0, QtPrivate::List<>, void>::impl(int, QtPrivate::QSlotObjectBase*, QObject*, void**, bool*)+0x48>
+   443a4: aa1303e0     	mov	x0, x19
+   443a8: 94086531     	bl	0x25d86c <dyld_stub_binder+0x25d86c>
+   443ac: 12800008     	mov	w8, #-0x1               ; =-1
+   443b0: b9001268     	str	w8, [x19, #0x10]
+   443b4: f9410261     	ldr	x1, [x19, #0x200]
+   443b8: 9284ecc8     	mov	x8, #-0x2767            ; =-10087
+   443bc: eb08003f     	cmp	x1, x8
+   443c0: fa401824     	ccmp	x1, #0x0, #0x4, ne
+   443c4: 540000a0     	b.eq	0x443d8 <QtPrivate::QFunctorSlotObject<SDDevice::SDDevice(LanguageUtilities*, QObject*)::$_0, 0, QtPrivate::List<>, void>::impl(int, QtPrivate::QSlotObjectBase*, QObject*, void**, bool*)+0x6c>
+   443c8: aa1303e0     	mov	x0, x19
+   443cc: 52800002     	mov	w2, #0x0                ; =0
+   443d0: 9408650c     	bl	0x25d800 <dyld_stub_binder+0x25d800>
+   443d4: b9001260     	str	w0, [x19, #0x10]
+   443d8: aa1303e0     	mov	x0, x19
+   443dc: a9417bfd     	ldp	x29, x30, [sp, #0x10]
+   443e0: a8c24ff4     	ldp	x20, x19, [sp], #0x20
+   443e4: 17ffd2da     	b	0x38f4c <SDDevice::sendWakeUpScreenPack()>
+
+00000000000443e8 <QtPrivate::QFunctorSlotObject<SDDevice::closeHidDeviceOnError(bool, QString)::$_0, 0, QtPrivate::List<>, void>::impl(int, QtPrivate::QSlotObjectBase*, QObject*, void**, bool*)>:
+   443e8: 7100041f     	cmp	w0, #0x1
+   443ec: 540000c0     	b.eq	0x44404 <QtPrivate::QFunctorSlotObject<SDDevice::closeHidDeviceOnError(bool, QString)::$_0, 0, QtPrivate::List<>, void>::impl(int, QtPrivate::QSlotObjectBase*, QObject*, void**, bool*)+0x1c>
+   443f0: 35000080     	cbnz	w0, 0x44400 <QtPrivate::QFunctorSlotObject<SDDevice::closeHidDeviceOnError(bool, QString)::$_0, 0, QtPrivate::List<>, void>::impl(int, QtPrivate::QSlotObjectBase*, QObject*, void**, bool*)+0x18>
+   443f4: b4000061     	cbz	x1, 0x44400 <QtPrivate::QFunctorSlotObject<SDDevice::closeHidDeviceOnError(bool, QString)::$_0, 0, QtPrivate::List<>, void>::impl(int, QtPrivate::QSlotObjectBase*, QObject*, void**, bool*)+0x18>
+   443f8: aa0103e0     	mov	x0, x1
+   443fc: 14086a29     	b	0x25eca0 <dyld_stub_binder+0x25eca0>
+   44400: d65f03c0     	ret
+   44404: f9400820     	ldr	x0, [x1, #0x10]
+   44408: 294a0801     	ldp	w1, w2, [x0, #0x50]
+   4440c: 91016003     	add	x3, x0, #0x58
+   44410: 294e1404     	ldp	w4, w5, [x0, #0x70]
+   44414: 39438006     	ldrb	w6, [x0, #0xe0]

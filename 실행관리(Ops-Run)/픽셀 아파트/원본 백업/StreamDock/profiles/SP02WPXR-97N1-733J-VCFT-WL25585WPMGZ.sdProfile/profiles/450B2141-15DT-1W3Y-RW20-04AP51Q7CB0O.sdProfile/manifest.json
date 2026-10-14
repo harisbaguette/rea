@@ -1,0 +1,22 @@
+{
+    "Actions": {
+        "3,0": {
+            "ActionID": "p5419dna-eq0o-8753-4i1w-zb8e17p44f40",
+            "Controller": "",
+            "Name": "change page",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": ""
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.page.change"
+        }
+    },
+    "DeviceModel": "20GBA9901",
+    "DeviceUUID": "TS10N4V25",
+    "Name": "",
+    "Version": "1.0"
+}

@@ -1,0 +1,17 @@
+{
+  "launcher_from_other_directory": true,
+  "frames_before_kill": 12,
+  "vendor_stopped_during_session": true,
+  "exit_code": -9,
+  "watchdog_reopened_vendor": true,
+  "reopen_seconds": 0.66,
+  "profiles_and_settings_unchanged": true,
+  "changed_file_count": 0,
+  "post_crash_device_reconnection_verified": true,
+  "screen_capture_blocked_by_locked_session": true,
+  "window_title_at_check": "MONSTAR DECK - 디바이스가 연결되지 않았습니다..",
+  "remaining_check": null,
+  "screen_unlocked_at_final_check": true,
+  "window_title_at_final_check": "MONSTAR DECK - 장치가 연결되었습니다",
+  "preview_pixel_difference_mean_sum": 0.0
+}

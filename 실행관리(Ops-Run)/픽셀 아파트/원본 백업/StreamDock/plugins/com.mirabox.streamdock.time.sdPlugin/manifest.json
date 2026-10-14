@@ -1,0 +1,106 @@
+{
+  "Actions": [
+    {
+      "UUID": "com.mirabox.streamdock.time.action1",
+      "Icon": "images/world.png",
+      "state": 0,
+      "States": [
+        {
+          "FontSize": "11",
+          "FontStyle": "Bold",
+          "TitleAlignment": "bottom",
+          "Image": "images/index.jpg"
+        }
+      ],
+      "Settings": {
+        "amplify": true,
+        "zone": "system",
+        "theme": "theme1",
+        "isBackgroundHidden": false
+      },
+      "UserTitleEnabled": false,
+      "SupportedInMultiActions": false,
+      "Controllers": [
+        "Keypad",
+        "Information"
+      ],
+      "Name": "World Time",
+      "Tooltip": "Drag view world time in different time zones",
+      "PropertyInspectorPath": "index.html"
+    },
+    {
+      "UUID": "com.mirabox.streamdock.time.action2",
+      "Icon": "images/timer.png",
+      "state": 0,
+      "States": [
+        {
+          "FontSize": "16",
+          "TitleAlignment": "bottom",
+          "Image": "images/T1.jpg"
+        }
+      ],
+      "Settings": {
+        "select": "1",
+        "deep": 0
+      },
+      "UserTitleEnabled": false,
+      "SupportedInMultiActions": false,
+      "Controllers": [
+        "Keypad",
+        "Information"
+      ],
+      "Name": "Timer",
+      "Tooltip": "Press the button to start/pause, double-click to restart",
+      "PropertyInspectorPath": "index.html"
+    },
+    {
+      "UUID": "com.mirabox.streamdock.time.action3",
+      "Icon": "images/count.png",
+      "state": 0,
+      "States": [
+        {
+          "FontSize": "16",
+          "TitleAlignment": "bottom",
+          "Image": "images/C1.jpg"
+        }
+      ],
+      "Settings": {
+        "select": "1",
+        "surplus": 60000,
+        "timing": "60000",
+        "inputTime": "0",
+        "musicUrl": "./assets/kn.mp3",
+        "color": "rgb(0,255,0)"
+      },
+      "UserTitleEnabled": false,
+      "SupportedInMultiActions": false,
+      "Controllers": [
+        "Keypad",
+        "Information"
+      ],
+      "Name": "Countdown",
+      "Tooltip": "Press the button to start/pause, double-click to restart",
+      "PropertyInspectorPath": "index.html"
+    }
+  ],
+  "Version": "2.0",
+  "Name": "Time Options",
+  "Icon": "images/cate.png",
+  "CategoryIcon": "images/cate.png",
+  "Category": "Time Options",
+  "Description": "Drag in to view time in different time zones and experience the world in different time zones!",
+  "CodePath": "index.html",
+  "SDKVersion": 1,
+  "Author": "HotSpot",
+  "URL": "http://video.hotspotek.com.cn/",
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.11"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "7"
+    }
+  ]
+}

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实用便签</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-width: 400px;
+            background-color: #cddff0;
+        }
+
+        .logo {
+            width: 100%;
+            display: flex;
+            margin-top: 20px;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo img {
+            width: 66px;
+            height: 66px;
+            border-radius: 8px;
+        }
+
+        .logo div {
+            font-size: 26px;
+            margin-top: 16px;
+            font-weight: 700;
+            color: #242424;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            margin-top: 30px;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container .item {
+            width: 90%;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
+        .container .item .title {
+            color: #222;
+            font-size: 20px;
+            display: block;
+            width: 100%;
+            font-weight: 700;
+            border: 0;
+            outline: none;
+        }
+        .container .item .edittitle {
+            color: #222;
+            font-size: 20px;
+            display: block;
+            width: 100%;
+            font-weight: 700;
+            outline: none;
+        }
+
+        .container .item .editcontent {
+            color: #999;
+            font-size: 14px;
+            display: block;
+            resize:vertical;
+            width: 100%;
+            margin-top: 8px;
+            outline: none;
+        }
+        .container .item .content {
+            color: #999;
+            resize:none;
+            display: block;
+            width: 100%;
+            font-size: 14px;
+            margin-top: 8px;
+            outline: none;
+            border: 0;
+            outline: none;
+        }
+        .container .item .other {
+            color: #999;
+            display: flex;
+            font-size: 14px;
+            padding-top: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .delete {
+            cursor: pointer;
+            display: inline-block;
+            color: rgb(255, 107, 107);
+        }
+        .confirm {
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 20px;
+            color: rgb(0, 217, 255);
+        }
+        .new{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="../static/img/memo.png" alt="logo">
+        <div class="logoTitle"></div>
+    </div>
+    <div class="container"></div>
+    <div class="new">
+    </div>
+
+    <script>
+        let params = window.location.search;
+        let { language, context, list } = JSON.parse(decodeURI(params.split('=')[1])); // 解码
+        list = list == undefined ? [] : list
+        let editmode=false;
+        /* 简单封装 */
+        function $(selector) {
+            return document.querySelector(selector);
+        }
+
+        /* 国际化 */
+        let $local = {
+            zh_CN: {
+                "欢迎使用备忘记事": "欢迎使用备忘记事",
+                "删除便签": "删除便签",
+                "确定": "确定",
+                "添加": "添加",
+                "编辑": "编辑"
+            },
+            en: {
+                "欢迎使用备忘记事": "Welcome Remember things",
+                "删除便签": "Delete",
+                "确定": "OK",
+                "添加": "Add",
+                "编辑": "Edit"
+            },
+            ja: {
+                "欢迎使用备忘记事": "実用的な付箋へようこそ",
+                "删除便签": "削除",
+                "确定": "確定",
+                "添加": "追加",
+                "编辑": "編集"
+            },
+            it: {
+                "欢迎使用备忘记事": "Benvenuti alle note pratiche",
+                "删除便签": "Elimina nota",
+                "确定": "Conferma",
+                "添加": "Aggiungi",
+                "编辑": "Modifica"
+            },
+            de: {
+                "欢迎使用备忘记事": "Willkommen bei Praxishinweisen",
+                "删除便签": "Notiz löschen",
+                "确定": "Bestätigen",
+                "添加": "Hinzufügen",
+                "编辑": "Bearbeiten"
+            },
+            pt: {
+                "欢迎使用备忘记事": "Bem-vindo às Notas Práticas",
+                "删除便签": "Apagar a nota",
+                "确定": "Confirmar",
+                "添加": "Adicionar",
+                "编辑": "Editar"
+            },
+            es: {
+                "欢迎使用备忘记事": "Bienvenido a la nota práctica",
+                "删除便签": "Eliminar la nota",
+                "确定": "Aceptar",
+                "添加": "Agregar",
+                "编辑": "Editar"
+            },
+            fr: {
+                "欢迎使用备忘记事": "Bienvenue à la note pratique",
+                "删除便签": "Supprimer la note",
+                "确定": "Valider",
+                "添加": "Ajouter",
+                "编辑": "Modifier"
+            },
+            ko: {
+                "欢迎使用备忘记事": "실용적인 메모 시작",
+                "删除便签": "메모 삭제",
+                "确定": "확인",
+                "添加": "추가",
+                "编辑": "편집"
+            },
+            ru: {
+                "欢迎使用备忘记事": "Добро пожаловать с полезной подписью.",
+                "删除便签": "Удалить подпись",
+                "确定": "Подтвердить",
+                "添加": "Добавить",
+                "编辑": "Редактировать"
+            }
+        };
+
+        const $lang = (str) => {
+            const localString = $local[language] || $local['en'];
+            return localString[str];
+        };
+        const $Z = (num) => num < 10 ? "0" + num : num;
+        $('.logoTitle').innerHTML = $lang("欢迎使用备忘记事");
+        $('.new').innerHTML = `<div class="confirm" onclick="myFunction(-1)">${$lang("添加")}</div>`
+
+
+        /* 根据时间戳删除 */
+        function deleteEvent(time) {
+            let transfer={};
+            transfer.time=time;
+            transfer.isdel=!editmode;
+            if(!editmode){
+                console.log("del",transfer)
+                let index = list.findIndex(item => item.time === time);
+                list.splice(index, 1);
+                render();
+            }else{
+                console.log("edit",transfer)
+                transfer.data=list[time]
+                
+            }
+            localStorage.setItem(context, JSON.stringify(transfer));
+        }
+        function myFunction(listid) {
+            if(listid==-1){
+                const lsitem={"content":"","title":"",time:Date.now()}
+                listid=list.push(lsitem)-1;
+                render();
+            }
+            let aconfirm = document.getElementById("confirm" + listid.toString())
+
+            let atitle = document.getElementById("title" + listid.toString())
+            let acontent = document.getElementById("content" + listid.toString())
+            atitle.readOnly = editmode;
+            acontent.readOnly = editmode;
+            if(!editmode){
+                atitle.className="edittitle"
+                acontent.className="editcontent"
+                aconfirm.innerText=$lang("确定")
+            }else{
+                atitle.className="title"
+                acontent.className="content"
+                list[listid].title=atitle.value
+                list[listid].content=acontent.value
+                aconfirm.innerText=$lang("编辑")
+
+                deleteEvent(listid)
+            }
+            editmode=!editmode
+        }
+        /* 渲染函数 */
+        function render(str = '') {
+            list?.forEach((item, index) => {
+                let time = new Date(item.time);
+                let Y = time.getFullYear();
+                let M = time.getMonth() + 1;
+                let D = time.getDate();
+                let h = time.getHours();
+                let m = time.getMinutes();
+                let s = time.getSeconds();
+                str += `
+                <div class="item" ondblclick="myFunction(${index.toString()})">
+                    <input type="text" id="title${index.toString()}" class="title" value="${item.title}" readonly></input>
+                    <textarea type="text" class="content" id="content${index.toString()}" readonly>${item.content}</textarea>
+                    <div class="other">
+                        <div>${Y}-${$Z(M)}-${$Z(D)} ${$Z(h)}:${$Z(m)}:${$Z(s)}</div>
+                        <div>
+                            <div class="confirm" id="confirm${index.toString()}" onclick="myFunction(${index.toString()})">
+                                ${$lang("编辑")}
+                            </div>
+                            <div class="delete" id="delete${index.toString()}" onclick="deleteEvent(${item.time})">
+                                ${$lang("删除便签")}
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            $('.container').innerHTML = str;
+        }
+        render()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,243 @@
+
+libSDLibrary.arm64.dylib:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+000000000002c8b0 <SDDevice::sendDisconnectCommand()>:
+   2c8b0: d10183ff     	sub	sp, sp, #0x60
+   2c8b4: a9044ff4     	stp	x20, x19, [sp, #0x40]
+   2c8b8: a9057bfd     	stp	x29, x30, [sp, #0x50]
+   2c8bc: 910143fd     	add	x29, sp, #0x50
+   2c8c0: 39438408     	ldrb	w8, [x0, #0xe1]
+   2c8c4: 34001968     	cbz	w8, 0x2cbf0 <SDDevice::sendDisconnectCommand()+0x340>
+   2c8c8: aa0003f3     	mov	x19, x0
+   2c8cc: b9404808     	ldr	w8, [x0, #0x48]
+   2c8d0: 7101011f     	cmp	w8, #0x40
+   2c8d4: 540018eb     	b.lt	0x2cbf0 <SDDevice::sendDisconnectCommand()+0x340>
+   2c8d8: f9402268     	ldr	x8, [x19, #0x40]
+   2c8dc: b40018a8     	cbz	x8, 0x2cbf0 <SDDevice::sendDisconnectCommand()+0x340>
+   2c8e0: 90005694     	adrp	x20, __DefaultRuneLocale
+   2c8e4: f9407a94     	ldr	x20, [x20, #0xf0]
+   2c8e8: a94b0668     	ldp	x8, x1, [x19, #0xb0]
+   2c8ec: f100011f     	cmp	x8, #0x0
+   2c8f0: 9a880280     	csel	x0, x20, x8, eq
+   2c8f4: 90001242     	adrp	x2, 0x274000 <dyld_stub_binder+0x274000>
+   2c8f8: 9124ec42     	add	x2, x2, #0x93b
+   2c8fc: 92800003     	mov	x3, #-0x1               ; =-1
+   2c900: 52800024     	mov	w4, #0x1                ; =1
+   2c904: 9408c40d     	bl	__ZN7QString14compare_helperEPK5QCharxPKcxN2Qt15CaseSensitivityE
+   2c908: 34001740     	cbz	w0, 0x2cbf0 <SDDevice::sendDisconnectCommand()+0x340>
+   2c90c: a9438668     	ldp	x8, x1, [x19, #0x38]
+   2c910: f100011f     	cmp	x8, #0x0
+   2c914: 9a880280     	csel	x0, x20, x8, eq
+   2c918: 90001242     	adrp	x2, 0x274000 <dyld_stub_binder+0x274000>
+   2c91c: 9124fc42     	add	x2, x2, #0x93f
+   2c920: 92800003     	mov	x3, #-0x1               ; =-1
+   2c924: 52800024     	mov	w4, #0x1                ; =1
+   2c928: 9408c404     	bl	__ZN7QString14compare_helperEPK5QCharxPKcxN2Qt15CaseSensitivityE
+   2c92c: 34001620     	cbz	w0, 0x2cbf0 <SDDevice::sendDisconnectCommand()+0x340>
+   2c930: d00012a8     	adrp	x8, 0x282000 <_getSafetyLevel.zText+0x56af>
+   2c934: fd473900     	ldr	d0, [x8, #0xe70]
+   2c938: 90001248     	adrp	x8, 0x274000 <dyld_stub_binder+0x274000>
+   2c93c: 91011508     	add	x8, x8, #0x45
+   2c940: 90001249     	adrp	x9, 0x274000 <dyld_stub_binder+0x274000>
+   2c944: 91253929     	add	x9, x9, #0x94e
+   2c948: fd0003e0     	str	d0, [sp]
+   2c94c: a900a7e8     	stp	x8, x9, [sp, #0x8]
+   2c950: f0001228     	adrp	x8, 0x273000 <GCC_except_table47+0x3c>
+   2c954: 911fed08     	add	x8, x8, #0x7fb
+   2c958: f9000fe8     	str	x8, [sp, #0x18]
+   2c95c: 910083e8     	add	x8, sp, #0x20
+   2c960: 910003e0     	mov	x0, sp
+   2c964: 9408c626     	bl	__ZNK14QMessageLogger4infoEv
+   2c968: f94013f4     	ldr	x20, [sp, #0x20]
+   2c96c: 90001241     	adrp	x1, 0x274000 <dyld_stub_binder+0x274000>
+   2c970: 9125d421     	add	x1, x1, #0x975
+   2c974: 9100a3e8     	add	x8, sp, #0x28
+   2c978: 52800300     	mov	w0, #0x18               ; =24
+   2c97c: 9408c428     	bl	__ZN7QString8fromUtf8E14QByteArrayView
+   2c980: 9100a3e1     	add	x1, sp, #0x28
+   2c984: aa1403e0     	mov	x0, x20
+   2c988: 9408c1d3     	bl	__ZN11QTextStreamlsERK7QString
+   2c98c: f94017e8     	ldr	x8, [sp, #0x28]
+   2c990: b4000128     	cbz	x8, 0x2c9b4 <SDDevice::sendDisconnectCommand()+0x104>
+   2c994: 12800009     	mov	w9, #-0x1               ; =-1
+   2c998: b8e90108     	ldaddal	w9, w8, [x8]
+   2c99c: 7100051f     	cmp	w8, #0x1
+   2c9a0: 540000a1     	b.ne	0x2c9b4 <SDDevice::sendDisconnectCommand()+0x104>
+   2c9a4: f94017e0     	ldr	x0, [sp, #0x28]
+   2c9a8: 52800041     	mov	w1, #0x2                ; =2
+   2c9ac: 52800102     	mov	w2, #0x8                ; =8
+   2c9b0: 9408c0b2     	bl	__ZN10QArrayData10deallocateEPS_xx
+   2c9b4: f94013e0     	ldr	x0, [sp, #0x20]
+   2c9b8: 3940c008     	ldrb	w8, [x0, #0x30]
+   2c9bc: 34000068     	cbz	w8, 0x2c9c8 <SDDevice::sendDisconnectCommand()+0x118>
+   2c9c0: 52800401     	mov	w1, #0x20               ; =32
+   2c9c4: 9408c1c7     	bl	__ZN11QTextStreamlsEc
+   2c9c8: 910083e0     	add	x0, sp, #0x20
+   2c9cc: 9408c2fa     	bl	__ZN6QDebugD1Ev
+   2c9d0: b9804a68     	ldrsw	x8, [x19, #0x48]
+   2c9d4: 91000501     	add	x1, x8, #0x1
+   2c9d8: 910003e0     	mov	x0, sp
+   2c9dc: 52800002     	mov	w2, #0x0                ; =0
+   2c9e0: 9408c0e2     	bl	__ZN10QByteArrayC1Exc
+   2c9e4: 39438274     	ldrb	w20, [x19, #0xe0]
+   2c9e8: f94003e8     	ldr	x8, [sp]
+   2c9ec: b4000088     	cbz	x8, 0x2c9fc <SDDevice::sendDisconnectCommand()+0x14c>
+   2c9f0: b9400108     	ldr	w8, [x8]
+   2c9f4: 7100091f     	cmp	w8, #0x2
+   2c9f8: 540000ab     	b.lt	0x2ca0c <SDDevice::sendDisconnectCommand()+0x15c>
+   2c9fc: f9400be1     	ldr	x1, [sp, #0x10]
+   2ca00: 910003e0     	mov	x0, sp
+   2ca04: 52800022     	mov	w2, #0x1                ; =1
+   2ca08: 9408c0ae     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   2ca0c: f94007e8     	ldr	x8, [sp, #0x8]
+   2ca10: 39000114     	strb	w20, [x8]
+   2ca14: f94003e8     	ldr	x8, [sp]
+   2ca18: b4000088     	cbz	x8, 0x2ca28 <SDDevice::sendDisconnectCommand()+0x178>
+   2ca1c: b9400108     	ldr	w8, [x8]
+   2ca20: 7100091f     	cmp	w8, #0x2
+   2ca24: 540000ab     	b.lt	0x2ca38 <SDDevice::sendDisconnectCommand()+0x188>
+   2ca28: f9400be1     	ldr	x1, [sp, #0x10]
+   2ca2c: 910003e0     	mov	x0, sp
+   2ca30: 52800022     	mov	w2, #0x1                ; =1
+   2ca34: 9408c0a3     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   2ca38: f94007e8     	ldr	x8, [sp, #0x8]
+   2ca3c: 52800869     	mov	w9, #0x43               ; =67
+   2ca40: 39000509     	strb	w9, [x8, #0x1]
+   2ca44: f94003e8     	ldr	x8, [sp]
+   2ca48: b4000088     	cbz	x8, 0x2ca58 <SDDevice::sendDisconnectCommand()+0x1a8>
+   2ca4c: b9400108     	ldr	w8, [x8]
+   2ca50: 7100091f     	cmp	w8, #0x2
+   2ca54: 540000ab     	b.lt	0x2ca68 <SDDevice::sendDisconnectCommand()+0x1b8>
+   2ca58: f9400be1     	ldr	x1, [sp, #0x10]
+   2ca5c: 910003e0     	mov	x0, sp
+   2ca60: 52800022     	mov	w2, #0x1                ; =1
+   2ca64: 9408c097     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   2ca68: f94007e8     	ldr	x8, [sp, #0x8]
+   2ca6c: 52800a49     	mov	w9, #0x52               ; =82
+   2ca70: 39000909     	strb	w9, [x8, #0x2]
+   2ca74: f94003e8     	ldr	x8, [sp]
+   2ca78: b4000088     	cbz	x8, 0x2ca88 <SDDevice::sendDisconnectCommand()+0x1d8>
+   2ca7c: b9400108     	ldr	w8, [x8]
+   2ca80: 7100091f     	cmp	w8, #0x2
+   2ca84: 540000ab     	b.lt	0x2ca98 <SDDevice::sendDisconnectCommand()+0x1e8>
+   2ca88: f9400be1     	ldr	x1, [sp, #0x10]
+   2ca8c: 910003e0     	mov	x0, sp
+   2ca90: 52800022     	mov	w2, #0x1                ; =1
+   2ca94: 9408c08b     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   2ca98: f94007e8     	ldr	x8, [sp, #0x8]
+   2ca9c: 52800a89     	mov	w9, #0x54               ; =84
+   2caa0: 39000d09     	strb	w9, [x8, #0x3]
+   2caa4: f94003e8     	ldr	x8, [sp]
+   2caa8: b4000088     	cbz	x8, 0x2cab8 <SDDevice::sendDisconnectCommand()+0x208>
+   2caac: b9400108     	ldr	w8, [x8]
+   2cab0: 7100091f     	cmp	w8, #0x2
+   2cab4: 540000ab     	b.lt	0x2cac8 <SDDevice::sendDisconnectCommand()+0x218>
+   2cab8: f9400be1     	ldr	x1, [sp, #0x10]
+   2cabc: 910003e0     	mov	x0, sp
+   2cac0: 52800022     	mov	w2, #0x1                ; =1
+   2cac4: 9408c07f     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   2cac8: f94007e8     	ldr	x8, [sp, #0x8]
+   2cacc: 52800869     	mov	w9, #0x43               ; =67
+   2cad0: 39001909     	strb	w9, [x8, #0x6]
+   2cad4: f94003e8     	ldr	x8, [sp]
+   2cad8: b4000088     	cbz	x8, 0x2cae8 <SDDevice::sendDisconnectCommand()+0x238>
+   2cadc: b9400108     	ldr	w8, [x8]
+   2cae0: 7100091f     	cmp	w8, #0x2
+   2cae4: 540000ab     	b.lt	0x2caf8 <SDDevice::sendDisconnectCommand()+0x248>
+   2cae8: f9400be1     	ldr	x1, [sp, #0x10]
+   2caec: 910003e0     	mov	x0, sp
+   2caf0: 52800022     	mov	w2, #0x1                ; =1
+   2caf4: 9408c073     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   2caf8: f94007e8     	ldr	x8, [sp, #0x8]
+   2cafc: 52800989     	mov	w9, #0x4c               ; =76
+   2cb00: 39001d09     	strb	w9, [x8, #0x7]
+   2cb04: f94003e8     	ldr	x8, [sp]
+   2cb08: b4000088     	cbz	x8, 0x2cb18 <SDDevice::sendDisconnectCommand()+0x268>
+   2cb0c: b9400109     	ldr	w9, [x8]
+   2cb10: 7100053f     	cmp	w9, #0x1
+   2cb14: 5400014d     	b.le	0x2cb3c <SDDevice::sendDisconnectCommand()+0x28c>
+   2cb18: f9400be1     	ldr	x1, [sp, #0x10]
+   2cb1c: 910003e0     	mov	x0, sp
+   2cb20: 52800022     	mov	w2, #0x1                ; =1
+   2cb24: 9408c067     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   2cb28: a94027e8     	ldp	x8, x9, [sp]
+   2cb2c: 528008aa     	mov	w10, #0x45              ; =69
+   2cb30: 3900212a     	strb	w10, [x9, #0x8]
+   2cb34: b50000a8     	cbnz	x8, 0x2cb48 <SDDevice::sendDisconnectCommand()+0x298>
+   2cb38: 14000007     	b	0x2cb54 <SDDevice::sendDisconnectCommand()+0x2a4>
+   2cb3c: f94007e9     	ldr	x9, [sp, #0x8]
+   2cb40: 528008aa     	mov	w10, #0x45              ; =69
+   2cb44: 3900212a     	strb	w10, [x9, #0x8]
+   2cb48: b9400109     	ldr	w9, [x8]
+   2cb4c: 7100053f     	cmp	w9, #0x1
+   2cb50: 5400014d     	b.le	0x2cb78 <SDDevice::sendDisconnectCommand()+0x2c8>
+   2cb54: f9400be1     	ldr	x1, [sp, #0x10]
+   2cb58: 910003e0     	mov	x0, sp
+   2cb5c: 52800022     	mov	w2, #0x1                ; =1
+   2cb60: 9408c058     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   2cb64: a94027e8     	ldp	x8, x9, [sp]
+   2cb68: 5280088a     	mov	w10, #0x44              ; =68
+   2cb6c: 39002d2a     	strb	w10, [x9, #0xb]
+   2cb70: b50000a8     	cbnz	x8, 0x2cb84 <SDDevice::sendDisconnectCommand()+0x2d4>
+   2cb74: 14000007     	b	0x2cb90 <SDDevice::sendDisconnectCommand()+0x2e0>
+   2cb78: f94007e9     	ldr	x9, [sp, #0x8]
+   2cb7c: 5280088a     	mov	w10, #0x44              ; =68
+   2cb80: 39002d2a     	strb	w10, [x9, #0xb]
+   2cb84: b9400108     	ldr	w8, [x8]
+   2cb88: 7100091f     	cmp	w8, #0x2
+   2cb8c: 540000ab     	b.lt	0x2cba0 <SDDevice::sendDisconnectCommand()+0x2f0>
+   2cb90: f9400be1     	ldr	x1, [sp, #0x10]
+   2cb94: 910003e0     	mov	x0, sp
+   2cb98: 52800022     	mov	w2, #0x1                ; =1
+   2cb9c: 9408c049     	bl	__ZN10QByteArray11reallocDataExN10QArrayData16AllocationOptionE
+   2cba0: f94007e8     	ldr	x8, [sp, #0x8]
+   2cba4: 52800869     	mov	w9, #0x43               ; =67
+   2cba8: 39003109     	strb	w9, [x8, #0xc]
+   2cbac: f94007e8     	ldr	x8, [sp, #0x8]
+   2cbb0: 90005689     	adrp	x9, __DefaultRuneLocale
+   2cbb4: f9401d29     	ldr	x9, [x9, #0x38]
+   2cbb8: f100011f     	cmp	x8, #0x0
+   2cbbc: 9a880121     	csel	x1, x9, x8, eq
+   2cbc0: aa1303e0     	mov	x0, x19
+   2cbc4: 94001bd3     	bl	0x33b10 <SDDevice::writeData(unsigned char const*)>
+   2cbc8: f94003e8     	ldr	x8, [sp]
+   2cbcc: b4000128     	cbz	x8, 0x2cbf0 <SDDevice::sendDisconnectCommand()+0x340>
+   2cbd0: 12800009     	mov	w9, #-0x1               ; =-1
+   2cbd4: b8e90108     	ldaddal	w9, w8, [x8]
+   2cbd8: 7100051f     	cmp	w8, #0x1
+   2cbdc: 540000a1     	b.ne	0x2cbf0 <SDDevice::sendDisconnectCommand()+0x340>
+   2cbe0: f94003e0     	ldr	x0, [sp]
+   2cbe4: 52800021     	mov	w1, #0x1                ; =1
+   2cbe8: 52800102     	mov	w2, #0x8                ; =8
+   2cbec: 9408c023     	bl	__ZN10QArrayData10deallocateEPS_xx
+   2cbf0: a9457bfd     	ldp	x29, x30, [sp, #0x50]
+   2cbf4: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+   2cbf8: 910183ff     	add	sp, sp, #0x60
+   2cbfc: d65f03c0     	ret
+   2cc00: 1400000c     	b	0x2cc30 <SDDevice::sendDisconnectCommand()+0x380>
+   2cc04: aa0003f3     	mov	x19, x0
+   2cc08: f94017e0     	ldr	x0, [sp, #0x28]
+   2cc0c: b40000a0     	cbz	x0, 0x2cc20 <SDDevice::sendDisconnectCommand()+0x370>
+   2cc10: 9100a3e1     	add	x1, sp, #0x28
+   2cc14: 9408a6d7     	bl	0x256770 <SDDevice::sendDisconnectCommand() (.cold.1)>
+   2cc18: 14000002     	b	0x2cc20 <SDDevice::sendDisconnectCommand()+0x370>
+   2cc1c: aa0003f3     	mov	x19, x0
+   2cc20: 910083e0     	add	x0, sp, #0x20
+   2cc24: 9408c264     	bl	__ZN6QDebugD1Ev
+   2cc28: aa1303e0     	mov	x0, x19
+   2cc2c: 9408c001     	bl	__Unwind_Resume
+   2cc30: aa0003f3     	mov	x19, x0
+   2cc34: f94003e8     	ldr	x8, [sp]
+   2cc38: b4000128     	cbz	x8, 0x2cc5c <SDDevice::sendDisconnectCommand()+0x3ac>
+   2cc3c: 12800009     	mov	w9, #-0x1               ; =-1
+   2cc40: b8e90108     	ldaddal	w9, w8, [x8]
+   2cc44: 7100051f     	cmp	w8, #0x1
+   2cc48: 540000a1     	b.ne	0x2cc5c <SDDevice::sendDisconnectCommand()+0x3ac>
+   2cc4c: f94003e0     	ldr	x0, [sp]
+   2cc50: 52800021     	mov	w1, #0x1                ; =1
+   2cc54: 52800102     	mov	w2, #0x8                ; =8
+   2cc58: 9408c008     	bl	__ZN10QArrayData10deallocateEPS_xx
+   2cc5c: aa1303e0     	mov	x0, x19
+   2cc60: 9408bff4     	bl	__Unwind_Resume

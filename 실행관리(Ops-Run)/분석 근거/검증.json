@@ -1,0 +1,65 @@
+{
+  "launcher_exit_code": 0,
+  "launcher_cwd": "/tmp",
+  "launcher_duration_seconds": 6.54,
+  "launcher_input_recovery_checks": 2,
+  "rea_evidence_id": "ev_6c27f9e094c503276775f96b49c3a051baeb33d819822cc68f2b5a6f2a9c3adb",
+  "boundary_cases_N": 4,
+  "boundary_cases_M": 4,
+  "boundary_cases": [
+    {
+      "amount": 29999,
+      "member": 1,
+      "expected_fee": 3500,
+      "actual": {
+        "amount": 29999,
+        "member": 1,
+        "shipping_fee": 3500,
+        "total": 33499
+      },
+      "passed": true
+    },
+    {
+      "amount": 30000,
+      "member": 1,
+      "expected_fee": 0,
+      "actual": {
+        "amount": 30000,
+        "member": 1,
+        "shipping_fee": 0,
+        "total": 30000
+      },
+      "passed": true
+    },
+    {
+      "amount": 49999,
+      "member": 0,
+      "expected_fee": 3500,
+      "actual": {
+        "amount": 49999,
+        "member": 0,
+        "shipping_fee": 3500,
+        "total": 53499
+      },
+      "passed": true
+    },
+    {
+      "amount": 50000,
+      "member": 0,
+      "expected_fee": 0,
+      "actual": {
+        "amount": 50000,
+        "member": 0,
+        "shipping_fee": 0,
+        "total": 50000
+      },
+      "passed": true
+    }
+  ],
+  "invalid_binary_input": {
+    "returncode": 2,
+    "stderr": "주문금액은 0~100000000, 회원여부는 0 또는 1이어야 함\n",
+    "passed": true
+  },
+  "all_passed": true
+}

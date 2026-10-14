@@ -1,0 +1,8 @@
+{
+  "user_pressed_top_left": true,
+  "input_reports": 0,
+  "physical_key_presses": [],
+  "error": null,
+  "frames_sent": 504,
+  "issue": "실물 버튼을 눌렀지만 입력이 수신되지 않음"
+}

@@ -1,0 +1,6 @@
+name = "tteum-leave-trip"
+main = "dist/server/index.js"
+compatibility_date = "2026-10-01"
+
+[build]
+command = "npm run build"

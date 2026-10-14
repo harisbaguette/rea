@@ -1,0 +1,173 @@
+{
+  "ops": [
+    {
+      "op": "set",
+      "kind": "project",
+      "values": {
+        "goal": "Anywear의 배포 코드를 분석하여 실시간 가상 착의의 서버 처리 구조, 무료 제공과 자원 비용의 관계, 얼굴·헤어·배경 변환으로의 확장 가능성 및 재구현 경로를 밝힌다."
+      }
+    },
+    {
+      "op": "add",
+      "kind": "components",
+      "id": "research",
+      "values": {
+        "title": "Anywear 동작 원리"
+      }
+    },
+    {
+      "op": "add",
+      "kind": "components",
+      "id": "delivery",
+      "values": {
+        "title": "분석 결과와 근거"
+      }
+    },
+    {
+      "op": "add",
+      "kind": "milestones",
+      "id": "acquire",
+      "values": {
+        "title": "공식 대상과 배포물 확보"
+      }
+    },
+    {
+      "op": "add",
+      "kind": "milestones",
+      "id": "analyze",
+      "values": {
+        "title": "처리 흐름과 확장 가능성 파악"
+      }
+    },
+    {
+      "op": "add",
+      "kind": "milestones",
+      "id": "deliver",
+      "values": {
+        "title": "결론 작성과 검증"
+      }
+    },
+    {
+      "op": "add",
+      "kind": "tasks",
+      "id": "scope",
+      "values": {
+        "title": "조사 범위와 자료 취급 기준 정하기",
+        "component": "delivery",
+        "milestone": "acquire",
+        "status": "todo",
+        "dependsOn": []
+      }
+    },
+    {
+      "op": "add",
+      "kind": "tasks",
+      "id": "artifact",
+      "values": {
+        "title": "공식 확장 프로그램 확보와 동일성 기록",
+        "component": "research",
+        "milestone": "acquire",
+        "status": "todo",
+        "dependsOn": [
+          "scope"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "kind": "tasks",
+      "id": "static",
+      "values": {
+        "title": "REA와 코드 대조로 영상·이미지·대기열 흐름 확인",
+        "component": "research",
+        "milestone": "analyze",
+        "status": "todo",
+        "dependsOn": [
+          "artifact"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "kind": "tasks",
+      "id": "cost",
+      "values": {
+        "title": "무료 제공 조건과 공개 API 비용 비교",
+        "component": "research",
+        "milestone": "analyze",
+        "status": "todo",
+        "dependsOn": [
+          "scope"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "kind": "tasks",
+      "id": "expansion",
+      "values": {
+        "title": "얼굴·헤어·배경 응용과 재구현 경로 확인",
+        "component": "research",
+        "milestone": "analyze",
+        "status": "todo",
+        "dependsOn": [
+          "static"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "kind": "tasks",
+      "id": "report",
+      "values": {
+        "title": "원리와 비용 및 응용 방향을 한국어로 설명",
+        "component": "delivery",
+        "milestone": "deliver",
+        "status": "todo",
+        "dependsOn": [
+          "static",
+          "cost",
+          "expansion"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "kind": "tasks",
+      "id": "validate",
+      "values": {
+        "title": "원본 해시·근거·계산·문서 연결 검증",
+        "component": "delivery",
+        "milestone": "deliver",
+        "status": "todo",
+        "dependsOn": [
+          "report"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "kind": "tasks",
+      "id": "review",
+      "values": {
+        "title": "최종 결과의 누락과 과장 검토",
+        "component": "delivery",
+        "milestone": "deliver",
+        "status": "todo",
+        "dependsOn": [
+          "validate"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "kind": "decisions",
+      "id": "scope-boundary",
+      "values": {
+        "title": "이번 범위: 공개 배포물 분석과 재구현 명세",
+        "answer": "현재 요청은 REA 조사다. 서비스를 새로 만들거나 실제 카메라·계정·유료 API·외부 배포를 사용하지 않는다. 조사에 필요한 로컬 근거와 비용 계산 도구만 만든다.",
+        "defaultAction": "공식 CRX 및 문서를 확보하고 정적 분석·오프라인 검증을 진행한다."
+      }
+    }
+  ]
+}

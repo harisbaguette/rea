@@ -1,0 +1,52 @@
+
+libSDLibrary.arm64.dylib:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+000000000021cd6c <_hid_init>:
+  21cd6c: a9bd57f6     	stp	x22, x21, [sp, #-0x30]!
+  21cd70: a9014ff4     	stp	x20, x19, [sp, #0x10]
+  21cd74: a9027bfd     	stp	x29, x30, [sp, #0x20]
+  21cd78: 910083fd     	add	x29, sp, #0x20
+  21cd7c: f0004796     	adrp	x22, 0xb0f000 <_sqlite3SavedPrng+0xf8>
+  21cd80: f94032c0     	ldr	x0, [x22, #0x60]
+  21cd84: 94010866     	bl	_free
+  21cd88: f90032df     	str	xzr, [x22, #0x60]
+  21cd8c: f0004793     	adrp	x19, 0xb0f000 <_sqlite3SavedPrng+0xf8>
+  21cd90: f9402a68     	ldr	x8, [x19, #0x50]
+  21cd94: b4000068     	cbz	x8, 0x21cda0 <_hid_init+0x34>
+  21cd98: 52800000     	mov	w0, #0x0                ; =0
+  21cd9c: 14000040     	b	0x21ce9c <_hid_init+0x130>
+  21cda0: 90004708     	adrp	x8, __DefaultRuneLocale
+  21cda4: f941a908     	ldr	x8, [x8, #0x350]
+  21cda8: fd400100     	ldr	d0, [x8]
+  21cdac: d287ae28     	mov	x8, #0x3d71             ; =15729
+  21cdb0: f2bae148     	movk	x8, #0xd70a, lsl #16
+  21cdb4: f2df9468     	movk	x8, #0xfca3, lsl #32
+  21cdb8: f2e81228     	movk	x8, #0x4091, lsl #48
+  21cdbc: 9e670101     	fmov	d1, x8
+  21cdc0: 1e612000     	fcmp	d0, d1
+  21cdc4: 1a9fb7e8     	cset	w8, ge
+  21cdc8: f0004789     	adrp	x9, 0xb0f000 <_sqlite3SavedPrng+0xf8>
+  21cdcc: b9005928     	str	w8, [x9, #0x58]
+  21cdd0: 52800028     	mov	w8, #0x1                ; =1
+  21cdd4: f0004789     	adrp	x9, 0xb0f000 <_sqlite3SavedPrng+0xf8>
+  21cdd8: b9005d28     	str	w8, [x9, #0x5c]
+  21cddc: 90004708     	adrp	x8, __DefaultRuneLocale
+  21cde0: f9419d08     	ldr	x8, [x8, #0x338]
+  21cde4: f9400100     	ldr	x0, [x8]
+  21cde8: 52800001     	mov	w1, #0x0                ; =0
+  21cdec: 9400ff52     	bl	_IOHIDManagerCreate
+  21cdf0: f9002a60     	str	x0, [x19, #0x50]
+  21cdf4: b40001a0     	cbz	x0, 0x21ce28 <_hid_init+0xbc>
+  21cdf8: d2800001     	mov	x1, #0x0                ; =0
+  21cdfc: 9400ff54     	bl	_IOHIDManagerSetDeviceMatching
+  21ce00: f9402a73     	ldr	x19, [x19, #0x50]
+  21ce04: 9400fec8     	bl	_CFRunLoopGetCurrent
+  21ce08: aa0003e1     	mov	x1, x0
+  21ce0c: 90004708     	adrp	x8, __DefaultRuneLocale
+  21ce10: f941b108     	ldr	x8, [x8, #0x360]
+  21ce14: f9400102     	ldr	x2, [x8]
+  21ce18: aa1303e0     	mov	x0, x19
+  21ce1c: 9400ff49     	bl	_IOHIDManagerScheduleWithRunLoop
+  21ce20: 52800000     	mov	w0, #0x0                ; =0

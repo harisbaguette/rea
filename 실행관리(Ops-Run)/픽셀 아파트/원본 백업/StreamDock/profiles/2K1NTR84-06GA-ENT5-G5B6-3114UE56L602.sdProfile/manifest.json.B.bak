@@ -1,0 +1,571 @@
+{
+    "Actions": {
+        "0,0": {
+            "ActionID": "2zngkjeq-0r9t-3a89-0zpl-00ou90mz6904",
+            "Controller": "",
+            "Name": "World Time",
+            "Settings": {
+                "amplify": true,
+                "isBackgroundHidden": false,
+                "select": "1",
+                "theme": "theme1",
+                "title": "SYS",
+                "zone": "system"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "11",
+                    "FontStyle": "Bold",
+                    "Image": "images/index.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.mirabox.streamdock.time.action1"
+        },
+        "0,1": {
+            "ActionID": "ju22uif1-u229-r9ig-gnai-gxbzb6gp931k",
+            "Controller": "",
+            "Name": "Weather query",
+            "Settings": {
+                "Localization": {
+                    "100": "맑음",
+                    "101": "구름 조금",
+                    "102": "구름 조금",
+                    "103": "구름 조금",
+                    "104": "흐림",
+                    "150": "밤에 맑음",
+                    "151": "밤에 구름 조금",
+                    "152": "밤에 구름 조금",
+                    "153": "밤에 구름 조금",
+                    "300": "소나기",
+                    "301": "소나기",
+                    "302": "천둥번개",
+                    "303": "천둥번개",
+                    "304": "천둥번개와 우박",
+                    "305": "약한 비",
+                    "306": "중간 비",
+                    "307": "폭우",
+                    "308": "폭우",
+                    "309": "약한 비",
+                    "310": "극심한 폭우",
+                    "311": "대형 폭우",
+                    "312": "초대형 폭우",
+                    "313": "진눈깨비",
+                    "314": "중간 비",
+                    "315": "폭우",
+                    "316": "극심한 폭우",
+                    "317": "대형 폭우",
+                    "318": "초대형 폭우",
+                    "350": "밤에 소나기",
+                    "351": "밤에 소나기",
+                    "399": "약한 비",
+                    "400": "약한 눈",
+                    "401": "중간 눈",
+                    "402": "폭설",
+                    "403": "맹렬한 눈보라",
+                    "404": "진눈깨비",
+                    "405": "진눈깨비",
+                    "406": "진눈깨비",
+                    "407": "소낙눈",
+                    "408": "중간 눈",
+                    "409": "폭설",
+                    "410": "맹렬한 눈보라",
+                    "456": "진눈깨비",
+                    "457": "밤에 소낙눈",
+                    "499": "약한 눈",
+                    "500": "안개",
+                    "501": "안개",
+                    "502": "안개와 스모그",
+                    "503": "황사",
+                    "504": "황사",
+                    "507": "황사",
+                    "508": "강한 황사",
+                    "509": "안개",
+                    "510": "안개",
+                    "511": "안개와 스모그",
+                    "512": "안개와 스모그",
+                    "513": "안개와 스모그",
+                    "514": "안개",
+                    "515": "안개와 스모그",
+                    "900": "맑음",
+                    "901": "중간 눈",
+                    "999": "구름 조금",
+                    "weatherapi": "weatherapi",
+                    "主题切换": "테마 전환",
+                    "华氏度": "화씨",
+                    "和风天气": "HeFeng 날씨",
+                    "城市名称": "도시 이름",
+                    "天气名称": "날씨 이름",
+                    "天气提供商": "날씨 제공자",
+                    "天气查询": "날씨 쿼리",
+                    "搜索列表": "검색 목록",
+                    "摄氏度": "섭씨 온도",
+                    "显示": "표시",
+                    "显示选项": "옵션 표시",
+                    "更新": "고쳐 쓰다",
+                    "温度单位": "온도 단위",
+                    "简约摩登": "심플하고 모던한",
+                    "自定义标题": "맞춤 제목",
+                    "自定名称": "맞춤 이름",
+                    "请输入城市": "도시를 입력하세요",
+                    "请输入标题": "제목을 입력하세요",
+                    "豪华绚丽": "고급스럽고 화려해요",
+                    "输入城市": "도시를 입력하세요",
+                    "隐藏": "숨기기"
+                },
+                "city": "Seoul",
+                "cityId": "485B3",
+                "count": 0,
+                "fxLink": "https://www.qweather.com/en/weather/seoul-485B3.html",
+                "inputCity": "서울",
+                "radio": "0",
+                "radio2": "0",
+                "radioUseApi": "qweather",
+                "searchList": [
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/seoul-485B3.html",
+                        "id": "485B3",
+                        "isDst": "0",
+                        "lat": "37.58333",
+                        "lon": "127.00000",
+                        "name": "Seoul",
+                        "rank": "10",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gangnam-gu-E4C08.html",
+                        "id": "E4C08",
+                        "isDst": "0",
+                        "lat": "37.51770",
+                        "lon": "127.04730",
+                        "name": "Gangnam-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gwanak-gu-9A271.html",
+                        "id": "9A271",
+                        "isDst": "0",
+                        "lat": "37.47843",
+                        "lon": "126.95160",
+                        "name": "Gwanak-gu",
+                        "rank": "55",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/yongsan-gu-B31BD.html",
+                        "id": "B31BD",
+                        "isDst": "0",
+                        "lat": "37.53230",
+                        "lon": "126.99000",
+                        "name": "Yongsan-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/jongno-gu-6B200.html",
+                        "id": "6B200",
+                        "isDst": "0",
+                        "lat": "37.57291",
+                        "lon": "126.97938",
+                        "name": "Jongno-gu",
+                        "rank": "75",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/jung-gu-CE7E8.html",
+                        "id": "CE7E8",
+                        "isDst": "0",
+                        "lat": "37.56366",
+                        "lon": "126.99751",
+                        "name": "Jung-gu",
+                        "rank": "75",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gangdong-gu-55AE7.html",
+                        "id": "55AE7",
+                        "isDst": "0",
+                        "lat": "37.53013",
+                        "lon": "127.12375",
+                        "name": "Gangdong-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gwangjin-gu-239B4.html",
+                        "id": "239B4",
+                        "isDst": "0",
+                        "lat": "37.53791",
+                        "lon": "127.08209",
+                        "name": "Gwangjin-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/mapo-gu-48A9D.html",
+                        "id": "48A9D",
+                        "isDst": "0",
+                        "lat": "37.56381",
+                        "lon": "126.90841",
+                        "name": "Mapo-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/seocho-gu-53E44.html",
+                        "id": "53E44",
+                        "isDst": "0",
+                        "lat": "37.48373",
+                        "lon": "127.03244",
+                        "name": "Seocho-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    }
+                ],
+                "tempList": "0",
+                "theme": "Modern",
+                "timer": 25,
+                "title": "",
+                "titleParameters": {
+                    "fontFamily": "Microsoft YaHei",
+                    "fontSize": 8,
+                    "fontStyle": "Regular",
+                    "fontUnderline": false,
+                    "showTitle": true,
+                    "titleAlignment": "bottom",
+                    "titleColor": "#ffffff"
+                },
+                "wdata": {
+                    "code": 103,
+                    "tmp": 32
+                }
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontFamily": "Microsoft YaHei",
+                    "Image": "static/img/default.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.weather.action1"
+        },
+        "1,0": {
+            "ActionID": "34vh47fj-4e5h-bjh0-n149-e0h1oy9d609r",
+            "Controller": "",
+            "Name": "Timer",
+            "Settings": {
+                "deep": 0,
+                "select": "1",
+                "start": 1755329991945
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "16",
+                    "Image": "images/T1.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.mirabox.streamdock.time.action2"
+        },
+        "1,1": {
+            "ActionID": "nk68mnlp-1yt4-2id7-h5b7-vpw5e1v7rhvu",
+            "Controller": "",
+            "Name": "Remember things",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "10",
+                    "Image": "static/img/memo",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.memo.action1"
+        },
+        "2,0": {
+            "ActionID": "k2cdq452-v7q4-le10-5g1t-3318fev1zpi1",
+            "Controller": "",
+            "Name": "Countdown",
+            "Settings": {
+                "color": "rgb(0,255,0)",
+                "inputTime": "0",
+                "musicUrl": "./assets/kn.mp3",
+                "select": "1",
+                "surplus": 60000,
+                "timing": "60000"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "16",
+                    "Image": "images/C1.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.mirabox.streamdock.time.action3"
+        },
+        "2,1": {
+            "ActionID": "qpjn34uy-1hok-112s-3zae-d184n5rtqx11",
+            "Controller": "",
+            "Name": "Record to-do",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "10",
+                    "Image": "static/img/todo",
+                    "TitleAlignment": "middle"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.memo.action2"
+        },
+        "3,0": {
+            "ActionID": "xvobl98k-491s-02k8-8pu4-zg71oco1o6z2",
+            "Controller": "",
+            "Name": "Hotkey",
+            "Settings": {
+                "Coalesce": true,
+                "Hotkeys": [
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 123
+                    },
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 124
+                    },
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 49
+                    }
+                ],
+                "hotkeyRadioButtonIndex": -1
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "Images/btn_custom_trigger_hotkey"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.hotkey"
+        },
+        "3,1": {
+            "ActionID": "y90164o9-p4b1-3u6y-jiif-onb9d1rd3jc1",
+            "Controller": "",
+            "Name": "Hotkey",
+            "Settings": {
+                "Coalesce": true,
+                "Hotkeys": [
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 126
+                    },
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 125
+                    },
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 36
+                    }
+                ],
+                "hotkeyRadioButtonIndex": -1
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "Images/btn_custom_trigger_hotkey"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.hotkey"
+        },
+        "4,1": {
+            "ActionID": "1mzwfae3-q22j-mz06-g1x8-u1pq6e870h6r",
+            "Controller": "",
+            "Name": "Hotkey",
+            "Settings": {
+                "Coalesce": true,
+                "Hotkeys": [
+                    {
+                        "KeyCmd": true,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 27
+                    },
+                    {
+                        "KeyCmd": true,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 24
+                    },
+                    {
+                        "KeyCmd": true,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 29
+                    }
+                ],
+                "hotkeyRadioButtonIndex": -1
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "Images/btn_custom_trigger_hotkey"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.hotkey"
+        }
+    },
+    "AppIdentifier": "",
+    "DeviceModel": "20GBA9901",
+    "DeviceSerialNumber": "C771C778332A",
+    "DeviceUUID": "TS16N3V25",
+    "Name": "기본 장면 의 사본",
+    "Pages": {
+        "Current": "2K1NTR84-06GA-ENT5-G5B6-3114UE56L602.sdProfile",
+        "Pages": [
+            "2K1NTR84-06GA-ENT5-G5B6-3114UE56L602.sdProfile"
+        ]
+    },
+    "Version": "1.0"
+}

@@ -1,0 +1,14 @@
+{
+  "code": "VALIDATION_ERROR",
+  "message": "Invalid input: expected number, received undefined\n\nDetails: [\n  {\n    \"expected\": \"number\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"windowId\"\n    ],\n    \"message\": \"Invalid input: expected number, received undefined\"\n  }\n]",
+  "fieldErrors": [
+    {
+      "code": "invalid_type",
+      "missing": true,
+      "path": "windowId",
+      "expected": "number",
+      "received": "",
+      "message": "Invalid input: expected number, received undefined"
+    }
+  ]
+}

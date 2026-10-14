@@ -1,0 +1,741 @@
+{
+    "Actions": {
+        "0,0": {
+            "ActionID": "r0k5a2o9-rwy2-sor2-32bx-7k2teaykf01g",
+            "Controller": "",
+            "Name": "World Time",
+            "Settings": {
+                "amplify": true,
+                "isBackgroundHidden": false,
+                "select": "1",
+                "theme": "theme1",
+                "title": "SYS",
+                "zone": "system"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "11",
+                    "FontStyle": "Bold",
+                    "Image": "images/index.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.mirabox.streamdock.time.action1"
+        },
+        "0,1": {
+            "ActionID": "gvgrh20s-k34b-g863-cc0m-wj38kv7313s0",
+            "Controller": "",
+            "Name": "Weather query",
+            "Settings": {
+                "Localization": {
+                    "100": "맑음",
+                    "101": "구름 조금",
+                    "102": "구름 조금",
+                    "103": "구름 조금",
+                    "104": "흐림",
+                    "150": "밤에 맑음",
+                    "151": "밤에 구름 조금",
+                    "152": "밤에 구름 조금",
+                    "153": "밤에 구름 조금",
+                    "300": "소나기",
+                    "301": "소나기",
+                    "302": "천둥번개",
+                    "303": "천둥번개",
+                    "304": "천둥번개와 우박",
+                    "305": "약한 비",
+                    "306": "중간 비",
+                    "307": "폭우",
+                    "308": "폭우",
+                    "309": "약한 비",
+                    "310": "극심한 폭우",
+                    "311": "대형 폭우",
+                    "312": "초대형 폭우",
+                    "313": "진눈깨비",
+                    "314": "중간 비",
+                    "315": "폭우",
+                    "316": "극심한 폭우",
+                    "317": "대형 폭우",
+                    "318": "초대형 폭우",
+                    "350": "밤에 소나기",
+                    "351": "밤에 소나기",
+                    "399": "약한 비",
+                    "400": "약한 눈",
+                    "401": "중간 눈",
+                    "402": "폭설",
+                    "403": "맹렬한 눈보라",
+                    "404": "진눈깨비",
+                    "405": "진눈깨비",
+                    "406": "진눈깨비",
+                    "407": "소낙눈",
+                    "408": "중간 눈",
+                    "409": "폭설",
+                    "410": "맹렬한 눈보라",
+                    "456": "진눈깨비",
+                    "457": "밤에 소낙눈",
+                    "499": "약한 눈",
+                    "500": "안개",
+                    "501": "안개",
+                    "502": "안개와 스모그",
+                    "503": "황사",
+                    "504": "황사",
+                    "507": "황사",
+                    "508": "강한 황사",
+                    "509": "안개",
+                    "510": "안개",
+                    "511": "안개와 스모그",
+                    "512": "안개와 스모그",
+                    "513": "안개와 스모그",
+                    "514": "안개",
+                    "515": "안개와 스모그",
+                    "900": "맑음",
+                    "901": "중간 눈",
+                    "999": "구름 조금",
+                    "weatherapi": "weatherapi",
+                    "主题切换": "테마 전환",
+                    "华氏度": "화씨",
+                    "和风天气": "HeFeng 날씨",
+                    "城市名称": "도시 이름",
+                    "天气名称": "날씨 이름",
+                    "天气提供商": "날씨 제공자",
+                    "天气查询": "날씨 쿼리",
+                    "搜索列表": "검색 목록",
+                    "摄氏度": "섭씨 온도",
+                    "显示": "표시",
+                    "显示选项": "옵션 표시",
+                    "更新": "고쳐 쓰다",
+                    "温度单位": "온도 단위",
+                    "简约摩登": "심플하고 모던한",
+                    "自定义标题": "맞춤 제목",
+                    "自定名称": "맞춤 이름",
+                    "请输入城市": "도시를 입력하세요",
+                    "请输入标题": "제목을 입력하세요",
+                    "豪华绚丽": "고급스럽고 화려해요",
+                    "输入城市": "도시를 입력하세요",
+                    "隐藏": "숨기기"
+                },
+                "city": "Busan",
+                "cityId": "E4617",
+                "count": 0,
+                "fxLink": "https://www.qweather.com/en/weather/busan-E4617.html",
+                "inputCity": "부산",
+                "radio": "0",
+                "radio2": "0",
+                "radioUseApi": "qweather",
+                "searchList": [
+                    {
+                        "adm1": "Busan",
+                        "adm2": "Busan",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/busan-E4617.html",
+                        "id": "E4617",
+                        "isDst": "0",
+                        "lat": "35.21500",
+                        "lon": "129.10100",
+                        "name": "Busan",
+                        "rank": "11",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Busan",
+                        "adm2": "Busan",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gangseo-gu-E54B4.html",
+                        "id": "E54B4",
+                        "isDst": "0",
+                        "lat": "35.20694",
+                        "lon": "128.98056",
+                        "name": "Gangseo-gu",
+                        "rank": "55",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Busan",
+                        "adm2": "Busan",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/buk-gu-A70BB.html",
+                        "id": "A70BB",
+                        "isDst": "0",
+                        "lat": "35.20000",
+                        "lon": "128.99001",
+                        "name": "Buk-gu",
+                        "rank": "55",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Busan",
+                        "adm2": "Busan",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/busanjin-gu-7CA7C.html",
+                        "id": "7CA7C",
+                        "isDst": "0",
+                        "lat": "35.16296",
+                        "lon": "129.05290",
+                        "name": "Busanjin-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Busan",
+                        "adm2": "Busan",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/seo-gu-79B5A.html",
+                        "id": "79B5A",
+                        "isDst": "0",
+                        "lat": "35.10000",
+                        "lon": "129.02000",
+                        "name": "Seo-gu",
+                        "rank": "75",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Busan",
+                        "adm2": "Busan",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/sasang-gu-E6202.html",
+                        "id": "E6202",
+                        "isDst": "0",
+                        "lat": "35.15111",
+                        "lon": "128.99001",
+                        "name": "Sasang-gu",
+                        "rank": "45",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Busan",
+                        "adm2": "Busan",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/saha-gu-D42ED.html",
+                        "id": "D42ED",
+                        "isDst": "0",
+                        "lat": "35.10167",
+                        "lon": "128.97223",
+                        "name": "Saha-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Busan",
+                        "adm2": "Busan",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/geumjeong-gu-7CD5A.html",
+                        "id": "7CD5A",
+                        "isDst": "0",
+                        "lat": "35.24167",
+                        "lon": "129.09166",
+                        "name": "Geumjeong-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Busan",
+                        "adm2": "Busan",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/dongnae-gu-82A29.html",
+                        "id": "82A29",
+                        "isDst": "0",
+                        "lat": "35.20361",
+                        "lon": "129.08389",
+                        "name": "Dongnae-gu",
+                        "rank": "45",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Busan",
+                        "adm2": "Busan",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/yeonje-gu-5B97F.html",
+                        "id": "5B97F",
+                        "isDst": "0",
+                        "lat": "35.17560",
+                        "lon": "129.07900",
+                        "name": "Yeonje-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    }
+                ],
+                "tempList": "0",
+                "theme": "Modern",
+                "timer": 10,
+                "title": "",
+                "titleParameters": {
+                    "fontFamily": "HarmonyOS Sans",
+                    "fontSize": 10,
+                    "fontStyle": "Regular",
+                    "fontUnderline": false,
+                    "showTitle": true,
+                    "titleAlignment": "bottom",
+                    "titleColor": "#ffffff"
+                },
+                "wdata": {
+                    "code": 100,
+                    "tmp": 32
+                }
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "10",
+                    "Image": "static/img/default.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.weather.action1"
+        },
+        "0,2": {
+            "ActionID": "xj401j50-8l8r-3895-qyum-yc1t73ep40l0",
+            "Controller": "",
+            "Name": "Weather query",
+            "Settings": {
+                "Localization": {
+                    "100": "맑음",
+                    "101": "구름 조금",
+                    "102": "구름 조금",
+                    "103": "구름 조금",
+                    "104": "흐림",
+                    "150": "밤에 맑음",
+                    "151": "밤에 구름 조금",
+                    "152": "밤에 구름 조금",
+                    "153": "밤에 구름 조금",
+                    "300": "소나기",
+                    "301": "소나기",
+                    "302": "천둥번개",
+                    "303": "천둥번개",
+                    "304": "천둥번개와 우박",
+                    "305": "약한 비",
+                    "306": "중간 비",
+                    "307": "폭우",
+                    "308": "폭우",
+                    "309": "약한 비",
+                    "310": "극심한 폭우",
+                    "311": "대형 폭우",
+                    "312": "초대형 폭우",
+                    "313": "진눈깨비",
+                    "314": "중간 비",
+                    "315": "폭우",
+                    "316": "극심한 폭우",
+                    "317": "대형 폭우",
+                    "318": "초대형 폭우",
+                    "350": "밤에 소나기",
+                    "351": "밤에 소나기",
+                    "399": "약한 비",
+                    "400": "약한 눈",
+                    "401": "중간 눈",
+                    "402": "폭설",
+                    "403": "맹렬한 눈보라",
+                    "404": "진눈깨비",
+                    "405": "진눈깨비",
+                    "406": "진눈깨비",
+                    "407": "소낙눈",
+                    "408": "중간 눈",
+                    "409": "폭설",
+                    "410": "맹렬한 눈보라",
+                    "456": "진눈깨비",
+                    "457": "밤에 소낙눈",
+                    "499": "약한 눈",
+                    "500": "안개",
+                    "501": "안개",
+                    "502": "안개와 스모그",
+                    "503": "황사",
+                    "504": "황사",
+                    "507": "황사",
+                    "508": "강한 황사",
+                    "509": "안개",
+                    "510": "안개",
+                    "511": "안개와 스모그",
+                    "512": "안개와 스모그",
+                    "513": "안개와 스모그",
+                    "514": "안개",
+                    "515": "안개와 스모그",
+                    "900": "맑음",
+                    "901": "중간 눈",
+                    "999": "구름 조금",
+                    "weatherapi": "weatherapi",
+                    "主题切换": "테마 전환",
+                    "华氏度": "화씨",
+                    "和风天气": "HeFeng 날씨",
+                    "城市名称": "도시 이름",
+                    "天气名称": "날씨 이름",
+                    "天气提供商": "날씨 제공자",
+                    "天气查询": "날씨 쿼리",
+                    "搜索列表": "검색 목록",
+                    "摄氏度": "섭씨 온도",
+                    "显示": "표시",
+                    "显示选项": "옵션 표시",
+                    "更新": "고쳐 쓰다",
+                    "温度单位": "온도 단위",
+                    "简约摩登": "심플하고 모던한",
+                    "自定义标题": "맞춤 제목",
+                    "自定名称": "맞춤 이름",
+                    "请输入城市": "도시를 입력하세요",
+                    "请输入标题": "제목을 입력하세요",
+                    "豪华绚丽": "고급스럽고 화려해요",
+                    "输入城市": "도시를 입력하세요",
+                    "隐藏": "숨기기"
+                },
+                "city": "Seoul",
+                "cityId": "485B3",
+                "count": 0,
+                "fxLink": "https://www.qweather.com/en/weather/seoul-485B3.html",
+                "inputCity": "서울",
+                "radio": "0",
+                "radio2": "0",
+                "radioUseApi": "qweather",
+                "searchList": [
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/seoul-485B3.html",
+                        "id": "485B3",
+                        "isDst": "0",
+                        "lat": "37.58333",
+                        "lon": "127.00000",
+                        "name": "Seoul",
+                        "rank": "10",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gangnam-gu-E4C08.html",
+                        "id": "E4C08",
+                        "isDst": "0",
+                        "lat": "37.51770",
+                        "lon": "127.04730",
+                        "name": "Gangnam-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gwanak-gu-9A271.html",
+                        "id": "9A271",
+                        "isDst": "0",
+                        "lat": "37.47843",
+                        "lon": "126.95160",
+                        "name": "Gwanak-gu",
+                        "rank": "55",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/yongsan-gu-B31BD.html",
+                        "id": "B31BD",
+                        "isDst": "0",
+                        "lat": "37.53230",
+                        "lon": "126.99000",
+                        "name": "Yongsan-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/jongno-gu-6B200.html",
+                        "id": "6B200",
+                        "isDst": "0",
+                        "lat": "37.57291",
+                        "lon": "126.97938",
+                        "name": "Jongno-gu",
+                        "rank": "75",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/jung-gu-CE7E8.html",
+                        "id": "CE7E8",
+                        "isDst": "0",
+                        "lat": "37.56366",
+                        "lon": "126.99751",
+                        "name": "Jung-gu",
+                        "rank": "75",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gangdong-gu-55AE7.html",
+                        "id": "55AE7",
+                        "isDst": "0",
+                        "lat": "37.53013",
+                        "lon": "127.12375",
+                        "name": "Gangdong-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/gwangjin-gu-239B4.html",
+                        "id": "239B4",
+                        "isDst": "0",
+                        "lat": "37.53791",
+                        "lon": "127.08209",
+                        "name": "Gwangjin-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/mapo-gu-48A9D.html",
+                        "id": "48A9D",
+                        "isDst": "0",
+                        "lat": "37.56381",
+                        "lon": "126.90841",
+                        "name": "Mapo-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    },
+                    {
+                        "adm1": "Seoul",
+                        "adm2": "Seoul",
+                        "country": "South Korea",
+                        "fxLink": "https://www.qweather.com/en/weather/seocho-gu-53E44.html",
+                        "id": "53E44",
+                        "isDst": "0",
+                        "lat": "37.48373",
+                        "lon": "127.03244",
+                        "name": "Seocho-gu",
+                        "rank": "65",
+                        "type": "city",
+                        "tz": "Asia/Seoul",
+                        "utcOffset": "+09:00"
+                    }
+                ],
+                "tempList": "0",
+                "theme": "Modern",
+                "timer": 9,
+                "title": "",
+                "titleParameters": {
+                    "fontFamily": "HarmonyOS Sans",
+                    "fontSize": 10,
+                    "fontStyle": "Regular",
+                    "fontUnderline": false,
+                    "showTitle": true,
+                    "titleAlignment": "bottom",
+                    "titleColor": "#ffffff"
+                },
+                "wdata": {
+                    "code": 102,
+                    "tmp": 32
+                }
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "10",
+                    "Image": "static/img/default.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.weather.action1"
+        },
+        "1,0": {
+            "ActionID": "413el2gl-nrbc-edi8-9p5p-m5p2jq0e2110",
+            "Controller": "",
+            "Name": "Record to-do",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "10",
+                    "Image": "static/img/todo",
+                    "TitleAlignment": "middle"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.memo.action2"
+        },
+        "1,1": {
+            "ActionID": "9uds0h4q-il9j-9icq-z63g-v5c47754zk34",
+            "Controller": "",
+            "Name": "Mute",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "XEWB204H60P16GAUV5YD4535J80.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.touchbar.mute"
+        },
+        "1,2": {
+            "ActionID": "75588750-75v0-5771-1x9w-0e9hy291i0ph",
+            "Controller": "",
+            "Name": "Play/Pause",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "XQB4NUGDF2H2Q41H08Z2B10I0J6.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.touchbar.playpause"
+        },
+        "2,0": {
+            "ActionID": "2h2j26h4-9lc0-phz8-evd3-vnw34h7174de",
+            "Controller": "",
+            "Name": "Remember things",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "10",
+                    "Image": "static/img/memo",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.memo.action1"
+        },
+        "2,1": {
+            "ActionID": "ci908w2j-2wu5-id16-wpl2-pfg27lc94g8e",
+            "Controller": "",
+            "Name": "Volume up",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "Images/volumeUp/action"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.touchbar.volumeup"
+        },
+        "2,2": {
+            "ActionID": "39g7oz0f-32ln-2pgk-d53m-347xs259tkd3",
+            "Controller": "",
+            "Name": "Next Track",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "94J77252QX0BF8MV60F8JICXDL2.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.touchbar.nexttrack"
+        },
+        "3,0": {
+            "ActionID": "76oszr87-0w34-uilh-75es-31f36l5b54nd",
+            "Controller": "",
+            "Name": "World Time",
+            "Settings": {
+                "amplify": true,
+                "isBackgroundHidden": false,
+                "select": "2",
+                "theme": "theme1",
+                "title": "",
+                "zone": "system"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": 20,
+                    "FontStyle": "Bold",
+                    "Image": "images/index.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.mirabox.streamdock.time.action1"
+        },
+        "3,1": {
+            "ActionID": "j4804b2c-bc24-z42x-9mnd-23scaim71uj1",
+            "Controller": "",
+            "Name": "Volume down",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "2378K74W000A1ZMRIJE283LR78P.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.touchbar.volumedown"
+        },
+        "3,2": {
+            "ActionID": "ut632f4d-zw9c-7108-4dau-cf0y13rb4nyv",
+            "Controller": "",
+            "Name": "Previous Track",
+            "Settings": {
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "01H27H5X2B6N000120W79IIA104.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.touchbar.previoustrack"
+        }
+    },
+    "AppIdentifier": "",
+    "DeviceModel": "20GBA9901",
+    "DeviceSerialNumber": "",
+    "DeviceUUID": "TS12P8",
+    "Name": "기본 장면 의 사본",
+    "Pages": {
+        "Current": "O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile",
+        "Pages": [
+            "O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile",
+            "Z70R5332-HWEO-10N8-GA13-4GZ18KMD141G.sdProfile",
+            "2V49Z2Y0-3646-3DXY-6XHD-4H1W0RJVR642.sdProfile",
+            "L54L7116-681H-6Y73-5T91-7BK3F71PZ404.sdProfile",
+            "261US018-44Y8-56DL-AH0P-20HR9134O8CC.sdProfile",
+            "257FP95U-WL5L-133C-Z4P4-P45G84QQ2CZ9.sdProfile"
+        ]
+    },
+    "Version": "1.0"
+}

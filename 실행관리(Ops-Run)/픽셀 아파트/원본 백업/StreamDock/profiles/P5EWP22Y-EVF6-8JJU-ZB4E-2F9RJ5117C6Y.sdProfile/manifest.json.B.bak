@@ -1,0 +1,111 @@
+{
+    "Actions": {
+        "2,0": {
+            "ActionID": "8oaxjkg0-dt04-i2ds-f5zm-0k526l34136j",
+            "Controller": "",
+            "Name": "场景切换",
+            "Settings": {
+                "DeviceUUID": "",
+                "ProfileUUID": ""
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "LAJ10243YD3AUH3I30KP3327PPL.png",
+                    "Title": ""
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.profile.rotate"
+        },
+        "2,2": {
+            "ActionID": "4o061tur-05px-wbd0-d94t-b4o84l8l52r2",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://gw.nuriflex.co.kr/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": 8,
+                    "Image": "17188500ZVNWKT6URSH86DT3EMY.png",
+                    "ShowTitle": false,
+                    "Title": "그룹웨어"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "3,2": {
+            "ActionID": "vm603g37-96je-w126-8490-3k2m177l10ni",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://chatgpt.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "TC374069ZT2P05R99Z1H59373KG.png",
+                    "ShowTitle": false,
+                    "Title": "Chatgpt"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "4,2": {
+            "ActionID": "cwiz349o-aw8v-r34y-goa3-7xu0n0j8ze1x",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://x.com/home?lang=ko"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "2HTM752XI6ID23M3K9YU3L1UB33.png",
+                    "ShowTitle": false,
+                    "Title": "twitter"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "5,2": {
+            "ActionID": "eq8lbu8n-2s3j-xd3o-3pw9-n8oth4hq85i2",
+            "Controller": "Information",
+            "Name": "World Time",
+            "Settings": {
+                "amplify": true,
+                "isBackgroundHidden": false,
+                "select": "1",
+                "theme": "theme1",
+                "title": "서울",
+                "zone": "9"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "FontSize": "11",
+                    "FontStyle": "Bold",
+                    "Image": "images/index.jpg",
+                    "TitleAlignment": "bottom"
+                }
+            ],
+            "UUID": "com.mirabox.streamdock.time.action1"
+        }
+    },
+    "AppIdentifier": "",
+    "DeviceModel": "20GBA9901",
+    "DeviceSerialNumber": "9C630619374D",
+    "DeviceUUID": "TS115",
+    "Name": "정보패널",
+    "Pages": {
+        "Current": "P5EWP22Y-EVF6-8JJU-ZB4E-2F9RJ5117C6Y.sdProfile",
+        "Pages": [
+            "P5EWP22Y-EVF6-8JJU-ZB4E-2F9RJ5117C6Y.sdProfile"
+        ]
+    },
+    "Version": "1.0"
+}

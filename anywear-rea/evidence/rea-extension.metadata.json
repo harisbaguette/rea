@@ -1,0 +1,9 @@
+{
+  "file": "evidence/rea-extension.json.gz",
+  "sha256": "aa6e15d0683497790e191e59ddde32ddecf6095f62e3e8038ea236bd7e1644e0",
+  "bytes": 12333111,
+  "uncompressed_sha256": "af5c44e05371b914bff0fab7eebbd1ab9226965622f06f8c0202fa13519158f6",
+  "uncompressed_bytes": 73885927,
+  "compression": "gzip, lossless",
+  "evidence_id": "ev_e268b4283984190620cb9ce4e2c2a96a3eead589b161f3b5f6c9d3e92ee23cde"
+}

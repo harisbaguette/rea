@@ -1,0 +1,296 @@
+{
+    "Actions": {
+        "0,0": {
+            "ActionID": "2s3n41j2-5t5q-j0ia-6768-052px3xo5l95",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.naver.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "9727C8YK96659044VH1247SETU0.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "0,1": {
+            "ActionID": "3n5zgh09-0okm-34v6-4jx1-34ie69jcrp1p",
+            "Controller": "Keypad",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.netflix.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "YT4977XYLY4N41H9J8B91P4L05W.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "1,0": {
+            "ActionID": "r932ts51-z5vc-kj9a-v2j9-hp00344v4n3e",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.google.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "6O41E754KJ0IV2O7G551O0M262Z.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "1,1": {
+            "ActionID": "79bj062a-3092-q204-z4w3-70n33v9zwqu8",
+            "Controller": "Keypad",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.disneyplus.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "4IPXE9H487R2F04465G5R11B06T.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "2,0": {
+            "ActionID": "t32evbf1-84ak-3xps-z1m3-e04c3ap9j5y5",
+            "Controller": "",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://www.monstargear.co.kr/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "EJX018HT5786L107U67B0GOU992.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "2,1": {
+            "ActionID": "qv3270w9-4wsk-9o1y-4a0r-6qptgfcuc5ij",
+            "Controller": "Keypad",
+            "Name": "Website",
+            "Settings": {
+                "openInBrowser": true,
+                "path": "https://watcha.com/"
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "AVDTL9610I3057TX8C040156413.png"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.website"
+        },
+        "3,0": {
+            "ActionID": "u43rl351-3u3t-ayg1-908i-k33h7d4da74h",
+            "Controller": "Knob",
+            "Name": "Hotkey",
+            "Settings": {
+                "Coalesce": true,
+                "Hotkeys": [
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 123
+                    },
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 124
+                    },
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 49
+                    }
+                ],
+                "hotkeyRadioButtonIndex": -1
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "Images/btn_custom_trigger_hotkey"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.hotkey"
+        },
+        "3,1": {
+            "ActionID": "v075r471-1hzc-1zs9-7dyq-1zy2028s43ab",
+            "Controller": "Knob",
+            "Name": "Hotkey",
+            "Settings": {
+                "Coalesce": true,
+                "Hotkeys": [
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 126
+                    },
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 125
+                    },
+                    {
+                        "KeyCmd": false,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 36
+                    }
+                ],
+                "hotkeyRadioButtonIndex": -1
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "Images/btn_custom_trigger_hotkey"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.hotkey"
+        },
+        "4,1": {
+            "ActionID": "48n9qir2-xil8-zpo6-3x04-ssbl30iyobxi",
+            "Controller": "Knob",
+            "Name": "Hotkey",
+            "Settings": {
+                "Coalesce": true,
+                "Hotkeys": [
+                    {
+                        "KeyCmd": true,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 27
+                    },
+                    {
+                        "KeyCmd": true,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 24
+                    },
+                    {
+                        "KeyCmd": true,
+                        "KeyCtrl": false,
+                        "KeyModifiers": 65536,
+                        "KeyOption": false,
+                        "KeyShift": false,
+                        "NativeCode": -1,
+                        "QTKeyCode": -1,
+                        "RKeyCmd": false,
+                        "RKeyCtrl": false,
+                        "RKeyOption": false,
+                        "RKeyShift": false,
+                        "VKeyCode": 29
+                    }
+                ],
+                "hotkeyRadioButtonIndex": -1
+            },
+            "State": 0,
+            "States": [
+                {
+                    "Image": "Images/btn_custom_trigger_hotkey"
+                }
+            ],
+            "UUID": "com.hotspot.streamdock.system.hotkey"
+        }
+    },
+    "DeviceModel": "20GBA9901",
+    "DeviceSerialNumber": "",
+    "DeviceUUID": "TS16N3",
+    "Name": "웹사이트",
+    "Pages": {
+        "Current": "700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile",
+        "Pages": [
+            "700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile",
+            "PLQ4ITH8-X19V-OC03-F47K-E021SC64ZR6O.sdProfile",
+            "4J77TS2V-FTAA-02FM-3456-K0V0RPPHRQO4.sdProfile",
+            "Z4FKN94E-2N64-W012-994S-R0SM200GI5X2.sdProfile",
+            "NYX13X92-1KDR-SC04-DEDJ-B4PPEW96I972.sdProfile",
+            "75084E1D-N84I-CBL1-0078-46T7083WIK3G.sdProfile"
+        ]
+    },
+    "Version": "1.0"
+}

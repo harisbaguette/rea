@@ -1,0 +1,67 @@
+{
+  "Actions": [
+    {
+      "Icon": "static/img/icon-1",
+      "Name": "Remember things",
+      "States": [
+        {
+          "FontSize": "10",
+          "TitleAlignment": "bottom",
+          "Image": "static/img/memo"
+        }
+      ],
+      "Controllers": [
+        "Keypad",
+        "Information"
+      ],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": false,
+      "Tooltip": "Press the button to open historical notes",
+      "UUID": "com.hotspot.streamdock.memo.action1",
+      "PropertyInspectorPath": "action1/index.html"
+    },
+    {
+      "Icon": "static/img/icon-2",
+      "Name": "Record to-do",
+      "States": [
+        {
+          "FontSize": "10",
+          "TitleAlignment": "middle",
+          "Image": "static/img/todo"
+        }
+      ],
+      "Controllers": [
+        "Keypad",
+        "Information"
+      ],
+      "UserTitleEnabled": false,
+      "SupportedInMultiActions": false,
+      "Tooltip": "Press the button to open to-do details",
+      "UUID": "com.hotspot.streamdock.memo.action2",
+      "PropertyInspectorPath": "action2/index.html"
+    }
+  ],
+  "SDKVersion": 1,
+  "Author": "HotSpot",
+  "Name": "Useful notes",
+  "Icon": "static/img/cate",
+  "CodePath": "plugin/index.html",
+  "Description": "Record your current thoughts/to-do list at any time",
+  "Category": "Useful notes",
+  "CategoryIcon": "static/img/cate",
+  "Version": "1.0.1",
+  "URL": "http://video.hotspotek.com.cn/",
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.11"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "7"
+    }
+  ],
+  "Software": {
+    "MinimumVersion": "2.9"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "static_frame": true,
+  "heartbeat": true,
+  "reports": [
+    {
+      "seconds": 137.22,
+      "size": 512,
+      "head": "41434b00004f4b00000d0000000000000000000000000000",
+      "key": 0
+    }
+  ],
+  "keys": [
+    0
+  ],
+  "ready": true,
+  "seconds": 249.68,
+  "ended": true
+}

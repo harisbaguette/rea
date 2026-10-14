@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>记录待办 - 属性检查器</title>
+    <link rel="stylesheet" href="../static/css/sdpi.css">
+    <script src="../static/action.js"></script>
+    <style>
+        input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            width: 7pt;
+            height: 7pt;
+            cursor: pointer;
+            padding: 2px 5px 0 0;
+        }
+
+        input[type="datetime-local"]::-webkit-inner-spin-button,
+        input[type="datetime-local"]::-webkit-clear-button {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sdpi-wrapper" style="display: none">
+        <div class="sdpi-heading" id="text1">按下按键可查看待办详情</div>
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">待办标题</div>
+            <input class="sdpi-item-value" id="title" placeholder="请输入待办的标题" oninput="saveData()">
+        </div>
+        <div type="textarea" class="sdpi-item" style="align-items: flex-start">
+            <div class="sdpi-item-label" style="padding-top: 4px">待办内容</div>
+            <span class="sdpi-item-value textarea">
+                <textarea type="textarea" id="content" placeholder="请输入待办的内容" oninput="saveData()"></textarea>
+            </span>
+        </div>
+        <div class="sdpi-item" style="width: 100%">
+            <div class="sdpi-item-label">设置提醒</div>
+            <input class="sdpi-item-value" type="datetime-local" id="time" oninput="saveData()"
+                style="min-width:auto;margin-right: 0">
+            <input class="sdpi-item-value" type="color" id="color" oninput="saveData()"
+                style="padding: 0;cursor: pointer">
+        </div>
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">提交待办</div>
+            <button class="sdpi-item-value" onclick="submit()">点击提交</button>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>

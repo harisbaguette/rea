@@ -1,0 +1,31 @@
+{
+    "Name": "Useful notes",
+    "Description": "Keep track of your current thoughts/to-dos at any time",
+    "com.hotspot.streamdock.memo.action1": {
+        "Name": "Remember things",
+        "Tooltip": "Press the button to open historical notes"
+    },
+    "com.hotspot.streamdock.memo.action2": {
+        "Name": "Record to-do",
+        "Tooltip": "Press the button to open to-do details"
+    },
+    "Category": "Useful notes",
+    "Localization": {
+        "按下按键可查看历史便签": "Press the button to view historical notes",
+        "快速查阅": "quick reference",
+        "暂无数据": "No data",
+        "便签标题": "Note title",
+        "便签内容": "Note content",
+        "提交便签": "Submit note",
+        "点击提交": "Click submit",
+        "请输入标题": "Please enter a title",
+        "请输入便签的内容": "Please enter the content of the note",
+        "按下按键可查看待办详情": "Press the button to view to-do details",
+        "待办标题": "To-do title",
+        "请输入待办的标题": "Please enter the title of the to-do",
+        "请输入待办的内容": "Please enter the to-do content",
+        "待办内容": "To-do content",
+        "设置提醒": "Set reminder",
+        "提交待办": "Submit to-do"
+    }
+}

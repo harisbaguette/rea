@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>window.__awctx={"utm":null,"organic_utm":"organic-direct","visitor_id":"ee5e3ee5-8732-4fe8-b30b-b99d38118549","handoff_code":null,"device_class":"desktop","source_app":"browser","in_app_webview":false,"consent_required":false,"cws_url":"https://chromewebstore.google.com/detail/anywear-virtual-try-on/hijnklblgecbdlhjiofhlhjpndpifejh","internal":false,"landing_page":"index"};</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PGPGHSPQ');</script>
+<!-- End Google Tag Manager -->
+<!-- GA path→utm bridge (campaign plan §4.2). GA never derives a campaign from a
+     URL path, so on /free-* and /for-* we push a SYNTHETIC page location that
+     carries ?utm_source=<slug>. The trailing hop code (-123-456) is stripped
+     FIRST so GA sees `free-jane`, never a per-visitor value it would bucket
+     into "(other)". Pushed synchronously here so it queues ahead of GTM's
+     page_view. GTM side: map {{DLV - aw_page_location}} onto the GA4 config
+     tag's page_location when present — see LANDING_PAGE.md. Address bar stays
+     clean; utm_source is the campaign slug VERBATIM in our DB and GA.
+     ALL GTM/GA4/CWS configuration steps live in GOOGLE_ANALYTICS.md. -->
+<script>
+(function () {
+  var m = location.pathname.replace(/-\d{3,4}-\d{3,4}$/, '').match(/^\/((?:free|for)-[a-z0-9-]+)$/i);
+  if (!m) return;
+  var slug = m[1].toLowerCase();
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'aw_campaign_pageview',
+    aw_utm_source: slug,
+    aw_page_location: location.origin + '/?utm_source=' + encodeURIComponent(slug),
+  });
+})();
+</script>
+<!-- ?try=1 — open the Try Example demo on arrival, as if the button was clicked.
+     The organic-search cluster pages (/virtual-try-on et al.) send their "try it
+     without installing" CTA here rather than to the /store demo: the landing
+     page is the surface that converts, and the modal is the same demo.
+
+     Read and STRIPPED synchronously here, ahead of GTM, for the same reason the
+     path→utm bridge above rewrites page_location: GA would otherwise report
+     `/?try=1` as a separate page and split the homepage's numbers. The flag
+     survives as window.__awAutoTry and is consumed after the modal script has
+     defined openTryModal (bottom of body). utm_* and every other param are
+     preserved — only `try` is removed. -->
+<script>
+(function () {
+  try {
+    var u = new URL(location.href);
+    if (!u.searchParams.has('try')) return;
+    window.__awAutoTry = true;
+    u.searchParams.delete('try');
+    history.replaceState(null, '', u.pathname + (u.searchParams.toString() ? '?' + u.searchParams : '') + u.hash);
+  } catch (_) { /* no URL/replaceState → the modal just doesn't auto-open */ }
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Anywear — Live Virtual Try-On for Any Online Store</title>
+
+<!-- ═══ Organic-search tags ═══════════════════════════════════════════════════
+     `/` deliberately carries NO added body copy — the hero is the design, and it
+     stays 341 words. Everything a search engine needs in the way of definitions,
+     step lists and FAQs lives on the cluster pages instead (/virtual-try-on,
+     /live-virtual-try-on, /virtual-try-on-chrome-extension,
+     /virtual-try-on-for-shopify), reachable from the small nav at the bottom of
+     the right panel and from sitemap.xml. So the only ranking signals this file
+     carries are head-level ones, plus JSON-LD before </body>.
+
+     CANONICAL IS LOAD-BEARING. Campaign paths (/free-<slug>, /for-<slug>, each
+     with a per-visitor hop code — LANDING_PAGE.md §3.1) all serve THIS file at
+     200. Without a self-referencing canonical every influencer link is a
+     crawlable duplicate homepage and the signals split across unbounded URLs.
+     robots.txt Disallows both prefixes as well; keep the two in step.
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<meta name="description" content="Live virtual try-on for any online store. Drag any clothing item onto yourself and see it on your camera in real time. Free Chrome extension, no photo upload.">
+<link rel="canonical" href="https://anywear.decart.ai/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<!-- Link-preview image. og:image is the one-pager hero GIF (600x337, 1.7 MB):
+     Discord and Telegram animate a GIF in a link preview, and everywhere that
+     does not — iMessage, WhatsApp, Slack, X, LinkedIn — falls back to its first
+     frame, which here is the strongest frame in the loop (white tee on the left,
+     red floral dress rendered on the right). So it degrades well rather than
+     badly. twitter:image points at a static 1200x630 JPG cut from that same
+     frame, because X never animates and prefers the larger still.
+
+     Do NOT point either at /widget/tryon-preview.gif: it is 37 MB, over every
+     scraper's ceiling (X ~5 MB, Facebook ~8 MB), which is why link previews
+     showed nothing at all before this. Keep any replacement under ~5 MB. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://anywear.decart.ai/">
+<meta property="og:title" content="Anywear — Try clothes on, anywhere online">
+<meta property="og:description" content="Drag any clothing item from any online store and see it on you, live. Free Chrome extension, no photo upload.">
+<meta property="og:image" content="https://anywear.decart.ai/assets/one-pager/vton-hero.gif">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="337">
+<meta property="og:image:alt" content="The same shopper side by side: a white t-shirt on the left, a red floral dress rendered live on the right.">
+<meta property="og:site_name" content="Anywear">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anywear — Try clothes on, anywhere online">
+<meta name="twitter:description" content="Drag any clothing item from any online store and see it on you, live.">
+<meta name="twitter:image" content="https://anywear.decart.ai/assets/og-preview.jpg">
+<link rel="preload" href="/fonts/RoobertVF.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Roobert';
+    src: url('/fonts/RoobertVF.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --ink: #170404;
+    --paper: #fffffc;
+    --muted: #a49595;
+    --line: #17040418;
+    --accent: #c65a92;
+    --lav: #eae4f7;
+    --pink: #fec6ff;
+    --pink-lt: #fedfff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Roobert', 'Inter', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* ═══ Two-column stage (Figma: 1440×870, left white / right gradient) ═══ */
+  .stage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+  }
+
+  /* ── Left column ── */
+  .panel-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 52px clamp(40px, 5vw, 80px);
+    animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .wordmark { display: block; height: 44px; width: auto; align-self: flex-start; }
+
+  .hero-copy { max-width: 560px; padding: 24px 0; }
+
+  h1 {
+    font-family: 'Roobert', 'Inter', sans-serif;
+    font-size: clamp(44px, 5.6vw, 68px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 0.99;
+    color: var(--ink);
+  }
+
+  .lede {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-top: 22px;
+    line-height: 1.35;
+    letter-spacing: -0.03em;
+    max-width: 430px;
+  }
+
+  .cta {
+    display: flex;
+    gap: 12px;
+    margin-top: 34px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    width: 210px;
+    height: 58px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    border-radius: 8px;
+    border: 1.5px solid var(--ink);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: #000; }
+  .btn-secondary { background: var(--paper); color: var(--ink); -webkit-appearance: none; appearance: none; }
+  .btn-secondary:hover { background: #f7f2f4; }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn .chrome-ico { width: 20px; height: 20px; flex-shrink: 0; }
+
+  /* Store link — base style. Overridden by the boxed `.store-cta` block further
+     down (same specificity, later wins); that boxed variant is what renders. */
+  .store-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    font-size: 15px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  .store-cta:hover { color: var(--ink); }
+  .store-cta-arrow { transition: transform 0.18s ease; }
+  .store-cta:hover .store-cta-arrow { transform: translateX(4px); }
+
+  .powered {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: -0.01em;
+  }
+  .powered .decart-logo { height: 24px; width: auto; display: inline-block; }
+
+  /* ── Right column: mesh-gradient panel ── */
+  .panel-right {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 40px 76px;
+    /* Exact mesh gradient exported from Figma (9 blurred ellipses + noise).
+       Stretched to fill so the whole composition shows, matching the 720×870
+       Figma panel 1:1 (the mesh is soft, so non-uniform scale is invisible). */
+    background: var(--lav) url('/assets/anywear-gradient.svg') center center / 100% 100% no-repeat;
+  }
+
+  .stack {
+    width: min(100%, 560px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    animation: rise 0.8s 0.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .beta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 17px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.65);
+    -webkit-backdrop-filter: blur(9px);
+    backdrop-filter: blur(9px);
+    color: #5a2540;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    box-shadow: 0 6px 20px rgba(120,40,70,0.14);
+  }
+  .beta-pill .spark { width: 13px; height: 13px; color: #c65a92; flex-shrink: 0; }
+
+  /* Floating browser mockup */
+  .browser {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 34px 90px -24px rgba(74,18,40,0.5), 0 10px 30px rgba(30,0,15,0.16);
+  }
+  .browser-bar {
+    height: 38px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 14px;
+    background: #f3eef4;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .browser-bar .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .browser-bar .dot.r { background: #ff5f57; }
+  .browser-bar .dot.y { background: #febc2e; }
+  .browser-bar .dot.g { background: #28c840; }
+  .browser-url {
+    flex: 1;
+    height: 22px;
+    margin-left: 8px;
+    border-radius: 6px;
+    background: rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 11px;
+    color: #9a90a0;
+    letter-spacing: 0.01em;
+  }
+  #browser-url-host { transition: opacity 0.35s ease; }
+  .browser-body { display: block; line-height: 0; }
+  .browser-body img,
+  .browser-body video { display: block; width: 100%; height: auto; }
+
+  /* Legal links pinned to panel bottom */
+  .legal {
+    position: absolute;
+    left: 0; right: 0; bottom: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 34px;
+  }
+  .legal a {
+    font-size: 13px;
+    color: #fff;
+    opacity: 0.9;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: opacity 0.18s ease;
+  }
+  .legal a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 3px; }
+  .legal a:focus-visible { opacity: 1; outline: 2px solid #fff; outline-offset: 3px; border-radius: 3px; }
+
+  /* ── Responsive ── */
+  .cta-mobile-label { display: none; }
+  @media (max-width: 920px) {
+    .stage { grid-template-columns: 1fr; }
+    .panel-left { min-height: 100vh; }
+    .panel-right { min-height: 88vh; padding: 56px 32px 84px; }
+  }
+  @media (max-width: 620px) {
+    .panel-left { min-height: auto; justify-content: flex-start; padding: 36px 24px 44px; }
+    .hero-copy { padding: 44px 0 38px; }
+    h1 { font-size: clamp(38px, 11vw, 52px); }
+    .lede { font-size: 18px; }
+    .cta { gap: 10px; }
+    .btn { width: 100%; }
+    .cta-desktop-label { display: none; }
+    .cta-mobile-label { display: inline; }
+    .powered { margin-top: 8px; }
+    .panel-right { min-height: 82vh; padding: 44px 20px 76px; }
+    .legal { gap: 8px 20px; bottom: 22px; }
+  }
+
+  /* ═══ Live try-on modal (Figma redesign — light card) ═══ */
+  .tryon-modal {
+    position: fixed; inset: 0; z-index: 1000;
+    display: none; align-items: center; justify-content: center; padding: 20px;
+  }
+  .tryon-modal.open { display: flex; }
+  .tryon-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(24,8,14,0.55);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .tryon-modal.open .tryon-backdrop { opacity: 1; }
+
+  .tryon-dialog {
+    --t-ink: #170404; --t-muted: #a49595; --t-line: rgba(23,4,4,0.10);
+    --t-card: #fffffc; --t-thumb: #f1edf6; --t-stage: #181818;
+    position: relative;
+    width: min(912px, 100%);
+    height: min(640px, calc(100dvh - 40px));
+    background: var(--t-card); color: var(--t-ink);
+    border: 1px solid var(--t-line);
+    border-radius: 30px; box-shadow: 0 40px 120px rgba(40,10,25,0.45);
+    display: flex; flex-direction: column;
+    padding: 28px 34px 34px 33px; overflow: hidden;
+    font-family: 'Roobert', 'Inter', sans-serif;
+    transform: translateY(18px) scale(0.985); opacity: 0;
+    transition: transform 0.45s cubic-bezier(.16,1,.3,1), opacity 0.3s ease;
+  }
+  .tryon-modal.open .tryon-dialog { transform: none; opacity: 1; }
+
+  .tryon-close {
+    position: absolute; top: 26px; right: 30px; z-index: 5;
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid rgba(23,4,4,0.22); background: transparent; color: var(--t-ink);
+    font-size: 17px; line-height: 1; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .tryon-close:hover { background: rgba(23,4,4,0.05); border-color: var(--t-ink); }
+
+  .tryon-head { flex-shrink: 0; margin-bottom: 16px; }
+  .tryon-dots { display: flex; align-items: center; gap: 7px; }
+  .tryon-dots .d {
+    width: 7px; height: 7px; border-radius: 50%; background: rgba(23,4,4,0.16);
+    transition: width 0.4s cubic-bezier(.16,1,.3,1), background 0.4s ease, border-radius 0.4s ease;
+  }
+  .tryon-dots .d.active { background: var(--t-ink); width: 34px; border-radius: 4px; }
+
+  .tstep { display: none; flex-direction: column; flex: 1; min-height: 0; }
+  .tstep.active { display: flex; }
+  .tstep-heading {
+    font-family: 'Roobert', 'Inter', sans-serif; font-weight: 500;
+    font-size: clamp(22px, 2.6vw, 28px); letter-spacing: -0.04em; line-height: 0.99;
+    color: var(--t-ink); margin-bottom: 14px;
+  }
+
+  /* Step 1 — camera enable */
+  .cam-hero {
+    flex: 1; width: 100%; background: var(--t-stage); border-radius: 10px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+  }
+  .cam-hero .ico {
+    width: 54px; height: 54px; border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.28); color: rgba(255,255,255,0.85);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .enable-cam {
+    background: var(--t-ink); color: #fff; border: none; border-radius: 999px;
+    padding: 13px 30px; font-size: 15px; font-weight: 500; letter-spacing: -0.01em;
+    cursor: pointer; font-family: inherit; transition: background 0.15s, transform 0.15s;
+  }
+  .enable-cam:hover { background: #000; }
+  .enable-cam:active { transform: translateY(1px); }
+
+  /* Step 2 — garments + widget */
+  .t-tip {
+    display: inline-flex; align-self: flex-start; gap: 8px; align-items: center;
+    background: transparent; border: 1px solid rgba(23,4,4,0.16); border-radius: 999px;
+    padding: 8px 15px; margin-bottom: 16px; flex-shrink: 0; max-width: 100%;
+  }
+  .t-tip .ti { color: var(--t-ink); flex-shrink: 0; display: flex; }
+  .t-tip .ti svg { width: 13px; height: 13px; }
+  .t-tip .tt { font-size: 13px; color: var(--t-ink); line-height: 1.3; letter-spacing: -0.01em; }
+  .t-tip .tt strong { font-weight: 600; }
+
+  .t-s2 { display: flex; gap: 10px; align-items: stretch; flex: 1; min-height: 0; }
+  .t-garments {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    width: 232px; flex-shrink: 0; align-content: center;
+  }
+  .g-thumb {
+    position: relative; border-radius: 10px; background: var(--t-thumb);
+    border: 1px solid var(--t-line); overflow: hidden; cursor: grab; aspect-ratio: 2 / 3;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.4s cubic-bezier(.16,1,.3,1), transform 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.2s, border-color 0.2s;
+  }
+  .g-thumb.visible { opacity: 1; transform: translateY(0); }
+  .g-thumb:hover { border-color: rgba(23,4,4,0.32); box-shadow: 0 10px 24px rgba(40,10,25,0.14); }
+  .g-thumb:active { cursor: grabbing; }
+  .g-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; -webkit-user-drag: none; }
+
+  .t-cam-right { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .t-cam-panel {
+    flex: 1; width: 100%; background: var(--t-stage); border-radius: 10px; position: relative;
+    overflow: hidden; border: 2px solid transparent; transition: border-color 0.2s; min-height: 0;
+  }
+  .t-cam-panel.drag-over { border-color: var(--t-ink); }
+  #t-output { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--t-stage); transform: scaleX(-1); }
+  .t-status {
+    position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.7); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    pointer-events: none; text-align: center; padding: 16px;
+  }
+  .t-status.hidden { display: none; }
+
+  .t-continue {
+    align-self: flex-end; background: var(--t-ink); color: #fff; border: none; border-radius: 999px;
+    padding: 12px 30px; font-size: 15px; font-weight: 500; letter-spacing: -0.01em; cursor: pointer;
+    font-family: inherit; margin-top: 14px; flex-shrink: 0;
+    opacity: 0; transform: translateY(6px); pointer-events: none;
+    transition: opacity 0.4s, transform 0.4s, background 0.15s;
+  }
+  .t-continue.show { opacity: 1; transform: translateY(0); pointer-events: all; }
+  .t-continue:hover { background: #000; }
+
+  /* Step 3 — install */
+  .tstep3-inner {
+    flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+    gap: 0; max-width: 560px;
+  }
+  .t-demo {
+    width: 100%; max-width: 560px; border-radius: 12px; overflow: hidden; margin-bottom: 22px;
+    border: 1px solid var(--t-line); box-shadow: 0 16px 40px rgba(40,10,25,0.16); background: var(--t-stage);
+  }
+  .t-demo-vid { width: 100%; display: block; max-height: 240px; object-fit: cover; object-position: center center; }
+  .t-install-sub { font-size: 14px; color: var(--t-muted); line-height: 1.6; max-width: 520px; margin-bottom: 24px; }
+  .t-install-sub strong { color: var(--t-ink); font-weight: 600; }
+  .t-install-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--t-ink); color: #fff; text-decoration: none; border-radius: 999px; padding: 14px 30px;
+    font-weight: 500; font-size: 15px; letter-spacing: -0.01em;
+    transition: background 0.15s, transform 0.18s; margin-bottom: 22px;
+  }
+  .t-install-btn:hover { background: #000; transform: translateY(-1px); }
+  .t-restart {
+    margin-top: 18px; background: transparent; border: none; font-size: 13px; color: var(--t-muted);
+    cursor: pointer; font-family: inherit; letter-spacing: -0.01em; padding: 0;
+  }
+  .t-restart:hover { color: var(--t-ink); }
+
+  @media (max-width: 600px) {
+    .tryon-dialog { padding: 22px 18px 22px; height: calc(100dvh - 32px); border-radius: 22px; }
+    .tryon-close { top: 18px; right: 18px; }
+    .t-s2 { flex-direction: column; }
+    .t-garments { width: 100%; grid-template-columns: repeat(4, 1fr); flex-shrink: 0; order: 2; }
+    .g-thumb { aspect-ratio: 2 / 3; }
+    .t-cam-right { order: 1; min-height: 220px; }
+    .tstep3-inner { justify-content: flex-start; overflow-y: auto; }
+    .t-demo-vid { max-height: 170px; }
+    .t-demo { margin-bottom: 14px; }
+  }
+
+  /* ── Store CTA ───────────────────────────────────── */
+  .store-cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 13px 18px;
+    border: 0.5px solid var(--line);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s;
+    width: 100%;
+  }
+  .store-cta:hover { border-color: var(--ink); background: #f9f8f5; }
+  .store-cta .store-cta-icon { color: var(--muted); flex-shrink: 0; }
+  .store-cta .store-cta-text { flex: 1; }
+  .store-cta .store-cta-arrow { color: var(--muted); font-size: 16px; }
+
+  /* Modal step-3 merchant hook */
+  .t-merchant-hook {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 0.5px solid rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .t-merchant-hook p { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .t-merchant-hook a {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 500; color: var(--ink);
+    text-decoration: none;
+    border: 0.5px solid currentColor;
+    padding: 8px 16px; border-radius: 6px;
+    transition: background 0.15s;
+  }
+  .t-merchant-hook a:hover { background: rgba(0,0,0,0.04); }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGPGHSPQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <main class="stage">
+
+    <!-- ═══ Left column ═══ -->
+    <section class="panel-left">
+      <img class="wordmark" src="/assets/anywear-logo.svg" alt="Anywear" width="151" height="44">
+
+      <div class="hero-copy">
+        <h1>Try clothes on,<br>anywhere online</h1>
+        <p class="lede">Drag any clothing item from any online store and see it on you, instantly.</p>
+        <div class="cta">
+          <!-- Rewired by the campaign tracker (bottom of body): campaign visitors
+               get ?utm_source=<slug>&utm_content=<visitor_id> (plan §4.3), and on
+               MOBILE the click opens the handoff modal instead — extensions
+               cannot install on phones, the store is a dead end there (§4.4). -->
+          <a class="btn btn-primary" id="cta-add-to-chrome" data-cta-context="header" href="https://chromewebstore.google.com/detail/anywear-virtual-try-on/hijnklblgecbdlhjiofhlhjpndpifejh?hl=en-US&utm_source=landing_page&utm_medium=hero_button&utm_campaign=add_to_chrome" target="_blank" rel="noopener noreferrer">
+            <img class="chrome-ico" src="/assets/chrome.svg" alt="" aria-hidden="true" width="20" height="20">
+            <span class="cta-desktop-label">Add to Chrome</span><span class="cta-mobile-label">Add to Chrome on your Laptop</span>
+          </a>
+          <button type="button" class="btn btn-secondary" onclick="openTryModal(event)">Try Example</button>
+        </div>
+        <!-- The merchant lane. Points at /business (alias of /one-pager, routed in
+             server.js), NOT /install: the sales page is what answers "what is this
+             and why would my store want it", and it is the surface that carries an
+             /install CTA of its own. Sending a cold merchant straight to the
+             install wizard skips the pitch. -->
+        <a href="/business" class="store-cta">
+          <span class="store-cta-text">Own a store? Add virtual try-on to your website</span>
+          <span class="store-cta-arrow">→</span>
+        </a>
+      </div>
+
+      <span class="powered">Powered by
+        <img class="decart-logo" src="/assets/decart-logo-spark-ink.svg" alt="decart" width="86" height="24">
+      </span>
+    </section>
+
+    <!-- ═══ Right column: gradient panel ═══ -->
+    <section class="panel-right">
+      <div class="stack">
+        <span class="beta-pill">
+          <svg class="spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.6 6.4a2 2 0 0 0 1.5 1.5L22 12l-6.4 1.6a2 2 0 0 0-1.5 1.5L12 22l-1.6-6.4a2 2 0 0 0-1.5-1.5L2 12l6.4-1.6a2 2 0 0 0 1.5-1.5z"/></svg>
+          Free during Beta. Available for limited time.
+        </span>
+
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="browser-url"><span id="browser-url-host">revolve.com</span></span>
+          </div>
+          <div class="browser-body">
+            <!-- Was /widget/tryon-preview.gif — 37 MB, downloaded in full before the
+                 first frame animated, on every visit including mobile. This is the
+                 same footage as H.264 at the same 1280x720: 2.7 MB, and it streams
+                 instead of blocking. Renders identically.
+
+                 Every attribute here is load-bearing. muted + playsinline are what
+                 make iOS Safari autoplay at all (playsinline also stops it hijacking
+                 the screen into fullscreen); the file is encoded with no audio track
+                 so there is nothing to unmute. poster paints the first frame while
+                 the video is still opening, so the mockup is never an empty box.
+                 preload="metadata" keeps the hero off the critical path.
+                 <video> has no alt attribute — aria-label is the equivalent. -->
+            <video src="/assets/hero-tryon.mp4" poster="/assets/hero-tryon-poster.jpg"
+                   autoplay muted loop playsinline preload="metadata"
+                   aria-label="Live virtual try-on demo"></video>
+          </div>
+        </div>
+      </div>
+
+      <nav class="legal" aria-label="Legal">
+        <!-- Entry point to the organic-search cluster (see the head comment).
+             Kept in this row on purpose: the hero must not gain any content. -->
+        <a href="/virtual-try-on">Virtual Try-On</a>
+        <a href="https://docs.platform.decart.ai/resources/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        <a href="https://docs.platform.decart.ai/resources/terms-of-service" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+        <a href="https://docs.platform.decart.ai/resources/aup" target="_blank" rel="noopener noreferrer">Acceptable Use Policy</a>
+      </nav>
+    </section>
+  </main>
+
+  <!-- ═══ Live try-on demo modal ════════════════════════ -->
+  <div class="tryon-modal" id="tryon-modal" aria-hidden="true">
+    <div class="tryon-backdrop" onclick="closeTryModal()"></div>
+    <div class="tryon-dialog light" role="dialog" aria-modal="true" aria-label="Live virtual try-on demo">
+      <button class="tryon-close" type="button" onclick="closeTryModal()" aria-label="Close">&times;</button>
+      <div class="tryon-head">
+        <div class="tryon-dots">
+          <span class="d active" id="td0"></span>
+          <span class="d" id="td1"></span>
+          <span class="d" id="td2"></span>
+        </div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="tstep active" id="tstep1">
+        <h3 class="tstep-heading">Turn on your camera.</h3>
+        <div class="cam-hero">
+          <div class="ico">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+          </div>
+          <button class="enable-cam" type="button" id="t-enable-cam">Enable camera</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="tstep" id="tstep2">
+        <h3 class="tstep-heading">Drag a product onto yourself.</h3>
+        <div class="t-tip">
+          <span class="ti"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.6 6.4a2 2 0 0 0 1.5 1.5L22 12l-6.4 1.6a2 2 0 0 0-1.5 1.5L12 22l-1.6-6.4a2 2 0 0 0-1.5-1.5L2 12l6.4-1.6a2 2 0 0 0 1.5-1.5z"/></svg></span>
+          <span class="tt">For best results - remove any thick jacket or outer layer for the most accurate try-on.</span>
+        </div>
+        <div class="t-s2">
+          <div class="t-garments">
+            <div class="g-thumb" draggable="true"><img loading="lazy" src="/tryon_assets/garment1.png" alt="Garment 1" draggable="false"></div>
+            <div class="g-thumb" draggable="true"><img loading="lazy" src="/tryon_assets/garment2.png" alt="Garment 2" draggable="false"></div>
+            <div class="g-thumb" draggable="true"><img loading="lazy" src="/tryon_assets/garment3.png" alt="Garment 3" draggable="false"></div>
+            <div class="g-thumb" draggable="true"><img loading="lazy" src="/tryon_assets/garment4.png" alt="Garment 4" draggable="false"></div>
+          </div>
+          <div class="t-cam-right">
+            <div class="t-cam-panel" id="t-widget-panel">
+              <video id="t-output" autoplay playsinline muted></video>
+              <div class="t-status" id="t-status">Connecting…</div>
+            </div>
+          </div>
+        </div>
+        <button class="t-continue" type="button" id="t-continue">Continue &rarr;</button>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="tstep" id="tstep3">
+        <h3 class="tstep-heading">Install on every online-store.</h3>
+        <div class="tstep3-inner">
+          <a class="t-install-btn" id="cta-modal-install" data-cta-context="after_instant_tryon" href="https://chromewebstore.google.com/detail/anywear-virtual-try-on/hijnklblgecbdlhjiofhlhjpndpifejh?hl=en-US&utm_source=landing_page&utm_medium=modal_button&utm_campaign=add_to_chrome" target="_blank" rel="noopener noreferrer">
+            Add to Chrome
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <div class="t-demo">
+            <video class="t-demo-vid" autoplay muted loop playsinline preload="auto">
+              <source src="/assets/tryon-preview.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="t-install-sub">Add <strong>Anywear</strong> to Chrome and this exact try-on appears right on every product page — Zara, ASOS, Amazon and beyond. Drag any item onto yourself and see how it looks before you buy.</p>
+          <button class="t-restart" type="button" id="t-restart">&larr; Try another look</button>
+          <!-- Merchant hook hidden per product (kept for easy re-enable)
+          <div class="t-merchant-hook">
+            <p>Own an online store? Give your customers this experience.</p>
+            <a href="/install">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Add to your store
+            </a>
+          </div>
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Campaign attribution: EU consent bar + mobile handoff modal + tracker ═══
+       (campaign plan §3.4, §4.1, §4.4 — see LANDING_PAGE.md for the full spec) -->
+  <style>
+    /* ── EU micro-consent bar (§3.4): small, on-brand, two EQUAL buttons, no
+       pre-selection, no dark patterns (eu_cookie_permissions.md).
+       Shown at BOTH top and bottom (owner: one thin bar is too easy to miss);
+       answering either dismisses both. ── */
+    .aw-consent-bar {
+      position: fixed; left: 50%; transform: translateX(-50%);
+      z-index: 1050; display: none; align-items: center; gap: 14px; flex-wrap: wrap;
+      /* below the handoff modal (1100) on purpose — while the sheet is open it
+         owns the screen; the bar is still there when it closes */
+      max-width: min(680px, calc(100vw - 32px));
+      background: var(--paper); border: 0.5px solid var(--line); border-radius: 12px;
+      box-shadow: 0 10px 34px rgba(0,0,0,0.14);
+      padding: 13px 18px; font-size: 13px; color: var(--ink);
+    }
+    .aw-consent-bar.aw-cb-bottom { bottom: 18px; }
+    .aw-consent-bar.aw-cb-top    { top: 18px; }
+    .aw-consent-bar.show { display: flex; }
+    .aw-consent-bar .aw-consent-text { flex: 1; min-width: 220px; line-height: 1.5; }
+    .aw-consent-bar button {
+      font-family: inherit; font-size: 13px; cursor: pointer; padding: 8px 18px;
+      border-radius: 7px; border: 1px solid var(--ink); background: var(--paper);
+      color: var(--ink); transition: background 0.15s;
+    }
+    .aw-consent-bar button:hover { background: var(--placeholder-bg); }
+    .aw-consent-bar .aw-privacy {
+      font-size: 12px; color: var(--muted); text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── Mobile→desktop handoff modal (§4.4) ── */
+    #aw-handoff { position: fixed; inset: 0; z-index: 1100; display: none;
+      align-items: flex-end; justify-content: center; }
+    #aw-handoff.open { display: flex; }
+    #aw-handoff .aw-h-backdrop { position: absolute; inset: 0; background: rgba(6,5,3,0.55);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+    #aw-handoff .aw-h-sheet {
+      position: relative; width: min(480px, 100%); background: var(--paper);
+      border-radius: 18px 18px 0 0; padding: 26px 22px calc(20px + env(safe-area-inset-bottom));
+      box-shadow: 0 -12px 40px rgba(0,0,0,0.25); animation: aw-rise 0.3s cubic-bezier(.16,1,.3,1);
+    }
+    @keyframes aw-rise { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+    .aw-h-close { position: absolute; top: 12px; right: 14px; width: 28px; height: 28px;
+      border: none; border-radius: 50%; background: var(--placeholder-bg); color: var(--muted);
+      font-size: 16px; cursor: pointer; }
+    .aw-h-title-row { display: flex; align-items: center; margin-bottom: 20px; padding-right: 32px; }
+    .aw-h-title { font-family: 'Fraunces', serif; font-size: clamp(14px, 4.2vw, 21px);
+      font-weight: 500; white-space: nowrap; }
+    .aw-h-btn {
+      display: flex; align-items: center; gap: 11px; width: 100%; text-align: left;
+      font-family: inherit; font-size: 14px; color: var(--ink); text-decoration: none;
+      background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+      padding: 13px 15px; cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    }
+    .aw-h-btn[hidden] { display: none; }  /* display:flex above would beat the hidden attr */
+    .aw-h-btn:hover { border-color: var(--ink); }
+    .aw-h-btn.aw-primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .aw-h-btn .aw-h-btn-sub { display: block; font-size: 11px; opacity: 0.55; margin-top: 2px; }
+    .aw-h-btn .aw-h-ico { flex-shrink: 0; width: 18px; text-align: center; }
+    #aw-h-copy-input {
+      width: 100%; margin-top: 8px; padding: 10px 12px; font-family: inherit; font-size: 13px;
+      color: var(--muted); background: var(--placeholder-bg); border: 0.5px solid var(--line);
+      border-radius: 8px; display: none;
+    }
+    #aw-h-escape-help { display: none; font-size: 12px; color: var(--muted); line-height: 1.6;
+      background: var(--placeholder-bg); border-radius: 8px; padding: 10px 13px; margin-top: 8px; }
+    .aw-h-flow { margin-bottom: 16px; }
+    /* Primary Share Link: full-width, dark, centered, CWS badge riding inside */
+    .aw-h-share-main { justify-content: center; gap: 9px; font-size: 15px; font-weight: 550;
+      padding: 15px; border-radius: 14px; }
+    .aw-h-share-main .aw-h-cws-badge { display: inline-flex; flex-shrink: 0; }
+    .aw-h-share-main .aw-h-cws-badge svg { width: 23px; height: 20px; }
+    /* Sub-row under Share Link: helper note left, Copy link right */
+    .aw-h-sub-row { display: flex; align-items: center; gap: 14px; margin-top: 10px; }
+    .aw-h-sub-note { flex: 1; font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .aw-h-copy-link { flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px;
+      font-family: inherit; font-size: 14px; color: var(--ink); background: none;
+      border: none; padding: 4px 0; cursor: pointer; }
+    .aw-h-copy-link svg { width: 17px; height: 17px; }
+    .aw-h-escape-btn { width: 100%; margin-bottom: 9px; }
+    .aw-h-store-anyway { display: block; margin-top: 12px; text-align: center; font-size: 12px;
+      color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+  </style>
+
+  <!-- EU micro-consent bars — copy is FINAL per plan §3.4; equal buttons.
+       Rendered at BOTH top and bottom so it can't be missed; answering either
+       (or dismissing) resolves both. -->
+  <div id="aw-consent-bar-top" class="aw-consent-bar aw-cb-top" role="dialog" aria-label="Cookie consent">
+    <span class="aw-consent-text">We use cookies to credit the partner who referred you.</span>
+    <button type="button" class="aw-consent-accept">Accept</button>
+    <button type="button" class="aw-consent-decline">Decline</button>
+    <a class="aw-privacy" href="https://docs.platform.decart.ai/resources/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy policy</a>
+  </div>
+  <div id="aw-consent-bar-bottom" class="aw-consent-bar aw-cb-bottom" role="dialog" aria-label="Cookie consent">
+    <span class="aw-consent-text">We use cookies to credit the partner who referred you.</span>
+    <button type="button" class="aw-consent-accept">Accept</button>
+    <button type="button" class="aw-consent-decline">Decline</button>
+    <a class="aw-privacy" href="https://docs.platform.decart.ai/resources/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy policy</a>
+  </div>
+
+  <!-- Mobile handoff modal — options are shown/hidden per CAPABILITY
+       (feature-detection), never per UA token; UA only labels source_app (§4.4). -->
+  <div id="aw-handoff" aria-hidden="true">
+    <div class="aw-h-backdrop" id="aw-h-backdrop"></div>
+    <div class="aw-h-sheet" role="dialog" aria-modal="true" aria-label="Get Anywear on your laptop">
+      <button class="aw-h-close" id="aw-h-close" aria-label="Close">&times;</button>
+      <div class="aw-h-title-row">
+        <div class="aw-h-title">Search &ldquo;Anywear&rdquo; on Chrome Web Store</div>
+      </div>
+      <!-- Webview escape: shown only inside a webview (intent:// / x-safari-https://). -->
+      <button type="button" class="aw-h-btn aw-h-escape-btn" id="aw-h-escape" hidden>
+        <span class="aw-h-ico">↗</span><span>Open in your browser</span>
+      </button>
+      <div class="aw-h-flow" id="aw-h-step1">
+        <div class="aw-h-action">
+          <button type="button" class="aw-h-btn aw-primary aw-h-share-main" id="aw-h-share">
+            <span class="aw-h-cws-badge" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 152.00976 132"><defs><linearGradient id="awcwsr" gradientUnits="userSpaceOnUse" gradientTransform="translate(-20,-678)" x1="39.16" y1="775.015" x2="152.84" y2="775.015"><stop offset="0" stop-color="#d93025"/><stop offset="1" stop-color="#ea4335"/></linearGradient><linearGradient id="awcwsg" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-0.5,-0.866,0.866,-0.5,-553.5404,-800.0297)" x1="-1169.8269" y1="59.7414" x2="-1056.1232" y2="59.7414"><stop offset="0" stop-color="#1e8e3e"/><stop offset="1" stop-color="#34a853"/></linearGradient><linearGradient id="awcwsy" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-0.5,0.866,-0.866,-0.5,-423.9008,-292.818)" x1="56.7071" y1="-664.7747" x2="170.4071" y2="-664.7747"><stop offset="0" stop-color="#fbbc04"/><stop offset="1" stop-color="#fcc934"/></linearGradient></defs><path fill="#f1f3f4" d="M 0,0 V 121.63086 C 0,127.35086 4.6391406,132 10.369141,132 H 141.64062 c 5.72,0 10.36915,-4.63914 10.36915,-10.36914 L 152,0 Z m 58.730469,14.519531 h 34.539062 c 3.82,0 6.910159,3.090157 6.910159,6.910157 0,3.809999 -3.090159,6.910156 -6.910159,6.910156 H 58.730469 c -3.82,0 -6.910157,-3.090156 -6.910157,-6.910156 0,-3.820001 3.090157,-6.910157 6.910157,-6.910157 z"/><path fill="#e8eaed" d="M 0,0 V 66.349609 H 152 V 0 Z m 58.730469,14.519531 h 34.539062 c 3.82,0 6.910159,3.090157 6.910159,6.910157 0,3.809999 -3.090159,6.910156 -6.910159,6.910156 H 58.730469 c -3.82,0 -6.910157,-3.090156 -6.910157,-6.910156 0,-3.820001 3.090157,-6.910157 6.910157,-6.910157 z"/><path fill="url(#awcwsr)" d="m 76,55.990236 c -24.29,0 -45.48984,13.190544 -56.83984,32.810544 L 28.21094,116.41016 42.17969,132 h 8.89453 L 76,88.81055 l 56.83984,-0.01 C 121.48984,69.18078 100.29,55.990236 76,55.990236 Z"/><path fill="url(#awcwsg)" d="M 19.16016,88.80078 C 11.69401,101.76587 8.79854,117.05336 11.18555,132 h 32.9082 z"/><path fill="url(#awcwsy)" d="M 76,88.81055 100.93359,132 h 39.88086 c 2.38639,-14.943 -0.50881,-30.22498 -7.97461,-43.18945 z"/><path fill="#f1f3f4" d="m 76,88.81055 c -18.12046,0 -32.810541,14.69433 -32.810547,32.82031 0,3.62529 0.598449,7.10853 1.683594,10.36914 h 62.253903 c 1.08515,-3.26061 1.6836,-6.74385 1.6836,-10.36914 C 108.81054,103.50488 94.12046,88.81055 76,88.81055 Z"/><path fill="#1a73e8" d="M 76,94.96094 A 26.66,26.67 0 0 0 49.33984,121.63086 26.66,26.67 0 0 0 51.48633,132 h 49.02734 A 26.66,26.67 0 0 0 102.66016,121.63086 26.66,26.67 0 0 0 76,94.96094 Z"/><rect x="0" y="66.35" opacity="0.1" fill="#bdc1c6" width="152" height="0.86"/><rect x="0" y="65.48" opacity="0.1" fill="#bdc1c6" width="152" height="0.86"/></svg>
+            </span>
+            <span class="aw-h-label">Share Link to Your Laptop</span>
+          </button>
+          <div class="aw-h-sub-row">
+            <span class="aw-h-sub-note">AirDrop, copy, email, or message the link to your computer.</span>
+            <button type="button" class="aw-h-copy-link" id="aw-h-copy">
+              <span class="aw-h-label">Copy link</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4.5A2.5 2.5 0 0 1 2 12.5v-8A2.5 2.5 0 0 1 4.5 2h8A2.5 2.5 0 0 1 15 4.5V5"/></svg>
+            </button>
+          </div>
+          <input id="aw-h-copy-input" readonly aria-label="Link to copy">
+          <div id="aw-h-escape-help">Couldn’t open your browser automatically — tap <strong>⋯</strong> (or the share icon) and choose <strong>"Open in external browser"</strong>.</div>
+        </div>
+        <div class="aw-h-media"></div>
+      </div>
+      <a class="aw-h-store-anyway" id="aw-h-store-anyway" target="_blank" rel="noopener noreferrer">Or view it on the Chrome Web Store →</a>
+    </div>
+  </div>
+
+  <script>
+  /* ═══ Campaign tracker — plan §4.1/§3.3/§4.3/§4.4 ═══
+     In-memory ONLY (no localStorage/sessionStorage — the geo-gated posture in
+     eu_cookie_permissions.md depends on the page storing NOTHING client-side).
+     Identity comes from the server-injected window.__awctx (visitor id minted
+     server-side, invariant §2.5.1). Every event goes to POST /api/log; events
+     that precede navigation use sendBeacon. Failed sends go to an in-memory
+     retry queue (session-scoped; a full unload loses it — accepted, §3.3). */
+  (function () {
+    'use strict';
+    var ctx = window.__awctx || {};           // absent on static/dev serves — all nulls
+    var UTM = ctx.utm || ctx.organic_utm || null;
+    var SHORT_DOMAIN = 'tryanywear.ai';       // human-facing links use the SHORT domain;
+                                              // its 307 canonicalizes to anywear.decart.ai (§9.1)
+    var CWS_FALLBACK = document.getElementById('cta-add-to-chrome').href;
+
+    // campaign slug from the path, hop code stripped (never re-share an old code)
+    var pathSlug = (function () {
+      var m = location.pathname.replace(/-\d{3,4}-\d{3,4}$/, '').match(/^\/((?:free|for)-[a-z0-9-]+)$/i);
+      return m ? m[1].toLowerCase() : null;
+    })();
+
+    // NOTE: PostHog product analytics + session replay for this page live in
+    // /posthog-landing.js (loaded via <script defer> near </body>) — a separate
+    // landing-surface project, consent-gated, memory-persistence (zero client
+    // storage), pauses during the live-camera demo. Do NOT re-add PostHog inline
+    // here or it will double-init.
+
+    // ── send + in-memory retry queue ────────────────────────────────────────
+    var queue = [];                            // [{env, tries}]
+    // Best-effort client timezone, stamped on every event so we can later derive
+    // local hour-of-watch (owner parked idea) without re-instrumenting. Cheap,
+    // computed once. IANA zone + offset minutes; both null-safe.
+    var _tz = (function () {
+      try { return { tz: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+                     tz_offset_min: new Date().getTimezoneOffset() }; }
+      catch (_) { return { tz: null, tz_offset_min: null }; }
+    })();
+    function _eid() {
+      try { return (crypto.randomUUID && crypto.randomUUID()) || (Date.now() + '-' + Math.random().toString(36).slice(2)); }
+      catch (_) { return Date.now() + '-' + Math.random().toString(36).slice(2); }
+    }
+    function envelope(event, props) {
+      var p = { utm_source: UTM,
+                landing_page_visitor_id: ctx.visitor_id || null,
+                path: location.pathname,
+                event_id: _eid(),            // F19: dedupe key for retries / beacon re-sends
+                tz: _tz.tz, tz_offset_min: _tz.tz_offset_min };
+      for (var k in props) if (props[k] !== undefined) p[k] = props[k];
+      return { event: event,
+               occurred_at: new Date().toISOString(),
+               installation_id: null, session_id: null,
+               page_url: location.origin + location.pathname,  // never the query string
+               properties: p };
+    }
+    function post(envs) {
+      return fetch('/api/log', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(envs.length === 1 ? envs[0] : envs),
+        keepalive: true,
+      }).then(function (r) { if (!r.ok) throw new Error(r.status); });
+    }
+    function track(event, props, useBeacon) {
+      var env = envelope(event, props || {});
+      try {
+        if (useBeacon && navigator.sendBeacon) {
+          // pre-navigation events: beacon survives the page being torn down
+          navigator.sendBeacon('/api/log', new Blob([JSON.stringify(env)], { type: 'application/json' }));
+          return;
+        }
+        post([env]).catch(function () { if (queue.length < 50) queue.push({ env: env, tries: 1 }); });
+      } catch (_) {}
+    }
+    setInterval(function () {                  // flush retries; drop after 3 tries
+      if (!queue.length) return;
+      var batch = queue.splice(0, 10);
+      post(batch.map(function (q) { return q.env; })).catch(function () {
+        batch.forEach(function (q) { if (++q.tries <= 3 && queue.length < 50) queue.push(q); });
+      });
+    }, 12000);
+    window.__awTrack = track;                  // demo instrumentation hooks in below
+
+    // ── arrival events (§4.1) ───────────────────────────────────────────────
+    var refHost = null;
+    try { if (document.referrer) refHost = new URL(document.referrer).hostname; } catch (_) {}
+    track('website_landing_page_viewed', {
+      referrer_host: refHost,                  // organic-source signal, ALWAYS logged (§4.1b)
+      user_agent: navigator.userAgent,         // O3: raw UA → discover long-tail webview apps
+      in_app_webview: !!ctx.in_app_webview,
+      handoff_code: ctx.handoff_code || null,
+    });
+    if (ctx.handoff_code) {
+      // a link carrying a hop code was opened here — on desktop this IS the
+      // "came back" signal that stitches the mobile send to this open (F2)
+      track('website_self_sent_link_opened', { handoff_code: ctx.handoff_code });
+    }
+
+    // ── EU micro-consent (§3.4) ─────────────────────────────────────────────
+    // Two bars (top + bottom) so it isn't missed; a click on EITHER dismisses
+    // BOTH and posts the choice once.
+    var consentBars = document.querySelectorAll('.aw-consent-bar');
+    var consentAnswered = false;
+    if (ctx.consent_required) consentBars.forEach(function (b) { b.classList.add('show'); });
+    function consent(choice) {
+      if (consentAnswered) return;            // guard: only the first click counts
+      consentAnswered = true;
+      consentBars.forEach(function (b) { b.classList.remove('show'); });
+      fetch('/api/consent', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ choice: choice, utm_source: UTM,
+                               landing_page_visitor_id: ctx.visitor_id || null,
+                               handoff_code: ctx.handoff_code || null }),
+        keepalive: true,
+      }).then(function (r) { if (!r || !r.ok) throw new Error(r && r.status); })
+        .catch(function () {
+          // F20: the aw_utm cookie is set ONLY in the response — a failed ACCEPT
+          // would silently drop the accepter to hashed_ip/unattributed (reads as
+          // organic drift, not a delivery failure). Re-open the bar so they can
+          // retry rather than being mis-attributed. (Decline needs no cookie.)
+          if (choice === 'accepted') {
+            consentAnswered = false;
+            consentBars.forEach(function (b) { b.classList.add('show'); });
+          }
+        });
+      // the server logs website_cookie_consent + sets the cookies (accept →
+      // aw_utm in this same pageview; both → aw_consent memory)
+    }
+    document.querySelectorAll('.aw-consent-accept').forEach(function (el) {
+      el.addEventListener('click', function () { consent('accept'); });
+    });
+    document.querySelectorAll('.aw-consent-decline').forEach(function (el) {
+      el.addEventListener('click', function () { consent('decline'); });
+    });
+
+    // ── Add-to-Chrome CTAs (§4.3) ───────────────────────────────────────────
+    // Desktop: Web Store URL + ?utm_source=<slug> (Google's listing GA becomes a
+    // free independent per-campaign install audit) + utm_content=<visitor_id>
+    // (harmless; GA buckets high-cardinality utm_content to "(other)").
+    var storeUrl = CWS_FALLBACK;
+    if (UTM && ctx.visitor_id) {
+      storeUrl = storeUrl.split('?')[0] + '?utm_source=' + encodeURIComponent(UTM)
+               + '&utm_content=' + encodeURIComponent(ctx.visitor_id);
+    }
+    var isMobile = ctx.device_class ? ctx.device_class === 'mobile'
+      : /iPad|iPhone|iPod|Android|Mobile/i.test(navigator.userAgent); // static-serve fallback
+    ['cta-add-to-chrome', 'cta-modal-install'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.href = storeUrl;
+      el.addEventListener('click', function (e) {
+        track('website_add_to_chrome_button_clicked',
+              { context: el.getAttribute('data-cta-context') }, true);
+        // First-class PostHog event so session replays can be sliced by "clicked
+        // Add-to-Chrome" (guarded: posthog is absent for internal / pre-consent EU).
+        try { if (window.posthog && window.posthog.capture) window.posthog.capture('add_to_chrome_clicked', { context: el.getAttribute('data-cta-context') }); } catch (_) {}
+        if (isMobile) { e.preventDefault(); openHandoff(); } // store is a dead end on phones
+      });
+    });
+
+    // ── Handoff modal (§4.4) ────────────────────────────────────────────────
+    // Behavior is driven by CAPABILITY tests (robust, doesn't rot as apps
+    // update); the UA only labeled source_app server-side. Every send option
+    // mints a fresh hop code and appends it to the PATH the user already had.
+    var modal = document.getElementById('aw-handoff');
+    function mintHop() {
+      // F7: 4+4 digits (~81M space, was ~810k) to cut collision odds. The RPCs
+      // also abstain on any collision, so this just makes that rarer.
+      var d = function () { return String(Math.floor(1000 + Math.random() * 9000)); };
+      return d() + '-' + d();                  // 1234-5678 — thumb-typeable, no letters (§1)
+    }
+    function handoffUrl(code) {
+      // campaign lives in the PATH so it never expires; the code only measures
+      // the hop. Organic visitors get the bare-code form /-123-456.
+      return 'https://' + SHORT_DOMAIN + (pathSlug ? '/' + pathSlug + '-' + code : '/-' + code);
+    }
+    function sendTap(option, code) {
+      track('website_send_to_desktop_option_clicked',
+            { option: option, handoff_code: code }, true); // sendBeacon — precedes navigation
+    }
+    var isIOS = /iPad|iPhone|iPod/i.test(navigator.userAgent);
+    var inApp = !!ctx.in_app_webview;
+
+    function openHandoff() {
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      track('website_send_to_desktop_modal_shown', {});
+
+      // Share Link is the primary (only if the OS share sheet exists —
+      // capability, not UA); Copy link always rides in the sub-row.
+      var canShare = !!navigator.share;
+      document.getElementById('aw-h-escape').hidden = !inApp;  // escape only inside a webview
+      document.getElementById('aw-h-share').hidden  = !canShare;
+      document.getElementById('aw-h-store-anyway').href = storeUrl;
+    }
+    function closeHandoff() { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); }
+    document.getElementById('aw-h-close').addEventListener('click', closeHandoff);
+    document.getElementById('aw-h-backdrop').addEventListener('click', closeHandoff);
+    window.__awOpenHandoff = openHandoff;
+
+    // [Open in your browser →] — Android chrome intent / iOS x-safari, both
+    // intermittent (apps patch them); fall back to inline instructions. The
+    // URL is THIS page verbatim (utm + hop code ride in the path), so the real
+    // browser reopens in the identical state.
+    document.getElementById('aw-h-escape').addEventListener('click', function () {
+      sendTap('open_in_browser', ctx.handoff_code || null);
+      var here = location.host + location.pathname + location.search;
+      try {
+        location.href = isIOS
+          ? 'x-safari-https://' + here
+          : 'intent://' + here + '#Intent;scheme=https;package=com.android.chrome;end';
+      } catch (_) {}
+      setTimeout(function () {                 // still here after 1.2s = the scheme was swallowed
+        if (!document.hidden) document.getElementById('aw-h-escape-help').style.display = 'block';
+      }, 1200);
+    });
+
+    document.getElementById('aw-h-copy').addEventListener('click', function () {
+      var code = mintHop(), url = handoffUrl(code);
+      sendTap('copy_link', code);
+      var done = function () {
+        var inp = document.getElementById('aw-h-copy-input');
+        inp.style.display = 'block'; inp.value = url;         // visible fallback either way
+        document.querySelector('#aw-h-copy .aw-h-label').textContent = 'Copied ✓';
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, function () {
+        var inp = document.getElementById('aw-h-copy-input');
+        inp.style.display = 'block'; inp.value = url; inp.select();
+        try { document.execCommand('copy'); } catch (_) {}
+        done();
+      });
+      else done();
+    });
+
+    document.getElementById('aw-h-share').addEventListener('click', function () {
+      var code = mintHop(), url = handoffUrl(code);
+      sendTap('share_sheet', code);
+      navigator.share({ title: 'Anywear — virtual try-on', text: 'Open this on your computer:', url: url }).catch(function () {});
+    });
+  })();
+  </script>
+
+  <!-- Lean Decart realtime SDK (official @decartai/sdk, bundled) -->
+  <!-- Moderation: listen for the pod's content_flag instead of streaming flagged
+       output for the rest of the session. It targets #t-widget-panel / #t-output by
+       default, which check.mjs asserts still exist here.
+
+       MUST precede decart-sdk.min.js: it patches window.WebSocket, and the SDK opens
+       its signaling socket with whatever window.WebSocket is at that moment. Loading
+       it after fails SILENTLY: no error, no hook, no reset. check.mjs asserts the
+       order. See MODERATION_RESET_ATTEMPT.md. -->
+  <script>
+    // POLICY: the extension's, unchanged. Drift happens here too (the session is
+    // unbounded and the visitor keeps moving), so a flagged stream gets the same
+    // KV-cache reset and detector re-arm before we give up on it. The cap, the
+    // timings, the re-arm and the fresh-cache rule are all left at the module's
+    // defaults, which are the extension's config.js values verbatim.
+    //
+    // Both messages this pod-side loop depends on are available for this page's
+    // model: content_flag and the mid-session set_detector_scoring toggle are gated
+    // by NSFW_NOTIFY / NSFW_TOGGLE_ALLOWED, which are POD env vars, not per-model
+    // settings, and this page runs the same model the extension runs: both take
+    // it from their token's `modelName` (the account's model). Same pods, same env.
+    //
+    // Besides the server-side enforcement block below (identical on every
+    // surface), only the wording differs, for two reasons:
+    window.DECART_CONFIG = window.DECART_CONFIG || {};
+    window.DECART_CONFIG.MODERATION_RESET_ATTEMPT = {
+      // 0. Server-side NSFW enforcement, matching the extension. ON for every
+      //    visitor — no toggle, no prompt, nothing anyone agrees to. Sending
+      //    ?nsfw_threshold= IS the switch: the pod then runs its own NSFW lane
+      //    in kv-reset mode — wiping its KV cache, blurring its own output,
+      //    re-arming its own detector — so the client ladder below stays out of
+      //    the way and only logs. Must be finite and in [0,1]; anything else the
+      //    bouncer drops and the pod falls back to ghost mode, where it still
+      //    detects but nothing acts. These two move together, and unlike the
+      //    wording overrides below they are NOT a per-surface choice.
+      NSFW_THRESHOLD: 0.8,
+      SERVER_SIDE_ENFORCEMENT: true,
+      // 1. A reset is spinner-only here. The extension writes "We couldn't process
+      //    that / Restarting the session" over the blur, but a reset is transient
+      //    and self-correcting, so there is nothing the visitor needs to read or
+      //    act on. Empty strings make the module omit the text block entirely and
+      //    keep the spinner centred. It also removes a real confusion: the
+      //    terminal card below says almost the same words, and "hang on" must not
+      //    look like "that's the end".
+      RESET_MESSAGE_TITLE: '',
+      RESET_MESSAGE_SUBTITLE: '',
+      // 2. ONE message when we do give up, for either reason. The extension
+      //    distinguishes them ("This item is not supported" for a flag out of an
+      //    empty cache, "Something went wrong." for a stream that survived the
+      //    resets) because there the item is the user's own pick off a shop and may
+      //    genuinely be at fault. Here we chose the four garments, so blaming the
+      //    item would be wrong. Neither string names a moderation reason.
+      GIVE_UP_MESSAGE: "Sorry, we couldn't process that",
+      GIVE_UP_MESSAGE_UNSUPPORTED: "Sorry, we couldn't process that",
+      // null so both paths keep the card's default "Start again" CTA. The
+      // extension's "Restart" only makes sense alongside its item-specific copy.
+      GIVE_UP_RESTART_LABEL_UNSUPPORTED: null,
+    };
+  </script>
+  <script src="/tryon_assets/moderation-reset-attempt.js"></script>
+  <!-- The session queue (priority tier for our own pages) — QUEUE_SYSTEM.md § Our own pages -->
+  <script src="/tryon_assets/tryon-queue.js"></script>
+  <script src="/tryon_assets/decart-sdk.min.js"></script>
+  <script>
+    /* ═══ Live try-on demo — direct Decart realtime API ═══
+       Lean: getUserMedia → queue seat + token (tryon-queue.js) → SDK realtime
+       connect → output MediaStream → setImage(garment) on pick. */
+    (function () {
+      const modal       = document.getElementById('tryon-modal');
+      const panel       = document.getElementById('t-widget-panel');
+      const output      = document.getElementById('t-output');
+      const statusEl    = document.getElementById('t-status');
+      const continueBtn = document.getElementById('t-continue');
+      const enableBtn   = document.getElementById('t-enable-cam');
+      // The model is whatever the token is scoped to — read off the /api/tokens
+      // response (`modelName`), NEVER written here. The server mints each token for
+      // exactly one model, the account's own (tokenModelFor in server.js), and the
+      // platform refuses any other with `Model not permitted`. This demo hard-coded
+      // lucy-vton-3.5 while the account moved to lucy-vton-3.6, and from 2026-09-15
+      // ~100% of instant try-ons failed on it (ONBOARDING_FREE_TRYON.md § The model).
+      // `npm run check` fails if a lucy-vton-* literal comes back into this script.
+      let MODEL = null;
+      // Custom model definition — the SDK requires a definition object for
+      // connect(), and its built-in registry has none of the lucy-vton-3.x
+      // checkpoints, so models.realtime(MODEL) cannot be used here. Shape mirrors
+      // the SDK's lucy-vton-3 entry and matches onboarding-extension.html.
+      const modelDefFor = (slug) => ({ name: slug, urlPath: '/v1/stream', fps: 30, width: 1088, height: 624, inputSchema: {} });
+
+      let camStream = null;
+      let rtClient  = null;
+      // The queue ticket this demo holds a seat on. Stamped on the garment
+      // event as queue_ticket_id: this page logs with installation_id NULL,
+      // so the ticket is the only thing /queue's "Who is on now" can join a
+      // seat to its garment by (QUEUE_PAGE.md § Who is on now).
+      let queueTicketId = null;
+      let connecting = false;
+      let advanced   = false;
+      let _awWorked  = false;   // fire website_instant_tryon_worked at most once per attempt
+
+      // ── How long one demo session may run (LANDING_DEMO_SESSION.md) ──
+      // Owner, 2026-10-13. Until then the demo streamed until the visitor closed
+      // it or Decart's 300s cap, and held a PRIORITY seat (ahead of every paying
+      // shopper) 2–3× longer than a real try-on: median 89s against 44s, and 41%
+      // of the visitors who never picked a garment ran to the 300s cap.
+      //
+      // The number is ASKED of the server (maxSessionSeconds below), so it is in
+      // the token: Decart ends the stream there, the timer below counts down from
+      // the token, and tryon-queue.js frees the seat 10s after. One number, three
+      // readers. A cap that lived only in this page would leave Decart streaming
+      // to 300s whenever the timer did not fire, while the seat had gone to
+      // someone else: the drift DECART_SESSION_LIMIT.md is about.
+      const DEMO_SESSION_S = 90;
+      // No garment this long after the stream starts → end the session, give the
+      // seat back, and let a garment tap start a fresh one. 30s, from the data
+      // (2026-10-10 → 13): the median visitor picks at 10.6s and 85% within 30s.
+      // The other 15% lose a reconnect, not the demo. A 20s cutoff would have
+      // interrupted 25% of them.
+      const DEMO_NO_GARMENT_S = 30;
+      let capTimer = null, noGarmentTimer = null, sessionStartedAt = 0;
+      let garmentsApplied = 0;
+      let pendingGarment = null;       // tapped before the stream was up: applied once it is
+      let pausedForGarment = false;    // ended by the no-garment timer: a tap restarts it
+
+      // ── Sinks moderation-reset-attempt.js resolves lazily on window ──────
+      // platform: 'landing_demo' is the metrics-pollution tag every launch KPI
+      // filters out, so the moderation events carry it like every other event
+      // from this demo. Without this sink the reset loop runs but cannot be
+      // measured.
+      window.__decartTrack = (event, props) => {
+        if (window.__awTrack) window.__awTrack(event, Object.assign({ platform: 'landing_demo' }, props || {}));
+      };
+      // The slug on moderation events is the model the session actually ran, set
+      // from the token response below. Before 2026-08-20 this page used the
+      // lucy-vton-latest alias (resolves server-side to lucy-vton-3); from then to
+      // 2026-09-15 it ran lucy-vton-3.5; from the 2026-10-04 fix it is the account's
+      // own model (lucy-vton-3.6 at the time). In between it ran nothing at all.
+      window.__decartModelSlug = null;
+
+      function setDots(n) {
+        [0, 1, 2].forEach(i => {
+          document.getElementById('td' + i).className = 'd' + (i === n ? ' active' : '');
+        });
+      }
+      function showStep(id) {
+        document.querySelectorAll('.tstep').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+      }
+      function setStatus(text) {
+        if (!text) { statusEl.classList.add('hidden'); return; }
+        statusEl.classList.remove('hidden');
+        statusEl.textContent = text;
+      }
+
+      // ── Open / close ──────────────────────────────────
+      // `source` is 'click' for the Try Example button and 'deeplink' when the
+      // modal was opened by ?try=1 (the search-cluster pages link in that way).
+      // It is threaded through to analytics because a deep-link arrival is NOT
+      // a click, and try_now_clicked must keep meaning what it says.
+      window.openTryModal = function (e, opts) {
+        if (e) e.preventDefault();
+        var source = (opts && opts.source) || 'click';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        // Demo funnel: the modal is open, before any camera step.
+        if (window.__awTrack) window.__awTrack('website_instant_tryon_opened', { platform: 'landing_demo', source: source });
+        // First-class PostHog event so replays can be sliced by "clicked Try now".
+        // Deep-linked opens get their own name rather than inflating that one.
+        try {
+          if (window.posthog && window.posthog.capture) {
+            window.posthog.capture(source === 'click' ? 'try_now_clicked' : 'try_now_autoopened', { source: source });
+          }
+        } catch (_) {}
+        // F3/F8: CAPABILITY check, not UA — in-app webviews (and some browsers)
+        // have no getUserMedia. Don't show a camera step that can only hang:
+        // record it honestly (NOT a broken demo, NOT a consumed GPU session)
+        // and jump to the video-loop + install step instead.
+        if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
+          if (window.__awTrack) window.__awTrack('website_instant_tryon_unavailable', {
+            reason: (window.__awctx && window.__awctx.in_app_webview) ? 'webview' : 'no_camera',
+          });
+          showStep('tstep3'); setDots(2);
+          return;
+        }
+      };
+      window.closeTryModal = function () {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        teardown();
+      };
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeTryModal();
+      });
+
+      // Modal defaults to dark; force the light treatment to match this page.
+      (function applyLight() {
+        var dialog = modal.querySelector('.tryon-dialog');
+        if (dialog) dialog.classList.add('light');
+      })();
+
+      function teardown() {
+        clearSessionTimers();
+        if (window.__awTryonQueue) window.__awTryonQueue.release();
+        try { if (rtClient) rtClient.disconnect(); } catch (_) {}
+        if (camStream) camStream.getTracks().forEach(t => t.stop());
+        rtClient = null; camStream = null; advanced = false; _awWorked = false;
+        garmentsApplied = 0; pendingGarment = null; pausedForGarment = false;
+        document.querySelectorAll('#tstep2 .g-thumb').forEach(t => t.classList.remove('visible'));
+        continueBtn.classList.remove('show');
+        hideEndedCard();   // closing the modal must not leave a cut session's card or blur behind
+        showStep('tstep1'); setDots(0);
+      }
+
+      function revealGarments() {
+        document.querySelectorAll('#tstep2 .g-thumb').forEach((thumb, i) => {
+          setTimeout(() => thumb.classList.add('visible'), 100 + i * 80);
+        });
+      }
+
+      // ── Step 1: enable camera + connect to Decart ─────
+      enableBtn.addEventListener('click', startExperience);
+
+      async function startExperience() {
+        if (connecting || rtClient) return;
+        connecting = true;
+        // A tap that resumes a session paused for want of a garment says so on
+        // the funnel start, so a restart is not read as a new visitor.
+        const resumed = pausedForGarment;
+        pausedForGarment = false;
+        garmentsApplied = 0;   // per session: a "Try another look" session gets its own no-garment clock
+        enableBtn.disabled = true;
+        enableBtn.textContent = 'Starting…';
+        // Which step failed decides the message: only a camera failure is the
+        // visitor's to fix. Rides on website_instant_tryon_error as `step`.
+        let step = 'camera';
+
+        try {
+          // Camera (getUserMedia) only exists in a secure context: https:// or
+          // http://localhost. Over a LAN IP / file:// / plain http it's undefined.
+          if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            setStatus(window.isSecureContext
+              ? 'Camera isn’t available in this browser.'
+              : 'Camera needs a secure connection — open this page on https or http://localhost.');
+            throw new Error('getUserMedia unavailable (secure context: ' + window.isSecureContext + ')');
+          }
+
+          camStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } },
+            audio: false,
+          });
+
+          // F8: the demo funnel start. platform=landing_demo is the metrics-
+          // pollution tag — every launch KPI filters it out (plan §10).
+          if (window.__awTrack) window.__awTrack('website_instant_tryon_started',
+            Object.assign({ platform: 'landing_demo' }, resumed ? { resumed: 'no_garment' } : {}));
+
+          advanced = true;
+          showStep('tstep2'); setDots(1); revealGarments();
+          setStatus('Connecting to the studio…');
+          step = 'token';
+
+          // Through the session queue, not /api/tokens: our own pages are served
+          // in the PRIORITY tier (isOwnPagesHost, server.js) and their seats count
+          // toward the caps. Admitted at once unless every seat is taken.
+          const AWQ = window.__awTryonQueue;
+          const qOpts = {
+            base: /^(?:localhost|127\.0\.0\.1)$/.test(location.hostname) ? '' : 'https://anywear.decart.ai',
+            body: {},
+            track: (ev, p) => { if (window.__awTrack) window.__awTrack(ev, Object.assign({ platform: 'landing_demo' }, p || {})); },
+            isCancelled: () => !camStream,   // the modal was closed while waiting
+            onWaiting: (pos) => setStatus('Our servers are busy right now. ' +
+              (pos && pos > 1 ? 'You’re #' + pos + ' in line…' : 'You’re next in line…')),
+            // Into the token, on every door (see DEMO_SESSION_S): Decart ends the
+            // stream at 90s and the seat is freed with it.
+            maxSessionSeconds: DEMO_SESSION_S,
+          };
+          let got = await AWQ.acquire(qOpts);
+          if (got.cancelled) return;
+          if (got.busy) { step = 'queue'; throw new Error('queue wait timed out'); }
+          queueTicketId = got.ticketId || null;
+          const tok = got.token;
+          if (!tok.modelName) throw new Error('token response carries no modelName');
+          MODEL = tok.modelName;
+          window.__decartModelSlug = MODEL;
+          step = 'connect';
+
+          const { createDecartClient } = window.DecartSDK;
+
+          // connectAdmitted handles the SECOND gate (DECART_SESSION_LIMIT.md): if
+          // Decart refuses the token this queue just admitted ("Concurrent
+          // session limit reached."), the ticket goes back to the FRONT of the
+          // line, the visitor sees "You’re next in line…", and we connect again
+          // with a fresh token when a seat really frees. Each call builds its
+          // client from the token it is handed — never from `tok` above.
+          const conn = await AWQ.connectAdmitted(got, qOpts, (g) =>
+            createDecartClient({ apiKey: g.token.apiKey }).realtime.connect(camStream, {
+              model: modelDefFor(MODEL),
+              onRemoteStream: (stream) => {
+                output.srcObject = stream;
+                setStatus('');
+                // The realtime stream delivered a frame — the demo actually WORKED.
+                if (window.__awTrack && !_awWorked) {
+                  _awWorked = true;
+                  window.__awTrack('website_instant_tryon_worked', { platform: 'landing_demo' });
+                }
+              },
+            }));
+          if (conn.cancelled) return;
+          if (conn.busy) { step = 'queue'; throw new Error('queue wait timed out'); }
+          rtClient = conn.client;
+          got = conn.got;
+          queueTicketId = got.ticketId || null;
+          // The modal was closed while connect() was in flight. teardown() has
+          // already given the seat back, so a stream that started anyway would be
+          // one Decart counts and our queue does not (DECART_SESSION_LIMIT.md).
+          // End it here, before the heartbeat re-claims the ticket.
+          if (!camStream) { teardownPartial(); return; }
+
+          // Keep the queue seat while we stream; teardown releases it.
+          AWQ.startHeartbeat(got.ticketId, got.token);
+          // Joins this demo's moderation events to the pod-side logs for the session.
+          try { window.__decartApiSessionId = rtClient.sessionId || null; } catch (_) {}
+
+          // The session's own clock, read off the TOKEN (the server may have
+          // shortened it further for a balance, never lengthened it), so this page
+          // ends with Decart rather than after it. Started here, with the
+          // heartbeat's hold timer, so the seat is freed 10s after this fires.
+          const tokenS = Number(got.token && got.token.constraints && got.token.constraints.realtime &&
+                                got.token.constraints.realtime.maxSessionDuration) || DEMO_SESSION_S;
+          armSessionTimers(Math.min(tokenS, DEMO_SESSION_S));
+          // A garment tapped while we were connecting (or the tap that resumed a
+          // paused session) goes on now instead of being dropped.
+          if (pendingGarment) { const g = pendingGarment; pendingGarment = null; applyGarment(g); }
+
+          // This session's client. A late event from one we already tore down (the
+          // visitor may be on a NEW session by then) must not touch the screen or
+          // end the new one.
+          const client = rtClient;
+          rtClient.on('connectionChange', (state) => {
+            if (client !== rtClient) return;
+            if (state === 'connected' || state === 'generating') setStatus('');
+            // The session is over (session cap, network drop): give the seat back
+            // now, not when the visitor eventually closes the modal.
+            if (state === 'disconnected' && window.__awTryonQueue) window.__awTryonQueue.release();
+          });
+          rtClient.on('error', (err) => {
+            console.error('[tryon]', err);
+            const reason = String((err && err.message) || err).slice(0, 120);
+            if (window.__awTrack) window.__awTrack('website_instant_tryon_error',
+              { platform: 'landing_demo', stage: 'stream', reason: reason });
+            if (client !== rtClient) return;
+            // Decart ended the session at the token's length. It is the end, not
+            // a hiccup: tear down NOW. Left alone, the SDK reports the close as
+            // `reconnecting` (not `disconnected`) and dials Decart again with the
+            // same token while the visitor stares at "Connection issue" — 211
+            // seats a week were held to the 360s backstop that way, and every
+            // redial is a session Decart counts and our queue does not.
+            if (/session duration limit/i.test(reason)) { endDemoSession('session_limit'); return; }
+            setStatus('Connection issue — please try again.');
+          });
+        } catch (err) {
+          console.error('[tryon] start failed', err);
+          if (err && err.name === 'NotAllowedError') {
+            setStatus('Camera permission denied. Enable it and retry.');
+            showStep('tstep1');
+            if (window.__awTrack) window.__awTrack('website_instant_tryon_error',
+              { platform: 'landing_demo', stage: 'camera', reason: 'permission_denied' });
+          } else {
+            // A token or signaling failure is ours, not the visitor's camera. And
+            // "busy" only when it is TRUE: we waited out the queue, or Decart
+            // refused the connect for capacity.
+            const AWQ = window.__awTryonQueue;
+            setStatus(step === 'camera'
+              ? 'Could not start the camera. Please try again.'
+              : (step === 'queue' || (step === 'connect' && AWQ && AWQ.isCapacityError(err)))
+                ? AWQ.BUSY_MESSAGE
+                : 'Our try-on servers couldn’t start your session. Please try again in a moment.');
+            // stage stays 'start' so existing queries keep their meaning; `step`
+            // (camera | token | queue | connect) is new with the 2026-10-04 fix.
+            if (window.__awTrack) window.__awTrack('website_instant_tryon_error',
+              { platform: 'landing_demo', stage: 'start', step: step, reason: String((err && err.message) || err).slice(0, 120) });
+          }
+          pendingGarment = null;   // a tap from an attempt that failed is not applied to a later one
+          teardownPartial();
+        } finally {
+          connecting = false;
+          enableBtn.disabled = false;
+          enableBtn.textContent = 'Enable camera';
+        }
+      }
+
+      function teardownPartial() {
+        clearSessionTimers();
+        if (window.__awTryonQueue) window.__awTryonQueue.release();
+        try { if (rtClient) rtClient.disconnect(); } catch (_) {}
+        if (camStream) camStream.getTracks().forEach(t => t.stop());
+        rtClient = null; camStream = null; _awWorked = false;
+      }
+
+      // ── The session's two clocks (DEMO_SESSION_S, DEMO_NO_GARMENT_S) ─────
+      function armSessionTimers(sessionS) {
+        clearSessionTimers();
+        sessionStartedAt = Date.now();
+        capTimer = setTimeout(() => endDemoSession('cap'), sessionS * 1000);
+        if (!garmentsApplied) {
+          noGarmentTimer = setTimeout(() => endDemoSession('no_garment'), DEMO_NO_GARMENT_S * 1000);
+        }
+      }
+      function clearSessionTimers() {
+        if (capTimer) { clearTimeout(capTimer); capTimer = null; }
+        if (noGarmentTimer) { clearTimeout(noGarmentTimer); noGarmentTimer = null; }
+      }
+
+      // Every way a demo session runs out ends here: the 90s cap, no garment in
+      // 30s, or Decart's own "Session duration limit reached". teardownPartial()
+      // disconnects the SDK (which also stops its redials) and frees the seat.
+      //   cap / session_limit → the install step, exactly as "Continue" would:
+      //     the demo has done its job, and "Try another look" starts a new one.
+      //   no_garment → stay on the garments: a tap starts a fresh session with
+      //     the garment tapped (applyGarment → pendingGarment).
+      function endDemoSession(reason) {
+        if (!rtClient) return;
+        const seconds = sessionStartedAt ? Math.round((Date.now() - sessionStartedAt) / 1000) : null;
+        if (window.__awTrack) window.__awTrack('website_instant_tryon_session_ended', {
+          platform: 'landing_demo', reason: reason, garments: garmentsApplied, seconds: seconds,
+          queue_ticket_id: queueTicketId || undefined,
+        });
+        teardownPartial();
+        try { output.srcObject = null; } catch (_) {}
+        if (reason === 'no_garment') {
+          pausedForGarment = true;
+          continueBtn.classList.remove('show');
+          setStatus('Still there? Tap a garment to try it on.');
+        } else {
+          showStep('tstep3'); setDots(2);
+          setStatus('Connecting…');      // reset the stage overlay for a possible re-try
+        }
+      }
+
+      // ── Forced session end (moderation) ─────────────────────────────────
+      // The contract moderation-reset-attempt.js calls when a flagged stream
+      // cannot be repaired. It must actually tear the session down rather than
+      // cover it: a covered stream is still a streaming, billing session.
+      // teardownPartial() rather than teardown() so the card is not yanked off
+      // screen by a step reset before it has been read.
+      window.__decartForceSessionEnd = (reason, opts) => {
+        opts = opts || {};
+        teardownPartial();
+        setStatus('');
+        continueBtn.classList.remove('show');
+        if (window.__awTrack) window.__awTrack('website_instant_tryon_moderation_ended', {
+          platform: 'landing_demo', reason: reason || null, kind: opts.kind || null,
+        });
+        showEndedCard(opts.title, opts.restartLabel);
+      };
+
+      // Sits on the blurred stage the module leaves behind. No "Continue" here:
+      // this ended in a failure, so the install CTA is not the next thing to
+      // push. Restart returns to the camera step, which is the equivalent of the
+      // extension coming back without the garment that failed.
+      let endedCard = null;
+      function showEndedCard(title, restartLabel) {
+        if (endedCard) return;
+        const card = document.createElement('div');
+        card.id = 't-ended-card';
+        // z-index 11: one above the reset notice, which the module dismisses on
+        // the drift path but which must never end up over this.
+        card.style.cssText = [
+          'position:absolute', 'inset:0', 'z-index:11',
+          'display:flex', 'flex-direction:column',
+          'align-items:center', 'justify-content:center', 'gap:20px',
+          'padding:0 8%', 'text-align:center',
+          'background:rgba(24,8,14,0.42)',
+          'font-family:inherit',
+        ].join(';');
+        const h = document.createElement('div');
+        h.textContent = title || 'Something went wrong.';
+        h.style.cssText = 'font-size:clamp(17px,2vw,22px);font-weight:500;color:#fff;line-height:1.25;letter-spacing:-0.01em;text-shadow:0 1px 14px rgba(0,0,0,0.5)';
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = restartLabel || 'Start again';
+        b.style.cssText = 'background:#fff;color:#180810;border:none;border-radius:999px;padding:12px 30px;font-size:15px;font-weight:500;letter-spacing:-0.01em;cursor:pointer;font-family:inherit';
+        b.addEventListener('click', () => {
+          if (window.__awTrack) window.__awTrack('website_instant_tryon_moderation_restart', { platform: 'landing_demo' });
+          hideEndedCard();
+          showStep('tstep1'); setDots(0);
+        });
+        card.appendChild(h); card.appendChild(b);
+        panel.appendChild(card);
+        endedCard = card;
+      }
+
+      // Also drops the blur the module deliberately leaves on the video so the
+      // card has something to sit over. Nothing else clears it, and a restarted
+      // camera would otherwise come back blurred with no error on screen.
+      function hideEndedCard() {
+        if (endedCard && endedCard.parentNode) endedCard.parentNode.removeChild(endedCard);
+        endedCard = null;
+        const mra = window.__decartModerationResetAttempt;
+        if (mra && mra.releaseVideo) mra.releaseVideo();
+      }
+
+      // ── Apply a garment ───────────────────────────────
+      async function applyGarment(url) {
+        if (!rtClient) {
+          // No stream yet (still connecting), or it was paused for want of a
+          // garment. Keep the tap and apply it once the stream is up. On a
+          // paused session the tap is also what starts the new one: the seat
+          // was given back, so this takes a fresh one from the queue.
+          pendingGarment = url;
+          if (pausedForGarment && !connecting) startExperience();
+          return;
+        }
+        if (noGarmentTimer) { clearTimeout(noGarmentTimer); noGarmentTimer = null; }
+        setStatus('Dressing…');
+        // Fallback garment source for moderation-reset-attempt.js, used only if the
+        // SDK ever sends an opaque image_ref instead of base64 pixels.
+        window.__decartProductImageUrl = url;
+        try {
+          await rtClient.setImage(url);
+          garmentsApplied++;
+          setStatus('');
+          continueBtn.classList.add('show');
+          if (window.__awTrack) window.__awTrack('website_instant_tryon_garment_applied',
+            { platform: 'landing_demo', garment_url: url, queue_ticket_id: queueTicketId || undefined });
+        } catch (err) {
+          console.error('[tryon] setImage failed', err);
+          // The session was ended under it (the cap, a pause, the modal closed):
+          // our own teardown, not a failed garment. Logging it would put an
+          // `apply` error on the record for every cap that lands mid-"Dressing…".
+          if (!rtClient) return;
+          setStatus('');
+          if (window.__awTrack) window.__awTrack('website_instant_tryon_error',
+            { platform: 'landing_demo', stage: 'apply', reason: String((err && err.message) || err).slice(0, 120) });
+        }
+      }
+
+      // ── Step 2 → 3 ────────────────────────────────────
+      // Step 3 (Add to Chrome) shows no video, so release the camera and close
+      // the realtime session on the way in — no reason to keep the webcam light
+      // on or burn a GPU session while the user reads the install step.
+      continueBtn.addEventListener('click', () => {
+        showStep('tstep3'); setDots(2);
+        teardownPartial();               // disconnect rtClient + stop camStream tracks
+        try { output.srcObject = null; } catch (_) {}
+        setStatus('Connecting…');        // reset the stage overlay for a possible re-try
+      });
+      // "Try another look" returns to step 2 — the camera was stopped above, so
+      // re-acquire it (permission is already granted this session, so no prompt).
+      document.getElementById('t-restart').addEventListener('click', () => {
+        continueBtn.classList.remove('show');
+        showStep('tstep2'); setDots(1);
+        if (!rtClient && !connecting) startExperience();
+      });
+
+      // ── Garment drag-and-drop + tap ───────────────────
+      document.querySelectorAll('#tstep2 .g-thumb').forEach(thumb => {
+        const url = () => thumb.querySelector('img').src;
+        thumb.addEventListener('dragstart', e => {
+          e.dataTransfer.setData('text/plain', url());
+          e.dataTransfer.effectAllowed = 'copy';
+        });
+        thumb.addEventListener('click', () => applyGarment(url()));
+      });
+      panel.addEventListener('dragover', e => { e.preventDefault(); panel.classList.add('drag-over'); });
+      panel.addEventListener('dragleave', e => { if (!panel.contains(e.relatedTarget)) panel.classList.remove('drag-over'); });
+      panel.addEventListener('drop', e => {
+        e.preventDefault();
+        panel.classList.remove('drag-over');
+        const url = e.dataTransfer.getData('text/plain');
+        if (url) applyGarment(url);
+      });
+    })();
+  </script>
+
+  <!-- Fake-browser URL bar: cycle between shopping sites so the mockup reads as
+       "works on any store." Pure cosmetic; no analytics. -->
+  <script>
+    (function () {
+      var host = document.getElementById('browser-url-host');
+      if (!host) return;
+      var sites = ['revolve.com', 'pinterest.com'];
+      var i = 0;
+      setInterval(function () {
+        i = (i + 1) % sites.length;
+        host.style.opacity = '0';
+        setTimeout(function () { host.textContent = sites[i]; host.style.opacity = '1'; }, 350);
+      }, 2600);
+    })();
+  </script>
+
+  <!-- PostHog session replay (landing-surface project, separate from the
+       extension's). All logic + the why-comments live in /posthog-landing.js:
+       memory persistence (zero storage), EU consent gating, §5.4 camera-modal
+       pause, internal-visit skip. Must load AFTER the consent bar + tryon
+       modal exist in the DOM — keep it at the end of <body>. -->
+  <!-- Consume ?try=1 (captured in <head>). Placed after the modal script so
+       openTryModal is defined, and before posthog-landing.js so the replay
+       captures the demo from its first frame. -->
+  <script>
+    (function () {
+      if (!window.__awAutoTry || typeof window.openTryModal !== 'function') return;
+      window.openTryModal(null, { source: 'deeplink' });
+    })();
+  </script>
+
+  <script src="/posthog-landing.js" defer></script>
+<!-- ═══ Structured data ═══════════════════════════════════════════════════════
+     No FAQPage here: Google requires the answers to be VISIBLE on the page that
+     declares them, and this page has no FAQ by design. The FAQ schema lives on
+     the cluster pages, mirroring copy a visitor can actually read.
+
+     The rating is the REAL Chrome Web Store figure as of 2026-08-19 (5.0 from
+     16 ratings, ~3,000 users). It is the one value here that goes stale on its
+     own, and it appears in TWO files — this one and public/virtual-try-on.html.
+     Re-read the store listing before each release and update both, or delete
+     both aggregateRating blocks. Shipping a rating we no longer have is a
+     manual-action risk; inventing one is worse.
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Anywear — Virtual Try-On",
+  "applicationCategory": "BrowserApplication",
+  "operatingSystem": "Chrome",
+  "url": "https://anywear.decart.ai/",
+  "installUrl": "https://chromewebstore.google.com/detail/anywear-virtual-try-on/hijnklblgecbdlhjiofhlhjpndpifejh",
+  "description": "Live virtual try-on for any online store. Drag any clothing item onto yourself and see it in real time from your own camera — no photo upload.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "ratingCount": "16" },
+  "publisher": { "@type": "Organization", "name": "Decart", "url": "https://decart.ai" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Anywear",
+  "url": "https://anywear.decart.ai/",
+  "logo": "https://anywear.decart.ai/assets/anywear-logo.svg",
+  "parentOrganization": { "@type": "Organization", "name": "Decart", "url": "https://decart.ai" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Anywear",
+  "url": "https://anywear.decart.ai/"
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "reference": "https://catchfrog.ai/",
+  "browser_evidence_id": "ev_ef7a00b33133c18bae25db1b612780e8cc666dcb1b5edcd10402394c95b45ac2",
+  "static_evidence_id": "ev_d350aa984f793f8be70e9f99fd0fb7aa06fcbb30ac51a6060c269237c1d73f94",
+  "browser_mode": "별도 headless Chromium. 사용 중인 전면 브라우저 제어 없음.",
+  "shipped_artifacts": {
+    "file_count": 13,
+    "byte_count": 1355566
+  },
+  "observed": {
+    "frontend": "Next.js 및 Turbopack 청크",
+    "primary_flow": "출발 공항·노선 필터 → 가격 하락률 순 노선 → 날짜·가격 상세 → 외부 예약",
+    "features": [
+      "평균가 대비 하락률 정렬",
+      "출발 공항 선택",
+      "왕복·편도 검색 경로",
+      "가격대·지역 필터",
+      "노선 가격 추이·가격 이력 인터페이스"
+    ],
+    "public_bundle_endpoints": [
+      "/api/flights/search",
+      "/api/flights/routes",
+      "/api/flights/ui",
+      "/api/flights/price-trend",
+      "/api/flights/price-history",
+      "/api/flights/oneway/search"
+    ]
+  },
+  "inferred": [
+    "노선 목록과 가격 이력은 서버 응답을 사용한다. 서버 구현은 배포된 클라이언트만으로 복원할 수 없다."
+  ],
+  "unverified": [
+    "실시간 재고와 최종 운임의 정확성",
+    "서버의 가격 수집·하락 감지 알고리즘",
+    "인증이 필요한 계정·리워드 기능"
+  ],
+  "implementation_difference": "공휴일·연차 일정 우선 → 선택한 날짜의 여행지 → 날짜가 유지되는 외부 항공권 검색",
+  "scope": "독립 UI와 연휴 계산 엔진. 참고 사이트 코드·이미지는 제품 빌드에 포함하지 않음."
+}

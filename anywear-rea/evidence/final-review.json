@@ -1,0 +1,16 @@
+{
+  "result": "REVIEW_COMPLETE",
+  "reviewed_files": 8,
+  "important_findings": 0,
+  "unresolved_minor_findings": 0,
+  "correction": "README 도입의 브라우저 옷 합성으로 오해될 표현을 원격 영상 생성 설명으로 수정",
+  "checks": [
+    "Python 도구 3개 ast.parse 통과",
+    "검사 결과를 메모리에서 재현하여 기존 verification 결과와 일치",
+    "근거 생성 결과를 메모리에서 재현하여 findings와 일치",
+    "코드 관찰 21개의 인접 문맥과 문서5개 전체 대조"
+  ],
+  "limits": [
+    "실제 카메라·유료 API·모델 품질은 검증 범위 밖"
+  ]
+}

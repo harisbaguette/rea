@@ -1,0 +1,1572 @@
+{
+  "files_N": 312,
+  "files_M": 312,
+  "all_hashes_match": true,
+  "source_root": "/Users/haris/Library/Application Support/HotSpot/StreamDock",
+  "active_profile_relative": "profiles/P5EWP22Y-EVF6-8JJU-ZB4E-2F9RJ5117C6Y.sdProfile",
+  "records": [
+    {
+      "relative_path": "config/DataCache.db",
+      "sha256": "1a7b8d1fcf498b37a3da0c7e6b3261f7f24f35570f68f759b8752afd44321282",
+      "bytes": 16384
+    },
+    {
+      "relative_path": "config/StreamDockConfig.plist",
+      "sha256": "aced33e60602c1368d6f29f5bbcb3d554f7ef6f88c7592699c7ac7ba2035f597",
+      "bytes": 920
+    },
+    {
+      "relative_path": "config/StreamDockSupportDevice.txt",
+      "sha256": "a0a58afe5f7b0307a3896e5fb78b3a2053709692a659e7084a46fc105bdcfa2c",
+      "bytes": 91
+    },
+    {
+      "relative_path": "profiles/25BF32C0-AD7Q-786L-U23X-Q63ZP401SO97.sdProfile/manifest.json.A.bak",
+      "sha256": "901ba4e329728f057fd99a4bc885d8135cc290b9ce88a156893afb7a26f4ce3f",
+      "bytes": 9628
+    },
+    {
+      "relative_path": "profiles/25BF32C0-AD7Q-786L-U23X-Q63ZP401SO97.sdProfile/manifest.json.B.bak",
+      "sha256": "901ba4e329728f057fd99a4bc885d8135cc290b9ce88a156893afb7a26f4ce3f",
+      "bytes": 9628
+    },
+    {
+      "relative_path": "profiles/25BF32C0-AD7Q-786L-U23X-Q63ZP401SO97.sdProfile/manifest.json",
+      "sha256": "901ba4e329728f057fd99a4bc885d8135cc290b9ce88a156893afb7a26f4ce3f",
+      "bytes": 9628
+    },
+    {
+      "relative_path": "profiles/UVLZ709M-6ZD9-3T2V-XO4W-D4216E10W7V0.sdProfile/manifest.json.A.bak",
+      "sha256": "88e8947a1b2c6f163841fc243c0975b169d260e903fa4ab2002f5a6456d59db0",
+      "bytes": 22231
+    },
+    {
+      "relative_path": "profiles/UVLZ709M-6ZD9-3T2V-XO4W-D4216E10W7V0.sdProfile/manifest.json.B.bak",
+      "sha256": "88e8947a1b2c6f163841fc243c0975b169d260e903fa4ab2002f5a6456d59db0",
+      "bytes": 22231
+    },
+    {
+      "relative_path": "profiles/UVLZ709M-6ZD9-3T2V-XO4W-D4216E10W7V0.sdProfile/manifest.json",
+      "sha256": "88e8947a1b2c6f163841fc243c0975b169d260e903fa4ab2002f5a6456d59db0",
+      "bytes": 22231
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/manifest.json.A.bak",
+      "sha256": "d54cbf4b6ccb8bd2eb5a54a2ca8683f6c4d27830be53279e0b5c828b737ae0aa",
+      "bytes": 7741
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/manifest.json.B.bak",
+      "sha256": "d54cbf4b6ccb8bd2eb5a54a2ca8683f6c4d27830be53279e0b5c828b737ae0aa",
+      "bytes": 7741
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/manifest.json",
+      "sha256": "d54cbf4b6ccb8bd2eb5a54a2ca8683f6c4d27830be53279e0b5c828b737ae0aa",
+      "bytes": 7741
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/manifest.json.A.bak",
+      "sha256": "66fe0b3c8c64ca03cc5a54e45f5294ced6f1af2f6469dd7d495d458d08b69aa7",
+      "bytes": 21189
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/manifest.json.B.bak",
+      "sha256": "66fe0b3c8c64ca03cc5a54e45f5294ced6f1af2f6469dd7d495d458d08b69aa7",
+      "bytes": 21189
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/manifest.json",
+      "sha256": "66fe0b3c8c64ca03cc5a54e45f5294ced6f1af2f6469dd7d495d458d08b69aa7",
+      "bytes": 21189
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/manifest.json.A.bak",
+      "sha256": "a57930d55e60ecafa7e55d970013e1d393ce439d1f38a47e986cb0b1e90a88b0",
+      "bytes": 10370
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/manifest.json.B.bak",
+      "sha256": "a57930d55e60ecafa7e55d970013e1d393ce439d1f38a47e986cb0b1e90a88b0",
+      "bytes": 10370
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/manifest.json",
+      "sha256": "a57930d55e60ecafa7e55d970013e1d393ce439d1f38a47e986cb0b1e90a88b0",
+      "bytes": 10370
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/manifest.json.A.bak",
+      "sha256": "6b18a47f59460e13412a6cc9619f2fd660e00987cfafa60f8ba5daaca6245b18",
+      "bytes": 29365
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/manifest.json.B.bak",
+      "sha256": "6b18a47f59460e13412a6cc9619f2fd660e00987cfafa60f8ba5daaca6245b18",
+      "bytes": 29365
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/manifest.json",
+      "sha256": "6b18a47f59460e13412a6cc9619f2fd660e00987cfafa60f8ba5daaca6245b18",
+      "bytes": 29365
+    },
+    {
+      "relative_path": "profiles/2K1NTR84-06GA-ENT5-G5B6-3114UE56L602.sdProfile/manifest.json.A.bak",
+      "sha256": "edcd63c60a4ccc8fa8d083211cccc0049541061d2b8f52a54c80355448ff9ad9",
+      "bytes": 21911
+    },
+    {
+      "relative_path": "profiles/2K1NTR84-06GA-ENT5-G5B6-3114UE56L602.sdProfile/manifest.json.B.bak",
+      "sha256": "edcd63c60a4ccc8fa8d083211cccc0049541061d2b8f52a54c80355448ff9ad9",
+      "bytes": 21911
+    },
+    {
+      "relative_path": "profiles/2K1NTR84-06GA-ENT5-G5B6-3114UE56L602.sdProfile/manifest.json",
+      "sha256": "edcd63c60a4ccc8fa8d083211cccc0049541061d2b8f52a54c80355448ff9ad9",
+      "bytes": 21911
+    },
+    {
+      "relative_path": "profiles/654DBWL1-GHQM-KI14-PQX5-ZPL0Z7KAVWPM.sdProfile/manifest.json.A.bak",
+      "sha256": "bf29535530900420c53d37a28f7c20f16081c3ff1881a7818ec1fb35ec939108",
+      "bytes": 24454
+    },
+    {
+      "relative_path": "profiles/654DBWL1-GHQM-KI14-PQX5-ZPL0Z7KAVWPM.sdProfile/manifest.json.B.bak",
+      "sha256": "bf29535530900420c53d37a28f7c20f16081c3ff1881a7818ec1fb35ec939108",
+      "bytes": 24454
+    },
+    {
+      "relative_path": "profiles/654DBWL1-GHQM-KI14-PQX5-ZPL0Z7KAVWPM.sdProfile/manifest.json",
+      "sha256": "bf29535530900420c53d37a28f7c20f16081c3ff1881a7818ec1fb35ec939108",
+      "bytes": 24454
+    },
+    {
+      "relative_path": "profiles/P5EWP22Y-EVF6-8JJU-ZB4E-2F9RJ5117C6Y.sdProfile/manifest.json.A.bak",
+      "sha256": "35eb00eb3db52cd948f871eca3bbf5de8ea4f61cb0b4dde159431339b58cd203",
+      "bytes": 3450
+    },
+    {
+      "relative_path": "profiles/P5EWP22Y-EVF6-8JJU-ZB4E-2F9RJ5117C6Y.sdProfile/manifest.json.B.bak",
+      "sha256": "35eb00eb3db52cd948f871eca3bbf5de8ea4f61cb0b4dde159431339b58cd203",
+      "bytes": 3450
+    },
+    {
+      "relative_path": "profiles/P5EWP22Y-EVF6-8JJU-ZB4E-2F9RJ5117C6Y.sdProfile/manifest.json",
+      "sha256": "35eb00eb3db52cd948f871eca3bbf5de8ea4f61cb0b4dde159431339b58cd203",
+      "bytes": 3450
+    },
+    {
+      "relative_path": "profiles/413V8R02-Y1Z3-P02P-855H-OLZ5MVQPKPQO.sdProfile/manifest.json.A.bak",
+      "sha256": "b130123287726f641a4fb508692b61e7f384e2001b718025560c94ed565085a4",
+      "bytes": 10118
+    },
+    {
+      "relative_path": "profiles/413V8R02-Y1Z3-P02P-855H-OLZ5MVQPKPQO.sdProfile/manifest.json.B.bak",
+      "sha256": "b130123287726f641a4fb508692b61e7f384e2001b718025560c94ed565085a4",
+      "bytes": 10118
+    },
+    {
+      "relative_path": "profiles/413V8R02-Y1Z3-P02P-855H-OLZ5MVQPKPQO.sdProfile/manifest.json",
+      "sha256": "b130123287726f641a4fb508692b61e7f384e2001b718025560c94ed565085a4",
+      "bytes": 10118
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/manifest.json.A.bak",
+      "sha256": "5a95eabb8793a24f691c2ec06c12ae5826a633ee51242b2a0b143c401635e483",
+      "bytes": 9908
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/manifest.json.B.bak",
+      "sha256": "5a95eabb8793a24f691c2ec06c12ae5826a633ee51242b2a0b143c401635e483",
+      "bytes": 9908
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/manifest.json",
+      "sha256": "5a95eabb8793a24f691c2ec06c12ae5826a633ee51242b2a0b143c401635e483",
+      "bytes": 9908
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/Images/7BO7Z1420ASV20O677Q9KGW906M.png",
+      "sha256": "57d17856fd665971ef5e03523b7ed20a6d7d26486c7f6b23f41733aa83d0f177",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/Images/J19N833DTM27IQ5US5841S94M00.png",
+      "sha256": "b41ad5e540d2eb8e711a4a665ccc0b4e5521462d01a7b51ee2da13f7e493cc87",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/Images/U371Y255EW3R3ZR156S8NZPW0K1.png",
+      "sha256": "0a0d0044fc1d56ac3025e8021872144c9aa91c2f45e5f896387b1dcd848dc206",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/Images/X25V76X4RP496FZKWCYNPHK62LD.png",
+      "sha256": "d70b23dc724830169f6682fcf833101225f8c4acf7f54db9ad18b8e2015b3168",
+      "bytes": 197266
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/Images/QOCV878U452T0Y02A2H54YJ1D65.png",
+      "sha256": "0ad1506e9f451b226064d9f3da266ec55f70823618eb84f381b77ffa5941dbfe",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/Images/V1ZVCZNG6MKY11Q8CQH6A9KSZZ6.png",
+      "sha256": "4d35c76917cd77d7eea57601896691ebf61a0f0ebe354f5a85a1911976a06013",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/profiles/4CFQ3UP1-6PSB-E3W5-67CU-4IKE07TOFE34.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/profiles/OPT1CR74-E526-496R-260H-43547H367V40.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/profiles/R21QN4QW-2726-7ROG-0LH5-ET6YKW7WU8I0.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/profiles/1OYM9047-U1RV-U3YH-F534-62WH0NSLKKEZ.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/0AUBX1SE-YTK6-0XS9-462W-I1SQBUG76PDK.sdProfile/profiles/Z3G327W9-56K1-K3Z7-2PH8-6M2R224OKG4C.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/413V8R02-Y1Z3-P02P-855H-OLZ5MVQPKPQO.sdProfile/Images/4IPXE9H487R2F04465G5R11B06T.png",
+      "sha256": "a6de93f204e19c73ac64884c9a754ff748849b6c5724ac49cba010234a797ddf",
+      "bytes": 167167
+    },
+    {
+      "relative_path": "profiles/413V8R02-Y1Z3-P02P-855H-OLZ5MVQPKPQO.sdProfile/Images/9727C8YK96659044VH1247SETU0.png",
+      "sha256": "beffec89e325b1120293d1d54b7b567792ea029c75b4b08ca85558c80130d1e8",
+      "bytes": 257654
+    },
+    {
+      "relative_path": "profiles/413V8R02-Y1Z3-P02P-855H-OLZ5MVQPKPQO.sdProfile/Images/YT4977XYLY4N41H9J8B91P4L05W.png",
+      "sha256": "70413e8fce864e2cd0a45bb8c94236ce7c082d658fe926c3b1d614db6243a8d0",
+      "bytes": 302585
+    },
+    {
+      "relative_path": "profiles/413V8R02-Y1Z3-P02P-855H-OLZ5MVQPKPQO.sdProfile/Images/AVDTL9610I3057TX8C040156413.png",
+      "sha256": "ce2f75fd9a6987061e68824e6e036df7fb64e84881c98f614c717e7fcc25dfcf",
+      "bytes": 262943
+    },
+    {
+      "relative_path": "profiles/413V8R02-Y1Z3-P02P-855H-OLZ5MVQPKPQO.sdProfile/Images/EJX018HT5786L107U67B0GOU992.png",
+      "sha256": "dfc521668e4124c8d906bcfa6cb864aec149eb41be67b26def67be9375e04434",
+      "bytes": 21086
+    },
+    {
+      "relative_path": "profiles/413V8R02-Y1Z3-P02P-855H-OLZ5MVQPKPQO.sdProfile/Images/6O41E754KJ0IV2O7G551O0M262Z.png",
+      "sha256": "bbc72895fd9b615ad7e9088104a3bce31bd91955fd6feaccb6e1cf1c7073cbb0",
+      "bytes": 510709
+    },
+    {
+      "relative_path": "profiles/P5EWP22Y-EVF6-8JJU-ZB4E-2F9RJ5117C6Y.sdProfile/Images/LAJ10243YD3AUH3I30KP3327PPL.png",
+      "sha256": "f2d83f9123d30bb2f8c039f46452825afa499ff30bcdb43ed17ba3a8876b2615",
+      "bytes": 1050910
+    },
+    {
+      "relative_path": "profiles/P5EWP22Y-EVF6-8JJU-ZB4E-2F9RJ5117C6Y.sdProfile/Images/TC374069ZT2P05R99Z1H59373KG.png",
+      "sha256": "1a2f90a7c40103e815a4d41e7d2e030f53c4c4e2aae1e6b3d878b753febc48d8",
+      "bytes": 600924
+    },
+    {
+      "relative_path": "profiles/P5EWP22Y-EVF6-8JJU-ZB4E-2F9RJ5117C6Y.sdProfile/Images/17188500ZVNWKT6URSH86DT3EMY.png",
+      "sha256": "b265a92c8e5107ef8b682e4345bb546d6542a953f95a73d00ebfa053324fd1d6",
+      "bytes": 788634
+    },
+    {
+      "relative_path": "profiles/P5EWP22Y-EVF6-8JJU-ZB4E-2F9RJ5117C6Y.sdProfile/Images/2HTM752XI6ID23M3K9YU3L1UB33.png",
+      "sha256": "4270ad9bede4148d1c93dca1c72e02d139b2da162e4323b85c3b24ee2383bac2",
+      "bytes": 3193
+    },
+    {
+      "relative_path": "profiles/P5EWP22Y-EVF6-8JJU-ZB4E-2F9RJ5117C6Y.sdProfile/Images/6B97S5125K14O1018891219864W.png",
+      "sha256": "6e29a7cf27e99bbff9fd94adf51f7cfc39bf98ed2b2f15136bd6419c738cd4e4",
+      "bytes": 262943
+    },
+    {
+      "relative_path": "profiles/654DBWL1-GHQM-KI14-PQX5-ZPL0Z7KAVWPM.sdProfile/profiles/8L03QF93-3A99-8901-M646-X740N5T27BPL.sdProfile/manifest.json",
+      "sha256": "371ec3db8c5fb442e572c383274badac50f99d20efb4d76e937dc87cb35d5290",
+      "bytes": 124
+    },
+    {
+      "relative_path": "profiles/654DBWL1-GHQM-KI14-PQX5-ZPL0Z7KAVWPM.sdProfile/profiles/0NWEG9N2-D5IK-E97I-0TV4-7XX3DNVE2M0S.sdProfile/manifest.json",
+      "sha256": "371ec3db8c5fb442e572c383274badac50f99d20efb4d76e937dc87cb35d5290",
+      "bytes": 124
+    },
+    {
+      "relative_path": "profiles/654DBWL1-GHQM-KI14-PQX5-ZPL0Z7KAVWPM.sdProfile/profiles/8KL07YSH-K12F-ZVOX-6J1I-6I2B2UM5A70N.sdProfile/manifest.json",
+      "sha256": "371ec3db8c5fb442e572c383274badac50f99d20efb4d76e937dc87cb35d5290",
+      "bytes": 124
+    },
+    {
+      "relative_path": "profiles/654DBWL1-GHQM-KI14-PQX5-ZPL0Z7KAVWPM.sdProfile/profiles/44H44H8A-3XA1-UHCM-4ID6-85S73T8ZM1WQ.sdProfile/manifest.json",
+      "sha256": "371ec3db8c5fb442e572c383274badac50f99d20efb4d76e937dc87cb35d5290",
+      "bytes": 124
+    },
+    {
+      "relative_path": "profiles/654DBWL1-GHQM-KI14-PQX5-ZPL0Z7KAVWPM.sdProfile/profiles/12314L25-979H-P87J-950A-F66S4WIDF6BI.sdProfile/manifest.json",
+      "sha256": "371ec3db8c5fb442e572c383274badac50f99d20efb4d76e937dc87cb35d5290",
+      "bytes": 124
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/Images/2378K74W000A1ZMRIJE283LR78P.png",
+      "sha256": "4d35c76917cd77d7eea57601896691ebf61a0f0ebe354f5a85a1911976a06013",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/Images/XEWB204H60P16GAUV5YD4535J80.png",
+      "sha256": "d70b23dc724830169f6682fcf833101225f8c4acf7f54db9ad18b8e2015b3168",
+      "bytes": 197266
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/Images/01H27H5X2B6N000120W79IIA104.png",
+      "sha256": "0a0d0044fc1d56ac3025e8021872144c9aa91c2f45e5f896387b1dcd848dc206",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/Images/94J77252QX0BF8MV60F8JICXDL2.png",
+      "sha256": "57d17856fd665971ef5e03523b7ed20a6d7d26486c7f6b23f41733aa83d0f177",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/Images/XQB4NUGDF2H2Q41H08Z2B10I0J6.png",
+      "sha256": "b41ad5e540d2eb8e711a4a665ccc0b4e5521462d01a7b51ee2da13f7e493cc87",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/profiles/2V49Z2Y0-3646-3DXY-6XHD-4H1W0RJVR642.sdProfile/manifest.json",
+      "sha256": "98f2827ed7a862e9370f75f7ff96a25619cc88825a1c786e826ce2fb120e8fac",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/profiles/261US018-44Y8-56DL-AH0P-20HR9134O8CC.sdProfile/manifest.json",
+      "sha256": "98f2827ed7a862e9370f75f7ff96a25619cc88825a1c786e826ce2fb120e8fac",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/profiles/L54L7116-681H-6Y73-5T91-7BK3F71PZ404.sdProfile/manifest.json",
+      "sha256": "98f2827ed7a862e9370f75f7ff96a25619cc88825a1c786e826ce2fb120e8fac",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/profiles/257FP95U-WL5L-133C-Z4P4-P45G84QQ2CZ9.sdProfile/manifest.json",
+      "sha256": "98f2827ed7a862e9370f75f7ff96a25619cc88825a1c786e826ce2fb120e8fac",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/O7KWSW1A-7M48-213T-YN95-472DK3LX3J9F.sdProfile/profiles/Z70R5332-HWEO-10N8-GA13-4GZ18KMD141G.sdProfile/manifest.json",
+      "sha256": "98f2827ed7a862e9370f75f7ff96a25619cc88825a1c786e826ce2fb120e8fac",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/Images/4IPXE9H487R2F04465G5R11B06T.png",
+      "sha256": "a6de93f204e19c73ac64884c9a754ff748849b6c5724ac49cba010234a797ddf",
+      "bytes": 167167
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/Images/9727C8YK96659044VH1247SETU0.png",
+      "sha256": "beffec89e325b1120293d1d54b7b567792ea029c75b4b08ca85558c80130d1e8",
+      "bytes": 257654
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/Images/YT4977XYLY4N41H9J8B91P4L05W.png",
+      "sha256": "70413e8fce864e2cd0a45bb8c94236ce7c082d658fe926c3b1d614db6243a8d0",
+      "bytes": 302585
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/Images/AVDTL9610I3057TX8C040156413.png",
+      "sha256": "ce2f75fd9a6987061e68824e6e036df7fb64e84881c98f614c717e7fcc25dfcf",
+      "bytes": 262943
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/Images/EJX018HT5786L107U67B0GOU992.png",
+      "sha256": "dfc521668e4124c8d906bcfa6cb864aec149eb41be67b26def67be9375e04434",
+      "bytes": 21086
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/Images/6O41E754KJ0IV2O7G551O0M262Z.png",
+      "sha256": "bbc72895fd9b615ad7e9088104a3bce31bd91955fd6feaccb6e1cf1c7073cbb0",
+      "bytes": 510709
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/profiles/PLQ4ITH8-X19V-OC03-F47K-E021SC64ZR6O.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/profiles/NYX13X92-1KDR-SC04-DEDJ-B4PPEW96I972.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/profiles/4J77TS2V-FTAA-02FM-3456-K0V0RPPHRQO4.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/profiles/75084E1D-N84I-CBL1-0078-46T7083WIK3G.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/700330B2-3J7U-8IH6-3YI3-484I6ZF47X0C.sdProfile/profiles/Z4FKN94E-2N64-W012-994S-R0SM200GI5X2.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/Images/2X61GVBF99IM33279HO24M0TI16.png",
+      "sha256": "f35c33fea042c930f678145ff46bcf7671de94f91b5b7391468e4a6a82438c36",
+      "bytes": 44562
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/Images/3Q706XJ5016TJW5OHS8Y7NT4G1A.png",
+      "sha256": "e4749a328805ee4a80d4ec50cdb95a1cd3aae27bef9582015e60c5e1aff153c4",
+      "bytes": 1050873
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/Images/0933TQF104522CTTNF9KV6449IR.mbg",
+      "sha256": "84d96504a9fc797c67611bdf40fcbe96e58f6663217b66677f7131f447226a77",
+      "bytes": 3033
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/Images/VMU2YR06272D8PP2AID422TY9D0.mbg",
+      "sha256": "ad77836448384a86afbaf6f94a87e9c6085b4b88a0aa4e97cb88db852bd73cb2",
+      "bytes": 26979
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/Images/S0ZHS88K4Z4JE1Q0G21RG0F1943.png",
+      "sha256": "8f65123212d161318a8e2e88443dcb5b3a875f9f1fbca3deb782494881c60b0b",
+      "bytes": 22387
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/Images/06U1EB2570I362TY74D06CLVG18.png",
+      "sha256": "9bcefcf02245aa5c62f152ae894c0b7b4c6acf4672697c17570913b3a22b523b",
+      "bytes": 342687
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/profiles/5Z81D011-S7ZL-7L6J-E8ZS-0X094B3Y7483.sdProfile/manifest.json",
+      "sha256": "aec113fd4e0bb6f166367d1610c8372e303aa47d55071cb2ac30f1956e85c093",
+      "bytes": 513
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/profiles/W7309S53-CTR8-VI92-TU09-I6IH77104V0Q.sdProfile/manifest.json",
+      "sha256": "aec113fd4e0bb6f166367d1610c8372e303aa47d55071cb2ac30f1956e85c093",
+      "bytes": 513
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/profiles/R42U4X6A-72CE-8W04-VUX4-W67F2993WFLW.sdProfile/manifest.json",
+      "sha256": "aec113fd4e0bb6f166367d1610c8372e303aa47d55071cb2ac30f1956e85c093",
+      "bytes": 513
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/profiles/1860QPW2-K2V7-5M45-03O3-R70QG78U5OQ8.sdProfile/manifest.json",
+      "sha256": "aec113fd4e0bb6f166367d1610c8372e303aa47d55071cb2ac30f1956e85c093",
+      "bytes": 513
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/profiles/18S2I47D-AAF0-82JE-00TA-NT5JU3S38030.sdProfile/manifest.json",
+      "sha256": "5ca227d4e4eb36195bf5fa927d17cf410c9b1a270c2e15d6c8fb2d2064d6cae9",
+      "bytes": 513
+    },
+    {
+      "relative_path": "profiles/SP02WPXR-97N1-733J-VCFT-WL25585WPMGZ.sdProfile/profiles/450B2141-15DT-1W3Y-RW20-04AP51Q7CB0O.sdProfile/manifest.json",
+      "sha256": "aec113fd4e0bb6f166367d1610c8372e303aa47d55071cb2ac30f1956e85c093",
+      "bytes": 513
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/Images/91HP2XDU6TH15117W0X50T34X2A.png",
+      "sha256": "157e66203a75caf33ba43f22cecf4add5261e10ac65886795ffe39ca316e3727",
+      "bytes": 89659
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/Images/VNZZL113Z2L1X4O91R1NXZY03H1.png",
+      "sha256": "d5804aab8379915aecb7d39de376a2d91734f18458b9eaaaac3b1add86b483f7",
+      "bytes": 121676
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/Images/O312352C9FM6N2I2OT3QL85U8V5.png",
+      "sha256": "afde52dce254f94252c54cd1989a331e844b247e983bd7650e2432550ab3b753",
+      "bytes": 159918
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/Images/4H1WH6481CI5HCM60TG7R63DE71.png",
+      "sha256": "49496b7d1c37c6efd5ef0fcda3a33e9bb60d9644019ea909f8303a3b7d6c5887",
+      "bytes": 220651
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/Images/X24TS023DEE3W724S04211LXLY7.png",
+      "sha256": "17c558afc72c2c3a024dbe8337c39abb63c3e7d7171b5133779a1b261157936a",
+      "bytes": 208946
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/Images/CYACZJ12SF446M10H9635MUDHA2.png",
+      "sha256": "aa96a33d8e02846b2fb650c4eeb36b5e655570fc7703c5ca1d261712f57e4ff6",
+      "bytes": 65889
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/Images/4X0R113H1IGD659E50042I18Z7S.png",
+      "sha256": "9a4f86c361a0638b1e528dc3b5e295c11a3b6a07c82abb94ff4a9a685e96d506",
+      "bytes": 151749
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/Images/1BP559RODK19YUY84X8F2MS065W.png",
+      "sha256": "174b662064edca2247f90697199366f2e1da095a7054a05a3a97e01a20738cc6",
+      "bytes": 138546
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/Images/F1H4435JH4E6I08PN0Y5823347M.png",
+      "sha256": "58883869c684ae11d3c046a5ff9469a192b3e10c3ec06ed3b89d03e0d3610361",
+      "bytes": 1051110
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/Images/44B22U8E9CGHQ80W42MUF94Z398.png",
+      "sha256": "e74af6c5c669bec82aeccb67b8802ddaa3aa83f1515871925aa4ce22ba5aa37e",
+      "bytes": 142449
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/Images/JIISES4FSX23B2P3Z385L23ZHZ8.png",
+      "sha256": "f3631ec792d6c7d2a634b2d7cee9087f83e45805173ba67fc0f116f70569efbb",
+      "bytes": 139181
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/Images/3CI3FMJQCX28466AY7J513852L9.png",
+      "sha256": "4cd0f64669788ccb8523be67578c93f22016f619a8b3274f98b7a4b5b1b88dbd",
+      "bytes": 212951
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/profiles/8NB7DZFL-61D4-0A5R-U58N-WE5BRCO8T1E8.sdProfile/manifest.json",
+      "sha256": "371ec3db8c5fb442e572c383274badac50f99d20efb4d76e937dc87cb35d5290",
+      "bytes": 124
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/profiles/4S00E191-35CZ-62O8-DHRB-SI1D7BIOBAQE.sdProfile/manifest.json",
+      "sha256": "371ec3db8c5fb442e572c383274badac50f99d20efb4d76e937dc87cb35d5290",
+      "bytes": 124
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/profiles/3JKDW3JJ-TWGZ-CGGX-GM7Y-010588FL965C.sdProfile/manifest.json",
+      "sha256": "371ec3db8c5fb442e572c383274badac50f99d20efb4d76e937dc87cb35d5290",
+      "bytes": 124
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/profiles/5JQB1LM1-XM36-4YOI-880V-G2WM91KD28J6.sdProfile/manifest.json",
+      "sha256": "371ec3db8c5fb442e572c383274badac50f99d20efb4d76e937dc87cb35d5290",
+      "bytes": 124
+    },
+    {
+      "relative_path": "profiles/Z55F6462-Z5Q5-J60B-B8Q5-IJ4Z1Z72RN1H.sdProfile/profiles/LFK7SUUE-U6F0-0E1U-711F-72B7MS7PXQYD.sdProfile/manifest.json",
+      "sha256": "371ec3db8c5fb442e572c383274badac50f99d20efb4d76e937dc87cb35d5290",
+      "bytes": 124
+    },
+    {
+      "relative_path": "profiles/UVLZ709M-6ZD9-3T2V-XO4W-D4216E10W7V0.sdProfile/profiles/7NEN34D7-M21E-623M-FA3Q-SRBDU39BZ9RX.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/UVLZ709M-6ZD9-3T2V-XO4W-D4216E10W7V0.sdProfile/profiles/M242X8ZF-ZL3V-M425-48Z0-14VTRL296728.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/UVLZ709M-6ZD9-3T2V-XO4W-D4216E10W7V0.sdProfile/profiles/W788901S-DV9O-G872-0G6M-YUY3CUXG9D4C.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/UVLZ709M-6ZD9-3T2V-XO4W-D4216E10W7V0.sdProfile/profiles/IUOQK090-3JDA-325F-1O83-A883403I24KP.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/UVLZ709M-6ZD9-3T2V-XO4W-D4216E10W7V0.sdProfile/profiles/S3I71T1F-4I31-0NJ2-1ALT-27CSDF3F80L0.sdProfile/manifest.json",
+      "sha256": "d331f2ffb2f90bc1fc717ea64ed61531375a266f621d6b8336020a6b75557ae3",
+      "bytes": 125
+    },
+    {
+      "relative_path": "profiles/25BF32C0-AD7Q-786L-U23X-Q63ZP401SO97.sdProfile/Images/7G5K525UNQ352F48E37E000DN47.png",
+      "sha256": "d70b23dc724830169f6682fcf833101225f8c4acf7f54db9ad18b8e2015b3168",
+      "bytes": 197266
+    },
+    {
+      "relative_path": "profiles/25BF32C0-AD7Q-786L-U23X-Q63ZP401SO97.sdProfile/Images/80G47HUJ3A1H250VK09DO62116D.png",
+      "sha256": "0a0d0044fc1d56ac3025e8021872144c9aa91c2f45e5f896387b1dcd848dc206",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/25BF32C0-AD7Q-786L-U23X-Q63ZP401SO97.sdProfile/Images/36I402YUK3J5318JQ0289503NSO.png",
+      "sha256": "0ad1506e9f451b226064d9f3da266ec55f70823618eb84f381b77ffa5941dbfe",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/25BF32C0-AD7Q-786L-U23X-Q63ZP401SO97.sdProfile/Images/WR82VAHX3VP99973KC6TV53BRDI.png",
+      "sha256": "b41ad5e540d2eb8e711a4a665ccc0b4e5521462d01a7b51ee2da13f7e493cc87",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/25BF32C0-AD7Q-786L-U23X-Q63ZP401SO97.sdProfile/Images/6Z24ETHG98I4Q5BL76109DBY6P9.png",
+      "sha256": "4d35c76917cd77d7eea57601896691ebf61a0f0ebe354f5a85a1911976a06013",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "profiles/25BF32C0-AD7Q-786L-U23X-Q63ZP401SO97.sdProfile/Images/VSQY1713J21ISHEVDG84552Q02O.png",
+      "sha256": "57d17856fd665971ef5e03523b7ed20a6d7d26486c7f6b23f41733aa83d0f177",
+      "bytes": 199953
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/zh_CN.json",
+      "sha256": "246482887e70706ea06a0bcb8c8ef856f6c1502c09a11789e0906c4b22d89742",
+      "bytes": 1168
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/ja.json",
+      "sha256": "a90a01037fd134b4e7273d6bfa6b6a77866d2b73770754405e8af2c5931e5603",
+      "bytes": 1284
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/de.json",
+      "sha256": "fcd71b4f6581fdb9f0622ec5f856859c07028626fb16eab872addc5fa9095382",
+      "bytes": 1262
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/ru.json",
+      "sha256": "2525456c70156006f1631a3773e5c630041cec653866b507bd2788c85109812a",
+      "bytes": 1781
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/pt.json",
+      "sha256": "50d06def780e31bd353eb0e9db0c7ec8daf777c0eda658778b6f8f059127e4c7",
+      "bytes": 1155
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/en.json",
+      "sha256": "352bb420b688bd6eac46ae4435afd2670d864932014bed5d448ab0af64bce3ca",
+      "bytes": 1335
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/it.json",
+      "sha256": "e6f17cabf41e324bb3e6644fdc9575d833702b5fa771a6951b3c73cd93437745",
+      "bytes": 1199
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/autofile.js",
+      "sha256": "f4e9351d3705bd05f6c70601afa928e1ed5ba869f77693b5baa4508a5c19be89",
+      "bytes": 1234
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/package-lock.json",
+      "sha256": "ba197fc5a7f15c441587d0206cfcefc55c232f0dcf3fb1cb5fdb27149c264717",
+      "bytes": 1772
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/package.json",
+      "sha256": "d970e5dd29b344028ea665d9964d6c1d5d6662720f5562b9ef8d7ff73fb76c14",
+      "bytes": 238
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/fr.json",
+      "sha256": "e5c2c062c296c166b7a3d7c88d865babdd3526c047fafbbdbda9e0b4769f4e41",
+      "bytes": 1235
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/manifest.json",
+      "sha256": "91c2b4b3c25650408ddf3c01cca4a02a5abbf02b5d2f0abf14006b4b063cfa7d",
+      "bytes": 1705
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/ko.json",
+      "sha256": "53ba121e6435c85e0b7e043e134ad01d39bc1053a257ef67f92361242e2075f9",
+      "bytes": 1185
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/es.json",
+      "sha256": "1ad2e1fbd11357c701cb94b29b4bd70eee168ea40862a93525c23a36f03d4271",
+      "bytes": 1293
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/zh_CN.json",
+      "sha256": "b060e3cb4c4a070c0526e11c72429f475208864bc0406cd84ebe38725cba62d9",
+      "bytes": 2588
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/ja.json",
+      "sha256": "3f807e159869d830983ce381a51d6996bc8fb7ffbd236728786aaa49db26e72b",
+      "bytes": 3329
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/de.json",
+      "sha256": "85847389cbea6660ab29d2130057b060e65876773522af8fae159a29ea9b5d6d",
+      "bytes": 3430
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/ru.json",
+      "sha256": "01b58ca518b0c2c798dba443259d84b02c10b2f22c6b74c3472d6e81bd3ba5ce",
+      "bytes": 4602
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/pl.json",
+      "sha256": "1e1dd6d220b1775e21921d0d197d699297123e4263c41ebddb3b3b5204d6e48c",
+      "bytes": 3472
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/pt.json",
+      "sha256": "c6da6c71212fe363b77717b1696132048f71aafdf237b113d8e56a67a81bfa2e",
+      "bytes": 3389
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/en.json",
+      "sha256": "c4ee156eebcab8f20f11a8420388e3201d1d4de08a47ee71a88ec2d8d9b963d8",
+      "bytes": 3121
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/it.json",
+      "sha256": "b3793ff78e389f4e6bd3ee739c0b99ad4522c7689ea24c9c2d18c7cd9f1858fc",
+      "bytes": 3519
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/README.md",
+      "sha256": "bef78e9ad5535dcfee0896b32122098a46f50e636f6454c0bb48852e8e529d1d",
+      "bytes": 205
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/fr.json",
+      "sha256": "e942e491ef6f2ce45c9b834a7c338055f9d784029529021cfff873348421c741",
+      "bytes": 3506
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/manifest.json",
+      "sha256": "5d0b15567dd2616dfdf5634173cf75d4e07d0955a0f15a13e4ddc59375aa41fe",
+      "bytes": 1278
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/ko.json",
+      "sha256": "0ecee56922ee20b4305a943b68470765d998ba234276e0ce3de54b7901a41946",
+      "bytes": 3332
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/es.json",
+      "sha256": "5f7301e4594bdaec8c85aa9c445e2dbe878435c5530bb811eafcd48836ea1ce4",
+      "bytes": 3594
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/ar.json",
+      "sha256": "d5a44e5ffc451018d2bcca7136ee043a2746fafc7ba2048e0321479e5546bb49",
+      "bytes": 4062
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/index.html",
+      "sha256": "b0d0bc0eedfb11ef88b7e78700d0eee0ca13b507833ff87fcc2f0e95c4d088ff",
+      "bytes": 461995
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/zh_CN.json",
+      "sha256": "c40e4fb0338a89526dd993766323ab1cffc0407a07c9863f6dd921682969abb6",
+      "bytes": 494
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/en.json",
+      "sha256": "e90d1eaf5341deee4ba4a0cc28e39e3561fb18df3d3a018040291b1d4e0bf723",
+      "bytes": 548
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/interval.js",
+      "sha256": "cf49c3f91e30208cb6aa99002f67be11e5cb46fb7e3cc4670086af0f01e368d0",
+      "bytes": 475
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/manifest.json",
+      "sha256": "ca8c9f895f861cc731736eac5a46aa684a1ea05f0830871cbcaa134e7a59848c",
+      "bytes": 2763
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/ko.json",
+      "sha256": "7a8922fbcb0cd8830d367aa21debe34cead314f9d16de2d1b748e122d371bb5e",
+      "bytes": 517
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/es.json",
+      "sha256": "0e3018c70501f0ad3d6d287cd3aeabab4659c2dddcaca14da417a660b4b14c35",
+      "bytes": 362
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/images/world.png",
+      "sha256": "3239b4fbab8b9fd17a09ac1434b19851805857854c7b5fb06fc758fc40c8f0e9",
+      "bytes": 1647
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/images/T1.jpg",
+      "sha256": "977a7d9f73be26fa0dc5784088cb9ef83ae7b8270978efd73a69560100d381af",
+      "bytes": 21625
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/images/T2.jpg",
+      "sha256": "07beb51cd04bbd060c7bd1fa347de6e81accd51f6faf0d00ff24beb1f3b075ec",
+      "bytes": 21607
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/images/index.jpg",
+      "sha256": "ff17985234ef3241e67d694602d4dc3617621fe6d42be54aef55779fa7ae6605",
+      "bytes": 28055
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/images/cate.png",
+      "sha256": "2e9eee1ae16da996f06caa8cbde4946eca14af41eb9292d22be75605a455a7f7",
+      "bytes": 2167
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/images/timer.png",
+      "sha256": "808f2a9a0b3a8c2bf3e38676863590f13045b2101c2ed4f009a26ff75b88c4be",
+      "bytes": 1364
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/images/count.png",
+      "sha256": "a2273245f5b04233240c4738cd575db59ff77342749255888c4b40276b881bf9",
+      "bytes": 1280
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/images/C1.jpg",
+      "sha256": "dee2ca4b9a00cc089e5d474fcc4fa3d51c8536eb472b764acf2bd4712bb7a82c",
+      "bytes": 21692
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/images/world1.png",
+      "sha256": "0f0169997c771d300bbc30e1b98adaf3bd59a0b9e28f0c1b24f1671fa6c5d435",
+      "bytes": 4369
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/images/C2.jpg",
+      "sha256": "705934277b0b4099a64f88b8d739d7e24f758cfd5ef56c9145c5bf412a13417f",
+      "bytes": 21607
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/images/tm.png",
+      "sha256": "d6f33c67acd6b276e2c3405db8338297ce2b2005d3cc915a0c68a470c82a3021",
+      "bytes": 262913
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/images/world2.png",
+      "sha256": "eb56e882e8656f8ca355a74793db633f916705a76452101da115d9598de9b19e",
+      "bytes": 1349
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/fonts/GEFORCE-BOLD.TTF",
+      "sha256": "01ad4b0f302b18c14ad774d378807493950a63eac97dbce991fd6032c42c8374",
+      "bytes": 36860
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.time.sdPlugin/assets/kn.mp3",
+      "sha256": "4398d383419ba4737071c59495a83534d9c2ade5ae8bed7a3b4441f24af63dc7",
+      "bytes": 693484
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/plugin/index.html",
+      "sha256": "87aea9c685f3995d63608cd037b727b54f92e3e47076be98f29d4fff50c646b5",
+      "bytes": 487
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/plugin/index.js",
+      "sha256": "6a0ab868f2cbe43e34e92b9ace94b2233bb6a53f16df9c3e38099281ad0fcda9",
+      "bytes": 14022
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/plugin/autofile.js",
+      "sha256": "b7dfb7bc904aef387151c40577d092708e1b0d229f270b78721bc7d67da37976",
+      "bytes": 1985
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/plugin/enum.js",
+      "sha256": "00e6b81e0c2cac120cb30bdd45bf39ace3a85b327474408ce8c76ccc5b30bbff",
+      "bytes": 2237
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/action.js",
+      "sha256": "43a59d90f466430d30bf9ca0c28a997e18bdcef55e3fa71b7c9132dd7b9e3cad",
+      "bytes": 4383
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/plugin.js",
+      "sha256": "adb1b628e913a9a574767a5c6b11800b150e622cbe801b4a712ad65d33aa7030",
+      "bytes": 4445
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/propertyInspector/action1/index.html",
+      "sha256": "9107fdc52817d3aeaaee13d19c9eed4b1d4e823f5637c5011a86148097cec7be",
+      "bytes": 3680
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/propertyInspector/action1/index.js",
+      "sha256": "f00cc80c7348c073c50a3bd9c366cc1312d239d05f0458e773e684af6b4701b2",
+      "bytes": 3515
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/css/check.png",
+      "sha256": "b5fb6fbe1417751ca7dd87552398d4585cb002654aa69632fdf6f43dbc65220c",
+      "bytes": 234
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/css/elg_calendar.svg",
+      "sha256": "cfb84ec9989f8f858bd529b2a760826e20f3fb21986e94b8a287b495a9c3a0d0",
+      "bytes": 1372
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/css/check.svg",
+      "sha256": "5219ac49b82c325cfadc705ee50d82682f652b66c7187d40af243c22cd3ddd11",
+      "bytes": 213
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/css/sdpi.css",
+      "sha256": "c0606353c24a6a8f07723b45ab43f4d57397a5045aaf08ec907964560ffdfeec",
+      "bytes": 37435
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/css/rcheck.svg",
+      "sha256": "63363a9d1780a0444bc7457f66fd425f744312a3d1be85f0f76399bc1da36859",
+      "bytes": 134
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/css/g_d8d8d8.svg",
+      "sha256": "b362e786858e836ec7a8ae739ead1f17389fee9dbeb8d7a8b2cd369e96b9930b",
+      "bytes": 3391
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/css/elg_calendar_inv.svg",
+      "sha256": "22126b4c02d4ac5540463014b9286169c701714964fc09c75564e927398c2ccf",
+      "bytes": 771
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/css/caret.svg",
+      "sha256": "fddd4d2330003d0da8b7076bb0a014512eaefb43d789c91bab577eea11a959b1",
+      "bytes": 174
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/utils/axios.js",
+      "sha256": "b38e84fad4b6a237f833bbaf87d726cc3c38e8e63322731f365d2d0dd40a9cc5",
+      "bytes": 32298
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/utils/worker.js",
+      "sha256": "01d0ea631412ee0edabe75365f94e039f525f4c608f78cf2dbaf25a7338d6874",
+      "bytes": 105
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/utils/color.js",
+      "sha256": "cd6172c963f14b89af5174b5641d03b1cc41fa0fe8f1225844812d1cd842554f",
+      "bytes": 2198
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/utils/common.js",
+      "sha256": "80858f9bcc47e07cab2bd1bb4aad625927a6c01c46f0597846449b83b47266b6",
+      "bytes": 2349
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/cate.png",
+      "sha256": "8f0317b9c6394ad3024c842696f8a5a85a5fa620b34479e9323a0d1f45d87b74",
+      "bytes": 4635
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/tm.png",
+      "sha256": "d6f33c67acd6b276e2c3405db8338297ce2b2005d3cc915a0c68a470c82a3021",
+      "bytes": 262913
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/default.jpg",
+      "sha256": "9972b3d10eed2b1a4019efa170c8218fb775a4e8e2a923debca60a80871b2109",
+      "bytes": 5272
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/407.png",
+      "sha256": "24b84fd4302861227e97f68f6de110b09e0c9b43cecf0ef2f4f610a4b5d4c91a",
+      "bytes": 109537
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/404.png",
+      "sha256": "a3fb93d30f17a1504cb26090761afd4ccfbed3a56b2d6565891d37685836b948",
+      "bytes": 86707
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/400.png",
+      "sha256": "611b2da5103b27edcd817e7d4fc5db74e95e5833db8568276e6791aad050dc3e",
+      "bytes": 17045
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/401.png",
+      "sha256": "773ede1a49a32718907e7388d03f694006862fb535a094819c8818a64cd117c7",
+      "bytes": 22254
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/403.png",
+      "sha256": "56ce25407db7a71190a39de5b6617c9dc219a14a69ea18e11ebc8183544cbb04",
+      "bytes": 44616
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/402.png",
+      "sha256": "2d651f0ac23990731141242e2ade187047e6aa59944207fe6adfca5683fc4e20",
+      "bytes": 39741
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/101.png",
+      "sha256": "ed186e1c83575d4bc04718610b392b8b5389c5ce18048a66a6dd56347b10d8ac",
+      "bytes": 97377
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/100.png",
+      "sha256": "13f57063c4bf55f5e8633b8d6c19a7dd079a412879c97db342dab779b3373b3e",
+      "bytes": 61581
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/302.png",
+      "sha256": "b6341c184afba1b4689bb4fc0184f3b41feef7712002b6e7c06f0b8c46609855",
+      "bytes": 84366
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/300.png",
+      "sha256": "2b74aca7eff2532f91dec3a45bf1f9acc3bfc1374d409ddb4402ac50e3faa465",
+      "bytes": 102388
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/305.png",
+      "sha256": "8d6c6cc25c078abe676a9268bd1860fa47a5ec7f18300fdc73127cd25021dbf9",
+      "bytes": 73853
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/311.png",
+      "sha256": "171d90bc2cfb3e808ccf321a591836c7a7200000e2a80dec0c0a28c2e40dafea",
+      "bytes": 79421
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/503.png",
+      "sha256": "f3c19717ca776e8680b7e0d1a02cd35fc9d35424a2cbd77dc439eb4f556aa6fc",
+      "bytes": 144702
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/502.png",
+      "sha256": "e13e70446e187cd2fabab225dec0a805315e636d6756b392454c475caa63ad8b",
+      "bytes": 133931
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/310.png",
+      "sha256": "6340f02c8ccd13b455ee6193d3b50965cf8c302936df46d889f2d3a370e86f02",
+      "bytes": 76446
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/304.png",
+      "sha256": "fb6d24bb94c506c5722b2d78c987da594879ae054cc9fbaec1c7ae4c4308ecc4",
+      "bytes": 86733
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/312.png",
+      "sha256": "ad072421d81774a1034b998d3f42e5079874ef4dbf149736bed2ac78a172628a",
+      "bytes": 81068
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/306.png",
+      "sha256": "d83440b3cf09336168ce1222ae53153683ec78c29ba2658b2aa40db15c19d837",
+      "bytes": 75712
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/104.png",
+      "sha256": "884991b43e99cfee5192c843e333b605aad9cd5ac1c433cd06d82d326f6e5268",
+      "bytes": 67420
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/500.png",
+      "sha256": "8500ee127f3d2d9405a4990096d8311220822a2ca783810aa94c4d52e5ce92fc",
+      "bytes": 85416
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/307.png",
+      "sha256": "cfa812f2019ea19747450c6af2977d625103f6ae7ef30af73ae467632864271b",
+      "bytes": 84181
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/313.png",
+      "sha256": "88811dadfcef0a32b02e2a7c3c0a0004cbf3939409aeff4a46a192d6198d1b48",
+      "bytes": 86323
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/457.png",
+      "sha256": "1701a8abe88847d9ac212f115c326c1b38b69bf720130740357923e80534064f",
+      "bytes": 78870
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/508.png",
+      "sha256": "506cce5b1baefd0be9a918e63846708cedc1ee71dabdd1fa31314a5e1e4bd424",
+      "bytes": 95801
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/151.png",
+      "sha256": "2dae9178d19f0a3c0608ed82a39fc6b09d3f5cc6f3e0931b258c646d1c22e2dc",
+      "bytes": 85640
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/150.png",
+      "sha256": "d41f77f3133a8d634673e7439dd5c635072574170b700a65a291d5ca1f6a5c85",
+      "bytes": 95681
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Luxury/350.png",
+      "sha256": "2a4459c7dc2b5fce6288b993f7457df05e25d3ca6967a2aec5e5604aa20ede54",
+      "bytes": 77787
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/306-fill.svg",
+      "sha256": "2fa90a4f9f09c1af128babba1d3b01d80920650a54434856a8d2ea704550bc39",
+      "bytes": 1096
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/307-fill.svg",
+      "sha256": "c1fd69ef2d57097436b2ab8562c23c90fefdeb1d1ffb9c0cab3d9614cc228df3",
+      "bytes": 1173
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/900-fill.svg",
+      "sha256": "782433c18b1396773b2fdd1bd6f18a04d98cb9029c1d56869a652dd2b1371025",
+      "bytes": 995
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/901-fill.svg",
+      "sha256": "1251e266a27a7736224a2ec5e16723fc76da4db4053793f929ea93aa40a93145",
+      "bytes": 1194
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/502-fill.svg",
+      "sha256": "829fbc54d7e052d7b85edf06d51ea023b7429b1e19024cfd09f9935a0858edc5",
+      "bytes": 656
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/503-fill.svg",
+      "sha256": "ca65eca7205393613a4046bc2a69cdd99e77a1bb2a9d2b0c1e7d79c1f32452fd",
+      "bytes": 1687
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/499-fill.svg",
+      "sha256": "7fac659782ba429d86cd2bf4f5d693fd704be592b739cd16c968b3ef6ca15fe6",
+      "bytes": 1956
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/508-fill.svg",
+      "sha256": "5f56c9b50feeeb4c1add02c87441caead588d796ed6946e04532288abb7f5571",
+      "bytes": 1417
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/509-fill.svg",
+      "sha256": "d823077ed9b8fb5e32c7dc3810268d2a4a4c7f02ad49ec78cd356885503d6fd1",
+      "bytes": 1425
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/999-fill.svg",
+      "sha256": "01e038c234e72af646d78394dd3ba4fbce2959fa5012f5c6ebdc59d3df39abc4",
+      "bytes": 1204
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/154-fill.svg",
+      "sha256": "e57b85dd3ac02cc7cd1ea5d33dca8d5e15f7bafa3f64506b8414d8a6c8d1dad3",
+      "bytes": 2111
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/400-fill.svg",
+      "sha256": "6967511efccc5aa9b8c3c1e5144b23d53e207783cbe542b09e51eb0a9de0554e",
+      "bytes": 1519
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/401-fill.svg",
+      "sha256": "8e663265663305b747942d4fe5405943197f6a7d3fe1bfc71a73d0adb994fab2",
+      "bytes": 1929
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/311-fill.svg",
+      "sha256": "b78b672be76f72de8c0a4cc0448a9797b34cfeb06183cc6ef4e7aaa8bda54518",
+      "bytes": 1555
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/310-fill.svg",
+      "sha256": "b58b16d4e3f417e7e95c3b7395a459f5f591b62efee529cd71dbbc22b47e52da",
+      "bytes": 1300
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/100-fill.svg",
+      "sha256": "88adbf8319853042617817d9ec658edda441997ddb0dbaea1246d67693071652",
+      "bytes": 1534
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/101-fill.svg",
+      "sha256": "8caf9b982688350708b7269482bec9642ca84e2de8c409eb9b50893b1d06a59e",
+      "bytes": 1667
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/515-fill.svg",
+      "sha256": "c2bc9c5baf634ec5d7570c415abd016c91f6a977cd3d5b344daaf4ca3cb6af18",
+      "bytes": 2121
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/514-fill.svg",
+      "sha256": "ae79078cd5a627c8f6d8e8cb83b7160d2ef87b021f5a920a250c2bbf677df81b",
+      "bytes": 1264
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/316-fill.svg",
+      "sha256": "e1269ab73ef6d0a4d1dfe7db1258bb27b9f34891c0a0437a582b3d4113ce976f",
+      "bytes": 2238
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/317-fill.svg",
+      "sha256": "433f5c2908f512575cb111953ff4667ecc476fed8a2d094288729b245b3459c8",
+      "bytes": 1710
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/512-fill.svg",
+      "sha256": "377485a5e7a8743724343517025e521bfd120c2cf29c29418aca8f534b0ef20b",
+      "bytes": 1016
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/513-fill.svg",
+      "sha256": "5d3d82c0c17caf0c64eb24865e8c7691bd4be28c460cef3a82257a4ee4e65cb3",
+      "bytes": 1132
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/410-fill.svg",
+      "sha256": "3073d40596ad3f498b5676cc8dd9c2f466a2995d6394057002ea65a7dc435cc5",
+      "bytes": 4056
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/301-fill.svg",
+      "sha256": "d1fc5ad1cdd20d17a07e5339c51375e5c4f9fe5594e17ac50dc7ef4cc82657dd",
+      "bytes": 1956
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/300-fill.svg",
+      "sha256": "be6d04212b7dc279945965ec298f007eff89ec1c0dd18eb8860edaac37cd0e20",
+      "bytes": 1763
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/504-fill.svg",
+      "sha256": "b2cce0c227dabffac9da9f0fe2b86853ec0b0a2311b50bb8e44f34a61c68c1d2",
+      "bytes": 1266
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/399-fill.svg",
+      "sha256": "8ad786f0e8cddb54323bd6b18a3443d70980c6c52074eebef49d67b1dd484c31",
+      "bytes": 716
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/153-fill.svg",
+      "sha256": "e57b85dd3ac02cc7cd1ea5d33dca8d5e15f7bafa3f64506b8414d8a6c8d1dad3",
+      "bytes": 2111
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/152-fill.svg",
+      "sha256": "75fe55ee374afce251607e00d85e1fb6d7587b34a12d1f5d6dfbc6b74008acd5",
+      "bytes": 1359
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/407-fill.svg",
+      "sha256": "a09983dc69cdb6260d1a1134fa266f1e05e4e73164d018275384a02831507ddd",
+      "bytes": 2355
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/406-fill.svg",
+      "sha256": "52bbea39a26334af7cbcada5ceeb2fc93bd1f81514bfe266c6f3291862967170",
+      "bytes": 2091
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/318-fill.svg",
+      "sha256": "5c9eeedbea78e69ba1989122fe9d5e38a583138cdf8093d90b12e36a3253f2ab",
+      "bytes": 1902
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/351-fill.svg",
+      "sha256": "74a49cbf2ec137922e482396fc6214c17eed61cfd3f83e1aecc5a999c22fbd73",
+      "bytes": 1525
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/350-fill.svg",
+      "sha256": "886d11d0d2fcf0964f8e93afef9425333a363602b754b245cd1e5f1d0f921370",
+      "bytes": 1364
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/312-fill.svg",
+      "sha256": "4d772fb2e5c82f0585831113217c1dd74ab19563a61808fc9c6c00562a231f0a",
+      "bytes": 1689
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/313-fill.svg",
+      "sha256": "b71ed78fe3456eab23cdddf94ed727a4b6c88033bc4aa5a4b8bdb555897b4d54",
+      "bytes": 995
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/457-fill.svg",
+      "sha256": "02c9a84268911467fb87e08044177cec4934dcf47911058bf14d0b504fdb298d",
+      "bytes": 1986
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/456-fill.svg",
+      "sha256": "f8f732a6d87d57c059a835e926368ebb6659f956c2e05a1d1de3636187774e48",
+      "bytes": 1708
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/103-fill.svg",
+      "sha256": "3378b52275faf1b55c8226e511000f016a182711b62243cb290743cb824fc2ae",
+      "bytes": 2685
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/102-fill.svg",
+      "sha256": "2005dddb0fd52b141f0b20bfa546fdba8991c3637f099822e13ef581b390211e",
+      "bytes": 2286
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/403-fill.svg",
+      "sha256": "3799c7c9bc560f1ca6c6ee1cc431a312f2e0e3e6ad54ac38a052f886c8216c72",
+      "bytes": 2767
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/402-fill.svg",
+      "sha256": "f7ff34f71df580684c39a88d304e71e3b1db9876488301e0e1ed80cbcbd1ae02",
+      "bytes": 2351
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/305-fill.svg",
+      "sha256": "765ad08e6f3d735097005577351c14f564b4f2ca62ce775bbeeccdb88e2b6504",
+      "bytes": 909
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/304-fill.svg",
+      "sha256": "9a568dcf96402ee72b146f3e6f8bbf3abb23e731671cf104368fe93b46932e11",
+      "bytes": 1120
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/409-fill.svg",
+      "sha256": "12569db1ace71114b2eeeaae7272f109f90b88a6f2d25a4bd4c0f8a6e4a3270a",
+      "bytes": 3122
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/408-fill.svg",
+      "sha256": "3a5a3799ad0d14e463a427ff8a6dff04b1f5e431410dc8c438f5dbe3766ac210",
+      "bytes": 2267
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/501-fill.svg",
+      "sha256": "35d593b0f168cd4c5e8acc4ed804306a3f93338be9ccb3cc429134987e85805f",
+      "bytes": 1136
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/500-fill.svg",
+      "sha256": "ee4f72e6ca999eac6e10f7154f47e511df81ef4ebc5db48f4b5df0ed46b454c0",
+      "bytes": 911
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/308-fill.svg",
+      "sha256": "0d0b5629be6be77b72cda4531e24ab30ec70375546aa3c744849fe0f2b3d90a0",
+      "bytes": 1588
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/309-fill.svg",
+      "sha256": "aab770b075202cb70d4d23ae3fe4d0e2af2292a8f90725b16d4a12f65a6f245f",
+      "bytes": 1128
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/404-fill.svg",
+      "sha256": "a5d369c0145d8220f884b6f0bc8ddd104322f1b26fa81410bcca3cf5098c29ab",
+      "bytes": 1755
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/405-fill.svg",
+      "sha256": "b4813793485e54d75a37b0f10e69438c5127d643230a0f36354f8093fcae8350",
+      "bytes": 1771
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/150-fill.svg",
+      "sha256": "148d91bdcb654cb004cc013c313f55f17383f0d089f16f4f57a1bb0adaf56f5c",
+      "bytes": 648
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/151-fill.svg",
+      "sha256": "08ab28b797265c263dc8fa73fd4d38c755ca7796270e144d4b767e52cf478112",
+      "bytes": 1213
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/302-fill.svg",
+      "sha256": "b1f27e6e52538fe9f0491b4be5f6d89676a5b2a6a1966877fc2fa2a1d9df8f5c",
+      "bytes": 1166
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/303-fill.svg",
+      "sha256": "bb07877761bb1df963e49a6470de2e536c55702d315f42462068422a6af5734f",
+      "bytes": 1434
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/507-fill.svg",
+      "sha256": "ac1ea249c226e14d0c838ca6262bd4ca61fddb7715f793a92b1db70cfb4d7e9e",
+      "bytes": 1324
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/315-fill.svg",
+      "sha256": "29b5a218b3c1398ae3a30d1bad810bafd2dd9b8a6b090758364e0c2b41c616a1",
+      "bytes": 1953
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/314-fill.svg",
+      "sha256": "77e6c908122bf890ed1296014ce639641415e0c644bb0a5099154b2f70488c8b",
+      "bytes": 1639
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/104-fill.svg",
+      "sha256": "56ef3112fb6a13ac83173f10ee42be72bb4c2d9e31ce823fcbf767959217be72",
+      "bytes": 2210
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/511-fill.svg",
+      "sha256": "385ebc00306399769ccd57395f37f0e8c0e00c13becfab083f9e8d28d4ca0760",
+      "bytes": 904
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/static/img/Modern/510-fill.svg",
+      "sha256": "9f3933d764b1d71445f9b011c825da1cd6174b4c457c908d22e673446dc4c2be",
+      "bytes": 1653
+    },
+    {
+      "relative_path": "plugins/com.mirabox.streamdock.weather.sdPlugin/plugin/utils/weatherService.js",
+      "sha256": "3fd3322a435f6c16e0ba57d49259effca9a4f5dff036af22f09953803e1c43f5",
+      "bytes": 7134
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/action2/index.html",
+      "sha256": "22062f3eb11156161b26237131e3eca57919edc3de3650cc2d7ca320eae6af17",
+      "bytes": 2082
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/action2/index.js",
+      "sha256": "58d1645bdfb05b460eb7a89442d9602d68987d59cfb7a481341e71d2613c937b",
+      "bytes": 1396
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/plugin/index.html",
+      "sha256": "2524c3eb43b01081d78c8b62338b161713fe4cc0f6dcb06eb1ecd7aaf7a5db71",
+      "bytes": 216
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/plugin/index.js",
+      "sha256": "c5638e3e2fc6790c454f5acf47edcdf1d410dca3d6824b1283a423a6c44cf58b",
+      "bytes": 5957
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/plugin/memo.html",
+      "sha256": "b123ff07768e8f04bfe7ba7111a0dfc7e1462f7171e57113ced43a895a66a223",
+      "bytes": 10261
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/plugin/todo.html",
+      "sha256": "3cdb10815ac97eb49fefc15a7d5a1117d227d24eec040c63f3b37043f3ac8456",
+      "bytes": 7352
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/action.js",
+      "sha256": "ea293832a1801abda7176339d6cfd1691a18e3134f9914765cb48195f9d63f37",
+      "bytes": 45748
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/worker.js",
+      "sha256": "01d0ea631412ee0edabe75365f94e039f525f4c608f78cf2dbaf25a7338d6874",
+      "bytes": 105
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/plugin.js",
+      "sha256": "e6adefd7f03456650d9de2b44b07fb175025595e18c3151131fa48576f291286",
+      "bytes": 4281
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/action1/index.html",
+      "sha256": "b51a8e2fcab157aafe3bcc6f21c42fcdfb2500332bc686798889fcda06a3c37e",
+      "bytes": 1524
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/action1/index.js",
+      "sha256": "921429af7a14c14586dc6d7eca7dced8aaf8e1e4963c7bcca7ac6f962aa826ea",
+      "bytes": 1677
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/css/check.png",
+      "sha256": "b5fb6fbe1417751ca7dd87552398d4585cb002654aa69632fdf6f43dbc65220c",
+      "bytes": 234
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/css/elg_calendar.svg",
+      "sha256": "cfb84ec9989f8f858bd529b2a760826e20f3fb21986e94b8a287b495a9c3a0d0",
+      "bytes": 1372
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/css/check.svg",
+      "sha256": "5219ac49b82c325cfadc705ee50d82682f652b66c7187d40af243c22cd3ddd11",
+      "bytes": 213
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/css/sdpi.css",
+      "sha256": "273e3ce6309e5424348a8a540defab847fe2a9b623abe67d0e4eb719e6403e46",
+      "bytes": 45196
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/css/rcheck.svg",
+      "sha256": "63363a9d1780a0444bc7457f66fd425f744312a3d1be85f0f76399bc1da36859",
+      "bytes": 134
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/css/g_d8d8d8.svg",
+      "sha256": "b362e786858e836ec7a8ae739ead1f17389fee9dbeb8d7a8b2cd369e96b9930b",
+      "bytes": 3391
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/css/elg_calendar_inv.svg",
+      "sha256": "22126b4c02d4ac5540463014b9286169c701714964fc09c75564e927398c2ccf",
+      "bytes": 771
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/css/caret.svg",
+      "sha256": "fddd4d2330003d0da8b7076bb0a014512eaefb43d789c91bab577eea11a959b1",
+      "bytes": 174
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/img/check.png",
+      "sha256": "147bf13e314d9a81a9bccbb64a022832ccb34f5e9689c34da77234636ba0f8c9",
+      "bytes": 4426
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/img/cate.png",
+      "sha256": "0b57216421edc51ae458d2a82003bbdbec9e213764ff977efeeeca2fdeb3b3e3",
+      "bytes": 4965
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/img/todo.png",
+      "sha256": "b5a3ff4af929304d8e659790a9192a08a49ebdce07a71bc5396f8afc186b282f",
+      "bytes": 11343
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/img/icon-2.png",
+      "sha256": "622a6d437cd573336af894449871d5e5ada391f5d7c32a5cd9483f34fb1f438a",
+      "bytes": 761
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/img/icon-1.png",
+      "sha256": "f2f9ca5dd7629d9c1301ef7f96fea7e6e19948f4e7f9fe3771c4e237eaa2bda8",
+      "bytes": 678
+    },
+    {
+      "relative_path": "plugins/com.hotspot.streamdock.memo.sdPlugin/static/img/memo.png",
+      "sha256": "d4e5ad5fb4c7f42ab2bdcca7349e4019cda1f3187ca1c0f259e8b4d3e481b976",
+      "bytes": 9846
+    }
+  ],
+  "restore_method": "MONSTAR DECK를 종료한 상태에서 백업 파일을 원본 경로로 복사하고 재실행한다. 통상 종료는 파일 변경 없이 제조사 앱만 재실행한다.",
+  "hardware_RAM_vs_flash": "미확인",
+  "device_writes_so_far": false
+}

@@ -1,0 +1,15 @@
+{
+  "revision": 7,
+  "actor": "codex",
+  "ops": [
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "review",
+      "values": {
+        "status": "done",
+        "evidence": "kh_team_code_reviewer 최종 검토 1회: 도구3개·문서5개 전수 검토, 중요0건·미해결 사소0건. README 표현 수정 후 주 작업자가 Project Map verify validate를 재실행하여 종료0. evidence/final-review.json."
+      }
+    }
+  ]
+}

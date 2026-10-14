@@ -1,0 +1,6 @@
+{
+  "manifest_key_derived_id": "hijnklblgecbdlhjiofhlhjpndpifejh",
+  "requested_id": "hijnklblgecbdlhjiofhlhjpndpifejh",
+  "matches": true,
+  "limit": "공개키에서 extension ID를 유도해 대조함. CRX3 서명을 별도로 검증했다는 뜻은 아님."
+}
