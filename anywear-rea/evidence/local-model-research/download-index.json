@@ -1,0 +1,235 @@
+[
+  {
+    "file": "fashn-readme.md",
+    "url": "https://raw.githubusercontent.com/fashn-AI/fashn-vton-1.5/main/README.md",
+    "bytes": 4747,
+    "status": "ok"
+  },
+  {
+    "file": "fashn-example.py",
+    "url": "https://raw.githubusercontent.com/fashn-AI/fashn-vton-1.5/main/examples/basic_inference.py",
+    "bytes": 4148,
+    "status": "ok"
+  },
+  {
+    "file": "catvton-readme.md",
+    "url": "https://raw.githubusercontent.com/Zheng-Chong/CatVTON/main/README.md",
+    "bytes": 9201,
+    "status": "ok"
+  },
+  {
+    "file": "streamv2-readme.md",
+    "url": "https://raw.githubusercontent.com/chenfengxu714/StreamDiffusionV2/master/README.md",
+    "bytes": 13215,
+    "status": "ok"
+  },
+  {
+    "file": "streamv2-demo.md",
+    "url": "https://raw.githubusercontent.com/chenfengxu714/StreamDiffusionV2/master/demo/README.md",
+    "bytes": 2946,
+    "status": "ok"
+  },
+  {
+    "file": "stream-readme.md",
+    "url": "https://raw.githubusercontent.com/cumulo-autumn/StreamDiffusion/main/README.md",
+    "bytes": 12935,
+    "status": "ok"
+  },
+  {
+    "file": "livevvt-readme.md",
+    "url": "https://raw.githubusercontent.com/caoyushe/LiveVVT/main/README.md",
+    "bytes": 161,
+    "status": "ok"
+  },
+  {
+    "file": "lucy11-card.md",
+    "url": "https://huggingface.co/decart-ai/Lucy-Edit-1.1-Dev/raw/main/README.md",
+    "bytes": 11531,
+    "status": "ok"
+  },
+  {
+    "file": "lucy-card.md",
+    "url": "https://huggingface.co/decart-ai/Lucy-Edit-Dev/raw/main/README.md",
+    "bytes": 10260,
+    "status": "ok"
+  },
+  {
+    "file": "fashn-card.md",
+    "url": "https://huggingface.co/fashn-ai/fashn-vton-1.5/raw/main/README.md",
+    "bytes": 6653,
+    "status": "ok"
+  },
+  {
+    "file": "livevvt-tree.json",
+    "url": "https://api.github.com/repos/caoyushe/LiveVVT/git/trees/main?recursive=1",
+    "bytes": 614,
+    "status": "ok"
+  },
+  {
+    "file": "fashn-tree.json",
+    "url": "https://api.github.com/repos/fashn-AI/fashn-vton-1.5/git/trees/main?recursive=1",
+    "bytes": 9432,
+    "status": "ok"
+  },
+  {
+    "file": "parser-readme.md",
+    "url": "https://raw.githubusercontent.com/fashn-AI/fashn-human-parser/main/README.md",
+    "bytes": 4875,
+    "status": "ok"
+  },
+  {
+    "file": "fashn-pipeline.py",
+    "url": "https://raw.githubusercontent.com/fashn-AI/fashn-vton-1.5/main/src/fashn_vton/pipeline.py",
+    "bytes": 12773,
+    "status": "ok"
+  },
+  {
+    "file": "fashn-pyproject.toml",
+    "url": "https://raw.githubusercontent.com/fashn-AI/fashn-vton-1.5/main/pyproject.toml",
+    "bytes": 1864,
+    "status": "ok"
+  },
+  {
+    "file": "fashn-weights.py",
+    "url": "https://raw.githubusercontent.com/fashn-AI/fashn-vton-1.5/main/scripts/download_weights.py",
+    "bytes": 2998,
+    "status": "ok"
+  },
+  {
+    "file": "streamv2-card.md",
+    "url": "https://huggingface.co/jerryfeng/StreamDiffusionV2/raw/main/README.md",
+    "bytes": 3675,
+    "status": "ok"
+  },
+  {
+    "file": "streamv2-paper.html",
+    "url": "https://arxiv.org/html/2511.07399v2",
+    "bytes": 270300,
+    "status": "ok"
+  },
+  {
+    "file": "cuda-gpus.html",
+    "url": "https://developer.nvidia.com/cuda/gpus",
+    "bytes": 25515,
+    "status": "ok"
+  },
+  {
+    "file": "pytorch27.html",
+    "url": "https://pytorch.org/blog/pytorch-2-7/",
+    "bytes": 183560,
+    "status": "ok"
+  },
+  {
+    "file": "decart-index.txt",
+    "url": "https://docs.platform.decart.ai/llms.txt",
+    "bytes": 12178,
+    "status": "ok"
+  },
+  {
+    "file": "lucy25.md",
+    "url": "https://docs.platform.decart.ai/models/realtime/lucy-2.5.md",
+    "bytes": 33924,
+    "status": "ok"
+  },
+  {
+    "file": "parser-license.txt",
+    "url": "https://raw.githubusercontent.com/fashn-AI/fashn-human-parser/main/LICENSE",
+    "bytes": 458,
+    "status": "ok"
+  },
+  {
+    "file": "lucy-license.md",
+    "url": "https://huggingface.co/decart-ai/Lucy-Edit-1.1-Dev/raw/main/LICENSE",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "file": "streamv2-license.txt",
+    "url": "https://raw.githubusercontent.com/chenfengxu714/StreamDiffusionV2/master/LICENSE",
+    "bytes": 11357,
+    "status": "ok"
+  },
+  {
+    "file": "stream-license.txt",
+    "url": "https://raw.githubusercontent.com/cumulo-autumn/StreamDiffusion/main/LICENSE",
+    "bytes": 11357,
+    "status": "ok"
+  },
+  {
+    "file": "sana-streaming.md",
+    "url": "https://raw.githubusercontent.com/NVlabs/Sana/main/docs/sana_streaming.md",
+    "bytes": 13774,
+    "status": "ok"
+  },
+  {
+    "file": "sana-card.md",
+    "url": "https://huggingface.co/Efficient-Large-Model/SANA-Streaming/raw/main/README.md",
+    "bytes": 28,
+    "status": "ok"
+  },
+  {
+    "file": "livevvt-paper.html",
+    "url": "https://arxiv.org/html/2608.26714v1",
+    "bytes": 308686,
+    "status": "ok"
+  },
+  {
+    "file": "vton.md",
+    "url": "https://docs.platform.decart.ai/models/realtime/virtual-try-on.md",
+    "bytes": 15636,
+    "status": "ok"
+  },
+  {
+    "file": "vton35.md",
+    "url": "https://docs.platform.decart.ai/api-reference/lucy-vton-35.md",
+    "bytes": 3817,
+    "status": "ok"
+  },
+  {
+    "file": "fashn-modeltree.json",
+    "url": "https://huggingface.co/api/models/fashn-ai/fashn-vton-1.5/tree/main",
+    "bytes": 500,
+    "status": "ok"
+  },
+  {
+    "file": "streamv2-modeltree.json",
+    "url": "https://huggingface.co/api/models/jerryfeng/StreamDiffusionV2/tree/main?recursive=true",
+    "bytes": 1345,
+    "status": "ok"
+  },
+  {
+    "file": "segformer-license.txt",
+    "url": "https://raw.githubusercontent.com/NVlabs/SegFormer/master/LICENSE",
+    "bytes": 4065,
+    "status": "ok"
+  },
+  {
+    "file": "lucy-license.pdf",
+    "url": "https://d2drjpuinn46lb.cloudfront.net/LUCY_EDIT-Non_Commercial_License_17_Sep_2025.pdf",
+    "bytes": 177849,
+    "status": "ok"
+  },
+  {
+    "file": "sana-tree.json",
+    "url": "https://huggingface.co/api/models/Efficient-Large-Model/SANA-Streaming/tree/main?recursive=true",
+    "bytes": 2318,
+    "status": "ok"
+  },
+  {
+    "file": "blackwell-guide.html",
+    "url": "https://docs.nvidia.com/cuda/blackwell-compatibility-guide/index.html",
+    "bytes": 31791,
+    "status": "ok"
+  },
+  {
+    "file": "catvton-pipeline.py",
+    "url": "https://raw.githubusercontent.com/Zheng-Chong/CatVTON/main/model/pipeline.py",
+    "bytes": 10290,
+    "status": "ok"
+  },
+  {
+    "file": "pytorch-versions.html",
+    "url": "https://pytorch.org/get-started/previous-versions/",
+    "bytes": 348841,
+    "status": "ok"
+  }
+]

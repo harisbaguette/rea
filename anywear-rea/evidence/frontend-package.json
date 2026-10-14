@@ -1,0 +1,8 @@
+{
+  "result": "passed",
+  "artifact": "deliverables/ibeobom-frontend-windows-plan.zip",
+  "files": 94,
+  "bytes": 672479,
+  "sha256": "53d06947ddbd8c2a4376c74361de70f882f2b1d1ce9dfc3372f44c1e03013557",
+  "scope": "공통 프런트엔드·정적 빌드·Windows 계획. 추론 서버·가중치 없음."
+}

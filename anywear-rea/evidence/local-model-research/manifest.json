@@ -1,0 +1,252 @@
+[
+  {
+    "path": "blackwell-guide.html",
+    "bytes": 31791,
+    "sha256": "afd34cde1e0b9e8d35bb61bb6fd0b415b5b5996b9024238ee84f8ecd3b1a872f"
+  },
+  {
+    "path": "blackwell-guide.html.txt",
+    "bytes": 17506,
+    "sha256": "8590b56ce75469d95358e11464452bbf8fff4bc409e601459d896e9c2c16c7eb"
+  },
+  {
+    "path": "catvton-pipeline.py",
+    "bytes": 10290,
+    "sha256": "7231a2d50be5fee3958a8b77643959b3c88f0385a6c6bbc3d910804f40974349"
+  },
+  {
+    "path": "catvton-readme.md",
+    "bytes": 9201,
+    "sha256": "795aa6a5aeb83deb82c793d7a18430b6b48c09393f4939941fd1b0688233630a"
+  },
+  {
+    "path": "claim-check.json",
+    "bytes": 5458,
+    "sha256": "21ef825f9c8bfae37c96ec40f4995b41f674f2830ca41858c00454064ea7e91d"
+  },
+  {
+    "path": "claims.json",
+    "bytes": 3895,
+    "sha256": "4c4bb28b27c4d3a4fbc8b45a6b888db85471cfc300477b6f0270d5ff8ed763f0"
+  },
+  {
+    "path": "cuda-gpus.html",
+    "bytes": 25515,
+    "sha256": "c56dd84816b69cd2e10ade8da21fa448d9fe407379bcd9da880e4b158793c146"
+  },
+  {
+    "path": "cuda-gpus.html.txt",
+    "bytes": 13332,
+    "sha256": "a58aa1add50b59182b4d7f06bdfc8e1e8b7616b334d48f56550c32c873198502"
+  },
+  {
+    "path": "decart-index.txt",
+    "bytes": 12178,
+    "sha256": "4da8a8cc9569df710b36588e2869dcce15005eed256e14914e1a1f04aab1fd39"
+  },
+  {
+    "path": "document-check.json",
+    "bytes": 581,
+    "sha256": "ce1a22a1e3420a6f5aabd3f62fda06a330385399b5b0e38a04710f50b7fece74"
+  },
+  {
+    "path": "download-index.json",
+    "bytes": 6401,
+    "sha256": "2effab16a2aecf331a62f699304e283c57fa93db36b9a7ef7d4cbd3ef196426f"
+  },
+  {
+    "path": "fashn-card.md",
+    "bytes": 6653,
+    "sha256": "fad906be83915aec1c7c0bc153a62064817ab719b1eaa41159c32965fa75ac58"
+  },
+  {
+    "path": "fashn-example.py",
+    "bytes": 4148,
+    "sha256": "2b5729ad110ecbcdf9c44831363f4030a2a98405fc936b05e4dfd27b46712d8b"
+  },
+  {
+    "path": "fashn-modeltree.json",
+    "bytes": 500,
+    "sha256": "17eb233ff4b79a5b52d1c5433ec9608f03b9cdb90ccfc9b766bfb54b731cfc45"
+  },
+  {
+    "path": "fashn-pipeline.py",
+    "bytes": 12773,
+    "sha256": "7744d4d98b3e1e4a1c157472f73a22999b329d99775c6197ba6b0ca94ea2e95c"
+  },
+  {
+    "path": "fashn-pyproject.toml",
+    "bytes": 1864,
+    "sha256": "d722646d79dbb26204aa91bef858d8fe78de6e53f7ed9b8e97e32d0d52bf5f68"
+  },
+  {
+    "path": "fashn-readme.md",
+    "bytes": 4747,
+    "sha256": "a2d2c6f3e6915f3671fa7434c5bd27d6383716e2e643ba68d8198b1ead015225"
+  },
+  {
+    "path": "fashn-tree.json",
+    "bytes": 9432,
+    "sha256": "117cdf1cafdbe89c9ba28f58e44f6945398f9285604092fe82e2bdf7efb80272"
+  },
+  {
+    "path": "fashn-weights.py",
+    "bytes": 2998,
+    "sha256": "00f05cc12bdee83d42f28cbc2864858158418df4e3e2c936bbbc44903e336b28"
+  },
+  {
+    "path": "livevvt-paper.html",
+    "bytes": 308686,
+    "sha256": "2fe19f65c4d1178c3425c8bd671e7ded93e0a14cbc5b5d5cb27ec76b230c3bca"
+  },
+  {
+    "path": "livevvt-paper.html.txt",
+    "bytes": 74762,
+    "sha256": "5f7c75a8b6a2ad37edb37ca8582a9523975c25ef3d943395fa4294fe94c1e431"
+  },
+  {
+    "path": "livevvt-readme.md",
+    "bytes": 161,
+    "sha256": "1dabf9a24cbd41527d247f8a753bea55a341addb48ca148590d1ef618b4fd6ea"
+  },
+  {
+    "path": "livevvt-tree.json",
+    "bytes": 614,
+    "sha256": "0ea49600660a1f1b1ee1079b7653d6ad849f70af6184c32f3864bb2053fd2529"
+  },
+  {
+    "path": "lucy-card.md",
+    "bytes": 10260,
+    "sha256": "1f57fae825150d41e0ab43ee4c0182865e53af5f6a38ce61b93ab10b71e418cc"
+  },
+  {
+    "path": "lucy-license.pdf",
+    "bytes": 177849,
+    "sha256": "61167f86757783b9330a2e105a6e2900d7785bdcb2c110e2edd74809b2af9914"
+  },
+  {
+    "path": "lucy-license.txt",
+    "bytes": 25705,
+    "sha256": "936fe916543e3d0488825dcaefb9c01c837e6715f466e0c4375077bd159a3f29"
+  },
+  {
+    "path": "lucy11-card.md",
+    "bytes": 11531,
+    "sha256": "c87b41791e17dadd96ff9db36aae350216f093d9203bf8eb24772a43810b3394"
+  },
+  {
+    "path": "lucy25.md",
+    "bytes": 33924,
+    "sha256": "e79e8e1d5b185020f9cb8a2fbf17f98fbdcad8ca139597c23574327337543bf4"
+  },
+  {
+    "path": "manual-review.json",
+    "bytes": 490,
+    "sha256": "b31f4647b6e80ec16beecc3af6972c0855e3d9591d79d64f503f97acc3740fb8"
+  },
+  {
+    "path": "parser-license.txt",
+    "bytes": 458,
+    "sha256": "873ccdc8a7d59a7919ad953a7d4fea8ad1948f67ff5d5ae1cc2418d51a281e86"
+  },
+  {
+    "path": "parser-readme.md",
+    "bytes": 4875,
+    "sha256": "fa4a279452a148e269798b0171ab20521d1557d2dc4c8d19f9d181bfffde8432"
+  },
+  {
+    "path": "pytorch-versions.html",
+    "bytes": 348841,
+    "sha256": "ec5ba5e5016983617d9992a94c0164a0fb9dd785f43e238c79cbe15f0c6db883"
+  },
+  {
+    "path": "pytorch27.html",
+    "bytes": 183560,
+    "sha256": "d5d4ba9449df88f3a15d9098ada8282a838c76a784dee786ebcd37694f239f57"
+  },
+  {
+    "path": "pytorch27.html.txt",
+    "bytes": 129441,
+    "sha256": "49037e212c2f12fc92aab8f471b1de928ba626fb72d79f3688bf55dafa9a8dd4"
+  },
+  {
+    "path": "sana-card.md",
+    "bytes": 28,
+    "sha256": "98b45ea81164d1e1a1dd82255207053b15cd6c69d922a1c5cf3387ce604d4b74"
+  },
+  {
+    "path": "sana-streaming.md",
+    "bytes": 13774,
+    "sha256": "a84da1bc25875078021fa5b3eea2c65fd679712991aa1418a9f13b33ddc43980"
+  },
+  {
+    "path": "sana-tree.json",
+    "bytes": 2318,
+    "sha256": "de38425744ae1a11d2c6ebdc0a63c93eb54b58afe95d65a4e2a9c6ed61b016e1"
+  },
+  {
+    "path": "segformer-license.txt",
+    "bytes": 4065,
+    "sha256": "f549820c06519e3105e5174a2fd7285224ffd2268a7f879a843b1a255fd04a61"
+  },
+  {
+    "path": "stream-license.txt",
+    "bytes": 11357,
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "path": "stream-readme.md",
+    "bytes": 12935,
+    "sha256": "9f28df8fdb58f09bcab19fd6901017b66205c265437be51a4a954765e39d8a86"
+  },
+  {
+    "path": "streamv2-card.md",
+    "bytes": 3675,
+    "sha256": "cc94ab0478f0acb018fef1720e90f1bdcd9d694aac983c74ca9d89a249d23596"
+  },
+  {
+    "path": "streamv2-demo.md",
+    "bytes": 2946,
+    "sha256": "4c453004d5c48899cb46f97459db017f1639b22dd37533f8483bff1479719fa7"
+  },
+  {
+    "path": "streamv2-license.txt",
+    "bytes": 11357,
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "path": "streamv2-modeltree.json",
+    "bytes": 1345,
+    "sha256": "24ba0ec9ec0b9f846c15664d94c35c02d431a707529f04230914d921129684be"
+  },
+  {
+    "path": "streamv2-paper.html",
+    "bytes": 270300,
+    "sha256": "f6f6824da2ac55cef03ee8b3d3e9d2d337d4b4c5c53d90c38070baa852e26003"
+  },
+  {
+    "path": "streamv2-paper.html.txt",
+    "bytes": 71376,
+    "sha256": "e23ad168c43e27865784a6ae13eef9c7ee2f200d6a213fc628948404353feea5"
+  },
+  {
+    "path": "streamv2-readme.md",
+    "bytes": 13215,
+    "sha256": "4d30f49ed5f740b323d4667d7d5d55a763d0475af3a7381b0722c3298a20dc98"
+  },
+  {
+    "path": "verification-summary.json",
+    "bytes": 434,
+    "sha256": "3bcded7fb03a8e03352729b421484f9016c50ff6c86c0d730297230b9c0996b8"
+  },
+  {
+    "path": "vton.md",
+    "bytes": 15636,
+    "sha256": "b33e22f6b957b83dacda9d4ed209903d5cad0afe059a2bafab6a8f51b9cc228d"
+  },
+  {
+    "path": "vton35.md",
+    "bytes": 3817,
+    "sha256": "4dea77afaa427ab7fd9b751b1aba0858d5f105cd0509d26dd586f8a70d7cb96d"
+  }
+]

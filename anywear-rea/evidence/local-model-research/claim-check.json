@@ -1,0 +1,164 @@
+[
+ {
+  "claim": "Lucy Edit Dev는 Wan2.2 5B를 기반으로 한다.",
+  "url": "https://huggingface.co/decart-ai/Lucy-Edit-Dev/raw/main/README.md",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.98,
+  "note": ""
+ },
+ {
+  "claim": "Lucy Edit 1.1 Dev는 Wan2.2 5B 아키텍처를 기반으로 하는 텍스트 지시 기반 영상 편집 모델이다.",
+  "url": "https://huggingface.co/decart-ai/Lucy-Edit-1.1-Dev/raw/main/README.md",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.96,
+  "note": ""
+ },
+ {
+  "claim": "FASHN VTON v1.5의 모델 카드는 추론에 약 8GB VRAM, H100에서 약 5초, 출력 576x864를 기재한다.",
+  "url": "https://huggingface.co/fashn-ai/fashn-vton-1.5/raw/main/README.md",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.97,
+  "note": ""
+ },
+ {
+  "claim": "FASHN VTON v1.5 코드는 Apache-2.0이며 사람 이미지와 의상 이미지를 입력받는다.",
+  "url": "https://raw.githubusercontent.com/fashn-AI/fashn-vton-1.5/main/README.md",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.85,
+  "note": ""
+ },
+ {
+  "claim": "FASHN TryOnPipeline 초기화는 _setup_hp_model을 호출하여 FashnHumanParser를 로드한다.",
+  "url": "https://raw.githubusercontent.com/fashn-AI/fashn-vton-1.5/main/src/fashn_vton/pipeline.py",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.93,
+  "note": ""
+ },
+ {
+  "claim": "FASHN Human Parser는 SegFormer의 NVIDIA Source Code License를 상속한다.",
+  "url": "https://raw.githubusercontent.com/fashn-AI/fashn-human-parser/main/LICENSE",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.9,
+  "note": ""
+ },
+ {
+  "claim": "SegFormer LICENSE 3.3은 비상업적 연구 또는 평가 용도로 사용을 제한하며 NVIDIA와 계열사는 상업적으로 사용할 수 있다고 명시한다.",
+  "url": "https://raw.githubusercontent.com/NVlabs/SegFormer/master/LICENSE",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.93,
+  "note": ""
+ },
+ {
+  "claim": "CatVTON은 1024x768 출력에서 약 8GB VRAM을 쓰며 코드와 체크포인트와 데모는 CC BY-NC-SA 4.0이다.",
+  "url": "https://raw.githubusercontent.com/Zheng-Chong/CatVTON/main/README.md",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.91,
+  "note": ""
+ },
+ {
+  "claim": "StreamDiffusion 데모는 브라우저 웹캠 또는 화면 캡처를 입력으로 받는 실시간 img2img를 지원한다.",
+  "url": "https://raw.githubusercontent.com/cumulo-autumn/StreamDiffusion/main/README.md",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.83,
+  "note": ""
+ },
+ {
+  "claim": "StreamDiffusion SD-turbo 1스텝 img2img의 93.897 FPS는 RTX4090, Core i9-13900K, Ubuntu22.04.3LTS에서 얻은 수치다.",
+  "url": "https://raw.githubusercontent.com/cumulo-autumn/StreamDiffusion/main/README.md",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.94,
+  "note": ""
+ },
+ {
+  "claim": "StreamDiffusionV2 웹 데모는 웹캠이나 화면 캡처 입력으로 live video-to-video 추론을 지원한다.",
+  "url": "https://raw.githubusercontent.com/chenfengxu714/StreamDiffusionV2/master/demo/README.md",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.95,
+  "note": ""
+ },
+ {
+  "claim": "StreamDiffusionV2 공식 README는 1.3B와 14B 가중치의 다운로드 명령을 제공한다.",
+  "url": "https://raw.githubusercontent.com/chenfengxu714/StreamDiffusionV2/master/README.md",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.86,
+  "note": ""
+ },
+ {
+  "claim": "LiveVVT 공식 저장소 README에는 코드가 준비 중이고 곧 공개될 것이라고 적혀 있다.",
+  "url": "https://raw.githubusercontent.com/caoyushe/LiveVVT/main/README.md",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "unsure",
+  "p": 0.68,
+  "note": ""
+ },
+ {
+  "claim": "SANA-Streaming 문서는 5090에서 1280x704 24 end-to-end FPS와 58 DiT FPS를 기재하며 공개 스크립트는 BF16 체크포인트를 사용한다고 설명한다.",
+  "url": "https://raw.githubusercontent.com/NVlabs/Sana/main/docs/sana_streaming.md",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.96,
+  "note": ""
+ },
+ {
+  "claim": "RTX5080의 CUDA compute capability는 12.0이다.",
+  "url": "https://developer.nvidia.com/cuda/gpus",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.87,
+  "note": ""
+ },
+ {
+  "claim": "PyTorch2.7은 Blackwell GPU 지원과 CUDA12.8 사전빌드 휠을 도입했다.",
+  "url": "https://pytorch.org/blog/pytorch-2-7/",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.97,
+  "note": ""
+ },
+ {
+  "claim": "PyTorch 공식 이전버전 설치 문서에는 torch2.11.0과 torchvision0.26.0을 cu128 인덱스로 설치하는 명령이 있다.",
+  "url": "https://pytorch.org/get-started/previous-versions/",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.91,
+  "note": ""
+ },
+ {
+  "claim": "Decart VTON 문서는 lucy-vton-latest가 lucy-vton-3.6을 가리키고 lucy-vton-3.5도 제공된다고 설명한다.",
+  "url": "https://docs.platform.decart.ai/models/realtime/virtual-try-on.md",
+  "quote": null,
+  "quote_found": null,
+  "verdict": "supported",
+  "p": 0.97,
+  "note": ""
+ }
+]

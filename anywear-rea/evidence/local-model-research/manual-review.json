@@ -1,0 +1,14 @@
+{
+  "claim": "LiveVVT 공식 저장소 README에는 코드가 준비 중이고 곧 공개될 것이라고 적혀 있다.",
+  "checker_verdict": "unsure",
+  "manual_verdict": "supported",
+  "observation": "README 원문에 The code is under preparation and will be released soon. 존재. Git tree의 전체 항목은 LICENSE, README.md 두 개.",
+  "files": [
+    "livevvt-readme.md",
+    "livevvt-tree.json"
+  ],
+  "evidence_count": {
+    "repository_files": 2,
+    "files_checked": 2
+  }
+}

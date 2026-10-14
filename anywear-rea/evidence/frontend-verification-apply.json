@@ -1,0 +1,141 @@
+{
+  "revision": 12,
+  "actor": "codex",
+  "ops": [
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "frontend-build",
+      "values": {
+        "verification": {
+          "argv": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "inputs": [
+            "studio/src",
+            "studio/index.html",
+            "studio/vite.config.ts",
+            "studio/tsconfig.json",
+            "studio/package.json",
+            "studio/package-lock.json",
+            "studio/public"
+          ],
+          "cwd": "studio",
+          "timeoutMs": 120000
+        }
+      }
+    },
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "frontend-browser",
+      "values": {
+        "verification": {
+          "argv": [
+            "npm",
+            "test"
+          ],
+          "inputs": [
+            "studio/src",
+            "studio/index.html",
+            "studio/vite.config.ts",
+            "studio/tsconfig.json",
+            "studio/package.json",
+            "studio/package-lock.json",
+            "studio/public",
+            "studio/tests",
+            "studio/playwright.config.mjs",
+            "studio/dist"
+          ],
+          "cwd": "studio",
+          "timeoutMs": 120000
+        }
+      }
+    },
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "frontend-handoff",
+      "values": {
+        "verification": {
+          "argv": [
+            "node",
+            "scripts/check-delivery.mjs"
+          ],
+          "inputs": [
+            "studio/src",
+            "studio/index.html",
+            "studio/vite.config.ts",
+            "studio/tsconfig.json",
+            "studio/package.json",
+            "studio/package-lock.json",
+            "studio/public",
+            "studio/scripts",
+            "studio/dist",
+            "studio/tests/fixtures",
+            "WINDOWS_PLAN.md",
+            "API_CONTRACT.md",
+            "CONTINUE_WINDOWS.md",
+            "studio/api/openapi.json",
+            "tools/windows_probe.py"
+          ],
+          "cwd": "studio",
+          "timeoutMs": 120000
+        }
+      }
+    },
+    {
+      "op": "add",
+      "kind": "tasks",
+      "id": "frontend-audit",
+      "values": {
+        "title": "의존성 취약점 검사",
+        "component": "studio",
+        "milestone": "frontend-check",
+        "status": "todo",
+        "verification": {
+          "argv": [
+            "npm",
+            "audit",
+            "--audit-level=moderate"
+          ],
+          "inputs": [
+            "studio/package.json",
+            "studio/package-lock.json"
+          ],
+          "cwd": "studio",
+          "timeoutMs": 120000
+        }
+      }
+    },
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "windows-plan",
+      "values": {
+        "status": "done",
+        "evidence": "WINDOWS_PLAN.md에 W0~W5, 실제GPU 사진착의·API·브라우저연결·라이브실험 순서와 합격기준 작성. API_CONTRACT.md와 OpenAPI3.1 규격5개operation(health/create/get/cancel/image), CONTINUE_WINDOWS.md 및 tools/windows_probe.py를 준비. 실제GPU설치는이번범위밖."
+      }
+    },
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "frontend-implementation",
+      "values": {
+        "status": "done",
+        "evidence": "studio/src의 이미지magic/8MiB/16MP·metadata제거·카메라·스냅샷·모드·연결/토큰·직렬라이브·취소확인·결과URL검증/저장을 구현. 실제추론없음을UI에명시. npm typecheck/build통과, 주작업자의 브라우저11시험통과 이후 취소메시지경합/모바일 빈결과영역 배치를 보완해 최종입력재검증 예정."
+      }
+    },
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "crit-standards-setup",
+      "values": {
+        "status": "done",
+        "evidence": "STANDARDS.md의 맞춤을 현범위·실행환경·법/보안 경계로 채우고 API계약·Playwright·타입/빌드·전달검사와 quality.json에 연결한다. 실제준수판정은 crit-standards-verify에서 최종본으로 수행."
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "comparison_rows_checked": 8,
+  "comparison_rows_total": 8,
+  "python_example_syntax": "pass",
+  "call_keyword_contract": "pass",
+  "pipeline_keywords": [
+    [
+      "category",
+      "garment_image",
+      "garment_photo_type",
+      "guidance_scale",
+      "num_samples",
+      "num_timesteps",
+      "person_image",
+      "seed",
+      "segmentation_free"
+    ]
+  ],
+  "source_file_references_checked": 42,
+  "source_file_references_missing": 0,
+  "explicit_failed_download_mentions": [
+    "lucy-license.md"
+  ],
+  "gpu_inference": "not performed; outside current scope"
+}

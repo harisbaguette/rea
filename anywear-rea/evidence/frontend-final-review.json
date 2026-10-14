@@ -1,0 +1,33 @@
+{
+  "result": "REVIEW_COMPLETE",
+  "scope": "공통 프런트엔드·Windows 개발 계획과 API 계약",
+  "reviewer": "final_review",
+  "files_read": 25,
+  "important_found": 2,
+  "important_remaining": 0,
+  "minor_remaining": 0,
+  "fixes": [
+    {
+      "file": "studio/src/main.ts",
+      "issue": "늦은 사진 디코딩이 이후 카메라 시작을 덮음",
+      "fix": "카메라 시작 때 personVersion 무효화",
+      "verified": "독립 Chromium 수정 전 재현·수정 후 카메라 live 유지"
+    },
+    {
+      "file": "studio/src/api.ts",
+      "issue": "PNG Content-Type의 JPEG를 결과로 수락",
+      "fix": "실제 PNG signature 확인",
+      "verified": "독립 Chromium에서 응답 거부·결과 미표시"
+    }
+  ],
+  "checks": [
+    "최종 타입 검사",
+    "스크립트 구문·OpenAPI·잠금파일 정합성",
+    "메모리 ZIP 94파일 무결성·설정 제외",
+    "GPU 부재와 require-cuda 실패 확인"
+  ],
+  "limitations": [
+    "실제 추론 서버·가중치 없음",
+    "Windows와 RTX5080 실제 실행은 후속 단계"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "result": "passed",
+  "url": "http://127.0.0.1:5178/",
+  "title": "입어봄 — 로컬 피팅 작업실",
+  "viewport_checks": [
+    {
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "overflow": false
+    }
+  ],
+  "focus": {
+    "tag": "A",
+    "text": "작업실로 건너뛰기"
+  },
+  "page_errors": [],
+  "external_requests": [],
+  "headers": {
+    "content-security-policy": "default-src 'self'; script-src 'self'; img-src 'self' blob:; media-src 'self' blob:; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' ws://127.0.0.1:* ws://localhost:*;",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY",
+    "referrer-policy": "no-referrer",
+    "permissions-policy": "camera=(self), microphone=(), geolocation=()"
+  },
+  "runtime": "Mac ARM64 Chromium headless。실제 카메라·GPU 사용 안 함"
+}

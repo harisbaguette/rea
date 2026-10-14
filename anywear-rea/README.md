@@ -1,3 +1,12 @@
+# 입어봄 프로젝트
+
+공통 피팅 화면은 [studio/README.md](studio/README.md)에서 시작한다. AI 추론 엔진은 Windows 단계에서 연결한다.
+
+- [Windows RTX 5080 작업 계획](WINDOWS_PLAN.md)
+- [다른 환경에서 이어 할 지시](CONTINUE_WINDOWS.md)
+- [추론 API 규격](API_CONTRACT.md)
+- [로컬 모델과 Lucy 계보](LOCAL_MODELS.md)
+
 # Anywear는 어떻게 실시간으로 옷을 입힐까?
 
 **핵심은 쇼핑몰 이미지와 카메라 영상을 서버의 실시간 영상 생성 AI에 연결한 것이다.** 확장 프로그램은 카메라·상품 이미지·접속 상태를 다루고, Decart의 Lucy 모델이 영상을 변환한다. 사용자의 PC가 비교적 가벼워 보이는 이유는 큰 연산이 원격 서버에서 일어나기 때문이다.

@@ -1,0 +1,94 @@
+# Decart API Platform
+
+> Learn how to integrate Decart AI Lab's real-time visual models. Access our API overview to start transforming video and images with state-of-the-art efficiency
+
+- [Overview](https://docs.platform.decart.ai/getting-started/overview.md): Build with Decart's realtime AI video models. Transform live streams, generate videos, edit images, and animate avatars through a simple API.
+- [Quickstart](https://docs.platform.decart.ai/getting-started/quickstart.md): Go from API key to first Decart output in minutes
+- [Preset Studio](https://docs.platform.decart.ai/getting-started/preset-studio.md): Save, organize, share, and version reusable prompts and reference images.
+- [Coding Agents](https://docs.platform.decart.ai/getting-started/ai-coding-agents.md): Teach your AI coding agent how to use Decart's APIs
+- [Authentication](https://docs.platform.decart.ai/getting-started/authentication.md): Secure your API requests with API keys
+- [Client Tokens](https://docs.platform.decart.ai/getting-started/client-tokens.md): Secure realtime authentication for browser and mobile apps
+- [Models](https://docs.platform.decart.ai/getting-started/models.md): Explore Decart's AI models for video and image transformation
+- [Pricing](https://docs.platform.decart.ai/getting-started/pricing.md): Clear, usage-based pricing for Decart models
+- [Examples](https://docs.platform.decart.ai/examples/overview.md): Official examples hub for realtime-first Decart integrations
+- [Use Cases](https://docs.platform.decart.ai/examples/use-cases.md): What you can build with Decart's realtime and batch AI models
+- [E-commerce Virtual Try-On](https://docs.platform.decart.ai/examples/ecommerce-try-on.md): Add a 'Try it on' button to product pages with realtime virtual try-on
+- [Realtime Mobile App](https://docs.platform.decart.ai/examples/real-time-mobile-app.md): Build a realtime AI video app with Expo and the Decart SDK
+- [Lucy Edit In ComfyUI](https://docs.platform.decart.ai/examples/comfyui.md): Lucy Edit ComfyUI Cookbook: Text-Guided Video Editing
+- [Overview](https://docs.platform.decart.ai/models/realtime/overview.md)
+- [Lucy 2.5 Realtime](https://docs.platform.decart.ai/models/realtime/lucy-2.5.md): Edit any element in a live video stream - add, replace, or remove objects, swap characters, change backgrounds, and apply effects in realtime.
+- [Prompting Guide](https://docs.platform.decart.ai/models/realtime/lucy-2.5-prompting.md): How to write effective prompts for Lucy 2.5, with templates and examples for every edit type.
+- [Lucy 2.1 Realtime](https://docs.platform.decart.ai/models/realtime/lucy-2.1.md): Transform yourself into any character in realtime with AI-powered video editing at 720p
+- [Oasis 3 Preview Realtime](https://docs.platform.decart.ai/models/realtime/oasis-3.md): A real-time, promptable world model you can drive: set a scene with text, stream driving actions, and receive generated camera frames over a single gRPC session.
+- [Virtual Try-On](https://docs.platform.decart.ai/models/realtime/virtual-try-on.md): Dress people in live or recorded video with text prompts, garment images, or both.
+- [Prompting Guide](https://docs.platform.decart.ai/models/realtime/vton-3.5-prompting.md): How to write effective prompts for Lucy VTON — principles, examples, and common mistakes for every try-on.
+- [Reference Images](https://docs.platform.decart.ai/models/realtime/reference-images.md): Best practices for character and style reference images in realtime models
+- [Streaming Best Practices](https://docs.platform.decart.ai/models/realtime/streaming-best-practices.md): Optimize your realtime video integration for quality, performance, and reliability
+- [Video Restyling](https://docs.platform.decart.ai/models/realtime/video-restyling.md)
+- [Video Editing](https://docs.platform.decart.ai/models/realtime/video-editing.md)
+- [Non-realtime Models](https://docs.platform.decart.ai/models/video/overview.md): Edit videos and edit images
+- [Video Editing](https://docs.platform.decart.ai/models/video/video-editing.md): Learn how to edit and transform existing videos with AI.
+- [Video Restyling](https://docs.platform.decart.ai/models/video/video-restyling.md): Learn how to apply new visual styles to entire videos with AI.
+- [Image Editing](https://docs.platform.decart.ai/models/image/image-editing.md): Learn how to edit and transform existing images with AI.
+- [Realtime Integration Paths](https://docs.platform.decart.ai/integrations/overview.md): Choose how to connect your platform to Decart's realtime AI models
+- [SDK Direct](https://docs.platform.decart.ai/integrations/sdk-direct.md): Embed the Decart SDK in your app for the simplest integration path
+- [WS Signaling Proxy](https://docs.platform.decart.ai/integrations/signaling-proxy-ws.md): Proxy WebSocket signaling for a white-labeled integration while keeping WebRTC direct
+- [HTTP Signaling](https://docs.platform.decart.ai/integrations/signaling-proxy-http.md): Use stateless HTTP endpoints for signaling with direct WebRTC media
+- [Network Requirements](https://docs.platform.decart.ai/integrations/network-requirements.md): Network, device, and firewall configuration for running the realtime SDK — for IT, networking, and security teams
+- [Overview](https://docs.platform.decart.ai/sdks/javascript.md): A JavaScript SDK for Decart's models
+- [Realtime API](https://docs.platform.decart.ai/sdks/javascript-realtime.md): Transform video streams in realtime with WebRTC
+- [Process API](https://docs.platform.decart.ai/sdks/javascript-process.md): Transform images on-demand
+- [Queue API](https://docs.platform.decart.ai/sdks/javascript-queue.md): Asynchronous job-based video processing
+- [Overview](https://docs.platform.decart.ai/sdks/python.md): A Python SDK for Decart's models
+- [Realtime API](https://docs.platform.decart.ai/sdks/python-realtime.md): Transform video streams in realtime from Python
+- [Process API](https://docs.platform.decart.ai/sdks/python-process.md): Transform images on-demand
+- [Queue API](https://docs.platform.decart.ai/sdks/python-queue.md): Asynchronous job-based video processing
+- [Overview](https://docs.platform.decart.ai/sdks/swift.md): A Swift SDK for Decart's models on iOS and macOS
+- [Realtime API](https://docs.platform.decart.ai/sdks/swift-realtime.md): Transform video streams in realtime with WebRTC on iOS and macOS
+- [Queue API](https://docs.platform.decart.ai/sdks/swift-queue.md): Asynchronous job-based video processing
+- [Process API](https://docs.platform.decart.ai/sdks/swift-process.md): Transform images on-demand
+- [Overview](https://docs.platform.decart.ai/sdks/android.md): An Android SDK for Decart's realtime and video processing models
+- [Realtime API](https://docs.platform.decart.ai/sdks/android-realtime.md): Transform video streams in realtime on Android
+- [Queue API](https://docs.platform.decart.ai/sdks/android-queue.md): Asynchronous job-based video processing on Android
+- [Frameworks](https://docs.platform.decart.ai/ai-frameworks/overview.md): Use Decart image and video generation through popular AI frameworks like Vercel AI SDK, TanStack AI, and LangChain.
+- [Vercel AI SDK](https://docs.platform.decart.ai/ai-frameworks/ai-sdk.md): Generate images and videos with Decart using the Vercel AI SDK.
+- [TanStack AI](https://docs.platform.decart.ai/ai-frameworks/tanstack-ai.md): Generate images and videos with Decart using TanStack AI.
+- [LangChain.js](https://docs.platform.decart.ai/ai-frameworks/langchain.md): Give your LLM agents the ability to generate and edit images with Decart.
+- [FAQ](https://docs.platform.decart.ai/resources/faq.md): Common questions about Decart APIs, SDKs, pricing, and realtime
+- [Changelog](https://docs.platform.decart.ai/changelog.md): Product updates and announcements for the Decart API Platform
+- [Video Queue API Migration](https://docs.platform.decart.ai/resources/migrations/video-queue-api.md): Migrate from the synchronous generate endpoint to the asynchronous job-based Queue API for video generation.
+- [Terms of Service](https://docs.platform.decart.ai/resources/terms-of-service.md)
+- [Privacy Policy](https://docs.platform.decart.ai/resources/privacy-policy.md)
+- [Acceptable Use Policy](https://docs.platform.decart.ai/resources/aup.md): ("AUP" or "Policy")
+- [API Terms of Service](https://docs.platform.decart.ai/resources/api-terms.md)
+- [Data Processing Agreement](https://docs.platform.decart.ai/resources/dpa.md)
+- [Status](https://docs.platform.decart.ai/resources/status.md)
+- [Lucy 2.5](https://docs.platform.decart.ai/api-reference/lucy-25.md): Edit video using Lucy 2.5 model with optional prompt and reference image. Supports self-anchoring (on by default).
+- [Lucy 2.1](https://docs.platform.decart.ai/api-reference/lucy-21.md): Edit video using Lucy 2.1 model with optional prompt and reference image.
+- [Lucy VTON 3.6](https://docs.platform.decart.ai/api-reference/lucy-vton-36.md): Edit video with virtual try-on using the Lucy VTON 3.6 model.
+- [Lucy VTON 3.5](https://docs.platform.decart.ai/api-reference/lucy-vton-35.md): Edit video with virtual try-on using the Lucy VTON 3.5 model.
+- [Lucy Restyle 2](https://docs.platform.decart.ai/api-reference/lucy-restyle-2.md): Restyle video using Lucy Restyle 2 model.
+- [Lucy Latest](https://docs.platform.decart.ai/api-reference/lucy-latest.md): Edit video using the latest Lucy video model with optional prompt and reference image.
+- [Lucy VTON Latest](https://docs.platform.decart.ai/api-reference/lucy-vton-latest.md): Edit video with virtual try-on using the latest Lucy VTON model.
+- [Lucy Restyle Latest](https://docs.platform.decart.ai/api-reference/lucy-restyle-latest.md): Restyle video using the latest Lucy Restyle model.
+- [Lucy Clip Latest](https://docs.platform.decart.ai/api-reference/lucy-clip-latest.md): Edit video using the latest Lucy Clip model.
+- [Lucy Clip](https://docs.platform.decart.ai/api-reference/lucy-clip.md): Edit video using Lucy Clip with prompt enhancement.
+- [Lucy Image 2](https://docs.platform.decart.ai/api-reference/lucy-image-2.md): Edit image from image using Lucy Image 2 model.
+- [Lucy Image Latest](https://docs.platform.decart.ai/api-reference/lucy-image-latest.md): Edit image from image using the latest Lucy Image model.
+- [Get Realtime Quota](https://docs.platform.decart.ai/api-reference/get-realtime-quota.md): Current concurrent realtime session quota state for the authenticated account.
+- [Resolve Model Aliases](https://docs.platform.decart.ai/api-reference/resolve-model-aliases.md): Resolve one or more public model names/aliases to canonical model ids.
+- [Get Job](https://docs.platform.decart.ai/api-reference/get-job.md): Get the status and metadata of a job by its ID. Poll this endpoint to check if your job has completed.
+- [Get Job Content](https://docs.platform.decart.ai/api-reference/get-job-content.md): Download the result of a completed job.
+- [Upload File](https://docs.platform.decart.ai/api-reference/upload-file.md): Upload a file once and get back a `file_*` reference id you can reuse across generations.
+- [List Files](https://docs.platform.decart.ai/api-reference/list-files.md): List your uploaded files, newest first. Expired files are omitted, as they 404 on `GET /v1/files/{file_id}`.
+- [Get File Metadata](https://docs.platform.decart.ai/api-reference/get-file-metadata.md): Get metadata for an uploaded file.
+- [Get File By MD5](https://docs.platform.decart.ai/api-reference/get-file-by-md5.md): Look up an uploaded file by the MD5 of its bytes, without knowing its `file_*` id. Returns the newest non-expired match when the same file was uploaded more than once. Compute the hash over the exact bytes you uploaded (for example `md5sum image.png`).
+- [Delete File](https://docs.platform.decart.ai/api-reference/delete-file.md): Delete an uploaded file early, before its TTL expires.
+- [Create Client Token](https://docs.platform.decart.ai/api-reference/create-client-token.md): Create an ephemeral API token for client sessions.
+
+## OpenAPI Specs
+
+- [openapi](/openapi.json)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

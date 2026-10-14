@@ -1,0 +1,16 @@
+{
+  "claims_total": 18,
+  "supported": 17,
+  "unsure": 1,
+  "manual_supported": 1,
+  "unsupported": 0,
+  "unchecked": 0,
+  "downloads_ok": 38,
+  "downloads_failed": 1,
+  "evidence_files": 51,
+  "comparison_candidates": 8,
+  "comparison_candidates_checked": 8,
+  "gpu_execution": "not performed; Windows follow-up scope",
+  "source_independence": "same-author sources not counted as independent",
+  "formal_performance_FACT_count": 0
+}

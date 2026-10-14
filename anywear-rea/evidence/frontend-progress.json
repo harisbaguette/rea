@@ -1,0 +1,58 @@
+{
+  "revision": 11,
+  "actor": "codex",
+  "ops": [
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "crit-legal-jurisdiction",
+      "values": {
+        "status": "done",
+        "evidence": "현재 제공 범위는 한국 사용자의 개인 개발용 localhost 프런트엔드다. 외부 서비스·가입·판매·공유·추적 서버를 운영하지 않는다. 모델·GPU 설치와 외부 공개는 이번 범위 밖이며 후속 Windows 단계에 적용 범위 재검토를 명시했다."
+      }
+    },
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "models-local",
+      "values": {
+        "status": "done",
+        "evidence": "LOCAL_MODELS.md·LOCAL_MODEL_SOURCES.md: 공식 모델8개, Lucy Edit Wan2.2 계보와 비공개 실시간API의 불확실성 구분. FASHN parser SegFormer 비상용 의존성 원문 확인. 5080 속도 외삽 없음."
+      }
+    },
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "crit-legal-preflight",
+      "values": {
+        "status": "done",
+        "evidence": "한국 기본의 실제 범위는 개인용 localhost 프런트엔드와 개발 계획서. 신규 파일·의존성·카메라·이미지·예정 API 신뢰 경계를 구현 전 대조했다. 위험 목록은 이 작업 note에 기록; 실제UI 검증은 frontend-browser에서 수행."
+      }
+    },
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "crit-core-baseline",
+      "values": {
+        "status": "done",
+        "evidence": "기존지도 revision8과 REA 자료를 확인했다. 공통 프런트엔드 기존 구현·manifest·자동검사는 없었으며 신규공통 UI와 Windows 계획서로 사용자 범위를 반영. 기존 분석 결과를 보존."
+      }
+    },
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "crit-legal-preflight",
+      "values": {
+        "note": "<!-- readiness-risk:legal.preflight:7a72284075f8d266 -->\n필수 · 기준 legal.preflight · 법무, 정책, 라이선스\n준비: 기존 코드와 설정을 읽고 가입, 외부 요청, 추적 SDK, 메시지, 결제, 업로드, 데이터 흐름의 위험을 찾는다. 신규 제품은 같은 경로를 설계에서 점검한다. regulations.md의 한국·해외 조건을 대조한다. 관할·기능별 법, 플랫폼 계약, 채택한 보안 기준과 예방 권고를 구분한다. 규제 업종·중개·세금·접근성·자동화된 결정도 확인한다.\n확인: 문제별 적용 상태, 위치(파일·라우트·대시보드 메뉴), 영향·재현, 수정안, 검증 방법을 먼저 제시한다. 발견은 구현 작업과 연결한다. 기존 허가 범위의 수정은 진행하되 점검만 또는 확인 후 수정 요청이면 확인 전 변경하지 않는다. 미확인 대시보드와 법률 판단을 통과로 쓰지 않는다.\n완료 증거: 초기 위험 목록과 실제 적용 범위, 연결한 수정·확인 작업, 운영자에게 필요한 사실\n원문: readiness.py source kr-privacy gdpr-official asvs ssdf\n<!-- /readiness-risk:legal.preflight -->\n\n프로젝트 위험 목록\n적용 / 이미지·카메라: studio/src/media.ts, api.ts; 얼굴·사진의 임시 메모리와 사용자 요청 시에만 로컬 엔진 전송. 이미지 실제 형식·8MiB·16MP 검증, object URL/카메라 트랙 정리, 외부 전송 탐지를 브라우저 시험으로 확인.\n적용 / 비동기 경합: api.ts/main.ts; 취소·모드 전환·초기화 뒤 오래된 응답이 사진을 덮지 않게 세대 번호와 AbortController 사용; 지연 응답 시험.\n적용 / 외부 결과: API 응답 result_url; 같은 출처의 해당 작업 /api/jobs/{id}/image만 허용하고 원격·다른 작업·경로 우회 URL 거부 시험.\n적용 / 의존성·에셋: Vite·TypeScript·Playwright 고정 버전/lockfile, npm audit, Lucide ISC 고지 및 ASSETS.md 보존.\n적용 / 표현·향후 모델 사용권: UI에서 AI 엔진 미연결 명시, 테스트 스텁은 제품에서 분리. FASHN parser 비상용 제한과 GPU 미실측을 Windows 계획서에 명시.\n해당 없음 / 회원·결제·광고·CDN·공개게시·DB: 현재 코드·요구에 해당 기능이 없고 생성 서버를 운영하지 않음. 개인정보 수집 서버와 외부 AI서비스가 없다는 실제 범위이며 향후 Windows 서버 구현시 다시 확인.\n확인 필요 / Windows GPU·추론 서버: 사용자 지시로 후속 계획 범위. WINDOWS_PLAN.md W0~W5와 API_CONTRACT.md에 구현·보관·출처·토큰·업로드·직렬화·라이선스 검증 조건을 남김."
+      }
+    },
+    {
+      "op": "set",
+      "kind": "tasks",
+      "id": "frontend-implementation",
+      "values": {
+        "status": "doing"
+      }
+    }
+  ]
+}

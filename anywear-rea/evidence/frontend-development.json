@@ -1,0 +1,322 @@
+{
+  "profiles": [
+    "web-app"
+  ],
+  "packs": [
+    "design",
+    "release",
+    "software",
+    "ux",
+    "web"
+  ],
+  "stacks": [
+    "typescript",
+    "vite"
+  ],
+  "recipes": [
+    {
+      "id": "foundation",
+      "name": "요구와 실제 결과를 잇는 개발 기반",
+      "profiles": [],
+      "packs": [
+        "software",
+        "automation"
+      ],
+      "stacks": [],
+      "when": "코드·설정·자동화로 결과물을 만들거나 고칠 때",
+      "build": [
+        "핵심 사용자 과업의 시작 입력과 최종 상태를 정하고 화면·서버·저장·배포 경계를 연결한다.",
+        "기존 실행·시험·빌드·설정과 유효한 기준을 재사용한다. 처음 쓰는 기반은 가장 작은 실제 기능으로 적합성을 확인한다."
+      ],
+      "verify": [
+        "정상뿐 아니라 거부·경계·실패·중단 후 결과를 확인한다.",
+        "빠른 판단 로직 시험, 경계 통합, 핵심 과업 실행을 나눠 변경 범위에 맞게 돌린다."
+      ],
+      "failure_probes": [
+        "알려진 결함을 넣은 격리 사본에서 검사가 실패하는지 확인한다.",
+        "버튼·파일·완료 문구만 있고 최종 데이터가 달라지지 않는 경우를 거부한다."
+      ],
+      "criteria": [
+        "software.baseline",
+        "software.correctness",
+        "software.test-signal",
+        "software.install"
+      ],
+      "sources": [
+        "dev-spec-kit",
+        "dev-agent-harness",
+        "agent-evals",
+        "swe-testing"
+      ],
+      "limits": "자료의 절차를 따랐는지보다 이번 요청의 실제 결과를 판정한다."
+    },
+    {
+      "id": "design-delivery",
+      "name": "시각 결과물·디자인 시스템의 실제 사용",
+      "profiles": [
+        "brand-identity",
+        "design-system"
+      ],
+      "packs": [
+        "design"
+      ],
+      "stacks": [],
+      "when": "브랜드 결과물이나 화면·컴포넌트·디자인 시스템을 납품할 때",
+      "build": [
+        "기존 토큰·컴포넌트와 승인된 방향을 이어받고 design-toolkit에서 필요한 자료를 고른다.",
+        "작은 크기·명암·반응형·상태·현지화에 필요한 실제 변형을 만들고 편집 가능한 원본과 사용법을 연결한다."
+      ],
+      "verify": [
+        "최종 파일을 실제 소비 도구에서 열고, 컴포넌트는 실제 화면에 넣어 키보드·초점·오류·긴 문자열로 확인한다.",
+        "브랜드의 최소 크기와 단색·배경 변형을 렌더하고 글자·선·대비·여백을 확인한다."
+      ],
+      "failure_probes": [
+        "빠진 폰트·깨진 에셋 참조·긴 번역·확대 표시로 납품물의 사용 불가와 잘림을 검출한다."
+      ],
+      "criteria": [
+        "design.system",
+        "design.assets",
+        "product.design-system.dogfood",
+        "product.brand-identity.package"
+      ],
+      "sources": [
+        "service",
+        "wcag",
+        "reuse"
+      ],
+      "limits": "로고·디자인 문서는 앱 기능 시험으로 평가하지 않는다. 기존 시각 품질 자료와 에셋 출처를 연결한다."
+    },
+    {
+      "id": "website",
+      "name": "웹사이트·콘텐츠·랜딩",
+      "profiles": [
+        "website",
+        "blog",
+        "marketing-site",
+        "gallery",
+        "docs-site"
+      ],
+      "packs": [
+        "web"
+      ],
+      "stacks": [],
+      "when": "브라우저에서 공개 정보·콘텐츠·문의 흐름을 제공할 때",
+      "build": [
+        "콘텐츠·목적·주소를 먼저 정하고 의미 있는 HTML, 반응형, 키보드 탐색을 연결한다.",
+        "원본 이미지·폰트 예산과 캐시를 정하고 문의·신청은 실제 수신 또는 저장까지 연결한다. LCP 이미지는 무조건 지연 로딩하지 않는다."
+      ],
+      "verify": [
+        "깊은 주소 직접 진입·새로고침·없는 주소·검색·모바일 폭과 확대를 실행한다.",
+        "배포 빌드에서 접근성 자동 검사와 키보드 조작, 대표 네트워크 조건의 성능을 확인한다."
+      ],
+      "failure_probes": [
+        "없는 이미지·긴 한글·외부 요청 실패·폼 재제출을 넣는다.",
+        "키보드 포커스가 갇히거나 화면 밖 주 행동에 도달하지 못하면 실패다."
+      ],
+      "criteria": [
+        "web.routes",
+        "web.forms",
+        "web.performance",
+        "web.a11y-audit",
+        "web.build"
+      ],
+      "sources": [
+        "playwright",
+        "axe",
+        "dev-lighthouse-ci",
+        "web-vitals"
+      ],
+      "limits": "Lighthouse 점수는 실제 사용자 성능·사람의 사용성 전체를 대변하지 않는다."
+    },
+    {
+      "id": "web-app",
+      "name": "데이터를 다루는 웹앱",
+      "profiles": [
+        "web-app",
+        "saas",
+        "commerce",
+        "community",
+        "ai-chatbot"
+      ],
+      "packs": [],
+      "stacks": [],
+      "when": "브라우저에서 자료를 만들고 수정하거나 거래할 때",
+      "build": [
+        "라우트·화면·서버 상태의 소유권과 저장 계약을 맞추고 로딩·빈 값·권한 없음·실패·복구를 구현한다.",
+        "필터·페이지네이션·요청 취소와 경합을 처리하고 성공 알림은 실제 저장 결과 뒤에 낸다."
+      ],
+      "verify": [
+        "입력→서버 저장→새로고침→다른 세션에서 재조회까지 실행한다.",
+        "두 사용자와 다른 역할로 허용·거부를 확인하고 실패한 입력을 고쳐 재제출한다."
+      ],
+      "failure_probes": [
+        "늦은 응답이 새 검색을 덮는 경우, 중복 제출과 세션 만료를 시험한다.",
+        "성공 HTTP 응답인데 데이터가 저장되지 않은 경우를 최종 조회로 잡는다."
+      ],
+      "criteria": [
+        "web.async",
+        "web.forms",
+        "backend.authorization",
+        "backend.end-to-end"
+      ],
+      "sources": [
+        "dev-bulletproof-react",
+        "playwright",
+        "asvs"
+      ],
+      "limits": "SaaS·결제·조직 기능은 실제 제공하는 제품에만 적용한다."
+    },
+    {
+      "id": "release",
+      "name": "최종 배포물과 복구",
+      "profiles": [],
+      "packs": [
+        "release"
+      ],
+      "stacks": [],
+      "when": "제품을 전달·설치·공개하거나 운영 변경할 때",
+      "build": [
+        "한 번 만든 배포물의 버전·설정·필수 자원을 고정하고 기존 CI에 검사·빌드를 연결한다."
+      ],
+      "verify": [
+        "깨끗한 환경에서 그 배포물로 핵심 과업을 실행하고 이전 버전에서 전환·복구를 시험한다.",
+        "허가된 실제 배포는 배포 후 주소·버전·실제 저장·로그까지 확인한다."
+      ],
+      "failure_probes": [
+        "누락 환경·기존 데이터·마이그레이션 실패·의존 서비스 지연을 격리 환경에서 시험한다."
+      ],
+      "criteria": [
+        "release.artifact",
+        "release.config",
+        "release.restore",
+        "release.smoke"
+      ],
+      "sources": [
+        "sre-launch",
+        "slsa",
+        "dev-dora-platform"
+      ],
+      "limits": "실제 공개·스토어 승인·운영 지표는 해당 환경의 근거가 있어야 한다."
+    }
+  ],
+  "sources": [
+    {
+      "id": "service",
+      "title": "GOV.UK Service Standard",
+      "url": "https://www.gov.uk/service-manual/service-standard",
+      "review_scope": "14개 원칙과 적용 맥락",
+      "limits": "영국 정부 서비스 규정 전체를 다른 제품의 의무로 전용하지 않음"
+    },
+    {
+      "id": "wcag",
+      "title": "W3C WCAG 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "review_scope": "요구 구조 및 focus, target size, redundant entry, authentication 관련 조항",
+      "limits": "선택 조항 검토이며 전 조항 적합성 감사가 아님"
+    },
+    {
+      "id": "sre-launch",
+      "title": "Google SRE: Reliable Product Launches",
+      "url": "https://sre.google/sre-book/reliable-product-launches/",
+      "review_scope": "Launch Checklist, 조정, 유지와 출시 사례 절",
+      "limits": "Google 운영 규모, 임계값을 모든 작업에 강제하지 않음"
+    },
+    {
+      "id": "asvs",
+      "title": "OWASP ASVS",
+      "url": "https://github.com/OWASP/ASVS",
+      "review_scope": "README의 안정 버전 안내 및 v5.0.0 권한 장 참조",
+      "limits": "이 체크 묶음은 ASVS 전체 번역, 인증, 감사를 대신하지 않음"
+    },
+    {
+      "id": "slsa",
+      "title": "SLSA",
+      "url": "https://slsa.dev/",
+      "review_scope": "홈의 공급망, 보증 단계 안내",
+      "limits": "모든 프로젝트에 최고 수준을 강제하지 않음"
+    },
+    {
+      "id": "axe",
+      "title": "Deque axe-core",
+      "url": "https://github.com/dequelabs/axe-core",
+      "review_scope": "README 기능, 자동 검출 범위, incomplete 안내",
+      "limits": "도구가 발견 못한 영역은 수동 검사. 마케팅 검출 비율을 보증으로 쓰지 않음"
+    },
+    {
+      "id": "reuse",
+      "title": "REUSE Specification 3.3",
+      "url": "https://reuse.software/spec-3.3/",
+      "review_scope": "저작권, 파일별 라이선스 정보 구조",
+      "limits": "REUSE 준수를 자동으로 법적 권리 확보로 바꾸어 말하지 않음"
+    },
+    {
+      "id": "agent-evals",
+      "title": "Anthropic: Demystifying Evals for AI Agents",
+      "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "review_scope": "task, trial, grader, trace, outcome 및 운영 평가 절",
+      "limits": "회사 경험을 보편 성능 보장으로 쓰지 않음. 새 유료 API 도입 안 함"
+    },
+    {
+      "id": "playwright",
+      "title": "Microsoft Playwright",
+      "url": "https://github.com/microsoft/playwright",
+      "review_scope": "README의 브라우저, 격리, 자동 대기, trace 설명",
+      "limits": "설치, 통과만으로 UX 만족을 입증하지 않음"
+    },
+    {
+      "id": "swe-testing",
+      "title": "Software Engineering at Google — Chapter 11: Testing Overview",
+      "url": "https://abseil.io/resources/swe-book/html/ch11.html",
+      "review_scope": "시험의 목적, 크기와 범위, 신뢰할 수 있는 실패 신호",
+      "limits": "Google의 조직 규모와 시험 비율을 일률 적용하지 않는다. 전권을 읽은 것은 아니다."
+    },
+    {
+      "id": "web-vitals",
+      "title": "web.dev: Web Vitals",
+      "url": "https://web.dev/articles/vitals",
+      "review_scope": "LCP, INP, CLS의 좋음 기준과 75번째 백분위수 판정 문장",
+      "limits": "검색 순위나 전환을 보장하지 않음. 로그인 뒤 업무 화면에 그대로 강제하지 않음"
+    },
+    {
+      "id": "dev-lighthouse-ci",
+      "title": "GoogleChrome/lighthouse-ci",
+      "url": "https://github.com/GoogleChrome/lighthouse-ci",
+      "review_scope": "README의 사용·시험·제약·라이선스; docs/configuration.md",
+      "limits": "실험실 점수와 실제 사용자 지표를 구분한다. 외부 결과 서버 업로드는 자동으로 켜지 않는다."
+    },
+    {
+      "id": "dev-bulletproof-react",
+      "title": "alan2207/bulletproof-react",
+      "url": "https://github.com/alan2207/bulletproof-react",
+      "review_scope": "README의 사용·시험·제약·라이선스; docs/testing.md, docs/project-structure.md",
+      "limits": "저자의 구조 선택이다. 기존 React/Next 구조에 필요한 부분만 적용하고 모든 라이브러리를 필수로 삼지 않는다."
+    },
+    {
+      "id": "dev-spec-kit",
+      "title": "github/spec-kit",
+      "url": "https://github.com/github/spec-kit",
+      "review_scope": "README의 사용·시험·제약·라이선스",
+      "limits": "현재 지도와 작업 기록을 유지하며 필요한 방법만 가져온다. 문서 생성과 제품 동작을 구분한다."
+    },
+    {
+      "id": "dev-agent-harness",
+      "title": "Anthropic: Harness design for long-running application development",
+      "url": "https://www.anthropic.com/engineering/harness-design-long-running-apps",
+      "review_scope": "실제 앱 검수·자기 평가 편향·불필요한 절차 제거",
+      "limits": "개별 실험이다. 모델·과업별 비용과 효과를 재측정하고 다중 에이전트를 필수로 일반화하지 않는다."
+    },
+    {
+      "id": "dev-dora-platform",
+      "title": "DORA: Platform engineering",
+      "url": "https://dora.dev/capabilities/platform-engineering/",
+      "review_scope": "반복 가능한 개발 경로·작게 시작하기·과업 결과 측정",
+      "limits": "조직 연구이며 모든 제품의 무인 제작 성공을 보장하지 않는다."
+    }
+  ],
+  "unmatched_stacks": [
+    "typescript",
+    "vite"
+  ],
+  "status": "CANDIDATES_ONLY",
+  "limit": "제품과 스택은 작업자가 판단한다. 조건을 실제 코드와 대조하고 필요한 항목만 구현·검사한다. 기준에 빠진 실제 기능은 readiness 범위에도 더한다. 이 출력은 설치·실행·제품 합격을 뜻하지 않는다."
+}
