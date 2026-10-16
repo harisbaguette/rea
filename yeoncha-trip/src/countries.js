@@ -1,0 +1,2 @@
+const FLAGS = new Set(["KR", "JP", "CN", "TW", "HK", "MO", "VN", "TH", "PH", "MY", "SG", "ID", "US", "CA", "AU", "NZ", "GB", "FR", "DE", "IT", "ES", "PT", "NL", "AT", "CH", "CZ", "HU", "PL", "FI", "TR", "AE", "QA", "IN", "NP", "MN", "KZ", "UZ", "KG", "BN", "LA", "KH", "MM", "ET", "HR", "GU", "MP"]);
+export function flagPath(code) { return FLAGS.has(code) ? `/assets/flags/${code.toLowerCase()}.svg` : null; }

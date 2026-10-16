@@ -1,935 +1,489 @@
-import {
-  findWindows,
-  makeWindow,
-  rangeDays,
-  shortDate,
-  periodLabel,
-  daysBetween,
-  calendarFile,
-  todayInSeoul,
-  addDays,
-} from "./calendar.js";
-import {
-  DESTINATIONS,
-  ORIGINS,
-  filterFlights,
-  searchUrl,
-  bookUrl,
-} from "./flights.js";
-const $ = (s, r = document) => r.querySelector(s),
-  $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const escape = (value) =>
-  String(value ?? "").replace(
-    /[&<>"']/g,
-    (c) =>
-      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
-        c
-      ],
-  );
-const money = (value) => new Intl.NumberFormat("ko-KR").format(value);
-const icon = (name) =>
-  `<svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#${name}"></use></svg>`;
-const today = todayInSeoul(),
-  params = new URLSearchParams(location.search);
-const validDate = (value) =>
-  /^202[67]-\d{2}-\d{2}$/.test(value || "") &&
-  !Number.isNaN(Date.parse(`${value}T00:00:00Z`)) &&
-  new Date(`${value}T00:00:00Z`).toISOString().slice(0, 10) === value;
-const intParam = (key, options, fallback) =>
-  params.has(key) && options.includes(Number(params.get(key)))
-    ? Number(params.get(key))
-    : fallback;
-const state = {
-  year: intParam("year", [2026, 2027], 2027),
-  maxLeave: intParam("leave", [0, 1, 2, 3, 4, 5], 2),
-  month: intParam(
-    "month",
-    Array.from({ length: 13 }, (_, i) => i),
-    0,
-  ),
-  origin: ORIGINS[params.get("origin")] ? params.get("origin") : "ICN",
-  budget: intParam("budget", [0, 200000, 300000, 400000, 600000], 0),
-  region: [
-    "all",
-    "japan",
-    "asia",
-    "europe",
-    "america",
-    "domestic",
-    "beach",
-  ].includes(params.get("region"))
-    ? params.get("region")
-    : "all",
-  windowSort: ["longest", "price", "efficiency", "earliest", "leave"].includes(params.get("windowSort")) ? params.get("windowSort") : "longest",
-  flightSort: ["price", "discount", "longest"].includes(params.get("flightSort")) ? params.get("flightSort") : "price",
-  selected: null,
-  allWindows: [],
-  view: params.get("view") === "saved" ? "saved" : "plan",
-  saved: [],
-  flights: [],
-  searchState: "idle",
-  searchError: "",
-  fareMeta: null,
-  minNights: intParam("minNights", [1, 2, 3, 4, 5, 7], 2),
-  buffer: intParam("buffer", [0, 1], 1),
-  exact: params.get("exact") === "1",
-  dealsOnly: params.get("deals") === "1",
-  visibleCount: 12,
-  windowVisible: 4,
-  overview: new Map(),
-  overviewState: "idle",
-  overviewError: "",
-  alternatives: {},
-};
-let toastTimer,
-  searchController,
-  searchSerial = 0,
-  historyController,
-  overviewController,
-  overviewSerial = 0;
-let restoringHistory = false, detailReturnFocus = null, detailReturnSelector = null, suppressDetailClose = 0;
-let storageAvailable = true;
-const STORAGE_KEY = "tteum.saved.v2",
-  queryCache = new Map();
-function readSaved() {
-  try {
-    let raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) raw = localStorage.getItem("tteum.saved.v1");
-    const items = JSON.parse(raw || "[]");
-    return Array.isArray(items)
-      ? items
-          .filter(
-            (item) =>
-              item &&
-              validDate(item.start) &&
-              validDate(item.end) &&
-              item.start <= item.end &&
-              daysBetween(item.start, item.end) <= 31 &&
-              ORIGINS[item.origin],
-          )
-          .slice(0, 40)
-          .map((item) => {
-            const old = DESTINATIONS.find((d) => d.id === item.destId);
-            return {
-              start: item.start,
-              end: item.end,
-              origin: item.origin,
-              code: /^[A-Z]{3}$/.test(item.code || "")
-                ? item.code
-                : old?.code || "",
-              city: String(item.city || old?.city || "").slice(0, 80),
-              country: String(item.country || "").slice(0, 80),
-              price: Number.isFinite(item.price) ? item.price : null,
-              buffer: item.buffer === 0 ? 0 : 1,
-            };
-          })
-      : [];
-  } catch (error) {
-    if (error.name !== "SyntaxError") storageAvailable = false;
-    return [];
-  }
+import {authFetch} from './auth-fetch.js';
+import { findWindows, makeWindow, rangeDays, shortDate, periodLabel, daysBetween, calendarFile, todayInSeoul, addDays } from './calendar.js';
+import { DESTINATION_IMAGES } from './destination-images.js';
+import { DESTINATIONS, ORIGINS, filterFlights, searchUrl, bookUrl } from './flights.js';
+import { flagPath } from './countries.js';
+import { assessFare, recommendSchedules } from './value.js';
+import { mountItinerarySearch } from './itinerary-view.js';
+import { airportCatalog, destinationPicker } from './destination-picker.js';
+const $=(selector,root=document)=>root.querySelector(selector);
+const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
+const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=value=>new Intl.NumberFormat('ko-KR').format(value);
+const icon=name=>`<svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#${name}"></use></svg>`;
+let today=todayInSeoul();
+let currentYear=[2026,2027].includes(Number(today.slice(0,4)))?Number(today.slice(0,4)):2027;
+const validDate=value=>/^202[67]-\d{2}-\d{2}$/.test(value||'')&&!Number.isNaN(Date.parse(`${value}T00:00:00Z`))&&new Date(`${value}T00:00:00Z`).toISOString().slice(0,10)===value;
+const validRange=(start,end)=>validDate(start)&&validDate(end)&&start>=today&&start<end&&daysBetween(start,end)<=16;
+const SORTS={earliest:'가까운 날짜순',price:'확인된 가격순',longest:'휴가가 긴 순',efficiency:'연차 효율순',leave:'연차 적은 순'};
+const REGIONS=['all','japan','asia','europe','america','domestic','beach'];
+const STORAGE_KEY='tteum.saved.v2';
+let storageAvailable=true,detailFlight=null,toastTimer,todayTimer,overviewController,flightController;
+let overviewDirty=true,disposeItinerary=null,disposeDestination=null;
+let overviewSerial=0,flightSerial=0,restoring=false,suppressDetailClose=0,detailReturnSelector=null,overviewScroll=0;
+const queryCache=new Map(),dialogOpeners=new WeakMap();
+let calendarMonth=today.slice(0,7),customMonth=today.slice(0,7),customPickingEnd=false;
+
+function stateFromUrl(){
+  const p=new URLSearchParams(location.search);
+  const number=(key,values,fallback)=>p.has(key)&&values.includes(Number(p.get(key)))?Number(p.get(key)):fallback;
+  const start=p.get('start'),end=p.get('end'),selected=validRange(start,end)?makeWindow(start,end):null;
+  return {year:number('year',[2026,2027],selected?Number(start.slice(0,4)):currentYear),maxLeave:number('leave',[0,1,2,3,4,5],2),origin:ORIGINS[p.get('origin')]?p.get('origin'):'ICN',month:number('month',Array.from({length:13},(_,i)=>i),0),minNights:number('minNights',[1,2,3,4,5,7],2),buffer:number('buffer',[0,1],1),budget:number('budget',[0,200000,300000,400000,600000],0),region:REGIONS.includes(p.get('region'))?p.get('region'):'all',exact:p.get('exact')==='1',windowSort:SORTS[p.get('windowSort')]?p.get('windowSort'):'earliest',flightSort:p.get('flightSort')==='longest'?'longest':'price',stage:p.get('stage')==='results'||selected||p.has('offer')?'results':'overview',view:p.get('view')==='saved'?'saved':'plan',selected};
 }
-state.saved = readSaved();
-function hydrateIcons(root = document) {
-  $$("[data-icon]", root).forEach(
-    (el) => (el.outerHTML = icon(el.dataset.icon)),
-  );
+const state={...stateFromUrl(),allWindows:[],overview:new Map(),overviewState:'idle',overviewError:'',overviewPage:0,windowVisible:4,flights:[],alternatives:{},fareMeta:null,searchState:'idle',searchError:'',resolvedQuery:'',visibleCount:12,saved:[]};
+function readSaved(){
+  try{
+    const raw=localStorage.getItem(STORAGE_KEY)||localStorage.getItem('tteum.saved.v1')||'[]';
+    const items=JSON.parse(raw);
+    return Array.isArray(items)?items.filter(item=>item&&validDate(item.start)&&validDate(item.end)&&item.start<=item.end&&daysBetween(item.start,item.end)<=31&&ORIGINS[item.origin]).slice(0,40).map(item=>{const old=DESTINATIONS.find(d=>d.id===item.destId);return {start:item.start,end:item.end,origin:item.origin,code:/^[A-Z]{3}$/.test(item.code||'')?item.code:old?.code||'',city:String(item.city||old?.city||'').slice(0,80),country:String(item.country||'').slice(0,80),price:Number.isFinite(item.price)?item.price:null,buffer:item.buffer===0?0:1,exact:item.exact===true};}):[];
+  }catch(error){if(error.name!=='SyntaxError')storageAvailable=false;return[];}
 }
-function toast(message) {
-  clearTimeout(toastTimer);
-  $("#toast").textContent = message;
-  $("#toast").hidden = false;
-  toastTimer = setTimeout(() => ($("#toast").hidden = true), 3500);
+state.saved=readSaved();
+function hydrateIcons(root=document){$$('[data-icon]',root).forEach(el=>el.outerHTML=icon(el.dataset.icon));}
+function toast(message,undo){
+  clearTimeout(toastTimer);const root=$('#toast');root.textContent=message;
+  if(undo){const button=document.createElement('button');button.textContent='되돌리기';button.addEventListener('click',undo,{once:true});root.append(button);}
+  root.hidden=false;toastTimer=setTimeout(()=>root.hidden=true,undo?8000:3500);
 }
-function syncUrl(push = false) {
-  const next = new URLSearchParams();
-  for (const [key, value] of Object.entries({
-    year: state.year,
-    leave: state.maxLeave,
-    origin: state.origin,
-    month: state.month,
-    budget: state.budget,
-    region: state.region,
-    minNights: state.minNights,
-    buffer: state.buffer,
-    exact: Number(state.exact),
-    start: state.selected?.start,
-    end: state.selected?.end,
-    view: state.view,
-    windowSort: state.windowSort,
-    flightSort: state.flightSort,
-    deals: Number(state.dealsOnly),
-    offer: detailFlight ? `${detailFlight.code}~${detailFlight.start}~${detailFlight.end}` : state.searchState === "idle" || state.searchState === "loading" ? new URLSearchParams(location.search).get("offer") || undefined : undefined,
-  }))
-    if (value !== undefined) next.set(key, String(value));
-  if (!restoringHistory) history[push ? "pushState" : "replaceState"](
-    { tteum: true, detail: Boolean(detailFlight) }, "", `${location.pathname}?${next}`
-  );
+function restoreSaved(item,index){if(isSaved(item))return;if(state.saved.length>=40){toast('최대 40개까지 저장할 수 있어요.');return;}state.saved.splice(Math.min(index,state.saved.length),0,item);persistSaved();renderSaved();renderFlights();updateDetailSave();toast('여행을 다시 저장했어요.');}
+
+function sourceTime(value){if(!value||Number.isNaN(Date.parse(value)))return'확인 시각 미제공';return new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(value));}
+function syncUrl(push=false){
+  if(restoring)return;
+  const next=new URLSearchParams();
+  const pending=new URLSearchParams(location.search).get('offer');
+  const values={year:state.year,leave:state.maxLeave,origin:state.origin,month:state.month,minNights:state.minNights,buffer:state.buffer,budget:state.budget,region:state.region,exact:Number(state.exact),windowSort:state.windowSort,flightSort:state.flightSort,stage:state.stage,view:state.view};
+  if(state.stage==='results'&&state.selected){values.start=state.selected.start;values.end=state.selected.end;}
+  if(detailFlight){values.offer=`${detailFlight.code}~${detailFlight.start}~${detailFlight.end}`;if(detailFlight.manual)values.manual=1;}
+  else if(pending&&(state.searchState==='idle'||state.searchState==='loading')){values.offer=pending;if(new URLSearchParams(location.search).get('manual')==='1')values.manual=1;}
+  for(const[key,value]of Object.entries(values))next.set(key,String(value));
+  const url=`${location.pathname}?${next}`;
+  if(push||url!==`${location.pathname}${location.search}`)history[push?'pushState':'replaceState']({tteum:true,detail:Boolean(detailFlight)},'',url);
 }
-const savedKey = (item) =>
-  `${item.origin}|${item.code || ""}|${item.start}|${item.end}`;
-const scheduleItem = () => ({
-  start: state.selected.start,
-  end: state.selected.end,
-  origin: state.origin,
-  code: "",
-  city: "",
-  buffer: state.buffer,
-});
-const flightItem = (flight) => ({
-  start: flight.start,
-  end: flight.end,
-  origin: flight.origin,
-  code: flight.code,
-  city: flight.city,
-  country: flight.country,
-  price: flight.price,
-  buffer: state.buffer,
-});
-const isSaved = (item) =>
-  state.saved.some((entry) => savedKey(entry) === savedKey(item));
-function persistSaved() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state.saved));
-  } catch {
-    storageAvailable = false;
-  }
-  $("#saved-count").textContent = state.saved.length;
+const savedKey=item=>`${item.origin}|${item.code||''}|${item.start}|${item.end}`;
+const isSaved=item=>state.saved.some(entry=>savedKey(entry)===savedKey(item));
+const flightItem=f=>({start:f.start,end:f.end,origin:f.origin,code:f.code,city:f.city,country:f.country,price:f.price,buffer:state.buffer});
+const scheduleItem=()=>({start:state.selected.start,end:state.selected.end,origin:state.origin,code:'',city:'',buffer:state.buffer,exact:state.exact});
+function savedCount(){const count=state.saved.filter(item=>item.start>=today).length;$('#saved-count').textContent=count;$('#saved-count').hidden=count===0;$('#nav-saved').setAttribute('aria-label',`저장한 여행 ${count}개`);}
+function persistSaved(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state.saved));}catch{storageAvailable=false;}savedCount();}
+function toggleSaved(item){
+  const active=document.activeElement,selector=active?.dataset.saveOffer?`[data-save-offer="${CSS.escape(active.dataset.saveOffer)}"]`:active?.hasAttribute('data-detail-save')?'[data-detail-save]':active?.hasAttribute('data-save-schedule')?'[data-save-schedule]':null;
+  const index=state.saved.findIndex(entry=>savedKey(entry)===savedKey(item));
+  if(index>=0){const [removed]=state.saved.splice(index,1);toast('저장을 취소했어요.',()=>restoreSaved(removed,index));}else{if(state.saved.length>=40){toast('최대 40개까지 저장할 수 있어요.');return;}state.saved.unshift(item);toast('저장한 여행에 담았어요.');}
+  persistSaved();if(!storageAvailable)toast('브라우저 저장소를 사용할 수 없어 새로고침하면 저장이 사라져요.');
+  renderFlights();if(state.view==='saved')renderSaved();updateDetailSave();if(selector)$(selector)?.focus({preventScroll:true});
 }
-function toggleSaved(item) {
-  const active = document.activeElement,
-    focusSelector = active?.dataset.saveOffer
-      ? `[data-save-offer="${active.dataset.saveOffer}"]`
-      : active?.hasAttribute("data-save-schedule")
-        ? "[data-save-schedule]"
-        : null;
-  const index = state.saved.findIndex(
-    (entry) => savedKey(entry) === savedKey(item),
-  );
-  if (index >= 0) {
-    state.saved.splice(index, 1);
-    toast("저장한 여행에서 삭제했어요.");
-  } else {
-    if (state.saved.length >= 40) {
-      toast("최대 40개까지 저장할 수 있어요.");
-      return;
-    }
-    state.saved.unshift(item);
-    toast("저장했어요. ‘저장한 여행’에서 다시 만나요.");
-  }
-  persistSaved();
-  if (!storageAvailable)
-    toast("브라우저 저장소를 사용할 수 없어 새로고침하면 저장이 사라져요.");
-  renderSelected();
-  renderFlights();
-  if (state.view === "saved") renderSaved();
-  if ($("#detail-dialog").open) updateDetailSave();
-  else if (focusSelector) $(focusSelector)?.focus({ preventScroll: true });
+function downloadCalendar(win,city=''){
+  const url=URL.createObjectURL(new Blob([calendarFile(win,city)],{type:'text/calendar;charset=utf-8'}));
+  const a=document.createElement('a');a.href=url;a.download=`tteum-${win.start}${city?`-${city}`:''}.ics`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('캘린더 파일을 내려받았어요.');
 }
-function downloadCalendar(window, city = "") {
-  const url = URL.createObjectURL(
-    new Blob([calendarFile(window, city)], {
-      type: "text/calendar;charset=utf-8",
-    }),
-  );
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = `tteum-${window.start}${city ? `-${city}` : ""}.ics`;
-  link.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-  toast(
-    "캘린더 파일을 내려받았어요. 실제 항공편과 휴가는 별도로 확정해 주세요.",
-  );
-}
-function visibleWindows() {
-  const windows = state.allWindows.filter(
-    (win) =>
-      !state.month ||
-      rangeDays(win.start, win.end).some(
-        (d) => Number(d.date.slice(0, 4)) === state.year && Number(d.date.slice(5, 7)) === state.month,
-      ),
-  );
-  if (state.windowSort === "price")
-    windows.sort((a, b) => (state.overview.get(a.id)?.cheapest?.price ?? Infinity) - (state.overview.get(b.id)?.cheapest?.price ?? Infinity) || b.days - a.days);
-  if (state.windowSort === "efficiency")
-    windows.sort((a, b) => b.days / Math.max(1, b.leave.length) - a.days / Math.max(1, a.leave.length) || b.days - a.days);
-  if (state.windowSort === "earliest")
-    windows.sort((a, b) => a.start.localeCompare(b.start));
-  if (state.windowSort === "leave")
-    windows.sort(
-      (a, b) =>
-        a.leave.length - b.leave.length ||
-        b.days - a.days ||
-        a.start.localeCompare(b.start),
-    );
+function rebuildWindows(){state.allWindows=findWindows({year:state.year,maxLeave:state.maxLeave,today,minDays:state.minNights+state.buffer+1});}
+function visibleWindows(){
+  const windows=state.allWindows.filter(win=>!state.month||win.month===state.month);
+  if(state.windowSort==='price')windows.sort((a,b)=>(state.overview.get(a.id)?.cheapest?.price??Infinity)-(state.overview.get(b.id)?.cheapest?.price??Infinity)||a.start.localeCompare(b.start));
+  else if(state.windowSort==='longest')windows.sort((a,b)=>b.days-a.days||a.start.localeCompare(b.start));
+  else if(state.windowSort==='leave')windows.sort((a,b)=>a.leave.length-b.leave.length||a.start.localeCompare(b.start));
+  else if(state.windowSort==='efficiency')windows.sort((a,b)=>b.days/Math.max(1,b.leave.length)-a.days/Math.max(1,a.leave.length)||a.start.localeCompare(b.start));
+  else windows.sort((a,b)=>a.start.localeCompare(b.start));
   return windows;
 }
-function recompute() {
-  state.allWindows = findWindows({
-    year: state.year,
-    maxLeave: state.maxLeave,
-    today,
-  });
-  state.selected = visibleWindows()[0] || null;
-  state.windowVisible = 4;
-  render();
-  loadFlights();
-  loadOverview();
+function dateBlock(win){const start=rangeDays(win.start,win.start)[0];return `<span class="date-block"><span>${Number(win.start.slice(5,7))}월</span><strong>${Number(win.start.slice(8))}</strong><span>${start.weekday}요일</span></span>`;}
+const windowTitle=win=>win.title==='주말에 붙여 떠나기'?'주말 여행':win.title;
+function destinationImage(flight){const image=DESTINATION_IMAGES[flight.code],meta=DESTINATIONS.find(d=>d.code===flight.code);return image|| (meta?{src:`/assets/${meta.image}`,alt:meta.alt}:null);}
+function thumbnail(flight){const image=destinationImage(flight);return image?`<img class="destination-thumb" src="${image.src}" width="64" height="64" alt="${escape(image.alt)}" loading="lazy">`:`<span class="destination-symbol" aria-hidden="true">${icon('plane')}</span>`;}
+function flag(f){const path=flagPath(f.countryCode);return path?`<img class="country-flag" src="${path}" width="24" height="18" alt="" loading="lazy">`:'';}
+function country(f){return `<span class="country-label">${flag(f)}<span>${escape(f.country)}</span></span>`;}
+function holidayWindows(year=state.year){return findWindows({year,maxLeave:state.maxLeave,today,minDays:3}).filter(w=>w.title!=='주말에 붙여 떠나기');}
+function destinationCover(flight){const image=destinationImage(flight);return image?`<div class="destination-cover"><img src="${image.src}" width="640" height="400" alt="${escape(image.alt)}" loading="lazy" decoding="async"></div>`:'';}
+function compactPeriod(start,end){return `${shortDate(start)}<span aria-hidden="true">—</span>${shortDate(end)}`;}
+function tripChips(win){return `<span class="trip-chips"><span class="trip-chip holiday-chip">${icon('sun')}휴가 ${win.days}일</span><span class="trip-chip leave-chip">${icon('briefcase-business')}연차 ${win.leave.length}일</span></span>`;}
+function renderRecommendations(result){
+  const root=$('#schedule-recommendations'),item=result.efficient;
+  if(!item){root.hidden=true;root.innerHTML='';delete root.dataset.window;return;}root.hidden=false;
+  // Preserve the illustration and its one-time entrance while prices stream in.
+  if(root.dataset.window===item.window.id)return;
+  root.dataset.window=item.window.id;
+  root.innerHTML=`<button class="schedule-pick efficient" data-recommend-window="${item.window.id}" aria-label="${escape(windowTitle(item.window))} ${periodLabel(item.window.start,item.window.end)}, 휴가 ${item.days}일, 연차 ${item.leaveCount}일 여행지 보기"><img class="recommendation-mascot" src="/assets/illustrations/cat-traveler.webp" width="86" height="140" alt="" decoding="async"><span class="pick-copy"><span class="pick-label">${escape(windowTitle(item.window))}</span><strong class="pick-date">${icon('calendar-days')}${compactPeriod(item.window.start,item.window.end)}</strong>${tripChips(item.window)}</span><span class="pick-days" aria-hidden="true">${rangeDays(item.window.start,item.window.end).map(d=>`<span class="${d.off?'off':'leave'}"><small>${d.weekday}</small><b>${Number(d.date.slice(8))}</b></span>`).join('')}</span><span class="action-arrow" aria-hidden="true">${icon('arrow-right')}</span></button>`;
 }
-function timeline(win) {
-  return `<div class="timeline" role="list" aria-label="여행 날짜와 연차 사용일">${rangeDays(
-    win.start,
-    win.end,
-  )
-    .map(
-      (day) =>
-        `<div role="listitem" class="day ${day.off ? (day.holiday ? "holiday" : "weekend") : "leave"}" aria-label="${shortDate(day.date)} ${day.weekday}요일, ${escape(day.holiday || (day.weekend ? "주말" : "연차 사용"))}"><span class="day-week">${day.weekday}</span><strong>${Number(day.date.slice(8))}</strong><span class="day-type">${day.off ? (day.holiday ? "공휴일" : "주말") : "연차"}</span></div>`,
-    )
-    .join("")}</div>`;
+function fareVerdict(f){
+  const value=assessFare(f,allOffers());
+  const label=value.count<2?'가격 비교 자료 부족':value.status==='same'?`${value.count}곳 같은 가격`:`${value.count}곳 비교 · ${money(value.savings)}원 차이`;
+  return `<button class="fare-verdict" data-detail="${f.id}" aria-label="${escape(f.city)} 가격 비교 근거 보기">${icon(value.count<2?'info':'arrow-up-down')}<span>${label}</span>${icon('chevron-right')}</button>`;
 }
-function renderSelected() {
-  const win = state.selected, root = $("#selected-window");
-  if (!win) {
-    root.innerHTML = `<div class="empty">${icon("calendar")}<h3>이 조건에 맞는 연휴가 없어요</h3><p>연차나 월을 바꾸거나 직접 날짜를 골라 주세요.</p><button class="button secondary" data-open-custom>직접 날짜 고르기</button></div>`;
-    return;
-  }
-  const saved = isSaved(scheduleItem());
-  root.innerHTML = `<div class="selected-top"><div><span class="selected-eyebrow">선택한 휴가 · ${escape(win.title)}</span><h3>연차 <span>${win.leave.length}일</span>로, 최대 <span>${win.days}일</span>의 여유.</h3><p>${win.start.slice(0,4)}년 ${periodLabel(win.start,win.end)}</p></div><div class="selected-actions"><button class="icon-button save-schedule ${saved ? "saved" : ""}" data-save-schedule aria-label="${saved ? "일정 저장 취소" : "이 일정 저장"}" aria-pressed="${saved}">${icon("bookmark")}</button><button class="icon-button" data-calendar aria-label="캘린더에 추가">${icon("calendar-plus")}</button></div></div><details class="schedule-detail"><summary>연차 신청일 <strong>${win.leave.map(shortDate).join(" · ") || "사용 없음"}</strong>${icon("chevron-down")}</summary>${timeline(win)}<div class="timeline-legend"><span class="legend-off">주말·공휴일</span><span class="legend-leave">연차 사용</span></div></details><p class="schedule-scope">${win.days}일은 휴가 가능 기간입니다. 아래 항공권의 실제 체류일은 각각 달라요.</p>`;
-  $("#selected-period").textContent = `${shortDate(win.start)} — ${shortDate(win.end)} · 이 휴가 안에 다녀오는`;
+function priceEvidence(f){
+  const value=assessFare(f,allOffers());
+  return `<details class="price-evidence"><summary><span><strong>같은 날짜, 판매처 비교</strong><small>${value.count>1?`${value.count}곳 · ${money(value.savings)}원 차이`:'가격 비교 자료 부족'}</small></span>${icon('chevron-down')}</summary><div class="price-evidence-body">${value.count>1?`<p class="price-conclusion">${value.status==='same'?`확인한 ${value.count}곳의 가격이 같아요`:`판매처 간 최대 <strong>${money(value.savings)}원</strong> 차이`}</p><div class="quote-comparison">${value.sellers.map(s=>`<div><span>${escape(s.name||s.partner)}</span><meter min="0" max="${value.max}" value="${s.price}" aria-label="${escape(s.name||s.partner)} 가격 ${money(s.price)}원"></meter><b>${money(s.price)}원</b></div>`).join('')}</div>`:`<p class="price-conclusion">${value.count===1?'판매처 1곳만 있어 비교가 부족해요':'비교할 판매처 요금이 없어요'}</p>`}<p class="price-scope">같은 노선·날짜의 판매처 가격${value.count>1?` ${value.count}곳 비교`:''}. 항공편·수하물 조건은 다를 수 있어요.</p><p class="price-caveat">평소보다 싼지는 판단할 자료가 없어요. 결제 전 최종 금액과 포함 조건을 확인하세요.</p></div></details>`;
 }
-function overviewFare(win) {
-  const item = state.overview.get(win.id);
-  if (!item) return `<span class="window-loading">${state.overviewState === "error" ? "가격 조회 실패" : "왕복 가격 확인 중"}</span>`;
-  if (item.status === "error") return `<span class="window-error">가격 조회 실패 · 다시 조회 가능</span>`;
-  if (item.status === "empty" || !item.cheapest) return `<span class="window-empty">조회된 항공권 없음 · 조건 변경 가능</span>`;
-  const f = item.cheapest, long = item.longStay;
-  return `<span class="window-fare"><span>${escape(f.city)} · ${f.nights}박 ${f.nights + 1}일</span><strong>${money(f.price)}<small>원부터</small></strong></span><span class="window-trip-date">${periodLabel(f.start,f.end)} · 필요 연차 ${f.leave.length}일</span>${long && long.nights > f.nights ? `<span class="window-long">길게 ${escape(long.city)} ${long.nights}박 · ${money(long.price)}원</span>` : `<span class="window-long">${item.destinationsCount}개 목적지 확인</span>`}${item.stale ? '<span class="window-error">이전 수집 가격</span>' : ''}`;
+const travelKit=()=>'<img class="travel-kit" src="/assets/illustrations/travel-kit.webp" width="168" height="176" alt="" decoding="async">';
+function flightLoading(){return `<div class="result-skeleton flight-loading"><div class="loading-illustration" aria-hidden="true">${travelKit()}<span class="loading-plane">${icon('plane')}</span></div><strong>항공권 찾는 중</strong><div class="loading-ticket" aria-hidden="true"><span class="skeleton"></span><span class="skeleton"></span></div></div>`;}
+function monthShift(month,delta){const date=new Date(`${month}-01T12:00:00Z`);date.setUTCMonth(date.getUTCMonth()+delta);return date.toISOString().slice(0,7);}
+function monthCells(month,{custom=false,preview=null}={}){
+  const first=`${month}-01`,date=new Date(`${first}T12:00:00Z`),start=addDays(first,-date.getUTCDay()),last=monthShift(month,1)+'-01';
+  const end=addDays(last,-1),selectedStart=custom?$('#custom-start').value:preview?.start,selectedEnd=custom?$('#custom-end').value:preview?.end;
+  const days=rangeDays(start,addDays(end,6-new Date(`${end}T12:00:00Z`).getUTCDay()));
+  const opportunities=findWindows({year:Number(month.slice(0,4)),maxLeave:state.maxLeave,today,minDays:2});const bridges=new Set(opportunities.flatMap(win=>win.leave));
+  const focusDate=selectedStart?.startsWith(month)?selectedStart:today.startsWith(month)?today:first;
+  return `<div class="calendar-weekdays" aria-hidden="true">${['일','월','화','수','목','금','토'].map(d=>`<span>${d}</span>`).join('')}</div><div class="calendar-grid" role="grid" aria-label="${month.replace('-','년 ')}월">${days.map((day,index)=>{
+    const outside=day.date.slice(0,7)!==month,disabled=outside||day.date<today||day.date>'2027-12-31',selected=Boolean(selectedStart&&day.date>=selectedStart&&day.date<=(selectedEnd||selectedStart)),leave=selected&&!day.off,bridge=!disabled&&bridges.has(day.date);
+    return `${index%7===0?'<div class="calendar-week" role="row">':''}<button type="button" role="gridcell" class="calendar-day ${outside?'outside':''} ${day.holiday?'holiday':''} ${bridge?'bridge-day':''} ${day.off?'off':''} ${selected?'in-range':''} ${leave?'uses-leave':''} ${day.date===selectedStart?'range-start':''} ${day.date===selectedEnd?'range-end':''} ${day.date===today?'is-today':''}" ${disabled?'disabled':''} tabindex="${!disabled&&day.date===focusDate?'0':'-1'}" aria-selected="${selected}" aria-label="${Number(day.date.slice(5,7))}월 ${Number(day.date.slice(8))}일 ${day.weekday}요일${day.holiday?` ${escape(day.holiday)}`:''}${bridge?' 연차로 연휴 연결 가능':leave?' 연차':''}" data-${custom?'custom-day':'calendar-day'}="${day.date}">${Number(day.date.slice(8))}${bridge?'<span class="bridge-mark" aria-hidden="true">+</span>':''}${day.holiday?'<i aria-hidden="true"></i>':''}</button>${index%7===6?'</div>':''}`;
+  }).join('')}</div>`;
 }
-function renderWindows() {
-  const windows = visibleWindows(), checked = windows.filter(w=>state.overview.has(w.id)), errors = checked.filter(w=>state.overview.get(w.id)?.status === "error").length;
-  $("#window-count").textContent = `${state.month ? `${state.month}월 ` : ""}연휴 ${windows.length}개`;
-  $("#month-caption").textContent = state.month ? `${state.month}월` : "전체";
-  $("#overview-status").textContent = state.overviewState === "error" ? state.overviewError : `${checked.length}/${windows.length}개 확인${state.overviewState === "loading" ? " 중" : ""}${errors ? ` · ${errors}개 조회 실패` : ""} · 전체 목적지 기준`;
-  $("#overview-retry").hidden = !errors && state.overviewState !== "error";
-  $("#window-list").setAttribute("aria-busy", String(state.overviewState === "loading"));
-  $("#window-list").innerHTML = windows.length ? windows.slice(0,state.windowVisible).map(win=>`<button class="window-option ${state.selected?.id === win.id ? "selected" : ""}" data-window="${win.id}" aria-pressed="${state.selected?.id === win.id}"><span class="window-option-top"><strong>${escape(win.title)}</strong>${icon(state.selected?.id === win.id ? "circle-check" : "arrow-up-right")}</span><span class="window-option-date">${periodLabel(win.start,win.end)}</span><span class="window-option-bottom">연차 <b>${win.leave.length}일</b>${icon("arrow-right")}<strong>휴가 최대 ${win.days}일</strong></span>${overviewFare(win)}</button>`).join("") : `<div class="empty small"><strong>이 조건에 맞는 연휴가 없어요</strong><button class="text-button" data-reset-month>전체 달 보기</button></div>`;
-  $("#more-windows").innerHTML = windows.length > state.windowVisible ? `<button class="text-button" data-more-windows>연휴 ${Math.min(4,windows.length-state.windowVisible)}개 더 보기 (${state.windowVisible}/${windows.length})${icon("chevron-down")}</button>` : "";
-  renderMonthPrices();
+function renderCalendar(preview=state.selected||visibleWindows().find(win=>state.overview.get(win.id)?.status==='ready')||visibleWindows()[0]){
+  $('#calendar-month-title').innerHTML=`${Number(calendarMonth.slice(5))}월 <span>${calendarMonth.slice(0,4)}</span>`;
+  $('#month-calendar').innerHTML=monthCells(calendarMonth,{preview});
+  $('[data-calendar-prev]').disabled=calendarMonth<=today.slice(0,7);$('[data-calendar-next]').disabled=calendarMonth>='2027-12';
+  const visible=preview&&preview.start.slice(0,7)<=calendarMonth&&preview.end.slice(0,7)>=calendarMonth;
+  $('#calendar-caption').innerHTML=visible?`<strong>${icon('calendar-days')}${shortDate(preview.start)} — ${shortDate(preview.end)}</strong>${tripChips(preview)}`:'<span>날짜 선택</span>';
 }
-function renderMonthPrices() {
-  $$("[data-month]").forEach(button=>{
-    const choices = state.allWindows.filter(win=>rangeDays(win.start,win.end).some(day=>Number(day.date.slice(0,4))===state.year && Number(day.date.slice(5,7))===Number(button.dataset.month)));
-    const items = choices.map(w=>state.overview.get(w.id)), prices = items.filter(i=>i?.status === "ready" && i.cheapest).map(i=>i.cheapest.price), done = items.filter(Boolean).length;
-    button.querySelector("small").textContent = prices.length ? `${money(Math.min(...prices))}원~` : done < choices.length ? "조회 중" : choices.length ? "수집 운임 없음" : "연휴 없음";
-  });
+function renderCustomCalendar(){
+  $('#custom-calendar-title').textContent=`${customMonth.slice(0,4)}년 ${Number(customMonth.slice(5))}월`;
+  $('#custom-calendar').innerHTML=monthCells(customMonth,{custom:true});
+  const picks=holidayWindows(Number(customMonth.slice(0,4))).filter(w=>w.start.slice(0,7)<=customMonth&&w.end.slice(0,7)>=customMonth);
+  $('#custom-holiday-picks').innerHTML=picks.slice(0,2).map(w=>`<button type="button" data-holiday-range="${w.id}"><span><strong>${escape(windowTitle(w))} · ${w.days}일</strong><small>${periodLabel(w.start,w.end)} · 연차 ${w.leave.length}일</small></span>${icon('arrow-right')}</button>`).join('');
+  const upcoming=[...new Map([...holidayWindows(currentYear),...(currentYear===2026?holidayWindows(2027):[])].sort((a,b)=>a.start.localeCompare(b.start)).map(w=>[`${w.title}|${rangeDays(w.start,w.end).find(d=>d.holiday)?.date.slice(0,4)}`,w])).values()].sort((a,b)=>a.start.localeCompare(b.start));
+  $('#holiday-shortcuts').innerHTML=upcoming.slice(0,5).map(w=>`<button type="button" data-holiday-month="${rangeDays(w.start,w.end).find(d=>d.holiday)?.date.slice(0,7)||w.start.slice(0,7)}" aria-pressed="${rangeDays(w.start,w.end).find(d=>d.holiday)?.date.slice(0,7)===customMonth}">${escape(windowTitle(w))}</button>`).join('');
+  $('[data-custom-prev]').disabled=customMonth<=today.slice(0,7);$('[data-custom-next]').disabled=customMonth>='2027-12';
 }
-async function loadOverview() {
-  overviewController?.abort();
-  const serial = ++overviewSerial, controller = new AbortController();
-  overviewController = controller;
-  state.overview = new Map(); state.overviewState = "loading"; state.overviewError = ""; renderWindows();
-  const query = {origin:state.origin,year:String(state.year),maxLeave:String(state.maxLeave),minNights:String(state.minNights),buffer:String(state.buffer),month:String(state.month)};
-  const fetchPage = async(page)=>{
-    const response = await fetch(`/api/overview?${new URLSearchParams({...query,page:String(page)})}`,{signal:controller.signal,headers:{Accept:"application/json"}});
-    const data = await response.json();
-    if(!response.ok || !Array.isArray(data.windows)) throw new Error(data.error?.message || "연휴 가격을 불러오지 못했어요.");
-    if(serial !== overviewSerial) return null;
-    data.windows.forEach(win=>state.overview.set(win.id,win)); renderWindows();
-    return data;
+let quickDraft=null,appliedQuickKey='';
+function renderQuickControls(){
+  const key=`${state.origin}|${state.year}|${state.month}`;
+  if(!quickDraft||appliedQuickKey!==key){quickDraft={origin:state.origin,year:state.year,month:state.month};appliedQuickKey=key;}
+  $('#quick-origin').value=quickDraft.origin;
+  const options=['<option value="custom">직접 날짜 선택</option>'];for(const year of [2026,2027]){if(year<currentYear)continue;options.push(`<option value="${year}-0">${year===currentYear?'올해 남은 연휴':`${year}년 전체`}</option>`);for(let month=year===currentYear?Number(today.slice(5,7)):1;month<=12;month++)options.push(`<option value="${year}-${month}">${year}년 ${month}월</option>`);}
+  $('#quick-period').innerHTML=options.join('');$('#quick-period').value=`${quickDraft.year}-${quickDraft.month}`;
+  updateSearchButton();
+}
+function updateSearchButton(){
+  const dirty=quickDraft&&(quickDraft.origin!==state.origin||quickDraft.year!==state.year||quickDraft.month!==state.month);
+  const busy=state.stage==='results'?['loading','refreshing'].includes(state.searchState):state.overviewState==='loading';
+  $('#search-submit').disabled=busy&&!dirty;
+  $('#search-submit').setAttribute('aria-busy',String(busy&&!dirty));
+  $('.search-toolbar').classList.toggle('has-draft',Boolean(dirty));
+  $('#search-submit span').textContent=busy&&!dirty?'검색 중':'검색';
+}
+function applyQuick(values){
+  const samePeriod=values.year===state.year&&values.month===state.month;
+  Object.assign(state,values);quickDraft=null;
+  if(!samePeriod){state.selected=null;state.stage='overview';state.windowVisible=4;state.overviewPage=0;}
+  rebuildWindows();calendarMonth=state.selected?.start.slice(0,7)||`${state.year}-${String(state.month||(state.year===currentYear?Number(today.slice(5,7)):1)).padStart(2,'0')}`;
+  renderShell();syncUrl(true);loadOverview();if(state.stage==='results')loadFlights();
+}
+function overviewCard(win){
+  const item=state.overview.get(win.id),flight=item?.cheapest,partial=item?.alternativesStatus==='partial';
+  let fare='';
+  if(!item)fare=`<span class="window-pending"><span class="skeleton skeleton-price" aria-hidden="true"></span><span>${state.overviewState==='error'?'가격 확인 실패':'가격 확인 중'}</span></span>`;
+  else if(item.status==='error')fare=`<span class="window-empty">${icon('circle-alert')}가격 확인 실패</span>`;
+  else if(!flight)fare=`<span class="window-empty">항공권 없음</span>`;
+  else fare=`<span class="window-offer"><span class="window-preview"><b>${flag(flight)}${escape(flight.city)}</b><span class="card-arrow" aria-hidden="true">${icon('arrow-up-right')}</span></span><span class="window-fare"><strong>${money(flight.price)}<small>원</small></strong></span><span class="window-country">${escape(flight.country)} · 1인 왕복</span><span class="window-itinerary">${icon('plane')}<span><span class="sr-only">출발일·귀국편 출발일 </span>${shortDate(flight.start)} — ${shortDate(flight.end)}</span></span></span>`;
+  return `<button class="window-option ${state.selected?.id===win.id?'selected':''} ${win.title!=='주말에 붙여 떠나기'?'holiday-window':''}" data-window="${win.id}" aria-label="${escape(windowTitle(win))} ${periodLabel(win.start,win.end)}, 휴가 ${win.days}일, 연차 ${win.leave.length}일${flight?`, ${escape(flight.country)} ${escape(flight.city)} 왕복 ${money(flight.price)}원`:''}"><span class="window-header"><span class="window-label">${escape(windowTitle(win))}</span><span class="window-schedule">${icon('calendar-days')}<strong>${compactPeriod(win.start,win.end)}</strong></span>${tripChips(win)}</span>${fare}${partial?`<span class="window-warning">${icon('circle-alert')}긴 일정 조회 실패</span>`:''}${item?.stale?'<span class="window-warning">이전 가격</span>':''}${flight&&state.budget&&flight.price>state.budget?'<span class="window-warning">선택 예산 초과</span>':''}</button>`;
+}
+
+function renderOverview(){
+  const focus=document.activeElement,activeId=focus?.dataset.window,activeRecommendation=focus?.dataset.recommendWindow,activeMore=focus?.hasAttribute('data-more-windows');
+  const windows=visibleWindows(),checked=windows.filter(win=>state.overview.has(win.id)),errors=checked.filter(win=>{const item=state.overview.get(win.id);return item?.status==='error'||item?.alternativesStatus==='partial';});
+  $('#search-context').innerHTML=`${icon('plane-takeoff')}<span>${ORIGINS[state.origin]} · ${state.month?`${state.year}.${state.month}`:state.year}</span>`;
+  updateSearchButton();
+  const recommendation=recommendSchedules(windows,state.overview,{budget:state.budget,today,maxLeave:state.maxLeave});
+  renderRecommendations(recommendation);
+  const pending=state.overviewState==='loading'||state.overviewState==='error';
+  $('#overview-loading').hidden=!pending;$('#overview-loading').classList.toggle('is-searching',state.overviewState==='loading');
+  $('#loading-caption').textContent=state.overviewState==='error'?'요금 확인 실패':'가격 확인 중';
+  $('#overview-status').textContent=state.overviewState==='error'?state.overviewError:`${checked.length}/${windows.length} 요금 확인${state.overviewState==='loading'?' 중':''}${errors.length?` · ${errors.length}개 일부 실패`:''}`;
+  $('#current-window-sort').textContent=SORTS[state.windowSort];
+  $('#overview-retry').hidden=state.overviewState!=='error'&&!errors.length;
+  $('#window-list').setAttribute('aria-busy',String(state.overviewState==='loading'));
+  const shown=windows.slice(0,state.windowVisible),unpriced=shown.filter(win=>state.overview.get(win.id)?.status==='empty');
+  const overBudget=shown.filter(win=>state.budget&&state.overview.get(win.id)?.cheapest?.price>state.budget);
+  const available=shown.filter(win=>state.overview.get(win.id)?.status!=='empty'&&!overBudget.includes(win));
+  $('#window-list').innerHTML=windows.length?available.length?available.map(win=>overviewCard(win,recommendation)).join(''):overBudget.length?`<div class="empty">${icon('wallet')}<h2>확인한 일정은 예산을 넘어요</h2><p>왕복 ${money(state.budget)}원 이하 · 다른 일정도 확인해 보세요.</p><button class="text-button" data-reset-budget>예산 제한 해제</button></div>`:'':`<div class="empty">${icon('calendar')}<h2>이 조건으로 갈 수 있는 일정이 없어요</h2><p>${state.minNights}박${state.buffer?' + 복귀 여유 하루':''}가 필요한 조건입니다. 연차를 늘리거나 더 짧은 여행을 찾아보세요.</p><button class="button primary" data-relax-nights>1박·복귀 여유 없이 다시 찾기</button><button class="text-button" data-open-settings>조건 바꾸기</button><button class="text-button" data-open-custom>직접 날짜 선택</button></div>`;
+  $('#unpriced-windows').innerHTML=unpriced.length?`<details class="unpriced-list" ${unpriced.some(win=>win.id===activeId)?'open':''}><summary>가격 없는 일정 ${unpriced.length}개</summary>${unpriced.map(win=>`<button class="unpriced-option" data-window="${win.id}"><span>${escape(win.title)} · ${periodLabel(win.start,win.end)}</span>${icon('chevron-right')}</button>`).join('')}</details>`:'';
+  if(overBudget.length)$('#unpriced-windows').innerHTML+=`<details class="unpriced-list"><summary>예산을 넘는 일정 ${overBudget.length}개</summary>${overBudget.map(win=>`<button class="unpriced-option" data-window="${win.id}"><span>${periodLabel(win.start,win.end)} · ${money(state.overview.get(win.id).cheapest.price)}원</span>${icon('chevron-right')}</button>`).join('')}</details>`;
+  $('#more-windows').innerHTML=windows.length>state.windowVisible?`<button class="button secondary full" data-more-windows ${state.overviewState==='loading'?'disabled':''}>연휴 더 보기 ${icon('chevron-down')}</button>`:'';
+  if(activeId)$(`[data-window="${CSS.escape(activeId)}"]`)?.focus({preventScroll:true});else if(activeRecommendation)$(`[data-recommend-window="${CSS.escape(activeRecommendation)}"]`)?.focus({preventScroll:true});else if(activeMore)$('[data-more-windows]')?.focus({preventScroll:true});
+}
+function updateFilterCount(){
+  const filters=Number(state.budget>0)+Number(state.minNights!==2)+Number(state.buffer!==1)+Number(state.region!=='all')+Number(state.exact)+Number(state.maxLeave!==2);
+  $('#filter-count').textContent=filters;$('#filter-count').hidden=!filters;
+}
+function renderShell(){
+  const onPlan=state.view==='plan';$('#plan-view').hidden=!onPlan;$('#plan-view').dataset.stage=state.stage;$('#saved-view').hidden=onPlan;
+  $('#nav-home').toggleAttribute('aria-current',onPlan);if(onPlan)$('#nav-home').setAttribute('aria-current','page');$('#nav-saved').toggleAttribute('aria-current',!onPlan);if(!onPlan)$('#nav-saved').setAttribute('aria-current','page');
+  $('#planner').hidden=state.stage!=='overview';$('#trip-results').hidden=state.stage!=='results';
+  $('#condition-summary').textContent=`${ORIGINS[state.origin]} · 연차 최대 ${state.maxLeave}일 · ${state.minNights}박 이상${state.buffer?' · 복귀 여유 하루':' · 복귀 여유 없음'}`;
+  $('#today-caption').textContent=state.year===currentYear?`오늘 ${shortDate(today)} 이후`:`${state.year}년 · 연차 최대 ${state.maxLeave}일`;
+  $('#planner-heading').textContent='떠나기 좋은 연휴';
+  updateFilterCount();
+  $('#year-tabs').innerHTML=[2026,2027].map(year=>`<button data-year="${year}" aria-pressed="${state.year===year}">${year===currentYear?'올해 남은 연휴':`${year}년 미리보기`}</button>`).join('');
+  $('#flight-sort').value=state.flightSort;
+  $$('#region-tabs button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.region===state.region)));
+  renderQuickControls();renderCalendar();renderOverview();renderSelected();renderFlights();if(!onPlan)renderSaved();savedCount();
+}
+async function fetchJson(url,signal){
+  let response,data;
+  try{response=await authFetch(url,{signal,headers:{Accept:'application/json'}});data=await response.json();}
+  catch(error){if(error.name==='AbortError')throw error;throw new Error(navigator.onLine===false?'인터넷 연결을 확인하고 다시 시도해 주세요.':'연결이 원활하지 않아요. 잠시 후 다시 조회해 주세요.');}
+  if(!response.ok)throw new Error(data?.error?.message||'연결이 원활하지 않아요. 잠시 후 다시 조회해 주세요.');
+  return data;
+}
+async function loadOverview(preserve=false,more=false){
+  if(state.stage!=='overview'||state.view!=='plan'){overviewController?.abort();overviewSerial++;overviewDirty=true;state.overview=new Map();state.overviewPage=0;state.overviewState='idle';return;}
+  overviewDirty=false;
+  overviewController?.abort();const serial=++overviewSerial,controller=new AbortController();overviewController=controller;
+  if(!preserve){state.overview=new Map();state.overviewPage=0;}state.overviewState='loading';state.overviewError='';renderOverview();
+  const input={origin:state.origin,year:String(state.year),maxLeave:String(state.maxLeave),minNights:String(state.minNights),buffer:String(state.buffer),month:String(state.month),sort:state.windowSort==='price'?'earliest':state.windowSort};
+  const fetchPage=async page=>{
+    const data=await fetchJson(`/api/overview?${new URLSearchParams({...input,page:String(page)})}`,controller.signal);
+    if(!Array.isArray(data?.windows))throw new Error(data?.error?.message||'요금을 확인하지 못했어요.');
+    if(serial!==overviewSerial)return null;
+    data.windows.forEach(win=>state.overview.set(win.id,win));state.overviewPage=Math.max(state.overviewPage,page);renderOverview();renderCalendar();return data;
   };
-  try {
-    const first = await fetchPage(1); if(!first) return;
-    const last = Math.ceil(first.totalWindows / first.pageSize);
-    for(let page=2;page<=last;page+=2) {
-      await Promise.all([fetchPage(page),page+1<=last ? fetchPage(page+1) : Promise.resolve()]);
-      if(serial !== overviewSerial) return;
+  try{const start=more?state.overviewPage+1:1,last=Math.max(1,Math.ceil(state.windowVisible/4));for(let page=start;page<=last;page++){const data=await fetchPage(page);if(!data||serial!==overviewSerial)return;if(!data.hasNext)break;}state.overviewState='ready';renderOverview();}
+  catch(error){if(error.name==='AbortError'||serial!==overviewSerial)return;state.overviewState='error';state.overviewError=error.message;renderOverview();}
+}
+function renderSelected(){
+  const win=state.selected;if(!win){$('#selected-window').innerHTML='';return;}
+  $('#selected-window').innerHTML=`<div><p class="selected-label">${icon('plane-takeoff')}${ORIGINS[state.origin]}</p><h2>${icon('calendar-days')}${win.start.slice(0,4)===win.end.slice(0,4)?compactPeriod(win.start,win.end):periodLabel(win.start,win.end)}</h2>${tripChips(win)}</div><button class="text-button schedule-details" data-open-schedule aria-label="선택한 연휴와 연차 일정 확인">${icon('calendar-check-2')}<span>연차</span></button>`;
+}
+function offerOption(f,label,base){
+  const diff=base?f.price-base.price:0;
+  return `<button class="offer-option ${base?'long-option':'cheap-option'}" data-detail="${f.id}" aria-label="${escape(f.city)} ${label}, ${f.nights}박 ${money(f.price)}원 상세 보기">${base?`<span class="offer-kind">${label}<span>${f.nights-base.nights}일 더</span></span>`:''}<span class="offer-itinerary"><strong>${icon('calendar-days')}${compactPeriod(f.start,f.end)}</strong><span>날짜상 ${f.nights}박 · 연차 ${f.leave.length}일</span></span><span class="offer-price"><strong>${money(f.price)}<small>원</small></strong>${base?`<span>${diff>0?'+':''}${money(diff)}원 차이</span>`:''}</span>${icon('chevron-right')}</button>`;
+}
+function allOffers(){return [...state.flights,...Object.values(state.alternatives).flat()];}
+function renderFlights(){
+  updateFilterCount();updateSearchButton();
+  $('#flight-time-notice').hidden=true;
+  const root=$('#flight-grid');root.setAttribute('aria-busy',String(['loading','refreshing'].includes(state.searchState)));
+  $('#active-preferences').innerHTML=`${state.exact&&!state.buffer?'<span>선택한 날짜</span>':`<span>${state.minNights}박 이상</span>${state.buffer?'<span>복귀 여유 하루</span>':'<span>복귀 여유 없음</span>'}${state.exact?'<span>날짜 고정</span>':''}`}${state.budget?`<span>왕복 ${money(state.budget)}원 이하</span>`:''}`;
+  if(state.searchState==='loading'){$('#fare-status').textContent='목적지·왕복 요금 확인 중';root.innerHTML=flightLoading();return;}
+  if(state.searchState==='error'){$('#fare-status').textContent='조회 실패';root.innerHTML=`<div class="empty">${icon('circle-alert')}<h2>요금을 확인하지 못했어요</h2><p>${escape(state.searchError)}</p><button class="button primary" data-retry-flights>같은 조건으로 다시 조회</button></div>`;return;}
+  const flights=filterFlights(state.flights,{budget:state.budget,region:state.region,sort:state.flightSort,alternatives:state.alternatives});
+  $('#flight-time-notice').hidden=true;
+  $('#fare-status').textContent=state.fareMeta?`1인 왕복 참고가${state.fareMeta.stale?' · 이전 가격':''}${state.searchState==='refreshing'?' · 갱신 중':''}`:'일정을 선택하세요';
+  if(!flights.length){root.innerHTML=`<div class="empty">${travelKit()}<h2>${state.flights.length?'예산·지역에 맞는 항공권이 없어요':'이 조건의 항공권이 없어요'}</h2><p>${state.flights.length?'필터를 바꾸면 다른 여행지를 볼 수 있어요.':state.exact?'선택한 날짜의 요금이 없어요. 다른 날짜로 찾아보세요.':`${state.minNights}박 이상${state.buffer?'과 복귀 여유 하루':''}를 만족하는 요금을 찾지 못했습니다.`}</p>${state.flights.length?'<button class="button primary" data-reset-flights>예산·지역 초기화</button>':state.exact?'<button class="button primary" data-open-custom>날짜 바꾸기</button><button class="text-button" data-flexible-dates>선택한 기간 안에서 다시 찾기</button>':`<button class="button primary" data-relax-nights>1박·복귀 여유 없이 다시 찾기</button><button class="text-button" data-open-settings>조건 직접 바꾸기</button>`}</div>`;return;}
+  root.innerHTML=(state.searchState==='refresh-error'?`<div class="inline-warning">${icon('circle-alert')}갱신에 실패해 이전 가격을 표시합니다.<button data-retry-flights>다시 확인</button></div>`:'')+(state.fareMeta?.alternativesStatus==='partial'?`<div class="inline-warning">${icon('circle-alert')}긴 일정 조회에 일부 실패했어요.<button data-retry-flights>다시 확인</button></div>`:'')+flights.slice(0,state.visibleCount).map(f=>{
+    const long=(state.alternatives[f.code]||[]).find(option=>option.nights>f.nights&&option.id!==f.id),allowed=long&&(!state.budget||long.price<=state.budget);
+    return `<article class="flight-card">${destinationCover(f)}<div class="flight-card-body"><div class="destination-heading"><div><h2><button class="destination-name" data-detail="${f.id}" aria-label="${escape(f.city)} 항공권 상세 보기">${escape(f.city)}</button></h2><span class="destination-country">${country(f)}<span>· ${f.code}</span></span></div><button class="icon-button card-save ${isSaved(flightItem(f))?'saved':''}" data-save-offer="${f.id}" aria-label="${escape(f.city)} ${isSaved(flightItem(f))?'저장 취소':'여행 저장'}" aria-pressed="${isSaved(flightItem(f))}">${icon('bookmark')}</button></div><div class="offer-comparison">${offerOption(f,'왕복')}${allowed?offerOption(long,'여행일 늘리기',f):''}</div>${fareVerdict(f)}${long&&!allowed?`<p class="option-note">${long.nights}박 대안은 ${money(long.price)}원으로 예산을 넘어요.</p>`:''}</div></article>`;
+  }).join('')+(flights.length>state.visibleCount?`<button class="button secondary full" data-more-flights>여행지 더 보기 (${state.visibleCount}/${flights.length})${icon('chevron-down')}</button>`:'');
+}
+async function loadFlights(refresh=false){
+  flightController?.abort();const serial=++flightSerial;
+  if(state.view!=='plan'){state.searchState='idle';return;}
+  if(!state.selected){state.flights=[];state.alternatives={};state.fareMeta=null;state.searchState='idle';renderFlights();return;}
+  const input={origin:state.origin,start:state.selected.start,end:state.selected.end,minNights:String(state.minNights),buffer:String(state.buffer),exact:state.exact?'1':'0',alternatives:'1'},query=new URLSearchParams(input).toString();
+  const cached=queryCache.get(query),preserve=state.resolvedQuery===query&&state.flights.length>0;
+  if(!preserve){state.flights=[];state.alternatives={};state.fareMeta=null;state.visibleCount=12;}
+  state.searchState=preserve?'refreshing':'loading';state.searchError='';renderFlights();
+  if(!refresh&&cached&&Date.now()-cached.at<120000){state.flights=cached.data.flights;state.alternatives=cached.data.alternatives||{};state.fareMeta=cached.data;state.resolvedQuery=query;state.searchState='ready';renderFlights();restoreDetail();return;}
+  const controller=new AbortController();flightController=controller;
+  try{
+    const data=await fetchJson(`/api/flights?${query}`,controller.signal);
+    if(!Array.isArray(data?.flights))throw new Error('운임 결과 형식이 올바르지 않습니다.');if(serial!==flightSerial)return;
+    state.flights=data.flights;state.alternatives=data.alternatives||{};state.fareMeta=data;state.resolvedQuery=query;state.searchState='ready';if(queryCache.size>=20)queryCache.delete(queryCache.keys().next().value);queryCache.set(query,{at:Date.now(),data});renderFlights();restoreDetail();
+  }catch(error){if(error.name==='AbortError'||serial!==flightSerial)return;state.searchState=preserve?'refresh-error':'error';state.searchError=error.message;renderFlights();}
+}
+function openDialog(dialog,opener=document.activeElement){if(dialog.open)return;dialogOpeners.set(dialog,opener);dialog.showModal();}
+function openSettings(opener=document.activeElement){
+  for(const[id,value]of Object.entries({budget:state.budget,region:state.region,'min-nights':state.minNights,'leave-limit':state.maxLeave}))$(`#${id}`).value=String(value);
+  $('#return-buffer').checked=Boolean(state.buffer);$('#exact-dates').checked=state.exact;openDialog($('#settings-dialog'),opener);
+  $('#region').closest('.field-row').hidden=state.stage!=='results';
+  $('#exact-dates').closest('label').hidden=state.stage!=='results';
+}
+function openSort(opener=document.activeElement){$('#window-sort-options').innerHTML=Object.entries(SORTS).map(([value,label])=>`<button data-window-sort="${value}" aria-pressed="${state.windowSort===value}">${label}${state.windowSort===value?icon('check'):''}</button>`).join('');openDialog($('#sort-dialog'),opener);}
+function openCustom(opener=document.activeElement,start){
+  for(const id of ['#custom-start','#custom-end']){$(id).min=today;$(id).max='2027-12-31';}
+  const draft=quickDraft||state,month=`${draft.year}-${String(draft.month||(draft.year===currentYear?Number(today.slice(5,7)):1)).padStart(2,'0')}`;
+  const contextual=state.selected&&state.stage==='results'?state.selected:draft.year===state.year&&draft.month===state.month?visibleWindows()[0]:null;
+  const defaultStart=contextual?.start||(`${month}-01`>today?`${month}-01`:today);
+  $('#custom-start').value=start||defaultStart;
+  $('#custom-end').value=start?'':(contextual?.end||[addDays(defaultStart,3),'2027-12-31'].sort()[0]);
+  $('#custom-origin').innerHTML=`${icon('plane-takeoff')}${ORIGINS[draft.origin]} 출발`;
+  customMonth=$('#custom-start').value.slice(0,7);customPickingEnd=Boolean(start);$('#custom-date-hint').textContent=start?'귀국편 출발일을 선택하세요.':'출발일과 귀국편 출발일을 선택하세요.';updateCustomPreview();if(start)$('#custom-error').textContent='';renderCustomCalendar();openDialog($('#custom-dialog'),opener);if(start)$(`[data-custom-day="${start}"]`)?.focus({preventScroll:true});
+}
+function customValidation(){const start=$('#custom-start').value,end=$('#custom-end').value;if(!validDate(start)||!validDate(end))return{error:'출발일과 귀국편 출발일을 선택하세요.'};if(start<today)return{error:'오늘 이후의 출발일을 선택하세요.'};if(end<=start)return{error:'귀국편은 출발일 다음 날부터 선택하세요.'};if(daysBetween(start,end)>16)return{error:'최대 16일 안에서 선택하세요.'};return{window:makeWindow(start,end)};}
+function updateCustomPreview(){const result=customValidation();$('#custom-error').textContent=result.error||'';$('#custom-preview').innerHTML=result.window?tripChips(result.window):'';return result;}
+
+function timeline(win){return `<div class="timeline" role="list" aria-label="날짜와 연차 사용일">${rangeDays(win.start,win.end).map(day=>`<div role="listitem" class="day ${day.off?'off':'leave'}" aria-label="${shortDate(day.date)} ${day.weekday}요일 ${escape(day.holiday||(day.off?'주말':'연차 사용'))}"><span>${day.weekday}</span><strong>${Number(day.date.slice(8))}</strong><span>${day.off?(day.holiday?'공휴일':'주말'):'연차'}</span></div>`).join('')}</div>`;}
+function openSchedule(opener=document.activeElement){
+  const win=state.selected;if(!win)return;
+  $('#schedule-dialog').innerHTML=`<div class="sheet-heading"><h2 id="schedule-title">연차 일정</h2><button class="icon-button dialog-close" aria-label="연차 일정 닫기">${icon('x')}</button></div><div class="sheet-content"><p class="schedule-period">${periodLabel(win.start,win.end)}</p><div class="schedule-numbers"><span>휴가 <strong>${win.days}일</strong></span><span>연차 <strong>${win.leave.length}일</strong></span></div>${timeline(win)}<p class="leave-dates">연차 신청일 <strong>${win.leave.map(shortDate).join(' · ')||'없음'}</strong></p><p class="field-help">${state.exact&&!state.buffer?'귀국편 출발일 기준입니다. 한국 도착 시각은 항공편 선택에서 확인하세요.':'휴가 가능 기간입니다. 실제 항공권의 체류일은 다를 수 있어요.'}</p><div class="schedule-actions"><button class="button secondary" data-save-schedule>${icon('bookmark')}${isSaved(scheduleItem())?'일정 저장 취소':'일정 저장'}</button><button class="button primary" data-calendar>${icon('calendar-plus')}캘린더에 추가</button></div></div>`;openDialog($('#schedule-dialog'),opener);
+}
+function updateDetailSave(){if(!detailFlight||!$('[data-detail-save]'))return;const saved=isSaved(flightItem(detailFlight)),button=$('[data-detail-save]');button.classList.toggle('saved',saved);button.setAttribute('aria-pressed',String(saved));button.setAttribute('aria-label',saved?'이 여행 저장 취소':'이 여행 저장');}
+function openDetail(value,push=true,opener=document.activeElement){
+  const f=typeof value==='object'?value:allOffers().find(offer=>offer.id===value);if(!f)return;
+  const active=opener;detailReturnSelector=active?.dataset.detail?`.${CSS.escape(active.classList[0])}[data-detail="${CSS.escape(active.dataset.detail)}"]`:null;detailFlight=f;if(push)syncUrl(true);
+  disposeItinerary?.();disposeItinerary=null;
+  const root=$('#detail-dialog');
+  const collected=f.sellers?.length?`<details class="collected-fares"><summary>날짜별 참고 가격${icon('chevron-down')}</summary><div class="collected-fare-body"><div class="detail-price"><span>성인 1인 · 왕복</span><strong>${money(f.price)}<small>원</small></strong></div><div class="journey-line"><div><span>출발일</span><strong>${shortDate(f.start)}</strong></div><div class="journey-duration">${icon('plane')}<span>날짜상 ${f.nights}박</span></div><div><span>귀국편 출발일</span><strong>${shortDate(f.end)}</strong></div></div><p class="field-help">아래 참고 가격은 날짜별 가격이며 위에서 선택한 항공편의 가격과 다를 수 있어요.</p><div class="detail-leave"><span>필요 연차 <strong>${f.leave.length}일</strong>${state.buffer?' · 복귀 여유 포함':''}</span><button class="icon-button" data-detail-save aria-label="이 여행 저장" aria-pressed="false">${icon('bookmark')}</button></div>${priceEvidence(f)}<div class="seller-heading"><h3>판매처에서 확인</h3></div><div class="seller-list">${f.sellers.map((seller,i)=>`<a href="${bookUrl(f,seller.partner)}" target="_blank" rel="noopener noreferrer" class="seller-row ${i===0?'primary-seller':''}" aria-label="${escape(seller.name)} ${money(seller.price)}원 가격, 같은 날짜 항공권 검색"><span>${escape(seller.name)}</span><strong>${money(seller.price)}원</strong>${icon('external-link')}</a>`).join('')}</div><button class="detail-truth" data-fare-info>${icon('info')}<span>예약 시 가격·좌석이 달라질 수 있어요<small>${sourceTime(f.observedAt)}${f.observedAt?' 기준':''}${state.fareMeta?.stale?' · 이전 가격':''}</small></span>${icon('chevron-right')}</button></div></details>`:'';
+  root.innerHTML=`<div class="sheet-heading detail-heading"><div><span class="detail-country">${country(f)} · ${ORIGINS[f.origin]} 출발</span><h2 id="detail-title">${escape(f.city)}</h2></div><button class="icon-button dialog-close" aria-label="항공권 상세 닫기">${icon('x')}</button></div><div class="sheet-content detail-content"><section id="live-flight-panel" class="live-flight-panel" aria-label="실제 항공편 비교"></section>${collected}<div class="detail-tools"><button class="button secondary" data-detail-calendar>${icon('calendar-plus')}캘린더</button><button class="button secondary" data-copy-link>${icon('share-2')}링크 복사</button></div><a class="alternative-search" href="${searchUrl(f,f,f.origin)}" target="_blank" rel="noopener noreferrer">스카이스캐너에서도 같은 날짜 검색${icon('external-link')}</a></div>`;
+  if(active?.classList.contains('fare-verdict')&&$('.collected-fares',root)){$('.collected-fares',root).open=true;$('.price-evidence',root).open=true;}
+  updateDetailSave();openDialog(root,active);
+  disposeItinerary=mountItinerarySearch($('#live-flight-panel'),{flight:f,availableEnd:state.selected?.end||f.end,budget:state.budget,icon,escape,money});
+}
+function openManualFlight(meta,push=true,opener=$('[data-direct-flights]'),dates=null){
+  if(!state.selected)return;
+  const start=dates?.start||state.selected.start,end=dates?.end||addDays(state.selected.end,-state.buffer),win=makeWindow(start,end);
+  const f={id:`manual-${state.origin}-${meta.code}-${start}-${end}`,origin:state.origin,code:meta.code,city:meta.name.replace(/\([A-Z]{3}\)/,''),country:meta.country,countryCode:meta.countryCode,start,end,nights:daysBetween(start,end)-1,leave:win.leave,sellers:[],manual:true};
+  openDetail(f,push,opener);
+}
+function openDestination(opener){
+  if(!state.selected)return;
+  const dialog=$('#destination-dialog');disposeDestination?.();
+  disposeDestination=destinationPicker(dialog,{origin:state.origin,escape,icon,flagPath,onSelect:meta=>{dialog.close();openManualFlight(meta,true,opener);}});
+  openDialog(dialog,opener);
+}
+function restoreDetail(){
+  const params=new URLSearchParams(location.search),value=params.get('offer');if(!value)return;
+  const f=allOffers().find(offer=>`${offer.code}~${offer.start}~${offer.end}`===value);
+  if(f){openDetail(f,false,$(`[data-detail="${CSS.escape(f.id)}"]`)||$('#destinations-heading'));return;}
+  if(params.get('manual')==='1'){
+    const [code,start,end]=value.split('~'),nav=navigationSerial,origin=state.origin;
+    if(/^[A-Z]{3}$/.test(code||'')&&validRange(start,end)){
+      airportCatalog(origin).then(list=>{if(nav!==navigationSerial||origin!==state.origin||new URLSearchParams(location.search).get('offer')!==value)return;const meta=list.find(x=>x.code===code);if(meta)openManualFlight(meta,false,$('[data-direct-flights]'),{start,end});else{toast('여행지를 다시 선택해 주세요.');syncUrl();}}).catch(()=>{if(nav===navigationSerial)toast('여행지를 불러오지 못했어요. 직접 선택해 주세요.');});return;
     }
-    if(serial !== overviewSerial) return;
-    state.overviewState = "ready"; renderWindows();
-  } catch(error) {
-    if(error.name === "AbortError" || serial !== overviewSerial) return;
-    state.overviewState = "error"; state.overviewError = error.message; renderWindows();
   }
+  toast('이 일정의 현재 운임을 찾지 못했어요. 다른 항공권을 확인하세요.');syncUrl();
 }
-function render() {
-  $("#year-caption").textContent = `${state.year}년 연휴 비교`;
-  const best = state.allWindows[0];
-  $("#hero-stat").innerHTML = best
-    ? `연차 ${best.leave.length}일 <span>→</span> 최대 ${best.days}일`
-    : "내 일정으로 떠나는 여행";
-  $("#origin").value = state.origin;
-  $("#year").value = state.year;
-  $("#budget").value = state.budget;
-  $("#min-nights").value = state.minNights;
-  $("#return-buffer").checked = Boolean(state.buffer);
-  $("#exact-dates").checked = state.exact;
-  $("#window-sort").value = state.windowSort;
-  $("#flight-sort").value = state.flightSort;
-  $("#deals-only").checked = state.dealsOnly;
-  $("#preference-summary").textContent = `${state.minNights}박 이상${state.buffer ? " · 복귀 여유 하루" : " · 복귀 여유 없음"}${state.exact ? " · 날짜 고정" : ""}`;
-  $("#leave-buttons").innerHTML = [0, 1, 2, 3, 4, 5]
-    .map(
-      (n) =>
-        `<button type="button" data-leave="${n}" aria-pressed="${state.maxLeave === n}" aria-label="연차 최대 ${n}일">${n}<span>일</span></button>`,
-    )
-    .join("");
-  $("#month-grid").innerHTML = Array.from({ length: 12 }, (_, i) => {
-    const month = i + 1,
-      choices = state.allWindows.filter((win) =>
-        rangeDays(win.start, win.end).some(
-          (d) => Number(d.date.slice(0, 4)) === state.year && Number(d.date.slice(5, 7)) === month,
-        ),
-      ),
-      max = Math.max(0, ...choices.map((w) => w.days));
-    return `<button data-month="${month}" class="month-button ${state.month === month ? "selected" : ""}" aria-pressed="${state.month === month}" aria-label="${month}월${max ? `, 최대 ${max}일 여행` : ", 추천 연휴 없음"}"><span>${month}월</span><small>${max ? `${max}일 여행` : "—"}</small>${max >= 7 ? '<i class="month-dot" aria-hidden="true"></i>' : ""}</button>`;
-  }).join("");
-  $("#month-all").classList.toggle("all-active", !state.month);
-  renderWindows();
-  renderSelected();
-  renderFlights();
-  $$("#region-tabs button").forEach((btn) =>
-    btn.setAttribute(
-      "aria-pressed",
-      String(btn.dataset.region === state.region),
-    ),
-  );
-  syncUrl();
+function animateStage(root){root.classList.remove('stage-enter');if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;void root.offsetWidth;root.classList.add('stage-enter');root.addEventListener('animationend',()=>root.classList.remove('stage-enter'),{once:true});}
+let navigationSerial=0,currentTransition;
+function transitionView(update){
+  const serial=++navigationSerial;
+  const run=()=>serial===navigationSerial?update():undefined;
+  currentTransition?.skipTransition();
+  if(!document.startViewTransition||matchMedia('(prefers-reduced-motion: reduce)').matches){const pending=run();animateStage(state.view==='saved'?$('#saved-view'):state.stage==='results'?$('#trip-results'):$('#planner'));return Promise.resolve(pending);}
+  let pending;
+  currentTransition=document.startViewTransition(()=>{pending=run();});
+  currentTransition.ready.catch(()=>{});
+  return currentTransition.updateCallbackDone.then(()=>pending);
 }
-function artwork(flight, detail = false) {
-  const meta = DESTINATIONS.find((dest) => dest.code === flight.code);
-  return meta
-    ? `<img src="/assets/${meta.image}" alt="${meta.alt}" width="600" height="340" ${detail ? "" : 'loading="lazy"'} />`
-    : `<div class="route-art tone-${flight.code.charCodeAt(0) % 4}" aria-label="${escape(flight.city)} 항공 노선"><span class="route-code">${escape(flight.code)}</span><div>${icon("plane")}<span>${escape(flight.origin)} <b>→</b> ${escape(flight.code)}</span></div></div>`;
-}
-function sourceTime(value) {
-  if (!value || Number.isNaN(Date.parse(value))) return "수집 시각 미제공";
-  return new Intl.DateTimeFormat("ko-KR", {
-    timeZone: "Asia/Seoul",
-    month: "numeric",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).format(new Date(value));
-}
-function offerOption(flight,label,base) {
-  const delta = base ? flight.price - base.price : 0;
-  return `<button class="offer-option ${base ? "long-option" : "cheap-option"}" data-detail="${flight.id}" aria-label="${escape(flight.city)} ${label} ${flight.nights}박 ${money(flight.price)}원 상세 보기"><span class="offer-kind">${label}${base && flight.nights > base.nights ? `<span class="trip-gain">${flight.nights-base.nights}박 더</span>` : ""}</span><span class="offer-itinerary"><strong>${flight.nights}박 ${flight.nights+1}일</strong><span>${periodLabel(flight.start,flight.end)}</span><span>필요 연차 ${flight.leave.length}일${state.buffer ? " · 여유 포함" : ""}</span></span><span class="offer-price"><strong>${money(flight.price)}<small>원</small></strong><span>${base ? `${delta > 0 ? "+" : ""}${money(delta)}원 차이` : `${escape(flight.sellers[0]?.name || "판매처")} · 1인 왕복`}</span></span>${icon("chevron-right")}</button>`;
-}
-function renderFlights() {
-  const grid = $("#flight-grid");
-  grid.setAttribute("aria-busy",String(state.searchState === "loading"));
-  $("#preference-summary").textContent = `${state.minNights}박 이상${state.buffer ? " · 복귀 여유 하루" : " · 복귀 여유 없음"}${state.exact ? " · 날짜 고정" : ""}`;
-  if(state.searchState === "loading") {
-    grid.innerHTML = `<div class="empty loading-state">${icon("plane")}<h3>선택한 휴가의 항공권을 조회하고 있어요</h3><p>가장 싼 일정과 길게 머무는 일정을 함께 찾습니다.</p></div>`;
-    $("#fare-status").textContent = "항공권 조회 중"; return;
-  }
-  if(state.searchState === "error") {
-    grid.innerHTML = `<div class="empty">${icon("info")}<h3>항공권을 조회하지 못했어요</h3><p>${escape(state.searchError)}</p><button class="button primary" data-retry-flights>다시 조회</button></div>`;
-    $("#fare-status").textContent = "조회 실패 · 선택한 조건은 유지됩니다"; return;
-  }
-  const flights = filterFlights(state.flights,{budget:state.budget,region:state.region,sort:state.flightSort,dealsOnly:state.dealsOnly,alternatives:state.alternatives});
-  $("#fare-status").textContent = state.fareMeta ? `${flights.length}개 목적지 · ${sourceTime(state.fareMeta.updatedAt)} 수집${state.fareMeta.stale ? " · 이전 수집 운임" : ""}${state.fareMeta.complete ? "" : " · 일부 노선"}` : "떠날 일정을 골라 주세요";
-  $("#fare-notice").innerHTML = `${icon("info")}<span>${state.fareMeta?.stale ? escape(state.fareMeta.warning) : "최근 수집된 성인 1인·일반석 왕복 요금입니다. 한국 도착 시각·수하물·최종 가격은 판매처에서 확인해 주세요."} <a href="https://catchfrog.ai/" target="_blank" rel="noopener noreferrer">Catchfrog 제공 ↗</a>${state.fareMeta?.alternativesStatus === "partial" ? `<strong class="alternatives-warning">긴 체류 대안 조회에 일부 실패했습니다. 최저가 조회 결과를 표시합니다.</strong>` : ""}</span>`;
-  grid.innerHTML = flights.length ? flights.slice(0,state.visibleCount).map(flight=>{
-    const options = state.alternatives[flight.code] || [flight], long = options.find(f=>f.nights > flight.nights && f.id !== flight.id), longVisible = long && (!state.budget || long.price <= state.budget), meta=DESTINATIONS.find(d=>d.code===flight.code);
-    return `<article class="flight-card"><div class="destination-heading">${meta ? `<img class="destination-thumb" src="/assets/${meta.image}" alt="${meta.alt}" width="72" height="72" loading="lazy">` : `<span class="destination-symbol" aria-hidden="true">${icon("plane")}</span>`}<div><h3><button class="destination-name" data-detail="${flight.id}" aria-label="${escape(flight.city)} 항공권 상세 보기">${escape(flight.city)}${icon("arrow-up-right")}</button></h3><span class="destination-country">${escape(flight.country)} · ${flight.code}</span></div>${flight.discount > 0 ? `<span class="deal-badge">노선 평균보다 ${flight.discount.toFixed(1)}% ↓</span>` : ""}<button class="card-save ${isSaved(flightItem(flight)) ? "saved" : ""}" data-save-offer="${flight.id}" aria-label="${escape(flight.city)} ${isSaved(flightItem(flight)) ? "저장 취소" : "여행 저장"}" aria-pressed="${isSaved(flightItem(flight))}">${icon("bookmark")}</button></div><div class="offer-comparison">${offerOption(flight,"최저가 일정")}${longVisible ? offerOption(long,"길게 머물기",flight) : ""}</div>${long && !longVisible ? `<p class="option-note">같은 목적지 ${long.nights}박 대안은 ${money(long.price)}원으로 선택한 예산을 넘습니다.</p>` : ""}<div class="card-footnote"><span>${flight.average ? `노선 수집 평균 ${money(flight.average)}원` : "노선 평균 미제공"}</span><button class="history-link" data-detail="${flight.id}">판매처 ${flight.sellers.length}곳 · 가격 이력${icon("arrow-right")}</button></div></article>`;
-  }).join("") + (flights.length > state.visibleCount ? `<div class="more-flights"><button class="button secondary" data-more-flights>항공권 더 보기 (${state.visibleCount}/${flights.length})${icon("chevron-down")}</button></div>` : "") : `<div class="empty">${icon("search")}<h3>${!state.selected ? "먼저 떠날 일정을 골라 주세요" : state.flights.length ? "조건에 맞는 항공권이 없어요" : "이 날짜에 조회된 항공권이 없어요"}</h3><p>${state.flights.length ? "예산이나 여행지 분류를 바꿔 보세요." : "숙박일을 줄이거나 다른 연휴를 골라 주세요. 수집되지 않은 항공권에는 가격을 표시하지 않습니다."}</p>${state.flights.length ? '<button class="button secondary" data-reset-flights>여행지 필터 초기화</button>' : `${state.selected && state.minNights > 1 ? '<button class="button secondary" data-relax-nights>최소 1박으로 다시 조회</button>' : ''}<button class="button secondary" data-open-custom>직접 날짜 고르기</button>`}</div>`;
-}
-async function loadFlights(refresh = false) {
-  searchController?.abort();
-  const serial = ++searchSerial;
-  if (!state.selected) {
-    state.flights = [];
-    state.fareMeta = null;
-    state.searchState = "idle";
-    renderFlights();
-    return;
-  }
-  const input = {
-      origin: state.origin,
-      start: state.selected.start,
-      end: state.selected.end,
-      minNights: String(state.minNights),
-      buffer: String(state.buffer),
-      exact: state.exact ? "1" : "0",
-      alternatives: "1",
-    },
-    query = new URLSearchParams(input).toString();
-  const cached = queryCache.get(query);
-  $("#return-cutoff").textContent = state.exact
-    ? `${shortDate(input.start)} 출발 · ${shortDate(addDays(input.end, -state.buffer))} 귀국편`
-    : `귀국편 출발 마감 ${shortDate(addDays(input.end, -state.buffer))}`;
-  state.visibleCount = 12;
-  state.flights = [];
-  state.fareMeta = null;
-  state.alternatives = {};
-  state.searchError = "";
-  state.searchState = "loading";
-  renderFlights();
-  if (!refresh && cached && Date.now() - cached.at < 120000) {
-    state.flights = cached.data.flights;
-    state.fareMeta = cached.data;
-    state.alternatives = cached.data.alternatives || {};
-    state.searchState = "ready";
-    renderFlights();
-    restoreDetailFromUrl();
-    return;
-  }
-  const controller = new AbortController();
-  searchController = controller;
-  try {
-    const response = await fetch(`/api/flights?${query}`, {
-      signal: controller.signal,
-      headers: { Accept: "application/json" },
-    });
-    const data = await response.json();
-    if (!response.ok)
-      throw new Error(data.error?.message || "운임 조회에 실패했어요.");
-    if (!Array.isArray(data.flights))
-      throw new Error("운임 결과 형식이 올바르지 않아요.");
-    if (serial !== searchSerial) return;
-    state.flights = data.flights;
-    state.fareMeta = data;
-    state.alternatives = data.alternatives || {};
-    state.searchState = "ready";
-    if (queryCache.size >= 20)
-      queryCache.delete(queryCache.keys().next().value);
-    queryCache.set(query, { at: Date.now(), data });
-    renderFlights();
-    restoreDetailFromUrl();
-  } catch (error) {
-    if (error.name === "AbortError" || serial !== searchSerial) return;
-    state.searchState = "error";
-    state.searchError = error.message;
-    renderFlights();
-  }
-}
-let detailFlight = null;
-function updateDetailSave() {
-  if (!detailFlight) return;
-  const button = $("[data-detail-save]", $("#detail-dialog"));
-  if (!button) return;
-  const saved = isSaved(flightItem(detailFlight));
-  button.innerHTML = `${icon("bookmark")}${saved ? "저장한 여행" : "이 여행 저장"}`;
-  button.setAttribute("aria-pressed", String(saved));
-  button.classList.toggle("saved", saved);
-}
-function chart(data) {
-  if (!data.items?.length)
-    return '<p class="chart-empty">이 일정의 가격 이력이 아직 없어요.</p>';
-  const items = data.items,
-    min = Math.min(...items.map((i) => i.price)),
-    max = Math.max(...items.map((i) => i.price)),
-    spread = max - min || 1;
-  const points = items
-    .map(
-      (item, i) =>
-        `${24 + (i / Math.max(1, items.length - 1)) * 452},${130 - ((item.price - min) / spread) * 100}`,
-    )
-    .join(" ");
-  return `<div class="chart-summary"><span>최저 <strong>${money(min)}원</strong></span><span>최고 <strong>${money(max)}원</strong></span><span>${items.length}회 관측</span></div><svg class="price-chart" viewBox="0 0 500 165" role="img" aria-label="이 일정의 수집 요금 변화. 최저 ${money(min)}원, 최고 ${money(max)}원, ${items.length}회 관측"><path d="M24 30H476 M24 80H476 M24 130H476" stroke="#e2e9e5" fill="none"/><polyline points="${points}" stroke="#087f6a" stroke-width="2.5" fill="none" stroke-linejoin="round"/><text x="24" y="157">${escape(items[0].date.slice(5, 10))}</text><text x="476" y="157" text-anchor="end">${escape(items.at(-1).date.slice(5, 10))}</text></svg><p class="chart-note">동일 노선·같은 출발/귀국일·선택한 판매처의 수집 요금입니다.</p>`;
-}
-async function loadHistory(partner = detailFlight?.partner) {
-  historyController?.abort();
-  if (!detailFlight) return;
-  const flight = detailFlight,
-    root = $("#price-history"),
-    controller = new AbortController();
-  historyController = controller;
-  root.innerHTML =
-    '<p class="chart-empty" role="status">가격 이력을 조회하고 있어요.</p>';
-  try {
-    const response = await fetch(
-      `/api/history?${new URLSearchParams({ origin: flight.origin, code: flight.code, start: flight.start, end: flight.end, partner })}`,
-      { signal: controller.signal },
-    );
-    const data = await response.json();
-    if (!response.ok)
-      throw new Error(data.error?.message || "가격 이력을 조회하지 못했어요.");
-    if (detailFlight?.id !== flight.id) return;
-    root.innerHTML =
-      (data.stale
-        ? `<p class="history-stale" role="status">${escape(data.warning || "이력 갱신에 실패해 이전 수집 기록을 표시합니다.")}</p>`
-        : "") +
-      chart(data) +
-      (data.collectedAt
-        ? `<p class="chart-note">이력 수집 ${sourceTime(data.collectedAt)}</p>`
-        : "");
-  } catch (error) {
-    if (error.name !== "AbortError")
-      root.innerHTML = `<p class="chart-empty">${escape(error.message)}</p><button class="text-button" data-retry-history>가격 이력 다시 조회</button>`;
-  }
-}
-function allOffers() { return [...state.flights,...Object.values(state.alternatives).flat()]; }
-function restoreDetailFromUrl() {
-  const offer = new URLSearchParams(location.search).get("offer");
-  if (!offer) return;
-  const flight = allOffers().find(f=>`${f.code}~${f.start}~${f.end}` === offer);
-  if(flight) openDetail(flight, false);
-  else { toast("이 일정의 현재 운임을 찾지 못했어요. 조회된 다른 항공권을 확인해 주세요."); syncUrl(); }
-}
-function openDetail(id, push = true) {
-  const flight =
-    typeof id === "object" ? id : allOffers().find((item) => item.id === id);
-  if (!flight) return;
-  detailReturnFocus = document.activeElement;
-  detailReturnSelector = detailReturnFocus?.dataset.detail ? `.${detailReturnFocus.classList[0]}[data-detail="${CSS.escape(detailReturnFocus.dataset.detail)}"]` : null;
-  detailFlight = flight;
-  if(push) syncUrl(true);
-  const root = $("#detail-dialog");
-  root.dataset.offer = flight.id;
-  const calendar = makeWindow(flight.start, flight.recoveryEnd);
-  root.innerHTML = `<div class="detail-image">${artwork(flight, true)}<button class="icon-button dialog-close" aria-label="닫기">${icon("x")}</button><span>${escape(flight.country)} · ${flight.code}</span></div><div class="detail-body"><span class="section-caption">${ORIGINS[flight.origin]}에서 떠나는 실제 수집 항공권</span><h2 id="detail-title">${escape(flight.city)}, ${flight.nights}박 ${flight.nights + 1}일.</h2><p class="detail-date">${periodLabel(flight.start, flight.end)} · ${flight.start.slice(0, 4)}년</p><div class="detail-stats"><div><span>필요 연차${state.buffer ? " · 여유 포함" : ""}</span><strong>${flight.leave.length}일</strong></div><div><span>여행 일정</span><strong>${flight.nights}박 ${flight.nights + 1}일</strong></div><div><span>비교 판매처</span><strong>${flight.sellers.length}곳</strong></div></div>${timeline(calendar)}<p class="leave-detail">연차 신청: <strong>${flight.leave.map(shortDate).join(" · ") || "사용 없음"}</strong></p><p class="arrival-note">귀국편 출발일 ${shortDate(flight.end)}${state.buffer ? ` · 복귀 여유 ${shortDate(flight.recoveryEnd)}` : ""}. 한국 도착일과 추가 연차는 판매처에서 확인해 주세요.</p><p class="schedule-unverified">항공사·편명·출도착 시각·경유·수하물 조건은 이 조회에 제공되지 않습니다. 예약 전 판매처에서 확인하세요.</p><div class="detail-price"><div><span>조회된 판매처 중 1인 왕복 최저</span><strong>${money(flight.price)}<small>원</small></strong></div>${flight.average ? `<span>노선 수집 평균<br>${money(flight.average)}원</span>` : ""}</div><p class="detail-disclaimer">${flight.observedAt ? `${sourceTime(flight.observedAt)} 판매처 가격 수집. ` : ""}최근 수집 요금이며 결제 시점의 운임·좌석·수하물 조건은 달라질 수 있어요.</p><div class="seller-list">${flight.sellers.map((seller) => `<a href="${bookUrl(flight, seller.partner)}" target="_blank" rel="noopener noreferrer" class="seller-row" aria-label="${escape(seller.name)} ${money(seller.price)}원 항공권 확인"><span>${escape(seller.name)}</span><strong>${money(seller.price)}원</strong>${icon("arrow-up-right")}</a>`).join("")}</div><div class="history-heading"><h3>이 일정, 가격은 어땠을까요?</h3><label><span class="sr-only">가격 이력 판매처</span><select id="history-partner">${flight.sellers.map((seller) => `<option value="${seller.partner}">${escape(seller.name)}</option>`).join("")}</select></label></div><div id="price-history" class="price-history"></div><div class="detail-actions"><button class="button secondary" data-detail-save>${icon("bookmark")}이 여행 저장</button><button class="button secondary" data-detail-calendar>${icon("calendar-plus")}캘린더에 추가</button></div><a class="skyscanner-link" href="${searchUrl(flight, flight, flight.origin)}" target="_blank" rel="noopener noreferrer">같은 날짜로 스카이스캐너에서도 확인 ↗</a></div>`;
-  updateDetailSave();
-  if (!root.open) root.showModal();
-  loadHistory();
-}
-function openCustom() {
-  const min = today > "2026-01-01" ? today : "2026-01-01";
-  for (const id of ["#custom-start", "#custom-end"]) {
-    $(id).min = min;
-    $(id).max = "2027-12-31";
-  }
-  $("#custom-start").value =
-    state.selected?.start ||
-    (today.slice(0, 4) === String(state.year) ? today : `${state.year}-01-01`);
-  $("#custom-end").value =
-    state.selected?.end || addDays($("#custom-start").value, 2);
-  updateCustomPreview();
-  $("#custom-dialog").showModal();
-}
-function customValidation() {
-  const start = $("#custom-start").value,
-    end = $("#custom-end").value;
-  if (!validDate(start) || !validDate(end))
-    return { error: "2026년 또는 2027년의 올바른 날짜를 골라 주세요." };
-  if (start < today) return { error: "오늘 이후의 휴가 시작일을 골라 주세요." };
-  if (end <= start)
-    return { error: "휴가 마지막 날은 시작일 다음 날부터 선택할 수 있어요." };
-  if (daysBetween(start, end) > 16)
-    return { error: "최대 16일 안에서 여행 일정을 골라 주세요." };
-  return { window: makeWindow(start, end) };
-}
-function updateCustomPreview() {
-  const result = customValidation();
-  $("#custom-error").textContent = result.error || "";
-  $("#custom-preview").innerHTML = result.window
-    ? `<strong>${result.window.days}일의 여행 가능 기간 · 연차 ${result.window.leave.length}일 필요</strong><p>연차 신청: ${result.window.leave.map(shortDate).join(" · ") || "사용 없음"}</p>${result.window.leave.length > state.maxLeave ? `<p class="leave-warning">설정한 연차 ${state.maxLeave}일보다 ${result.window.leave.length - state.maxLeave}일 더 필요해요.</p>` : ""}`
-    : "";
-  return result;
-}
-function switchView(view, push = true) {
-  state.view = view;
-  $$(".hero,.search-bar,.planner").forEach(
-    (el) => (el.hidden = view !== "plan"),
-  );
-  $("#saved-view").hidden = view !== "saved";
-  for (const name of ["plan", "saved"]) {
-    const btn = $(`#nav-${name}`);
-    btn.classList.toggle("active", view === name);
-    if (view === name) btn.setAttribute("aria-current", "page");
-    else btn.removeAttribute("aria-current");
-  }
-  if (view === "saved") renderSaved();
-  syncUrl(push);
-  if(push) window.scrollTo({
-    top: 0,
-    behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
-      ? "instant"
-      : "smooth",
+function selectWindow(win,{push=true,flexible=false}={}){
+  if(!win)return;quickDraft={origin:state.origin,year:state.year,month:state.month};return transitionView(()=>{
+    if(state.stage==='overview')overviewScroll=scrollY;
+    if(flexible)state.exact=false;
+    state.selected=win;calendarMonth=win.start.slice(0,7);state.stage='results';state.view='plan';if(state.overviewState==='loading'){overviewController?.abort();overviewSerial++;overviewDirty=true;state.overviewState='idle';}renderShell();syncUrl(push);
+    const pending=loadFlights();window.scrollTo({top:0,behavior:'instant'});$('#destinations-heading').focus({preventScroll:true});return pending;
   });
 }
-function renderSaved() {
-  $("#saved-list").innerHTML = state.saved.length
-    ? state.saved
-        .map((item, index) => {
-          const win = makeWindow(item.start, item.end),
-            meta = DESTINATIONS.find((d) => d.code === item.code);
-          return `<article class="saved-card">${meta ? `<img src="/assets/${meta.image}" alt="${meta.alt}" width="240" height="160" />` : `<div class="saved-art">${icon(item.code ? "plane" : "calendar")}<strong>${escape(item.code || "연휴")}</strong></div>`}<div class="saved-card-info"><span class="section-caption">${item.start < today ? "지난 일정" : `${win.days - 1}박 ${win.days}일`} · ${ORIGINS[item.origin]} 출발</span><h2>${escape(item.city || win.title)}</h2><p>${item.start.slice(0, 4)}년 ${periodLabel(item.start, item.end)}</p>${item.price ? `<p>저장 당시 ${money(item.price)}원 · 현재 운임은 다시 조회</p>` : ""}</div><div class="saved-card-actions"><button class="button secondary" data-saved-open="${index}" ${item.start < today ? "disabled" : ""}>${item.code ? "현재 운임 조회" : "일정 보기"}</button><button class="icon-button" data-saved-remove="${index}" aria-label="${escape(item.city || "일정")} 저장 삭제">${icon("trash-2")}</button></div></article>`;
-        })
-        .join("")
-    : `<div class="empty saved-empty">${icon("bookmark")}<h2>다음 여행을 담아 보세요</h2><p>마음에 드는 일정이나 항공권의 북마크를 눌러 주세요.</p><button class="button primary" data-back-plan>연휴 찾아보기${icon("arrow-right")}</button></div>`;
+function backOverview(push=true){return transitionView(()=>{quickDraft=null;state.stage='overview';state.view='plan';renderShell();syncUrl(push);if(overviewDirty)loadOverview();window.scrollTo({top:overviewScroll,behavior:'instant'});if(state.selected)$(`[data-window="${CSS.escape(state.selected.id)}"]`)?.focus({preventScroll:true});});}
+function switchView(view,push=true){return transitionView(()=>{state.view=view;renderShell();syncUrl(push);if(push)window.scrollTo({top:0,behavior:'instant'});});}
+function savedCard(item,index){const win=makeWindow(item.start,item.end);return `<article class="saved-card">${item.code?thumbnail(item):`<span class="destination-symbol">${icon('calendar')}</span>`}<div><h2>${escape(item.city||win.title)}</h2><p>${periodLabel(item.start,item.end)}</p>${item.price?`<span>저장 당시 ${money(item.price)}원</span>`:''}</div><div class="saved-card-actions"><button class="button secondary" data-saved-open="${index}" ${item.start<today?'disabled':''}>${item.code?'현재 요금':'일정 보기'}</button><button class="icon-button" data-saved-remove="${index}" aria-label="${escape(item.city||'일정')} 저장 삭제">${icon('trash-2')}</button></div></article>`;}
+function renderSaved(){const upcoming=state.saved.map((item,index)=>({item,index})).filter(({item})=>item.start>=today),past=state.saved.map((item,index)=>({item,index})).filter(({item})=>item.start<today);$('#saved-list').innerHTML=(upcoming.length?upcoming.map(({item,index})=>savedCard(item,index)).join(''):`<div class="empty">${travelKit()}<h2>다음 여행을 담아 보세요</h2><button class="button primary" data-back-plan>연휴 찾아보기</button></div>`)+(past.length?`<details class="past-saved"><summary>지난 일정 ${past.length}개</summary>${past.map(({item,index})=>savedCard(item,index)).join('')}</details>`:'');}
+async function openSaved(index){
+  const item=state.saved[index];if(!item||item.start<today)return;overviewDirty=true;
+  state.origin=item.origin;state.year=Number(item.start.slice(0,4));state.month=0;state.buffer=item.buffer;state.exact=Boolean(item.code)||item.exact===true;state.minNights=Math.max(1,Math.min(2,daysBetween(item.start,item.end)-1));state.budget=0;state.region='all';rebuildWindows();
+  const selected=makeWindow(item.start,item.code?addDays(item.end,item.buffer):item.end),pending=selectWindow(selected),serial=navigationSerial,origin=state.origin;
+  const expected=new URLSearchParams({origin,start:selected.start,end:selected.end,minNights:String(state.minNights),buffer:String(state.buffer),exact:state.exact?'1':'0',alternatives:'1'}).toString();
+  await pending;
+  if(serial!==navigationSerial||state.selected?.id!==selected.id||state.origin!==origin||state.stage!=='results'||state.view!=='plan'||state.resolvedQuery!==expected)return;
+  const f=state.flights.find(offer=>offer.code===item.code&&offer.start===item.start&&offer.end===item.end);
+  if(f)openDetail(f,true,$(`[data-detail="${CSS.escape(f.id)}"]`));else if(item.code)toast('저장한 일정의 현재 요금이 없어요. 다른 항공권을 확인하세요.');
 }
-async function openSaved(index) {
-  const item = state.saved[index];
-  if (!item || item.start < today) return;
-  state.year = Number(item.start.slice(0, 4));
-  state.origin = item.origin;
-  state.month = 0;
-  state.buffer = item.buffer;
-  state.exact = Boolean(item.code);
-  state.minNights = Math.max(
-    1,
-    Math.min(2, daysBetween(item.start, item.end) - 1),
-  );
-  state.selected = makeWindow(
-    item.start,
-    item.code ? addDays(item.end, item.buffer) : item.end,
-  );
-  state.maxLeave = Math.min(
-    5,
-    Math.max(state.maxLeave, state.selected.leave.length),
-  );
-  state.allWindows = findWindows({
-    year: state.year,
-    maxLeave: state.maxLeave,
-    today,
-  });
-  switchView("plan");
-  render();
-  loadOverview();
-  await loadFlights();
-  const flight = state.flights.find((f) => f.code === item.code);
-  if (flight) openDetail(flight);
-  else if (item.code)
-    toast(
-      "저장한 일정의 현재 운임이 조회되지 않았어요. 다른 항공권을 확인해 주세요.",
-    );
-}
-function selectWindow(win) {
-  state.selected = win;
-  renderWindows();
-  renderSelected();
-  syncUrl(true);
-  loadFlights();
-}
-document.addEventListener("click", (event) => {
-  const target = event.target.closest("button,a");
-  if (!target) return;
-  if (target.matches("[data-leave]")) {
-    state.maxLeave = Number(target.dataset.leave);
-    recompute();
-    $(`[data-leave="${state.maxLeave}"]`).focus({ preventScroll: true });
-  } else if (target.matches("[data-month]")) {
-    state.month = Number(target.dataset.month);
-    state.windowVisible = 4;
-    state.selected = visibleWindows()[0] || null;
-    render();
-    loadFlights();
-    loadOverview();
-    $(`[data-month="${state.month}"]`).focus({ preventScroll: true });
-  } else if (
-    target.id === "month-all" ||
-    target.matches("[data-reset-month]")
-  ) {
-    state.month = 0;
-    selectWindow(visibleWindows()[0] || null);
-    render();
-    loadOverview();
-  } else if (target.matches("[data-more-windows]")) {
-    state.windowVisible += 4; renderWindows();
-  } else if (target.id === "overview-retry") { loadOverview();
-  } else if (target.matches("[data-window]")) {
-    selectWindow(state.allWindows.find((w) => w.id === target.dataset.window));
-    $(`[data-window="${state.selected.id}"]`).focus({ preventScroll: true });
-    $("#trip-results").scrollIntoView({block:"start",behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth"});
-  } else if (target.matches("[data-more-flights]")) {
-    const previous = state.visibleCount;
-    state.visibleCount += 12;
-    renderFlights();
-    $$(".destination-name")[previous]?.focus({ preventScroll: true });
-  } else if (target.matches("[data-region]")) {
-    state.visibleCount = 12;
-    state.region = target.dataset.region;
-    renderFlights();
-    $$("#region-tabs button").forEach((btn) =>
-      btn.setAttribute("aria-pressed", String(btn === target)),
-    );
-    syncUrl();
-  } else if (target.matches("[data-save-schedule]"))
-    toggleSaved(scheduleItem());
-  else if (target.matches("[data-save-offer]")) {
-    const flight = state.flights.find((f) => f.id === target.dataset.saveOffer);
-    if (flight) toggleSaved(flightItem(flight));
-  } else if (target.matches("[data-calendar]"))
-    downloadCalendar(state.selected);
-  else if (target.matches("[data-detail]")) openDetail(target.dataset.detail);
-  else if (target.matches("[data-detail-save]"))
-    toggleSaved(flightItem(detailFlight));
-  else if (target.matches("[data-detail-calendar]"))
-    downloadCalendar(
-      makeWindow(detailFlight.start, detailFlight.recoveryEnd),
-      detailFlight.city,
-    );
-  else if (target.matches("[data-retry-history]"))
-    loadHistory($("#history-partner").value);
-  else if (
-    target.matches("[data-retry-flights]") ||
-    target.id === "refresh-flights"
-  )
-    loadFlights(true);
-  else if (target.matches("[data-relax-nights]")) {
-    state.minNights=1; $("#min-nights").value="1"; syncUrl(); loadFlights(); loadOverview();
-  }
-  else if (target.id === "custom-open" || target.matches("[data-open-custom]"))
-    openCustom();
-  else if (["help-open", "footer-help"].includes(target.id))
-    $("#help-dialog").showModal();
-  else if (target.matches(".dialog-close")) target.closest("dialog").close();
-  else if (target.id === "nav-saved") switchView("saved");
-  else if (
-    ["nav-plan", "back-to-planner"].includes(target.id) ||
-    target.matches("[data-back-plan]")
-  )
-    switchView("plan");
-  else if (target.matches("[data-reset-flights]")) {
-    state.budget = 0;
-    state.region = "all";
-    state.dealsOnly = false;
-    $("#deals-only").checked = false;
-    render();
-  } else if (target.matches("[data-saved-remove]")) {
-    state.saved.splice(Number(target.dataset.savedRemove), 1);
-    persistSaved();
-    renderSaved();
-    renderSelected();
-    renderFlights();
-    toast("저장한 여행에서 삭제했어요.");
-  } else if (target.matches("[data-saved-open]"))
-    openSaved(Number(target.dataset.savedOpen));
+$('#settings-form').addEventListener('submit',event=>{
+  event.preventDefault();const oldQuery=`${state.minNights}|${state.buffer}|${state.maxLeave}`;
+  state.maxLeave=Number($('#leave-limit').value);state.budget=$('#budget').value*1;state.region=$('#region').value;state.minNights=Number($('#min-nights').value);state.buffer=$('#return-buffer').checked?1:0;state.exact=state.stage==='results'&&$('#exact-dates').checked;
+  if(state.maxLeave===0&&state.stage==='overview'){state.minNights=1;state.buffer=0;}
+  rebuildWindows();dialogOpeners.delete($('#settings-dialog'));$('#settings-dialog').close();renderShell();syncUrl(true);if(oldQuery!==`${state.minNights}|${state.buffer}|${state.maxLeave}`)loadOverview();if(state.stage==='results')loadFlights();
+  $('#settings-open').focus({preventScroll:true});
 });
-$("#year").addEventListener("change", (e) => {
-  state.year = Number(e.target.value);
-  state.month = 0;
-  recompute();
+for(const id of ['#custom-start','#custom-end'])$(id).addEventListener('input',()=>{updateCustomPreview();if(validDate($(id).value)){customMonth=$(id).value.slice(0,7);renderCustomCalendar();}});
+$('#quick-origin').addEventListener('change',event=>{quickDraft.origin=event.target.value;updateSearchButton();$('#search-draft-status').textContent='검색을 누르면 선택한 조건이 적용됩니다.';});
+$('#quick-period').addEventListener('change',event=>{if(event.target.value==='custom'){event.target.value=`${quickDraft.year}-${quickDraft.month}`;openCustom(event.target);return;}const [year,month]=event.target.value.split('-').map(Number);Object.assign(quickDraft,{year,month});updateSearchButton();$('#search-draft-status').textContent='검색을 누르면 선택한 조건이 적용됩니다.';});
+$('#quick-search').addEventListener('submit',event=>{event.preventDefault();if($('#search-submit').disabled)return;const values={...quickDraft};$('#search-draft-status').textContent='';applyQuick(values);});
+$('#custom-form').addEventListener('submit',event=>{
+  event.preventDefault();const result=updateCustomPreview();if(result.error)return;
+  const origin=quickDraft?.origin||state.origin;
+  dialogOpeners.delete($('#custom-dialog'));$('#custom-dialog').close();
+  Object.assign(state,{origin,year:Number(result.window.start.slice(0,4)),month:0,exact:true,buffer:0,minNights:1,windowVisible:4});
+  $('#search-draft-status').textContent='';rebuildWindows();selectWindow(result.window);loadOverview();
 });
-$("#origin").addEventListener("change", (e) => {
-  state.origin = e.target.value;
-  renderSelected();
-  syncUrl();
-  loadFlights();
-  loadOverview();
+$('#flight-sort').addEventListener('change',event=>{state.flightSort=event.target.value;renderFlights();syncUrl();});
+document.addEventListener('click',async event=>{
+  const target=event.target.closest('button,a');if(!target)return;
+  if(target.hasAttribute('data-calendar-prev')||target.hasAttribute('data-calendar-next')){calendarMonth=monthShift(calendarMonth,target.hasAttribute('data-calendar-prev')?-1:1);renderCalendar();}
+  else if(target.dataset.calendarDay)openCustom(target,target.dataset.calendarDay);
+  else if(target.hasAttribute('data-custom-prev')||target.hasAttribute('data-custom-next')){customMonth=monthShift(customMonth,target.hasAttribute('data-custom-prev')?-1:1);renderCustomCalendar();}
+  else if(target.dataset.holidayMonth){const name=target.textContent;customMonth=target.dataset.holidayMonth;renderCustomCalendar();$$('[data-holiday-month]').find(b=>b.textContent===name)?.focus({preventScroll:true});}
+  else if(target.dataset.holidayRange){const [start,end]=target.dataset.holidayRange.split('_');$('#custom-start').value=start;$('#custom-end').value=end;customPickingEnd=false;updateCustomPreview();renderCustomCalendar();$(`[data-holiday-range="${start}_${end}"]`)?.focus({preventScroll:true});$('#custom-date-hint').textContent='선택한 연휴로 여행지를 찾아보세요.';}
+  else if(target.dataset.customDay){const day=target.dataset.customDay;if(!customPickingEnd||day<$('#custom-start').value){$('#custom-start').value=day;$('#custom-end').value='';customPickingEnd=true;$('#custom-date-hint').textContent='귀국편 출발일을 선택하세요.';}else{$('#custom-end').value=day;customPickingEnd=false;$('#custom-date-hint').textContent='선택한 날짜로 검색하세요.';}updateCustomPreview();if(customPickingEnd)$('#custom-error').textContent='';renderCustomCalendar();$(`[data-custom-day="${day}"]`)?.focus({preventScroll:true});}
+  else if(target.dataset.recommendWindow){selectWindow(state.allWindows.find(win=>win.id===target.dataset.recommendWindow),{flexible:true});}
+  else if(target.dataset.window){selectWindow(state.allWindows.find(win=>win.id===target.dataset.window),{flexible:true});}
+  else if(target.dataset.year){state.year=Number(target.dataset.year);state.month=0;state.windowVisible=4;state.selected=null;rebuildWindows();renderShell();syncUrl(true);loadOverview();$(`[data-year="${state.year}"]`)?.focus({preventScroll:true});}
+  else if(target.hasAttribute('data-more-windows')){const previous=state.windowVisible;state.windowVisible+=4;renderOverview();loadOverview(true,true);const next=visibleWindows()[previous];if(next)$(`[data-window="${CSS.escape(next.id)}"]`)?.focus({preventScroll:true});}
+  else if(target.hasAttribute('data-more-flights')){const previous=state.visibleCount;state.visibleCount+=12;renderFlights();$$('.destination-name')[previous]?.focus({preventScroll:true});}
+  else if(target.dataset.detail)openDetail(target.dataset.detail,true,target);
+  else if(target.dataset.saveOffer){const f=allOffers().find(offer=>offer.id===target.dataset.saveOffer);if(f)toggleSaved(flightItem(f));}
+  else if(target.hasAttribute('data-detail-save'))toggleSaved(flightItem(detailFlight));
+  else if(target.hasAttribute('data-save-schedule')){toggleSaved(scheduleItem());const dialog=$('#schedule-dialog');dialog.querySelector('[data-save-schedule]').innerHTML=`${icon('bookmark')}${isSaved(scheduleItem())?'일정 저장 취소':'일정 저장'}`;}
+  else if(target.hasAttribute('data-calendar'))downloadCalendar(state.selected);
+  else if(target.hasAttribute('data-detail-calendar'))downloadCalendar(makeWindow(detailFlight.start,detailFlight.recoveryEnd),detailFlight.city);
+  else if(target.hasAttribute('data-copy-link')){try{await navigator.clipboard.writeText(location.href);toast('여행 링크를 복사했어요.');}catch{toast('주소창의 링크를 복사해 주세요.');}}
+  else if(target.dataset.region){state.region=target.dataset.region;state.visibleCount=12;renderFlights();$$('#region-tabs button').forEach(button=>button.setAttribute('aria-pressed',String(button===target)));syncUrl();}
+  else if(target.dataset.windowSort){state.windowSort=target.dataset.windowSort;state.windowVisible=4;state.overviewPage=0;$('#sort-dialog').close();renderOverview();syncUrl();if(state.windowSort!=='price')loadOverview(true);}
+  else if(target.id==='settings-reset'){for(const[id,value]of Object.entries({budget:'0',region:'all','min-nights':'2','leave-limit':'2'}))$(`#${id}`).value=value;$('#return-buffer').checked=true;$('#exact-dates').checked=false;}
+  else if(target.hasAttribute('data-open-settings')||['settings-open','mobile-settings-open','results-settings-open'].includes(target.id))openSettings(target);
+  else if(target.hasAttribute('data-open-custom')||['custom-open','nav-calendar'].includes(target.id))openCustom(target);
+  else if(target.id==='overview-sort-open')openSort(target);
+  else if(target.id==='overview-retry')loadOverview(true);
+  else if(target.hasAttribute('data-retry-flights')||target.id==='refresh-flights')loadFlights(true);
+  else if(target.hasAttribute('data-flexible-dates')){state.exact=false;state.minNights=1;renderShell();syncUrl(true);loadFlights();}
+  else if(target.hasAttribute('data-relax-nights')){state.minNights=1;state.buffer=0;rebuildWindows();renderShell();syncUrl(true);if(state.stage==='results')loadFlights();loadOverview();toast('1박 이상·복귀 여유 없음으로 변경했어요. 한국 도착 시각은 항공편 선택에서 확인하세요.');}
+  else if(target.hasAttribute('data-reset-budget')){state.budget=0;renderShell();syncUrl();}
+  else if(target.hasAttribute('data-reset-flights')){state.budget=0;state.region='all';renderShell();syncUrl();}
+  else if(target.hasAttribute('data-direct-flights'))openDestination(target);
+  else if(target.hasAttribute('data-open-schedule'))openSchedule(target);
+  else if(target.hasAttribute('data-fare-info'))openDialog($('#fare-info-dialog'),target);
+  else if(target.classList.contains('dialog-close'))target.closest('dialog').close();
+  else if(target.id==='back-overview')backOverview();
+  else if(target.id==='nav-saved')switchView('saved');
+  else if(['nav-plan','nav-home'].includes(target.id)||target.hasAttribute('data-back-plan'))backOverview();
+  else if(target.hasAttribute('data-saved-open'))openSaved(Number(target.dataset.savedOpen));
+  else if(target.hasAttribute('data-saved-remove')){const index=Number(target.dataset.savedRemove),[removed]=state.saved.splice(index,1);persistSaved();renderSaved();renderFlights();toast('저장을 삭제했어요.',()=>restoreSaved(removed,index));}
 });
-$("#budget").addEventListener("change", (e) => {
-  state.budget = Number(e.target.value);
-  renderFlights();
-  syncUrl();
+document.addEventListener('keydown',event=>{
+  const cell=event.target.closest('[data-calendar-day],[data-custom-day]');if(!cell)return;
+  const moves={ArrowLeft:-1,ArrowRight:1,ArrowUp:-7,ArrowDown:7};if(!(event.key in moves))return;
+  event.preventDefault();const custom=cell.hasAttribute('data-custom-day'),date=addDays(custom?cell.dataset.customDay:cell.dataset.calendarDay,moves[event.key]);
+  if(date<today||date>'2027-12-31')return;
+  if(custom){customMonth=date.slice(0,7);renderCustomCalendar();}else{calendarMonth=date.slice(0,7);renderCalendar();}
+  const root=custom?$('#custom-calendar'):$('#month-calendar'),next=root.querySelector(`[data-${custom?'custom-day':'calendar-day'}="${date}"]`);
+  root.querySelectorAll('[role="gridcell"]').forEach(el=>el.tabIndex=-1);if(next){next.tabIndex=0;next.focus({preventScroll:true});}
 });
-$("#window-sort").addEventListener("change", (e) => {
-  state.windowSort = e.target.value;
-  renderWindows();
-  syncUrl();
+$('#window-list').addEventListener('pointerover',event=>{const button=event.target.closest('[data-window]');if(!button||button.contains(event.relatedTarget))return;const win=state.allWindows.find(w=>w.id===button.dataset.window);if(win){calendarMonth=win.start.slice(0,7);renderCalendar(win);}});
+$('#window-list').addEventListener('focusin',event=>{const win=state.allWindows.find(w=>w.id===event.target.closest('[data-window]')?.dataset.window);if(win){calendarMonth=win.start.slice(0,7);renderCalendar(win);}});
+$$('dialog').forEach(dialog=>{
+  dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();});
+  dialog.addEventListener('close',()=>{if(dialog.id==='destination-dialog'){disposeDestination?.();disposeDestination=null;}if(dialog.id==='detail-dialog'){disposeItinerary?.();disposeItinerary=null;if(suppressDetailClose){suppressDetailClose--;return;}detailFlight=null;if(!restoring){if(history.state?.detail)history.back();else syncUrl();}}const opener=dialogOpeners.get(dialog);if(opener?.isConnected&&(!document.querySelector('dialog[open]')||opener.closest('dialog[open]')))opener.focus({preventScroll:true});});
 });
-$("#flight-sort").addEventListener("change", (e) => {
-  state.flightSort = e.target.value;
-  renderFlights();
-  syncUrl();
-});
-$("#min-nights").addEventListener("change", (e) => {
-  state.minNights = Number(e.target.value);
-  syncUrl();
-  loadFlights();
-  loadOverview();
-});
-$("#return-buffer").addEventListener("change", (e) => {
-  state.buffer = e.target.checked ? 1 : 0;
-  syncUrl();
-  loadFlights();
-  loadOverview();
-});
-$("#exact-dates").addEventListener("change", (e) => {
-  state.exact = e.target.checked;
-  syncUrl();
-  loadFlights();
-});
-$("#deals-only").addEventListener("change", (e) => {
-  state.dealsOnly = e.target.checked;
-  renderFlights();
-  syncUrl();
-});
-for (const field of ["#custom-start", "#custom-end"])
-  $(field).addEventListener("input", updateCustomPreview);
-$("#custom-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const result = updateCustomPreview();
-  if (result.error) return;
-  state.selected = result.window;
-  state.year = Number(result.window.start.slice(0, 4));
-  state.month = 0;
-  state.allWindows = findWindows({
-    year: state.year,
-    maxLeave: state.maxLeave,
-    today,
-  });
-  $("#custom-dialog").close();
-  render();
-  loadFlights();
-  loadOverview();
-  $("#selected-window").scrollIntoView({ block: "start", behavior: "smooth" });
-});
-document.addEventListener("change", (event) => {
-  if (event.target.id === "history-partner") loadHistory(event.target.value);
-});
-$$("dialog").forEach((dialog) =>
-  dialog.addEventListener("click", (event) => {
-    if (event.target !== dialog) return;
-    const rect = dialog.getBoundingClientRect();
-    if (
-      event.clientX < rect.left ||
-      event.clientX > rect.right ||
-      event.clientY < rect.top ||
-      event.clientY > rect.bottom
-    )
-      dialog.close();
-  }),
-);
-$("#detail-dialog").addEventListener("close", () => {
-  if(suppressDetailClose > 0) { suppressDetailClose--; return; }
-  historyController?.abort();
-  detailFlight = null;
-  if(!restoringHistory) {
-    if(history.state?.detail) history.back();
-    else syncUrl();
-  }
-  detailReturnFocus?.focus?.({preventScroll:true});
-});
-window.addEventListener("storage", (event) => {
-  if (event.key !== STORAGE_KEY) return;
-  state.saved = readSaved();
-  $("#saved-count").textContent = state.saved.length;
-  if (state.view === "saved") renderSaved();
-  renderSelected();
-  renderFlights();
-});
-hydrateIcons();
-$("#saved-count").textContent = state.saved.length;
-state.allWindows = findWindows({
-  year: state.year,
-  maxLeave: state.maxLeave,
-  today,
-});
-if (
-  validDate(params.get("start")) &&
-  validDate(params.get("end")) &&
-  params.get("start") >= today &&
-  params.get("start") < params.get("end") &&
-  params.get("start").slice(0, 4) === String(state.year) &&
-  daysBetween(params.get("start"), params.get("end")) <= 16
-)
-  state.selected = makeWindow(params.get("start"), params.get("end"));
-else state.selected = visibleWindows()[0] || null;
-render();
-loadFlights();
-loadOverview();
-switchView(state.view, false);
-window.addEventListener("popstate",async()=>{
-  restoringHistory = true;
-  const wasDetailOpen = $("#detail-dialog").open;
-  const q = new URLSearchParams(location.search), previousQuery = `${state.origin}|${state.selected?.start}|${state.selected?.end}|${state.minNights}|${state.buffer}|${state.exact}`;
-  const number = (key,allowed,fallback)=>allowed.includes(Number(q.get(key))) ? Number(q.get(key)) : fallback;
-  state.year = number("year",[2026,2027],2027); state.maxLeave=number("leave",[0,1,2,3,4,5],2);
-  state.origin=ORIGINS[q.get("origin")] ? q.get("origin") : "ICN";
-  state.month=number("month",Array.from({length:13},(_,i)=>i),0);
-  state.minNights=number("minNights",[1,2,3,4,5,7],2); state.buffer=number("buffer",[0,1],1); state.exact=q.get("exact")==="1";
-  state.budget=number("budget",[0,200000,300000,400000,600000],0); state.region=["all","japan","asia","europe","beach"].includes(q.get("region")) ? q.get("region") : "all";
-  state.dealsOnly=q.get("deals")==="1"; state.windowSort=q.get("windowSort")||"longest"; state.flightSort=q.get("flightSort")||"price";
-  state.allWindows=findWindows({year:state.year,maxLeave:state.maxLeave,today});
-  state.selected=validDate(q.get("start"))&&validDate(q.get("end"))&&q.get("start")>=today&&q.get("start")<q.get("end")&&daysBetween(q.get("start"),q.get("end"))<=16 ? makeWindow(q.get("start"),q.get("end")) : visibleWindows()[0]||null;
-  if(!q.has("offer")&&$("#detail-dialog").open) { suppressDetailClose++; $("#detail-dialog").close(); detailFlight=null; }
-  render(); switchView(q.get("view")==="saved" ? "saved" : "plan",false);
+window.addEventListener('popstate',async()=>{
+  navigationSerial++;currentTransition?.skipTransition();quickDraft=null;restoring=true;const priorSelected=state.selected,priorQuery=`${state.origin}|${state.selected?.start}|${state.selected?.end}|${state.minNights}|${state.buffer}|${state.exact}`,oldOverview=`${state.origin}|${state.year}|${state.maxLeave}|${state.month}|${state.minNights}|${state.buffer}|${state.windowSort}`,next=stateFromUrl();
+  if(!new URLSearchParams(location.search).has('offer')&&$('#detail-dialog').open){suppressDetailClose++;$('#detail-dialog').close();detailFlight=null;}
+  Object.assign(state,next);rebuildWindows();renderShell();animateStage(state.view==='saved'?$('#saved-view'):state.stage==='results'?$('#trip-results'):$('#planner'));
+  if(state.stage==='overview'&&!state.selected)state.selected=priorSelected;
   const nextQuery=`${state.origin}|${state.selected?.start}|${state.selected?.end}|${state.minNights}|${state.buffer}|${state.exact}`;
-  if(previousQuery!==nextQuery) { await loadFlights(); loadOverview(); } else restoreDetailFromUrl();
-  restoringHistory=false;
-  if(!q.has("offer") && detailReturnSelector) $(detailReturnSelector)?.focus({preventScroll:true});
+  if(state.stage==='results'&&priorQuery!==nextQuery)await loadFlights();else if(state.stage==='results')restoreDetail();
+  if(overviewDirty||oldOverview!==`${state.origin}|${state.year}|${state.maxLeave}|${state.month}|${state.minNights}|${state.buffer}|${state.windowSort}`)loadOverview();
+  restoring=false;if(state.stage==='overview'){window.scrollTo({top:overviewScroll,behavior:'instant'});if(state.selected)$(`[data-window="${CSS.escape(state.selected.id)}"]`)?.focus({preventScroll:true});}else if(!new URLSearchParams(location.search).has('offer')&&detailReturnSelector)$(detailReturnSelector)?.focus({preventScroll:true});
 });
+window.addEventListener('storage',event=>{if(event.key!==STORAGE_KEY)return;state.saved=readSaved();savedCount();renderFlights();if(state.view==='saved')renderSaved();updateDetailSave();});
+function refreshToday(){
+  const nextToday=todayInSeoul();if(nextToday===today)return;
+  const priorYear=currentYear;today=nextToday;currentYear=[2026,2027].includes(Number(today.slice(0,4)))?Number(today.slice(0,4)):2027;
+  if(state.year===priorYear&&priorYear!==currentYear)state.year=currentYear;
+  if(state.selected?.start<today){if($('#detail-dialog').open){suppressDetailClose++;$('#detail-dialog').close();}flightController?.abort();flightSerial++;detailFlight=null;state.selected=null;state.stage='overview';state.flights=[];state.alternatives={};state.fareMeta=null;state.resolvedQuery='';state.searchState='ready';}
+  state.windowVisible=4;state.overviewPage=0;rebuildWindows();renderShell();syncUrl();loadOverview();
+  if(state.stage==='results'&&state.selected)loadFlights(true);
+  if($('#custom-dialog').open){$('#custom-start').min=today;$('#custom-end').min=today;updateCustomPreview();}
+}
+function scheduleTodayRefresh(){
+  clearTimeout(todayTimer);
+  const midnight=Date.parse(`${addDays(todayInSeoul(),1)}T00:00:00+09:00`);
+  todayTimer=setTimeout(()=>{refreshToday();scheduleTodayRefresh();},Math.max(1000,midnight-Date.now()+25));
+}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){refreshToday();scheduleTodayRefresh();}});
+window.addEventListener('pageshow',()=>{refreshToday();scheduleTodayRefresh();});
+hydrateIcons();
+document.documentElement.removeAttribute('data-theme');
+rebuildWindows();
+if(state.stage==='results'&&!state.selected)state.selected=visibleWindows()[0]||null;
+calendarMonth=state.selected?.start.slice(0,7)||`${state.year}-${String(state.month||(state.year===currentYear?Number(today.slice(5,7)):1)).padStart(2,'0')}`;
+renderShell();$('.search-toolbar').inert=false;$('.search-toolbar').setAttribute('aria-busy','false');syncUrl();loadOverview();if(state.stage==='results')loadFlights();
+scheduleTodayRefresh();

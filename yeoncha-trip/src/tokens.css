@@ -1,0 +1,127 @@
+:root {
+  color-scheme: light;
+
+  --brand: #2453e8;
+  --brand-strong: #183fc0;
+  --brand-soft: #edf3ff;
+  --brand-soft-border: #c9d8f3;
+  --boarding: #14367c;
+  --boarding-text: #ffffff;
+  --boarding-muted: #d4e2ff;
+  --accent: #d9f47a;
+  --accent-ink: #172033;
+  --surface: #ffffff;
+  --surface-page: #f5f7fb;
+  --surface-subtle: #f6f8fb;
+  --surface-pressed: #e8edf7;
+  --text: #172033;
+  --text-secondary: #556176;
+  --text-muted: #647085;
+  --text-inverse: #ffffff;
+  --border: #dee4ee;
+  --border-control: #8592a7;
+  --border-hover: #2453e8;
+  --success: #1b6b48;
+  --success-soft: #edf8f2;
+  --holiday-ink: #754b12;
+  --holiday-soft: #fff2dc;
+  --holiday-selected: #ffe1a9;
+  --holiday-border: #dbbc88;
+  --recommendation-surface: #eaf1fb;
+  --recommendation-ink: #415979;
+  --warning: #8b470e;
+  --warning-soft: #fff6e8;
+  --danger: #b52a35;
+  --danger-soft: #fff0f1;
+  --overlay: #17203380;
+  --focus: #2453e8;
+  --focus-width: 3px;
+  --focus-offset: 3px;
+
+  --font-family: 'Tteum UI', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 28px;
+  --text-4xl: 32px;
+  --weight-regular: 450;
+  --weight-medium: 550;
+  --weight-semibold: 650;
+  --weight-bold: 750;
+  --leading-tight: 1.25;
+  --leading-base: 1.5;
+  --leading-copy: 1.65;
+  --tracking-tight: -0.035em;
+  --tracking-base: -0.015em;
+
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --radius-control: 8px;
+  --radius-card: 16px;
+  --border-width: 1px;
+  --border-selected: 2px;
+  --shadow-raised: 0 8px 32px #183f8010;
+  --shadow-dialog: 0 20px 64px #17203329;
+  --shadow-sticky: 0 -4px 16px #1720330a;
+
+  --target-size: 44px;
+  --control-height: 48px;
+  --icon-size: 20px;
+  --icon-size-sm: 16px;
+  --icon-size-lg: 24px;
+  --icon-stroke: 1.8;
+  --content-max: 1240px;
+  --content-gutter: 16px;
+  --sheet-max: 560px;
+  --z-sticky: 20;
+  --z-dialog: 60;
+  --z-toast: 80;
+  --z-skip: 100;
+
+  --motion-fast: 120ms;
+  --motion-enter: 280ms;
+  --motion-dialog: 240ms;
+  --ease-enter: cubic-bezier(.2, .8, .2, 1);
+
+  --green: var(--brand);
+  --green-dark: var(--brand-strong);
+  --mint: var(--brand-soft);
+  --ink: var(--text);
+  --muted: var(--text-secondary);
+  --line: var(--border);
+  --paper: var(--surface-page);
+  --coral: var(--danger);
+  --radius: var(--radius-card);
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --text-secondary: #172033;
+    --text-muted: #172033;
+    --border: #647085;
+    --border-control: #172033;
+    --brand-soft-border: #183fc0;
+    --focus: #001d70;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-enter: 0ms;
+    --motion-dialog: 0ms;
+  }
+}
+

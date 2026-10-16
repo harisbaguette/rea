@@ -1,6 +1,43 @@
 name = "tteum-leave-trip"
+account_id = "5871253814d74116cd773041aa530e40"
 main = "dist/server/index.js"
 compatibility_date = "2026-10-01"
+workers_dev = false
+preview_urls = false
+
+[[routes]]
+pattern = "air.bluekite.co.kr"
+custom_domain = true
+
+[observability]
+enabled = true
 
 [build]
 command = "npm run build"
+watch_dir = ["src", "server", "worker", "public", "index.html"]
+
+[[durable_objects.bindings]]
+name = "ACCESS_GUARD"
+class_name = "AccessGuard"
+
+[[migrations]]
+tag = "private-access-v1"
+new_sqlite_classes = ["AccessGuard"]
+
+[[ratelimits]]
+name = "EDGE_LIMITER"
+namespace_id = "753401"
+simple = { limit = 180, period = 60 }
+
+[[ratelimits]]
+name = "LOGIN_LIMITER"
+namespace_id = "753402"
+simple = { limit = 12, period = 60 }
+
+[[ratelimits]]
+name = "HUMAN_LIMITER"
+namespace_id = "753403"
+simple = { limit = 10, period = 60 }
+
+[vars]
+TURNSTILE_SITE_KEY = "0x4AAAAAAFYFsU7JyIximKJL"

@@ -21,6 +21,7 @@ const mime = {
   ".svg": "image/svg+xml",
   ".webp": "image/webp",
   ".png": "image/png",
+  ".ico": "image/x-icon",
   ".json": "application/json",
   ".woff2": "font/woff2",
   ".txt": "text/plain; charset=utf-8",
@@ -51,7 +52,7 @@ const server = createServer(async (req, res) => {
     }
     let pathname = decodeURIComponent(url.pathname);
     if (pathname === "/") pathname = "/index.html";
-    else if (pathname.startsWith("/assets/")) pathname = `/public${pathname}`;
+    else if (pathname.startsWith("/assets/") || ["/manifest.webmanifest","/robots.txt","/about.html"].includes(pathname)) pathname = `/public${pathname}`;
     const file = resolve(root, `.${pathname}`);
     if (!file.startsWith(`${root}${sep}`) || !(await stat(file)).isFile())
       throw new Error("not found");

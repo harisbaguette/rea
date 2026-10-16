@@ -3,6 +3,7 @@ dist/
 test-results/
 playwright-report/
 .openai/local/
+.wrangler/
 .DS_Store
 research/*
 !research/rea-summary.json
@@ -10,3 +11,7 @@ artifacts/
 *.tar.gz
 *.log
 /.project-map/
+.env
+.env.*
+.dev.vars
+.dev.vars.*

@@ -1,0 +1,97 @@
+/* Product motion: confirm an action without delaying the next one. */
+.stage-enter:not([hidden]) {
+  animation: stage-arrive var(--motion-enter, 160ms) var(--ease-enter, ease-out);
+}
+
+dialog[open] {
+  animation: dialog-arrive var(--motion-dialog, 180ms) var(--ease-enter, ease-out);
+}
+
+dialog[open]::backdrop {
+  animation: backdrop-arrive var(--motion-fast, 120ms) ease-out;
+}
+
+.window-option,
+.offer-option,
+.nav-link,
+.seller-row,
+.icon-button {
+  transition-duration: var(--motion-fast, 120ms);
+  transition-property: background-color, border-color, color;
+  transition-timing-function: ease-out;
+}
+
+@keyframes stage-arrive {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dialog-arrive {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes backdrop-arrive {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-enter:not([hidden]),
+  dialog[open],
+  dialog[open]::backdrop {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .window-option,
+  .offer-option,
+  .nav-link,
+  .seller-row,
+  .icon-button {
+    transition: none;
+  }
+
+  html { scroll-behavior: auto; }
+}
+
+
+.departure-scene:before { content:''; position:absolute; inset:0; pointer-events:none; z-index:2; background:linear-gradient(110deg,transparent 30%,#ffffff24 48%,transparent 65%); transform:translateX(100%); animation:window-light 1100ms cubic-bezier(.2,.7,.3,1) both; }
+.is-searching .runway-visual .icon { animation:runway-flight 2100ms 1s ease-in-out infinite; }
+.loading-plane { animation:plane-float 2300ms 1s ease-in-out infinite; }
+.loading-cloud { animation:cloud-drift 3800ms 1s linear infinite; }.cloud-two { animation-duration:5200ms; animation-delay:1500ms; }
+.card-save.saved>.icon,[data-detail-save].saved>.icon { animation:save-stamp 300ms cubic-bezier(.2,.8,.2,1); }
+.toast:not([hidden]) { animation:toast-arrive 220ms var(--ease-enter); }
+.window-option,.schedule-pick,.offer-option { transition:transform 120ms ease,box-shadow 180ms ease,border-color 120ms ease,background-color 120ms ease; }
+.window-option:active,.schedule-pick:active,.offer-option:active { transform:translateY(1px) scale(.995); }
+@keyframes window-light { from { transform:translateX(-100%); } to { transform:translateX(100%); } }
+@keyframes runway-flight { 0% { transform:translateX(-35px) rotate(45deg); opacity:0; } 20%,75% { opacity:1; } 100% { transform:translateX(45px) rotate(45deg); opacity:0; } }
+@keyframes plane-float { 0%,100% { transform:translateY(3px) rotate(-4deg); } 50% { transform:translateY(-6px) rotate(3deg); } }
+@keyframes cloud-drift { from { transform:translateX(80px); opacity:0; } 20%,75% { opacity:1; } to { transform:translateX(-160px); opacity:0; } }
+@keyframes save-stamp { 0% { transform:scale(.7) rotate(-12deg); } 60% { transform:scale(1.2) rotate(5deg); } 100% { transform:scale(1) rotate(0); } }
+@keyframes toast-arrive { from { opacity:0; translate:0 9px; } to { opacity:1; translate:0 0; } }
+@media(prefers-reduced-motion:reduce) {
+ .departure-scene:before { display:none; }.runway-visual .icon,.loading-plane,.loading-cloud,.card-save.saved>.icon,[data-detail-save].saved>.icon,.toast:not([hidden]) { animation:none; }
+ .window-option,.schedule-pick,.offer-option { transition:none; }.window-option:active,.schedule-pick:active,.offer-option:active { transform:none; }
+}
+
+/* Keep navigation chrome anchored while content changes. Network work never delays the snapshot. */
+.app-header { view-transition-name:header; }
+.app-navigation { view-transition-name:navigation; }
+::view-transition-old(root) { animation:content-out 100ms ease-out both; }
+::view-transition-new(root) { animation:content-in 200ms ease-out both; }
+::view-transition-group(header),::view-transition-group(navigation) { animation-duration:0s; }
+.recommendation-mascot { animation:cat-arrive 460ms cubic-bezier(.2,.75,.3,1) both; }
+.schedule-pick:hover .action-arrow { transform:translateX(2px); }
+.action-arrow,.card-arrow { transition:transform 160ms ease-out,background 160ms ease-out; }
+.window-option:hover .card-arrow { background:var(--brand); color:#fff; }
+@keyframes content-out { to { opacity:0; transform:translateY(-4px); } }
+@keyframes content-in { from { opacity:0; transform:translateY(9px); } to { opacity:1; transform:translateY(0); } }
+@keyframes cat-arrive { from { opacity:0; transform:translateY(14px) rotate(-6deg); } 70% { transform:translateY(-2px) rotate(2deg); } to { opacity:1; transform:translateY(0) rotate(0); } }
+@keyframes search-pulse { 50% { opacity:.45; } }
+@media(prefers-reduced-motion:reduce) {
+ .recommendation-mascot,.search-submit[aria-busy=true]>.icon { animation:none; }
+ .action-arrow,.card-arrow { transition:none; }.schedule-pick:hover .action-arrow { transform:none; }
+ ::view-transition-old(root),::view-transition-new(root) { animation:none; }
+}

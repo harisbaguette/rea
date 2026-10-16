@@ -21,7 +21,7 @@ for (const query of [
   },
 ]) {
   const start = performance.now(),
-    data = await service.search(query);
+    data = await service.explore(query);
   assert.ok(
     data.flights.length > 0,
     "실제 공급처에서 항공권이 반환되어야 합니다.",
@@ -55,11 +55,15 @@ for (const query of [
         price: f.price,
         sellers: f.sellers,
       })),
+    alternatives: Object.values(data.alternatives).find(options=>options.length>1)?.map(f=>({code:f.code,start:f.start,end:f.end,nights:f.nights,price:f.price,leave:f.leave.length})) || [],
   });
   console.log(
     `실제 운임: ${query.origin} ${query.start}~${query.end}, ${data.flights.length}개 노선, ${Math.round(performance.now() - start)}ms`,
   );
 }
+const overview = await service.overview({origin:"ICN",year:2027,maxLeave:2,minNights:2,buffer:1,page:1});
+assert.equal(overview.windows.length,4);
+assert.ok(overview.windows.some(window=>window.status==="ready"&&window.cheapest?.price>0));
 const histories = await service.history({
   origin: "ICN",
   code: "PKX",
@@ -86,6 +90,7 @@ await writeFile(
   JSON.stringify(
     {
       results,
+      overview:overview.windows.map(window=>({id:window.id,status:window.status,cheapest:window.cheapest&&{price:window.cheapest.price,nights:window.cheapest.nights},longStay:window.longStay&&{price:window.longStay.price,nights:window.longStay.nights}})),
       history: {
         count: histories.items.length,
         min: histories.min,

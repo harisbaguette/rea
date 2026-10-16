@@ -1,0 +1,377 @@
+{
+  "review": "디자인 편집장 실물 심사",
+  "date": "2026-10-15",
+  "verdict": "DESIGN_CLEARED",
+  "scope": {
+    "sourceFiles": 3,
+    "baselineViewports": [
+      390,
+      768,
+      1440
+    ],
+    "finalViewports": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "acceptanceCriteria": 16,
+    "humanUsabilityStudy": false
+  },
+  "baseline": {
+    "lint": {
+      "errors": 0,
+      "warnings": 27
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "firstPriceTop": 713,
+      "firstDestinationTop": 1464.109375,
+      "sellerTop": 852.25
+    },
+    "evidence": [
+      "artifacts/design-v5-quality-baseline.json",
+      "artifacts/design-v5-quality-baseline-390.png",
+      "artifacts/design-v5-quality-baseline-768.png",
+      "artifacts/design-v5-quality-baseline-1440.png",
+      "artifacts/design-v5-quality-baseline-detail-390.png",
+      "artifacts/design-v5-quality-baseline-detail-768.png",
+      "artifacts/design-v5-quality-baseline-detail-1440.png"
+    ]
+  },
+  "findings": [
+    {
+      "id": "DQ01",
+      "severity": "major",
+      "location": "초기 연도·연휴 정렬",
+      "problem": "2026-10-15 방문에서 2027년 추석이 기본 선택된다.",
+      "remedy": "Asia/Seoul의 현재 연도와 다가오는 날짜를 기본으로 사용한다.",
+      "status": "resolved"
+    },
+    {
+      "id": "DQ02",
+      "severity": "major",
+      "location": "390px 초기 화면→목적지",
+      "problem": "첫 목적지가 y=1464px에 놓인다. 날짜 선택과 결과 사이에 중복 제목과 요약이 쌓인다.",
+      "remedy": "날짜 선택과 목적지 결과를 단계로 분리하고 선택 후 결과의 시작점으로 이동한다.",
+      "status": "resolved"
+    },
+    {
+      "id": "DQ03",
+      "severity": "major",
+      "location": "390px 초기 가격",
+      "problem": "첫 실제 가격이 y=713px에 놓여 홍보·입력·제목보다 늦게 읽힌다.",
+      "remedy": "상단 문구를 줄이고 일정과 실제 운임을 한 카드의 주 정보로 둔다.",
+      "status": "resolved"
+    },
+    {
+      "id": "DQ04",
+      "severity": "major",
+      "location": "연차·일정·판매처·귀국 안내",
+      "problem": "결정에 필요한 실제 정보가 11~13px이다.",
+      "remedy": "본문 16px, 보조 라벨 14px 이상으로 정리하고 행간을 1.5 이상으로 적용한다.",
+      "standard": "WCAG 1.4.4 및 프로젝트 본문 16px 기준",
+      "status": "resolved"
+    },
+    {
+      "id": "DQ05",
+      "severity": "major",
+      "location": "390px 상세 판매처",
+      "problem": "첫 판매처 y=852px. 사진·중복 요약·주의 문구가 행동을 창 밖으로 밀어낸다.",
+      "remedy": "가격·실제 판매처 연결을 먼저 배치하고 미확인 운항 조건은 행동 근처의 한 요약으로 합친다.",
+      "status": "resolved"
+    },
+    {
+      "id": "DQ06",
+      "severity": "major",
+      "location": "카드·상세 가격 이력",
+      "problem": "과거 노선 평균과 가격 이력이 현재 일정에서 갈 수 있는 곳을 고르는 과업을 방해한다.",
+      "remedy": "현재 일정 비교에서 과거 이력과 노선 평균 설명을 제거한다.",
+      "status": "resolved"
+    },
+    {
+      "id": "DQ07",
+      "severity": "major",
+      "location": "390px 연휴 목록",
+      "problem": "가로 카드 다음 연휴의 가격이 잘려 같은 화면에서 비교할 수 없다.",
+      "remedy": "초기 연휴를 세로 두 개씩 제공하고 추가 목록은 명확한 더 보기로 연결한다.",
+      "status": "resolved"
+    },
+    {
+      "id": "DQ08",
+      "severity": "minor",
+      "location": "390px 지역탭·다시 조회",
+      "problem": "지역탭 폭38px, 다시 조회 높이40px이다.",
+      "remedy": "모든 행동 영역을 44×44px 이상으로 확보한다.",
+      "standard": "프로젝트 44px 기준; WCAG 2.5.8의 24px보다 강화된 기준",
+      "status": "resolved"
+    },
+    {
+      "id": "DQ09",
+      "severity": "major",
+      "location": "320×568 초기 가격·고정 하단 행동",
+      "problem": "첫 가격 y506~539와 하단 고정바 top507이 겹쳤다.",
+      "remedy": "가격을 비행 날짜보다 먼저 배치하고 상단 제목과 카드명을 축약한다.",
+      "status": "resolved",
+      "observed": "최초 가격 y427.19~459.69, 고정바 top507로 가림 없음."
+    },
+    {
+      "id": "DQ10",
+      "severity": "minor",
+      "location": ".destination-name",
+      "problem": "짧은 도시명 버튼 폭37.03px.",
+      "remedy": "min-width:44px.",
+      "status": "resolved",
+      "observed": "4개 뷰포트의 보이는 행동 영역 44×44px 이상."
+    },
+    {
+      "id": "DQ11",
+      "severity": "minor",
+      "location": "도움말 Catchfrog 링크",
+      "problem": "인라인 링크 높이19px.",
+      "remedy": "inline-flex 및 min-height:44px.",
+      "status": "resolved",
+      "observed": "도움말 실물·타깃 전수검사 통과."
+    },
+    {
+      "id": "DQ12",
+      "severity": "major",
+      "location": ".result-skeleton",
+      "problem": "generic div의 aria-label이 aria-prohibited-attr를 일으켰다.",
+      "remedy": "장식 skeleton aria-hidden=true, 실제 진행은 fare-status/status와 flight-grid/aria-busy로 전달한다.",
+      "standard": "WCAG 4.1.2",
+      "status": "resolved",
+      "observed": "운임 응답을 보류한 안정 로딩 상태 axe 위반0, busy=true, 응답 후 결과 복구."
+    },
+    {
+      "id": "DQ13",
+      "severity": "minor",
+      "location": ".destination-name 및 #detail-title",
+      "problem": "64자 무공백 도시명이 8~9줄로 늘어나 상세 고정 헤더가 대부분의 화면을 차지했다.",
+      "remedy": "두 줄 clamp와 overflow-wrap:anywhere. 전체 DOM과 aria-label은 보존한다.",
+      "status": "resolved",
+      "observed": "320/390px에서 이름2줄, 페이지·카드·상세·판매처 넘침0, 64자 DOM 보존, 상세 판매처 y403."
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "A01",
+      "name": "현재 서울 날짜·연도·다가오는 일정 기본값",
+      "status": "verified"
+    },
+    {
+      "id": "A02",
+      "name": "지난 추천·직접 날짜·오래된 저장 복구",
+      "status": "verified"
+    },
+    {
+      "id": "A03",
+      "name": "모바일 초기 실제 가격과 결정 위계",
+      "status": "verified"
+    },
+    {
+      "id": "A04",
+      "name": "날짜 선택→목적지→돌아가기",
+      "status": "verified"
+    },
+    {
+      "id": "A05",
+      "name": "싸게·길게 가격·숙박·날짜·연차 비교",
+      "status": "verified"
+    },
+    {
+      "id": "A06",
+      "name": "상세 가격·판매처 행동 우선",
+      "status": "verified"
+    },
+    {
+      "id": "A07",
+      "name": "과거 이력·중복 문구 제거",
+      "status": "verified"
+    },
+    {
+      "id": "A08",
+      "name": "로고·파비콘 축소 렌더",
+      "status": "verified"
+    },
+    {
+      "id": "A09",
+      "name": "실제 에셋·토큰·아이콘 일관성",
+      "status": "verified"
+    },
+    {
+      "id": "A10",
+      "name": "320·390·768·1440px 재배치",
+      "status": "verified"
+    },
+    {
+      "id": "A11",
+      "name": "200% 확대 정보·행동 보존",
+      "status": "verified"
+    },
+    {
+      "id": "A12",
+      "name": "44px 행동·16px 본문·4.5 대비",
+      "status": "verified"
+    },
+    {
+      "id": "A13",
+      "name": "키보드·시트 포커스·닫기·복귀",
+      "status": "verified"
+    },
+    {
+      "id": "A14",
+      "name": "저장·재진입·삭제",
+      "status": "verified"
+    },
+    {
+      "id": "A15",
+      "name": "대기·빈 상태·실패와 조건 보존·복구",
+      "status": "verified"
+    },
+    {
+      "id": "A16",
+      "name": "상세 공유·뒤로·앞으로·재진입",
+      "status": "verified"
+    }
+  ],
+  "preserve": [
+    "같은 목적지의 실제 최저가와 긴 체류의 가격 차이",
+    "자체 제공 여행 사진과 Pretendard·Lucide"
+  ],
+  "limits": [
+    "검수는 실제 headless Chromium 조작과 렌더에 기반하며 실제 사람을 대상으로 한 사용성 실험이 아니다.",
+    "운임은 날짜·상태를 통제한 응답으로 UI를 검증했다. 실제 운임·판매처 데이터의 정확성·운영/원격배포 검증은 부모의 별도 검사 대상이다.",
+    "일반 공개 접근과 같은 항공편의 정확한 운항시각은 공급자 의존성이 남아 있으며 이 디자인 승인은 상용서비스 전체 완료 판정이 아니다.",
+    "35개 무영향 상태의 유효 증거를 재사용하고 로딩ARIA와 긴이름 수정의 영향 상태를 다시 확인했다."
+  ],
+  "coverage": {
+    "acceptance": "16/16",
+    "findingsResolved": "13/13",
+    "screens": "36/36",
+    "viewports": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "zoom": "1440×844의200%확대에상당하는720×422CSS뷰포트/DPR2",
+    "dialogs": 7,
+    "resources": "16/16",
+    "sourceFiles": 5
+  },
+  "final": {
+    "lint": {
+      "errors": 0,
+      "warnings": 18,
+      "files": 5,
+      "warningAssessment": "메타 theme-color의 고정 브랜드값, 12px 숫자 배지·요일·수집시각·보조 상태/단위, 모서리 규칙이다. 읽어야 할 본문·실제 여행 날짜·연차·오류/복구는16px이며 보조 라벨은12~14px이다."
+    },
+    "sourceHashes": {
+      "index.html": "8a0b717e8ab9ea665e507781e78d49ae6d4f42b644b607ef85047d4cdb2a5d8a",
+      "src/app.js": "c6b19917cff179763c91b4584b4aef606e04b2e0f3ccadb5405e96a27f7d932e",
+      "src/styles.css": "14a0ce851f41dab805e134c8117d8403f7d3ec3b1b2ba46caf95883d39850dc7",
+      "src/tokens.css": "5268e15107f13bf38d87f91073857ae428643f6441dd316dea0af1b40f6bd68e",
+      "src/motion.css": "2f1bf4fd8d8df318b658e72479b719887cf2cb84338fff1a0bcd6445969fac31"
+    },
+    "mobile": {
+      "width320": {
+        "firstPriceY": 427.1875,
+        "firstPriceBottom": 459.6875,
+        "mobileBarTop": 507,
+        "firstSellerY": 364
+      },
+      "width390": {
+        "firstPriceY": 431.390625,
+        "firstSellerY": 490
+      }
+    },
+    "pageOverflow": 0,
+    "dialogOverflow": 0,
+    "undersizedVisibleTargets": 0,
+    "pageErrors": 0,
+    "networkErrors": 0,
+    "historyRequests": 0,
+    "axe": {
+      "originalScreens": 36,
+      "unchangedScreensReused": 35,
+      "loadingRechecked": true,
+      "latestViolations": 0,
+      "notes": "원본 전수 검사에서 로딩ARIA1건을 발견해 수정했다. 최종 로딩은 단계 등장 애니메이션 종료 뒤 응답gate를 유지하며 재검사했다. 전환 중 잠깐의 opacity에 따른 첫 후속 대비 판정은 안정 상태 재검사0과 구별해 후속 원문에 보존했다."
+    },
+    "actions": [
+      "현재연도·가까운미래 기본값",
+      "과거URL의 운임 요청 거부",
+      "지난저장목록 기본접힘",
+      "날짜시트 지난날짜 거부·키보드·Escape",
+      "연휴선택→결과·복귀",
+      "싸게·길게 숙박/연차/가격차",
+      "판매처 행동 우선",
+      "저장→재진입→삭제",
+      "상세 공유→뒤로→앞으로→새로고침",
+      "대기·없음·실패 재시도 입력유지·부분실패 정상운임유지",
+      "64자도시·긴판매처·8자리금액",
+      "200%상당 확대 후 내부스크롤로 판매처 접근"
+    ],
+    "evidence": [
+      "artifacts/design-v5-quality-final.json",
+      "artifacts/design-v5-quality-followup.json",
+      "artifacts/design-v5-quality-resource-check.json",
+      "artifacts/design-v5-quality-brand-inventory.json",
+      "artifacts/design-v5-quality-contact-1.png",
+      "artifacts/design-v5-quality-contact-2.png",
+      "artifacts/design-v5-quality-contact-3.png",
+      "artifacts/design-v5-quality-stress-320-results.png",
+      "artifacts/design-v5-quality-stress-320-detail.png",
+      "artifacts/design-v5-quality-stress-390-results.png",
+      "artifacts/design-v5-quality-stress-390-detail.png",
+      "artifacts/design-v5-quality-close-full.png",
+      "artifacts/design-v5-quality-close-button.png",
+      "artifacts/design-v5-quality-final-320-overview.png",
+      "artifacts/design-v5-quality-final-320-results.png",
+      "artifacts/design-v5-quality-final-320-detail.png",
+      "artifacts/design-v5-quality-final-320-saved.png",
+      "artifacts/design-v5-quality-final-320-custom.png",
+      "artifacts/design-v5-quality-final-390-overview.png",
+      "artifacts/design-v5-quality-final-390-results.png",
+      "artifacts/design-v5-quality-final-390-detail.png",
+      "artifacts/design-v5-quality-final-390-saved.png",
+      "artifacts/design-v5-quality-final-390-custom.png",
+      "artifacts/design-v5-quality-final-768-overview.png",
+      "artifacts/design-v5-quality-final-768-results.png",
+      "artifacts/design-v5-quality-final-768-detail.png",
+      "artifacts/design-v5-quality-final-768-saved.png",
+      "artifacts/design-v5-quality-final-768-custom.png",
+      "artifacts/design-v5-quality-final-1440-overview.png",
+      "artifacts/design-v5-quality-final-1440-results.png",
+      "artifacts/design-v5-quality-final-1440-detail.png",
+      "artifacts/design-v5-quality-final-1440-saved.png",
+      "artifacts/design-v5-quality-final-1440-custom.png",
+      "artifacts/design-v5-quality-final-390-settings.png",
+      "artifacts/design-v5-quality-final-390-sort.png",
+      "artifacts/design-v5-quality-final-390-help.png",
+      "artifacts/design-v5-quality-final-390-fare.png",
+      "artifacts/design-v5-quality-final-390-comparison.png",
+      "artifacts/design-v5-quality-final-390-schedule.png",
+      "artifacts/design-v5-quality-state-loading.png",
+      "artifacts/design-v5-quality-state-error.png",
+      "artifacts/design-v5-quality-state-empty.png",
+      "artifacts/design-v5-quality-state-partial.png",
+      "artifacts/design-v5-quality-state-past-saved.png",
+      "artifacts/design-v5-quality-state-long-name.png",
+      "artifacts/design-v5-quality-state-long-seller.png",
+      "artifacts/design-v5-quality-zoom200-overview.png",
+      "artifacts/design-v5-quality-zoom200-detail.png",
+      "artifacts/design-v5-quality-zoom200-seller.png"
+    ]
+  },
+  "perspectives": {
+    "interaction": "승인: 날짜→실제운임·목적지→판매처의 단계와 복귀가 분명하다.",
+    "responsive": "승인:320/390/768/1440px 및200%상당에서 페이지·모달 가로넘침없음.",
+    "visual": "승인:코발트·잉크·흰표면과 자체 로고가 일관되고 날짜·가격의 읽는순서가 유지된다. 객관적인미적점수나경쟁사동급주장은하지않는다.",
+    "accessibility": "승인:기계검사·보이는타깃·키보드·상태별axe에서확인한범위. 전체WCAG준수인증이나실제스크린리더사용자시험은아니다.",
+    "robustness": "승인:빈/실패/부분실패·긴이름·큰금액·저장/상세재진입에서복구가능.",
+    "copy": "승인:과거가격/노선평균/홍보문구를뺐고가격·날짜·연차·미확인도착조건을남겼다."
+  }
+}

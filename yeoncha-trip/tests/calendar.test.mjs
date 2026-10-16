@@ -16,9 +16,9 @@ test('추석 앞뒤에 연차 2일을 쓰면 9일 연휴를 찾는다', () => {
   assert.equal(best.days, 9);
   assert.deepEqual(best.leave, ['2027-09-13', '2027-09-17']);
 });
-test('연차 없이 떠날 수 있는 3일 이상 연휴 10개를 찾는다', () => {
+test('연차 없이 떠날 수 있는 주말과 공휴일을 함께 찾는다', () => {
   const windows = findWindows({ year: 2027, maxLeave: 0, today: '2026-10-14' });
-  assert.equal(windows.length, 10);
+  assert.ok(windows.length >= 50);
   assert.ok(windows.every((window) => window.leave.length === 0));
   assert.equal(windows[0].days, 4);
 });
@@ -30,11 +30,18 @@ test('모든 추천은 연차 한도와 현재 날짜, 시작 연도를 지킨�
       assert.equal(Number(window.start.slice(0, 4)), year);
       assert.ok(Number(window.end.slice(0, 4)) <= year + 1);
       assert.ok(window.leave.length <= maxLeave);
-      assert.ok(window.days >= 3 && window.days <= 16);
+      assert.ok(window.days >= 2 && window.days <= 16);
+      assert.ok(rangeDays(window.start,window.end).some(day=>day.off));
       assert.deepEqual(window.leave, requiredLeave(window.start, window.end));
     }
   }
   assert.deepEqual(findWindows({ year: 2026, maxLeave: 2, today: '2027-01-01' }), []);
+});
+test('오늘 이후 각 주말을 버리지 않고 0연차 1박 여행의 기간으로 제안한다', () => {
+  const windows=findWindows({year:2026,maxLeave:0,today:'2026-10-15'});
+  for(const start of ['2026-10-17','2026-10-24','2026-11-07','2026-11-14'])
+    assert.ok(windows.some(w=>w.start===start && w.days===2 && w.leave.length===0),start);
+  assert.ok(windows.every(w=>w.start>='2026-10-15'));
 });
 test('연말연시 연휴는 해가 바뀌어도 주말·신정을 연결한다', () => {
   const windows=findWindows({year:2026,maxLeave:1,today:'2026-10-14'});

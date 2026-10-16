@@ -54,7 +54,7 @@ export function makeWindow(start, end) {
 }
 
 // Enumerate full contiguous travel windows. Every weekday without a holiday costs one leave day.
-export function findWindows({ year, maxLeave = 2, today = todayInSeoul(), minDays = 3 }) {
+export function findWindows({ year, maxLeave = 2, today = todayInSeoul(), minDays = 2 }) {
   if (!HOLIDAYS[year]) return [];
   const first = `${year}-01-01` > today ? `${year}-01-01` : today;
   const lastStart = `${year}-12-31`;
@@ -65,7 +65,7 @@ export function findWindows({ year, maxLeave = 2, today = todayInSeoul(), minDay
     for (let end = start, length = 1; end <= last && length <= 16; end = addDays(end, 1), length++) {
       if (!dayInfo(end).off) leave++;
       if (leave > maxLeave) break;
-      if (length >= minDays) candidates.push(makeWindow(start, end));
+      if (length >= minDays && length > leave) candidates.push(makeWindow(start, end));
     }
   }
   candidates.sort((a, b) => b.days - a.days || a.leave.length - b.leave.length || a.start.localeCompare(b.start));
@@ -79,14 +79,7 @@ export function findWindows({ year, maxLeave = 2, today = todayInSeoul(), minDay
     });
     if (!overlaps) selected.push(candidate);
   }
-  const holidayWindows = selected.filter((window) => rangeDays(window.start, window.end).some((day) => day.holiday));
-  // A holiday-free month gets one useful weekend option, rather than a long list of equivalent weeks.
-  for (let month = 1; month <= 12; month++) {
-    if (holidayWindows.some((window) => rangeDays(window.start, window.end).some((day) => Number(day.date.slice(5, 7)) === month))) continue;
-    const weekendWindow = selected.find((window) => window.month === month && !rangeDays(window.start, window.end).some((day) => day.holiday));
-    if (weekendWindow) holidayWindows.push(weekendWindow);
-  }
-  return holidayWindows.sort((a, b) => b.days - a.days || a.leave.length - b.leave.length || a.start.localeCompare(b.start));
+  return selected.sort((a, b) => b.days - a.days || a.leave.length - b.leave.length || a.start.localeCompare(b.start));
 }
 
 function icsEscape(value) { return value.replaceAll('\\', '\\\\').replaceAll('\n', '\\n').replaceAll(',', '\\,').replaceAll(';', '\\;'); }

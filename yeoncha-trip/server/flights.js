@@ -4,7 +4,6 @@ import {
   requiredLeave,
   todayInSeoul,
   findWindows,
-  rangeDays,
 } from "../src/calendar.js";
 
 export class FlightError extends Error {
@@ -187,44 +186,70 @@ export function normalizeFlight(item, stats = {}, metadata = {}, query) {
     bestSeason: item.is_best_season === true,
     beach: beachCodes.has(item.arr),
     scheduleVerified: false,
+    priceVerified: false,
+    priceKind: "collected",
+    bookingKind: "route-date-search",
   };
 }
 
+export function createFlightState() {
+  // Only settled JSON and numbers may outlive a Workers request context.
+  return { cache: new Map(), leases: new Map(), waiting: new Map(), nextRequestAt: 0, cooldownUntil: 0, sequence: 0 };
+}
 export function createFlightService({
   fetcher = globalThis.fetch,
   now = () => Date.now(),
   timeoutMs = 12000,
   cacheTtl = 120000,
   requestSpacingMs = 500,
+  state = createFlightState(),
+  signal,
 } = {}) {
-  const cache = new Map(),
-    pending = new Map();
-  let activeRequests = 0;
-  let nextRequestAt = 0, cooldownUntil = 0;
-  const requestQueue = [];
+  const cache = state.cache, pending = new Map();
+  const canceled = () => new FlightError(499, "REQUEST_CANCELLED", "조회가 취소되었습니다.");
+  const checkCanceled = () => { if (signal?.aborted) throw canceled(); };
+  function pause(ms) {
+    checkCanceled();
+    return new Promise((resolve, reject) => {
+      const finish = () => { signal?.removeEventListener("abort", abort); resolve(); };
+      const timer = setTimeout(finish, ms);
+      const abort = () => { clearTimeout(timer); signal.removeEventListener("abort", abort); reject(canceled()); };
+      signal?.addEventListener("abort", abort, { once: true });
+    });
+  }
   async function limited(loader) {
-    if (activeRequests >= 2) {
-      if (requestQueue.length >= 24)
-        throw new FlightError(503, "SEARCH_BUSY", "조회가 몰렸어요. 잠시 후 다시 시도해 주세요.", 10);
-      await new Promise(resolve => requestQueue.push(resolve));
-    } else activeRequests++;
+    const token = ++state.sequence;
+    const lifetime = timeoutMs + 1000;
     try {
-      if (now() < cooldownUntil)
-        throw new FlightError(429,"UPSTREAM_LIMIT","조회가 잠시 몰렸어요. 잠시 후 다시 시도해 주세요.",Math.ceil((cooldownUntil-now())/1000));
-      const waitMs = Math.max(0,nextRequestAt-now());
-      nextRequestAt = Math.max(now(),nextRequestAt) + requestSpacingMs;
-      if (waitMs) await new Promise(resolve=>setTimeout(resolve,waitMs));
-      if (now() < cooldownUntil)
-        throw new FlightError(429,"UPSTREAM_LIMIT","조회가 잠시 몰렸어요. 잠시 후 다시 시도해 주세요.",Math.ceil((cooldownUntil-now())/1000));
-      return await loader();
+      while (true) {
+        checkCanceled();
+        const current = now();
+        for (const map of [state.leases, state.waiting])
+          for (const [key, expiresAt] of map) if (expiresAt <= current) map.delete(key);
+        if (current < state.cooldownUntil)
+          throw new FlightError(429,"UPSTREAM_LIMIT","조회가 잠시 몰렸어요. 잠시 후 다시 시도해 주세요.",Math.ceil((state.cooldownUntil-current)/1000));
+        if (state.leases.size < 2 && current >= state.nextRequestAt) {
+          state.waiting.delete(token);
+          // Canceled invocations may never execute finally. Expiring numeric
+          // leases cannot leave another invocation awaiting their Promise.
+          state.leases.set(token, current + lifetime);
+          state.nextRequestAt = current + requestSpacingMs;
+          return await loader();
+        }
+        if (!state.waiting.has(token) && state.waiting.size >= 24)
+          throw new FlightError(503, "SEARCH_BUSY", "조회가 몰렸어요. 잠시 후 다시 시도해 주세요.", 10);
+        state.waiting.set(token, current + lifetime);
+        // This timer belongs to the current request, never to another request.
+        await pause(Math.max(1, Math.min(50, state.nextRequestAt > current ? state.nextRequestAt-current : 50)));
+      }
     }
     finally {
-      const next = requestQueue.shift();
-      if (next) next();
-      else activeRequests--;
+      state.leases.delete(token);
+      state.waiting.delete(token);
     }
   }
   async function cached(key, ttl, loader) {
+    checkCanceled();
     const old = cache.get(key),
       current = now();
     if (old && current - old.at < ttl) return { ...old.data, stale: false };
@@ -232,10 +257,12 @@ export function createFlightService({
     const promise = (async () => {
       try {
         const data = await loader();
+        checkCanceled();
         if (cache.size >= 120) cache.delete(cache.keys().next().value);
         cache.set(key, { at: now(), data });
         return { ...data, stale: false };
       } catch (error) {
+        checkCanceled();
         if (old && current - old.at < 1800000)
           return {
             ...old.data,
@@ -266,9 +293,11 @@ export function createFlightService({
         },
         ...(body ? { body: JSON.stringify(body) } : {}),
         redirect: "manual",
-        signal: AbortSignal.timeout(timeoutMs),
+        signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(timeoutMs)]) : AbortSignal.timeout(timeoutMs),
       });
     } catch (error) {
+      checkCanceled();
+      if (error instanceof FlightError) throw error;
       if (error?.name !== "AbortError" && error?.name !== "TimeoutError")
         throw new FlightError(
           502,
@@ -282,12 +311,14 @@ export function createFlightService({
       );
     }
     if (response.status === 429) {
-      const retryAfter = Math.max(1,Math.min(120,Number(response.headers.get("retry-after")) || 60));
-      cooldownUntil = now()+retryAfter*1000;
+      const value = response.headers.get("retry-after")?.trim() || "";
+      const seconds = /^\d+$/.test(value) ? Number(value) : Math.ceil((Date.parse(value)-now())/1000);
+      const retryAfter = Number.isSafeInteger(seconds) && seconds >= 0 ? Math.max(1,seconds) : 60;
+      state.cooldownUntil = Math.max(state.cooldownUntil,now()+retryAfter*1000);
       throw new FlightError(
         429,
         "UPSTREAM_LIMIT",
-        "조회가 잠시 몰렸어요. 1분 후 다시 시도해 주세요.",
+        `조회가 잠시 몰렸어요. ${retryAfter >= 60 ? `${Math.ceil(retryAfter/60)}분` : `${retryAfter}초`} 후 다시 시도해 주세요.`,
         retryAfter,
       );
     }
@@ -508,13 +539,16 @@ export function createFlightService({
   }
   async function overview(input = {}) {
     const origin = input.origin || "ICN";
-    const year = Number(input.year ?? 2027), maxLeave = Number(input.maxLeave ?? 2);
+    const today = todayInSeoul(new Date(now()));
+    const year = Number(input.year ?? today.slice(0,4)), maxLeave = Number(input.maxLeave ?? 2);
     const minNights = Number(input.minNights ?? 2), page = Number(input.page ?? 1), month = Number(input.month ?? 0);
+    const sort = input.sort ?? "earliest";
     if (!ORIGINS.has(origin)) throw new FlightError(400,"INVALID_ORIGIN","지원하는 출발 공항을 선택해 주세요.");
-    if (![2026,2027].includes(year) || !Number.isInteger(maxLeave) || maxLeave < 0 || maxLeave > 5 || !Number.isInteger(page) || page < 1 || page > 30 || !Number.isInteger(month) || month < 0 || month > 12 || !Number.isInteger(minNights) || minNights < 1 || minNights > 15 || ![undefined,"0","1",0,1].includes(input.buffer))
+    if (![2026,2027].includes(year) || !Number.isInteger(maxLeave) || maxLeave < 0 || maxLeave > 5 || !Number.isInteger(page) || page < 1 || page > 30 || !Number.isInteger(month) || month < 0 || month > 12 || !Number.isInteger(minNights) || minNights < 1 || minNights > 15 || ![undefined,"0","1",0,1].includes(input.buffer) || !["earliest","longest","leave","efficiency"].includes(sort))
       throw new FlightError(400,"INVALID_OVERVIEW","연휴 비교 조건이 올바르지 않아요.");
     const buffer = input.buffer === "0" || input.buffer === 0 ? 0 : 1;
-    const windows = findWindows({year,maxLeave,today:todayInSeoul(new Date(now()))}).filter(w=>!month || rangeDays(w.start,w.end).some(d=>Number(d.date.slice(0,4))===year && Number(d.date.slice(5,7))===month));
+    const windows = findWindows({year,maxLeave,today,minDays:minNights+buffer+1}).filter(w=>!month || w.month===month);
+    windows.sort((a,b)=>(sort==="longest" ? b.days-a.days : sort==="leave" ? a.leave.length-b.leave.length : sort==="efficiency" ? b.days/Math.max(1,b.leave.length)-a.days/Math.max(1,a.leave.length) : 0) || a.start.localeCompare(b.start));
     const pageSize = 4, offset=(page-1)*pageSize;
     const summaries = await Promise.all(windows.slice(offset,offset+pageSize).map(async window=>{
       try {
@@ -524,7 +558,7 @@ export function createFlightService({
         return {...window,status:"error",cheapest:null,longStay:null,destinationsCount:0,updatedAt:null,stale:false,complete:false,error:{code:error instanceof FlightError ? error.code : "UPSTREAM_UNAVAILABLE",message:error instanceof FlightError ? error.message : "이 연휴는 다시 조회해 주세요."}};
       }
     }));
-    return {origin,year,maxLeave,minNights,buffer,page,pageSize,totalWindows:windows.length,hasNext:offset+pageSize<windows.length,windows:summaries};
+    return {origin,year,today,sort,maxLeave,minNights,buffer,page,pageSize,totalWindows:windows.length,hasNext:offset+pageSize<windows.length,windows:summaries};
   }
   function validateRoute(input) {
     if (
@@ -609,33 +643,15 @@ export function createFlightService({
           screen_name: "flight_detail",
           button_name: "seller_link",
         };
-        let data = await upstream("/affiliates/links/flights", payload);
-        if (typeof data.url !== "string" || !data.url.trim())
-          data = await upstream("/affiliates/links/flights", payload);
-        let url;
-        try {
-          url = new URL(data.url);
-        } catch {
-          throw new FlightError(
-            502,
-            "INVALID_BOOKING_LINK",
-            "판매처 연결 주소를 확인할 수 없어요.",
-          );
+        for (let attempt=0;attempt<2;attempt++) {
+          const data = await upstream("/affiliates/links/flights", payload);
+          let url;
+          try { url = new URL(data.url); } catch { continue; }
+          if (url.hostname === "app.ac" && url.protocol === "http:") url.protocol = "https:";
+          if (url.protocol === "https:" && ["app.ac", "myrealt.rip", "agoda.tpm.lv"].includes(url.hostname) && !url.username && !url.password)
+            return {url:url.toString()};
         }
-        if (url.hostname === "app.ac" && url.protocol === "http:")
-          url.protocol = "https:";
-        if (
-          url.protocol !== "https:" ||
-          !["app.ac", "myrealt.rip", "agoda.tpm.lv"].includes(url.hostname) ||
-          url.username ||
-          url.password
-        )
-          throw new FlightError(
-            502,
-            "INVALID_BOOKING_LINK",
-            "판매처 연결 주소를 확인할 수 없어요.",
-          );
-        return { url: url.toString() };
+        throw new FlightError(502,"INVALID_BOOKING_LINK","판매처 연결 주소를 확인할 수 없어요.");
       },
     );
     if (result.stale)

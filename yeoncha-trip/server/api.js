@@ -1,10 +1,25 @@
-import { createFlightService, FlightError } from "./flights.js";
+import { createFlightService, createFlightState, FlightError } from "./flights.js";
+import { createItineraryService, createItineraryState } from './itineraries.js';
 
 export function createApi({
-  service = createFlightService(),
+  service,
+  serviceFactory,
+  itineraryFactory,
   now = () => Date.now(),
 } = {}) {
   const buckets = new Map();
+  let bucketEpoch=-1,bucketSalt='';
+  async function clientKey(request){
+    const epoch=Math.floor(now()/60000);
+    if(epoch!==bucketEpoch){buckets.clear();bucketEpoch=epoch;bucketSalt=crypto.randomUUID();}
+    const input=new TextEncoder().encode(`${bucketSalt}:${request.headers.get('CF-Connecting-IP')||'local'}`);
+    const digest=await crypto.subtle.digest('SHA-256',input);
+    return Array.from(new Uint8Array(digest),x=>x.toString(16).padStart(2,'0')).join('');
+  }
+  const flightState = createFlightState();
+  const itineraryState = createItineraryState();
+  const forRequest = serviceFactory || (service ? () => service : (request, fetcher) =>
+    createFlightService({ state: flightState, signal: request.signal, now, fetcher }));
   const json = (data, status = 200, headers = {}) =>
     new Response(JSON.stringify(data), {
       status,
@@ -15,7 +30,7 @@ export function createApi({
         ...headers,
       },
     });
-  return async function handleApi(request) {
+  return async function handleApi(request, {fetcher} = {}) {
     const url = new URL(request.url);
     if (!url.pathname.startsWith("/api/")) return null;
     const requestId = crypto.randomUUID();
@@ -47,16 +62,17 @@ export function createApi({
           "/api/flights",
           "/api/history",
           "/api/book",
+          "/api/itineraries",
         ].includes(url.pathname)
       )
         throw new FlightError(404, "NOT_FOUND", "조회 주소를 찾을 수 없어요.");
-      if (url.search.length > 600)
+      if (url.search.length > (url.pathname === '/api/itineraries' ? 3200 : 600))
         throw new FlightError(400, "INVALID_QUERY", "조회 조건이 너무 깁니다.");
       if (url.pathname === "/api/health")
         return json({ status: "ok", service: "tteum-flights", version: 3 });
       const allowed = {
         "/api/routes": ["origin"],
-        "/api/overview": ["origin", "year", "maxLeave", "minNights", "buffer", "page", "month"],
+        "/api/overview": ["origin", "year", "maxLeave", "minNights", "buffer", "page", "month", "sort"],
         "/api/flights": [
           "origin",
           "start",
@@ -68,6 +84,7 @@ export function createApi({
         ],
         "/api/history": ["origin", "code", "start", "end", "partner"],
         "/api/book": ["origin", "code", "start", "end", "partner"],
+        "/api/itineraries": ["origin", "code", "start", "end", "outbound", "refresh"],
       }[url.pathname];
       if (
         [...url.searchParams.keys()].some(
@@ -80,7 +97,7 @@ export function createApi({
           "INVALID_QUERY",
           "지원하지 않는 조회 조건입니다.",
         );
-      const client = request.headers.get("CF-Connecting-IP") || "local";
+      const client = await clientKey(request);
       const previous = buckets.get(client),
         current = now();
       const bucket =
@@ -96,7 +113,13 @@ export function createApi({
         );
       if (buckets.size > 1000) buckets.delete(buckets.keys().next().value);
       buckets.set(client, bucket);
+      // Pending I/O and queue timers belong exclusively to this invocation.
+      const service = forRequest(request, fetcher);
       const input = Object.fromEntries(url.searchParams);
+      if (url.pathname === '/api/itineraries') {
+        const itinerary = itineraryFactory ? itineraryFactory(request) : createItineraryService({state:itineraryState,signal:request.signal,now,fetcher});
+        return json(await itinerary.search(input));
+      }
       if (url.pathname === "/api/routes")
         return json({ routes: await service.routes(input.origin) });
       if (url.pathname === "/api/overview")
@@ -133,7 +156,7 @@ export function createApi({
             code: known ? error.code : "INTERNAL_ERROR",
           }),
         );
-      if (url.pathname === "/api/book" && status >= 500) {
+      if (url.pathname === "/api/book") {
         const escape = (value) =>
           String(value).replace(
             /[&<>"']/g,
@@ -155,12 +178,16 @@ export function createApi({
         const otherSearch = valid
           ? `https://www.skyscanner.co.kr/transport/flights/${q.get("origin").toLowerCase()}/${q.get("code").toLowerCase()}/${q.get("start").slice(2).replaceAll("-", "")}/${q.get("end").slice(2).replaceAll("-", "")}/?adults=1&rtn=1&currency=KRW`
           : "/";
+        const wait=error.retryAfter?`${Math.ceil(error.retryAfter/60)}분 후 다시 연결해 주세요.`:'잠시 후 다시 연결하거나 다른 판매처에서 확인해 주세요.';
+        const title=status===429?'연결 요청이 잠시 몰렸어요':status>=500?'판매처 연결이 지연되고 있어요':'이 항공권 링크를 확인해 주세요';
         return new Response(
-          `<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>판매처 연결 안내 · 틈</title><style>body{font-family:system-ui,sans-serif;background:#f7f9f8;color:#18342e;margin:0;padding:40px 24px}main{max-width:480px;margin:10vh auto;padding:28px;background:white;border:1px solid #e2e9e5;border-radius:16px}h1{font-size:24px}p{font-size:15px;line-height:1.8;color:#596e65}a{display:block;padding:14px;margin-top:12px;border-radius:8px;text-align:center;color:#087f6a;text-decoration:none;border:1px solid #c8ded2}a.primary{background:#087f6a;color:white}</style><main><h1>판매처에 연결하지 못했어요</h1><p>연결 주소를 만드는 중 일시적인 문제가 생겼습니다. 다시 연결하거나 같은 날짜로 다른 검색을 이용해 주세요.</p><a class="primary" href="${escape(url.pathname + url.search)}">판매처 다시 연결</a><a href="${escape(otherSearch)}" rel="noopener noreferrer">같은 날짜로 스카이스캐너 검색</a><a href="/">다른 항공권 보기</a></main></html>`,
+          `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>판매처 연결 안내 · 틈</title><style>body{font-family:system-ui,sans-serif;background:#f5f7fb;color:#172033;margin:0;padding:24px}main{max-width:480px;margin:10vh auto;padding:28px;background:white;border:1px solid #dce4f1;border-radius:20px}h1{font-size:24px}p{font-size:16px;line-height:1.8;color:#4b5c7d}a{display:block;padding:14px;margin-top:12px;border-radius:12px;text-align:center;color:#2453e8;text-decoration:none;border:1px solid #cad5ed}a.primary{background:#2453e8;color:white}a:focus-visible{outline:3px solid #2453e8;outline-offset:3px}</style></head><body><main><h1>${title}</h1><p>${status>=429?wait:'여행 일정을 다시 선택해 주세요.'}</p>${status>=429?`<a class="primary" href="${escape(url.pathname + url.search)}">판매처 다시 연결</a>`:''}${valid?`<a href="${escape(otherSearch)}" rel="noreferrer">같은 날짜로 다른 곳에서 검색</a>`:''}<a href="/">틈으로 돌아가기</a></main></body></html>`,
           {
             status,
             headers: {
               "Content-Type": "text/html; charset=utf-8",
+              ...(error.retryAfter?{"Retry-After":String(error.retryAfter)}:{}),
+              "Referrer-Policy":"no-referrer",
               "Cache-Control": "no-store",
               "X-Content-Type-Options": "nosniff",
               "Content-Security-Policy":
